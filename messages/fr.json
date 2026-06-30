@@ -1,0 +1,44 @@
+{
+  "common": {
+    "appName": "Dealeg",
+    "tagline": "Les meilleurs bons plans tech"
+  },
+  "nav": {
+    "domain": "Domaines",
+    "hosting": "Hébergement",
+    "vpn": "VPN",
+    "tools": "Outils",
+    "submit": "Soumettre une offre",
+    "blog": "Blog"
+  },
+  "home": {
+    "hero": {
+      "title": "Les meilleurs bons plans tech",
+      "subtitle": "Domaines, hébergement, VPN et outils gratuits légaux — mis à jour chaque jour",
+      "cta": "Voir les offres du jour"
+    },
+    "featured": "À la une",
+    "newest": "Plus récents"
+  },
+  "voucher": {
+    "copy": "Copier",
+    "copied": "Copié !",
+    "expires": "Expire le",
+    "verified": "Vérifié",
+    "expired": "Expiré",
+    "noExpiry": "Sans expiration",
+    "usedCount": "{count} personnes ont utilisé",
+    "getDiscount": "Obtenir l'offre"
+  },
+  "tools": {
+    "title": "Outils gratuits",
+    "pdf": "Modifier PDF",
+    "office": "Office en ligne",
+    "image": "Modifier image",
+    "convert": "Convertir fichier"
+  },
+  "footer": {
+    "rights": "© 2026 dealeg.com",
+    "affiliate": "Certains liens sont des liens d'affiliation."
+  }
+}

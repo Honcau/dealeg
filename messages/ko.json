@@ -1,0 +1,44 @@
+{
+  "common": {
+    "appName": "Dealeg",
+    "tagline": "최고의 테크 쿠폰"
+  },
+  "nav": {
+    "domain": "도메인",
+    "hosting": "호스팅",
+    "vpn": "VPN",
+    "tools": "도구",
+    "submit": "쿠폰 제출",
+    "blog": "블로그"
+  },
+  "home": {
+    "hero": {
+      "title": "최고의 테크 쿠폰",
+      "subtitle": "도메인, 호스팅, VPN 및 무료 합법 도구 — 매일 업데이트",
+      "cta": "오늘의 혜택 보기"
+    },
+    "featured": "추천",
+    "newest": "최신"
+  },
+  "voucher": {
+    "copy": "복사",
+    "copied": "복사됨!",
+    "expires": "만료일",
+    "verified": "확인됨",
+    "expired": "만료됨",
+    "noExpiry": "기한 없음",
+    "usedCount": "{count}명 사용",
+    "getDiscount": "혜택 받기"
+  },
+  "tools": {
+    "title": "무료 도구",
+    "pdf": "PDF 편집",
+    "office": "온라인 오피스",
+    "image": "이미지 편집",
+    "convert": "파일 변환"
+  },
+  "footer": {
+    "rights": "© 2026 dealeg.com",
+    "affiliate": "일부 링크는 제휴 링크입니다."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/scrape",
+      "schedule": "0 */6 * * *"
+    }
+  ],
+  "env": {
+    "DATABASE_URL":             "@database-url",
+    "CRON_SECRET":              "@cron-secret",
+    "NAMECHEAP_AFFILIATE_ID":   "@namecheap-affiliate-id",
+    "HOSTINGER_AFFILIATE_ID":   "@hostinger-affiliate-id",
+    "NORDVPN_AFFILIATE_ID":     "@nordvpn-affiliate-id",
+    "ILOVEPDF_PUBLIC_KEY":      "@ilovepdf-public-key",
+    "ILOVEPDF_SECRET_KEY":      "@ilovepdf-secret-key",
+    "CLOUDCONVERT_API_KEY":     "@cloudconvert-api-key"
+  }
+}

@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /*
+   * Font stack: Inter (downloaded) covers en/es/pt/fr/de/ru/vi.
+   * For zh/ja/ko/hi/ar, the browser skips straight to the OS's
+   * built-in system font for that script — every modern OS ships
+   * one, so text always renders correctly with zero extra downloads.
+   */
+  body {
+    font-family:
+      var(--font-inter),
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      'Noto Sans SC',      /* Chinese fallback (Windows/Android) */
+      'Noto Sans JP',      /* Japanese fallback */
+      'Noto Sans KR',      /* Korean fallback */
+      'Noto Sans Devanagari', /* Hindi fallback */
+      'Noto Naskh Arabic',  /* Arabic fallback */
+      'Segoe UI',
+      sans-serif;
+  }
+}
+
+@layer components {
+  /* Voucher code pulse on copy */
+  .code-copied {
+    animation: pulse-green 0.4s ease-out;
+  }
+}
+
+/* RTL flip: Arabic mirrors padding/margin utilities automatically
+   via Tailwind's built-in rtl: variant (works off the dir attribute
+   we set in layout.tsx). No plugin needed — Tailwind v3.3+ has this
+   built in. Example usage in a component:
+     className="ms-4 rtl:ms-0 rtl:me-4"
+   We haven't rewritten every component to be RTL-perfect yet —
+   spacing will mostly look fine because flexbox respects dir
+   automatically, but audit manually-positioned elements later. */
+
+@keyframes pulse-green {
+  0%   { background-color: rgb(220 252 231); }
+  100% { background-color: transparent; }
+}

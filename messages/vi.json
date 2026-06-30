@@ -1,0 +1,44 @@
+{
+  "common": {
+    "appName": "Dealeg",
+    "tagline": "Voucher công nghệ tốt nhất"
+  },
+  "nav": {
+    "domain": "Tên miền",
+    "hosting": "Hosting",
+    "vpn": "VPN",
+    "tools": "Công cụ",
+    "submit": "Gửi deal",
+    "blog": "Blog"
+  },
+  "home": {
+    "hero": {
+      "title": "Voucher công nghệ tốt nhất",
+      "subtitle": "Domain, hosting, VPN và công cụ phần mềm hợp pháp — tổng hợp mỗi ngày",
+      "cta": "Xem deal hôm nay"
+    },
+    "featured": "Đang nổi bật",
+    "newest": "Mới nhất"
+  },
+  "voucher": {
+    "copy": "Sao chép",
+    "copied": "Đã sao chép!",
+    "expires": "Hết hạn",
+    "verified": "Đã xác minh",
+    "expired": "Đã hết hạn",
+    "noExpiry": "Không giới hạn",
+    "usedCount": "{count} người đã dùng",
+    "getDiscount": "Nhận ưu đãi"
+  },
+  "tools": {
+    "title": "Công cụ miễn phí",
+    "pdf": "Chỉnh sửa PDF",
+    "office": "Office trực tuyến",
+    "image": "Chỉnh sửa ảnh",
+    "convert": "Chuyển đổi file"
+  },
+  "footer": {
+    "rights": "© 2026 dealeg.com",
+    "affiliate": "Một số link là affiliate link."
+  }
+}

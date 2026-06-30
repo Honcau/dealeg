@@ -1,0 +1,44 @@
+{
+  "common": {
+    "appName": "Dealeg",
+    "tagline": "Best tech vouchers"
+  },
+  "nav": {
+    "domain": "Domains",
+    "hosting": "Hosting",
+    "vpn": "VPN",
+    "tools": "Tools",
+    "submit": "Submit a deal",
+    "blog": "Blog"
+  },
+  "home": {
+    "hero": {
+      "title": "Best tech vouchers",
+      "subtitle": "Domains, hosting, VPN and legal free tools — curated daily",
+      "cta": "See today's deals"
+    },
+    "featured": "Featured",
+    "newest": "Newest"
+  },
+  "voucher": {
+    "copy": "Copy",
+    "copied": "Copied!",
+    "expires": "Expires",
+    "verified": "Verified",
+    "expired": "Expired",
+    "noExpiry": "No expiry",
+    "usedCount": "{count} people used",
+    "getDiscount": "Get deal"
+  },
+  "tools": {
+    "title": "Free tools",
+    "pdf": "Edit PDF",
+    "office": "Online Office",
+    "image": "Edit image",
+    "convert": "Convert file"
+  },
+  "footer": {
+    "rights": "© 2026 dealeg.com",
+    "affiliate": "Some links are affiliate links."
+  }
+}

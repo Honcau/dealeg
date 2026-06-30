@@ -1,0 +1,44 @@
+{
+  "common": {
+    "appName": "Dealeg",
+    "tagline": "أفضل قسائم التقنية"
+  },
+  "nav": {
+    "domain": "النطاقات",
+    "hosting": "الاستضافة",
+    "vpn": "VPN",
+    "tools": "الأدوات",
+    "submit": "إرسال عرض",
+    "blog": "مدونة"
+  },
+  "home": {
+    "hero": {
+      "title": "أفضل قسائم التقنية",
+      "subtitle": "نطاقات، استضافة، VPN وأدوات مجانية قانونية — تُحدَّث يوميًا",
+      "cta": "عرض صفقات اليوم"
+    },
+    "featured": "مميز",
+    "newest": "الأحدث"
+  },
+  "voucher": {
+    "copy": "نسخ",
+    "copied": "تم النسخ!",
+    "expires": "تنتهي في",
+    "verified": "موثّق",
+    "expired": "منتهي الصلاحية",
+    "noExpiry": "بدون انتهاء",
+    "usedCount": "استخدمها {count} شخص",
+    "getDiscount": "احصل على العرض"
+  },
+  "tools": {
+    "title": "أدوات مجانية",
+    "pdf": "تحرير PDF",
+    "office": "أوفيس أونلاين",
+    "image": "تحرير الصور",
+    "convert": "تحويل الملفات"
+  },
+  "footer": {
+    "rights": "© 2026 dealeg.com",
+    "affiliate": "بعض الروابط هي روابط تابعة."
+  }
+}

@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /*
+   * Font stack — Inter (Latin/Cyrillic) + system fonts cho
+   * Chinese, Japanese, Korean, Hindi, Arabic
+   */
+  body {
+    font-family:
+      var(--font-inter),
+      ui-sans-serif, system-ui, -apple-system,
+      'Noto Sans SC', 'Noto Sans JP', 'Noto Sans KR',
+      'Noto Sans Devanagari', 'Noto Naskh Arabic',
+      sans-serif;
+  }
+}
+
+@layer components {
+  .code-copied {
+    animation: pulse-green 0.4s ease-out;
+  }
+}
+
+@keyframes pulse-green {
+  0%   { background-color: rgb(220 252 231); }
+  100% { background-color: transparent; }
+}

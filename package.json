@@ -1,0 +1,50 @@
+{
+  "name": "dealeg",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "scrape": "tsx src/lib/scrapers/run.ts",
+    "db:gen": "prisma generate",
+    "seed:articles": "tsx prisma/seed-articles.ts",
+    "test:deepl": "tsx scripts/test-deepl.ts"
+  },
+  "dependencies": {
+    "next": "^15.3.0",
+    "next-intl": "^3.26.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@prisma/client": "^5.22.0",
+    "cheerio": "^1.0.0",
+    "zod": "^3.23.8",
+    "next-auth": "^5.0.0-beta.25",
+    "@auth/prisma-adapter": "^2.4.1",
+    "react-markdown": "^9.0.1",
+    "bcryptjs": "^2.4.3",
+    "remark-gfm": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9",
+    "eslint-config-next": "^15.3.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2",
+    "prisma": "^5.22.0",
+    "tsx": "^4.19.2",
+    "@types/bcryptjs": "^2.4.6",
+    "@tailwindcss/typography": "^0.5.15"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+}

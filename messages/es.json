@@ -1,0 +1,44 @@
+{
+  "common": {
+    "appName": "Dealeg",
+    "tagline": "Los mejores cupones tech"
+  },
+  "nav": {
+    "domain": "Dominios",
+    "hosting": "Hosting",
+    "vpn": "VPN",
+    "tools": "Herramientas",
+    "submit": "Enviar oferta",
+    "blog": "Blog"
+  },
+  "home": {
+    "hero": {
+      "title": "Los mejores cupones tech",
+      "subtitle": "Dominios, hosting, VPN y herramientas legales gratuitas — actualizadas cada día",
+      "cta": "Ver ofertas de hoy"
+    },
+    "featured": "Destacados",
+    "newest": "Más recientes"
+  },
+  "voucher": {
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "expires": "Expira",
+    "verified": "Verificado",
+    "expired": "Expirado",
+    "noExpiry": "Sin vencimiento",
+    "usedCount": "{count} personas usaron",
+    "getDiscount": "Obtener oferta"
+  },
+  "tools": {
+    "title": "Herramientas gratis",
+    "pdf": "Editar PDF",
+    "office": "Office en línea",
+    "image": "Editar imagen",
+    "convert": "Convertir archivo"
+  },
+  "footer": {
+    "rights": "© 2026 dealeg.com",
+    "affiliate": "Algunos enlaces son de afiliado."
+  }
+}

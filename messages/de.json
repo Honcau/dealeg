@@ -1,0 +1,44 @@
+{
+  "common": {
+    "appName": "Dealeg",
+    "tagline": "Beste Tech-Gutscheine"
+  },
+  "nav": {
+    "domain": "Domains",
+    "hosting": "Hosting",
+    "vpn": "VPN",
+    "tools": "Tools",
+    "submit": "Deal einreichen",
+    "blog": "Blog"
+  },
+  "home": {
+    "hero": {
+      "title": "Beste Tech-Gutscheine",
+      "subtitle": "Domains, Hosting, VPN und legale kostenlose Tools — täglich aktualisiert",
+      "cta": "Deals heute ansehen"
+    },
+    "featured": "Empfohlen",
+    "newest": "Neueste"
+  },
+  "voucher": {
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "expires": "Läuft ab",
+    "verified": "Verifiziert",
+    "expired": "Abgelaufen",
+    "noExpiry": "Kein Ablaufdatum",
+    "usedCount": "{count} Personen verwendet",
+    "getDiscount": "Deal erhalten"
+  },
+  "tools": {
+    "title": "Kostenlose Tools",
+    "pdf": "PDF bearbeiten",
+    "office": "Online Office",
+    "image": "Bild bearbeiten",
+    "convert": "Datei konvertieren"
+  },
+  "footer": {
+    "rights": "© 2026 dealeg.com",
+    "affiliate": "Einige Links sind Affiliate-Links."
+  }
+}

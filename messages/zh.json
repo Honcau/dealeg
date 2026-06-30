@@ -1,0 +1,44 @@
+{
+  "common": {
+    "appName": "Dealeg",
+    "tagline": "最佳科技优惠券"
+  },
+  "nav": {
+    "domain": "域名",
+    "hosting": "主机",
+    "vpn": "VPN",
+    "tools": "工具",
+    "submit": "提交优惠",
+    "blog": "博客"
+  },
+  "home": {
+    "hero": {
+      "title": "最佳科技优惠券",
+      "subtitle": "域名、主机、VPN和免费合法工具——每天更新",
+      "cta": "查看今日优惠"
+    },
+    "featured": "精选",
+    "newest": "最新"
+  },
+  "voucher": {
+    "copy": "复制",
+    "copied": "已复制！",
+    "expires": "到期",
+    "verified": "已验证",
+    "expired": "已过期",
+    "noExpiry": "永久有效",
+    "usedCount": "{count}人使用",
+    "getDiscount": "获取优惠"
+  },
+  "tools": {
+    "title": "免费工具",
+    "pdf": "PDF编辑",
+    "office": "在线办公",
+    "image": "图片编辑",
+    "convert": "文件转换"
+  },
+  "footer": {
+    "rights": "© 2026 dealeg.com",
+    "affiliate": "部分链接为联盟链接。"
+  }
+}

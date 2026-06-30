@@ -1,0 +1,44 @@
+{
+  "common": {
+    "appName": "Dealeg",
+    "tagline": "最高のテクバウチャー"
+  },
+  "nav": {
+    "domain": "ドメイン",
+    "hosting": "ホスティング",
+    "vpn": "VPN",
+    "tools": "ツール",
+    "submit": "クーポンを投稿",
+    "blog": "ブログ"
+  },
+  "home": {
+    "hero": {
+      "title": "最高のテクバウチャー",
+      "subtitle": "ドメイン、ホスティング、VPN、無料ツール — 毎日更新",
+      "cta": "今日のお得情報を見る"
+    },
+    "featured": "注目",
+    "newest": "最新"
+  },
+  "voucher": {
+    "copy": "コピー",
+    "copied": "コピーしました！",
+    "expires": "有効期限",
+    "verified": "確認済み",
+    "expired": "期限切れ",
+    "noExpiry": "期限なし",
+    "usedCount": "{count}人が使用",
+    "getDiscount": "割引を取得"
+  },
+  "tools": {
+    "title": "無料ツール",
+    "pdf": "PDF編集",
+    "office": "オンラインオフィス",
+    "image": "画像編集",
+    "convert": "ファイル変換"
+  },
+  "footer": {
+    "rights": "© 2026 dealeg.com",
+    "affiliate": "一部リンクはアフィリエイトリンクです。"
+  }
+}
