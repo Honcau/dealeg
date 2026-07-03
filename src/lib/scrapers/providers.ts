@@ -106,3 +106,22 @@ export function buildAffUrl(p: Provider): string {
   const id    = p.affiliateId || 'dealeg';
   return `${base}?${param}=${id}`;
 }
+
+// ── Website Builders ─────────────────────────────────────────────────────────
+export const WEBSITE_BUILDER_PROVIDERS: Provider[] = [
+  { name: 'Wix', category: 'OTHER', coupertSlug: 'wix', dealhackSlug: 'wix', affiliateBase: 'https://www.wix.com' },
+  { name: 'Squarespace', category: 'OTHER', coupertSlug: 'squarespace', dealhackSlug: 'squarespace', affiliateBase: 'https://www.squarespace.com' },
+  { name: 'Webflow', category: 'OTHER', coupertSlug: 'webflow', dealhackSlug: 'webflow', affiliateBase: 'https://webflow.com' },
+  { name: 'Framer', category: 'OTHER', coupertSlug: 'framer', dealhackSlug: 'framer', affiliateBase: 'https://www.framer.com' },
+  { name: 'Hostinger Horizons', category: 'OTHER', coupertSlug: 'hostinger', dealhackSlug: 'hostinger', affiliateBase: 'https://www.hostinger.com', affiliateParam: 'ref', affiliateId: process.env.HOSTINGER_AFFILIATE_ID },
+  { name: '10Web', category: 'OTHER', coupertSlug: '10web', dealhackSlug: '10web', affiliateBase: 'https://10web.io' },
+];
+
+// ── AI Coding Tools ──────────────────────────────────────────────────────────
+export const CODING_TOOL_PROVIDERS: Provider[] = [
+  { name: 'GitHub Copilot', category: 'OTHER', coupertSlug: 'github', dealhackSlug: 'github', affiliateBase: 'https://github.com/features/copilot' },
+  { name: 'Cursor', category: 'OTHER', coupertSlug: 'cursor', dealhackSlug: 'cursor', affiliateBase: 'https://cursor.com' },
+  { name: 'Lovable', category: 'OTHER', coupertSlug: 'lovable', dealhackSlug: 'lovable', affiliateBase: 'https://lovable.dev' },
+  { name: 'Tabnine', category: 'OTHER', coupertSlug: 'tabnine', dealhackSlug: 'tabnine', affiliateBase: 'https://www.tabnine.com' },
+  { name: 'Replit', category: 'OTHER', coupertSlug: 'replit', dealhackSlug: 'replit', affiliateBase: 'https://replit.com' },
+];

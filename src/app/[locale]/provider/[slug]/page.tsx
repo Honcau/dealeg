@@ -47,7 +47,7 @@ export default async function ProviderPage({ params }: Props) {
   }
 
   // Map vouchers
-  const vouchers: Voucher[] = provider.vouchers.map(v => ({
+  const vouchers: Voucher[] = provider.vouchers.map((v: (typeof provider.vouchers)[number]) => ({
     id:            v.id,
     provider:      v.provider,
     category:      v.category.toLowerCase() as 'domain',

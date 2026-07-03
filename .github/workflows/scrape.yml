@@ -1,0 +1,40 @@
+name: Scrape vouchers
+
+# Thay thế Vercel Cron. Chạy scraper trong môi trường Node đầy đủ (không giới hạn
+# timeout như serverless), ghi thẳng vào Supabase. Website trên Netlify chỉ đọc DB.
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # mỗi 6 giờ (giống lịch cũ trên Vercel)
+  workflow_dispatch: {}      # nút "Run workflow" để chạy tay khi cần
+
+# Đảm bảo không chạy chồng nếu lần trước chưa xong
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Run scrapers
+        run: npm run scrape
+        env:
+          # Dùng connection string TRỰC TIẾP của Supabase (port 5432), không phải pooler
+          DATABASE_URL:           ${{ secrets.DATABASE_URL }}
+          NAMECHEAP_AFFILIATE_ID: ${{ secrets.NAMECHEAP_AFFILIATE_ID }}
+          HOSTINGER_AFFILIATE_ID: ${{ secrets.HOSTINGER_AFFILIATE_ID }}
+          NORDVPN_AFFILIATE_ID:   ${{ secrets.NORDVPN_AFFILIATE_ID }}

@@ -59,7 +59,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   ]);
 
   // Map Prisma model → Voucher type
-  const vouchers: Voucher[] = dbVouchers.map(v => ({
+  const vouchers: Voucher[] = dbVouchers.map((v: (typeof dbVouchers)[number]) => ({
     id:            v.id,
     provider:      v.provider,
     category:      slug,
@@ -80,7 +80,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       <VoucherFilter
         currentSort={sort}
         currentProvider={provider}
-        providers={providerRows.map(p => p.provider)}
+        providers={providerRows.map((p: (typeof providerRows)[number]) => p.provider)}
         category={slug}
       />
       <VoucherGrid vouchers={vouchers} />

@@ -71,6 +71,20 @@ const ARTICLES = [
     title:    'How to Save Money on Tech Subscriptions: 6 Strategies',
     excerpt:  'Domains, hosting, VPNs, and software quietly drain money through predictable tricks. Six deliberate habits to cut your annual tech spending without sacrifice.',
   },
+  {
+    slug:     'best-ai-website-builders-2026',
+    category: 'website-builder',
+    file:     'best-ai-website-builders-2026.md',
+    title:    'Best AI Website Builders in 2026: Compared by Use Case',
+    excerpt:  'AI website builders have split into three lanes — business, design, and code-first. Compare Wix, Hostinger, Framer, Webflow, and more, with the hidden costs exposed.',
+  },
+  {
+    slug:     'best-ai-coding-tools-2026',
+    category: 'coding-tools',
+    file:     'best-ai-coding-tools-2026.md',
+    title:    'Best AI Coding Tools in 2026: Copilot, Cursor, Claude Code',
+    excerpt:  'A developer comparison across three paradigms — inline assistants, terminal agents, and AI IDEs. Honest pricing, and why the best developers combine several.',
+  },
 ];
 
 async function main() {

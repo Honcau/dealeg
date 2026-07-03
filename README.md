@@ -1,110 +1,61 @@
-# dealeg.com — Boilerplate
+# dealeg.com
 
-Next.js 15 + TypeScript + Tailwind CSS + next-intl — Phase 1 foundation.
+Multilingual tech deals & voucher platform. Next.js 15 + PostgreSQL + Prisma, self-hosted on Contabo VPS via Docker.
 
 ## Stack
 
 | Layer | Choice |
 |---|---|
-| Framework | Next.js 15 (App Router) |
+| Framework | Next.js 15 (App Router, standalone output) |
 | Language | TypeScript |
 | Styling | Tailwind CSS v3 |
-| i18n | next-intl v3 |
-| Font | Inter (Google Fonts) |
-| DB (next step) | PostgreSQL + Prisma |
-| Queue (scraping) | BullMQ + Redis |
+| i18n | next-intl (12 languages + RTL) |
+| Database | PostgreSQL (on VPS host) |
+| ORM | Prisma |
+| Auth | NextAuth v5 (Google, Facebook, GitHub, email) |
+| Translation | DeepL API |
+| Deploy | Docker Compose + Nginx + Certbot |
 
-## Supported languages
-
-| Code | Language | Default |
-|---|---|---|
-| `vi` | Vietnamese | ✅ |
-| `en` | English | |
-| `zh-CN` | Chinese (Simplified) | |
-| `ja` | Japanese | |
-| `de` | German | |
-| `es` | Spanish | |
-| `fr` | French | |
-
-## Getting started
+## Local development
 
 ```bash
 npm install
-cp .env.example .env.local
-# Fill in .env.local with your keys
+cp .env.example .env.local        # fill DATABASE_URL etc.
+cp .env.example .env              # Prisma CLI reads .env
+npm run db:push
+npm run db:seed
+npm run seed:articles
 npm run dev
 ```
 
-Open http://localhost:3000 — auto-redirects to /vi/ via middleware.
+## Production deploy
 
-## Project structure
+See **DEPLOY_CONTABO.md** for full step-by-step VPS setup.
 
-```
-src/
-├── app/
-│   ├── layout.tsx               # Root (minimal pass-through)
-│   └── [locale]/
-│       ├── layout.tsx           # Locale layout + NextIntlClientProvider
-│       ├── page.tsx             # Home page
-│       └── globals.css          # Tailwind base + custom animations
-├── components/
-│   ├── layout/
-│   │   ├── Header.tsx           # Server component with i18n links
-│   │   ├── Footer.tsx           # Server component
-│   │   └── LanguageSwitcher.tsx # Client component (useRouter)
-│   └── voucher/
-│       ├── VoucherCard.tsx      # Client component (copy to clipboard)
-│       └── VoucherGrid.tsx      # Server component wrapper
-├── i18n/
-│   ├── routing.ts               # Locale config (7 locales)
-│   ├── request.ts               # Server-side message loader
-│   └── navigation.ts            # Type-safe Link, useRouter, usePathname
-├── lib/utils.ts                 # cn, formatDate, isExpired, formatCount
-├── middleware.ts                # next-intl locale routing
-└── types/voucher.ts             # Voucher + VoucherFilters types
-messages/
-├── vi.json  en.json  zh-CN.json
-├── ja.json  de.json  es.json  fr.json
-```
-
-## Next steps — Phase 1
-
-- [ ] Add Prisma + PostgreSQL (`npx prisma init`)
-- [ ] Replace mock data in `page.tsx` with DB queries
-- [ ] Create `/domain`, `/hosting`, `/vpn` category pages
-- [ ] Add voucher scraping worker (`src/workers/scraper.ts`) with BullMQ
-- [ ] Integrate Namecheap / Hostinger affiliate APIs
-- [ ] Add DeepL auto-translation for `description` fields
-- [ ] Deploy to Vercel + connect Supabase (free tier)
-
-## Phase 2 additions (months 3-6)
-
-- [ ] `/tools/pdf` — ilovepdf API (`ILOVEPDF_PUBLIC_KEY`)
-- [ ] `/tools/office` — OnlyOffice Document Server (Docker)
-- [ ] `/tools/image` — Photopea embed (no API needed)
-- [ ] `/tools/convert` — CloudConvert API (`CLOUDCONVERT_API_KEY`)
-- [ ] User auth with NextAuth.js
-- [ ] Email alerts (Resend or Postmark)
-
-## Environment variables
-
-Copy `.env.example` to `.env.local` and fill in:
-
+Quick version:
 ```bash
-DATABASE_URL="postgresql://..."
-DEEPL_API_KEY=""
-NAMECHEAP_AFFILIATE_ID=""
-HOSTINGER_AFFILIATE_ID=""
-NORDVPN_AFFILIATE_ID=""
-ILOVEPDF_PUBLIC_KEY=""
-ILOVEPDF_SECRET_KEY=""
-CLOUDCONVERT_API_KEY=""
-REDIS_URL="redis://localhost:6379"
+git clone https://github.com/Honcau/dealeg.git
+cd dealeg
+cp .env.production.example .env.production   # fill values
+npx prisma migrate dev --name init           # first time only
+docker compose build
+docker compose up -d
 ```
 
-## Notes
+## Key features
 
-- **Root layout**: `app/layout.tsx` is a minimal pass-through; `<html>` and `<body>`
-  live in `[locale]/layout.tsx` following the next-intl recommended pattern.
-- **Affiliate links**: use `rel="noopener noreferrer sponsored"` — required by Google.
-- **hreflang**: auto-generated via `generateMetadata` in locale layout for all 7 locales.
+- 12-language support with automatic RTL for Arabic
+- Voucher CRUD with category/provider filtering
+- SEO-optimized `/coupon/[brand]` pages with JSON-LD + FAQ schema
+- Community comments + voting (verify if codes still work)
+- Blog with DeepL auto-translation (write in English → 11 languages)
+- Admin panel (HMAC cookie auth) for vouchers + articles
+- Scraper engine (coupert.com, dealhack.com) with cron
+- Auto-generated sitemap + robots.txt
+
+## Docs
+
+- `DEPLOY_CONTABO.md` — VPS deployment
+- `AUTH_SETUP.md` — OAuth provider setup
+- `AFFILIATE_SOURCES.md` — affiliate program signup guide
+- `FEATURES.md` — roadmap

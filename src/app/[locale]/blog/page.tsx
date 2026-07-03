@@ -26,7 +26,7 @@ export default async function BlogPage({ params }: Props) {
       <h1 className="text-3xl font-extrabold text-gray-900">Blog</h1>
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {articles.map(article => {
+        {articles.map((article: typeof articles[number]) => {
           const t = article.translations[0];
           const title   = t?.title   ?? article.slug;
           const excerpt = t?.excerpt ?? '';

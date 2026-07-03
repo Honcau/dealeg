@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+
+[build.environment]
+  # Node 20 LTS — an toàn cho Next.js 15 + React 19
+  NODE_VERSION = "20"
+
+# Netlify tự nhận diện Next.js và áp dụng runtime chính thức (@netlify/plugin-nextjs)
+# để xử lý SSR, API routes và middleware — không cần khai báo plugin ở đây.
+
+# Ghi chú timeout function:
+#   - Free tier : 10 giây / lần gọi
+#   - Pro       : 26 giây / lần gọi
+# Route dịch DeepL đã được tách để gọi từng ngôn ngữ một → luôn dưới 10s.
+# Tác vụ scrape chạy dài được chuyển sang GitHub Actions (.github/workflows/scrape.yml),
+# không chạy trên Netlify Functions.

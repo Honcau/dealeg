@@ -13,7 +13,13 @@
     "scrape": "tsx src/lib/scrapers/run.ts",
     "db:gen": "prisma generate",
     "seed:articles": "tsx prisma/seed-articles.ts",
-    "test:deepl": "tsx scripts/test-deepl.ts"
+    "test:deepl": "tsx scripts/test-deepl.ts",
+    "db:migrate": "prisma migrate deploy",
+    "db:migrate:dev": "prisma migrate dev",
+    "docker:build": "docker compose build",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f app"
   },
   "dependencies": {
     "next": "^15.3.0",

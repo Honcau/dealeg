@@ -4,12 +4,15 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // BẮT BUỘC cho Docker: build ra server.js standalone, không cần node_modules
+  output: 'standalone',
+
   images: {
     remotePatterns: [
-      { protocol: 'https', hostname: 'lh3.googleusercontent.com' },  // Google
-      { protocol: 'https', hostname: 'avatars.githubusercontent.com' }, // GitHub
-      { protocol: 'https', hostname: '*.fbcdn.net' },                 // Facebook
-      { protocol: 'https', hostname: 'platform-lookaside.fbsbx.com' }, // Facebook
+      { protocol: 'https', hostname: 'lh3.googleusercontent.com' },
+      { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
+      { protocol: 'https', hostname: '*.fbcdn.net' },
+      { protocol: 'https', hostname: 'platform-lookaside.fbsbx.com' },
     ],
   },
 };

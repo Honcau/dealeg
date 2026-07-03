@@ -29,7 +29,7 @@ export default async function HomePage({ params }: Props) {
   });
 
   // Map Prisma model → app Voucher type
-  const vouchers: Voucher[] = dbVouchers.map(v => ({
+  const vouchers: Voucher[] = dbVouchers.map((v: (typeof dbVouchers)[number]) => ({
     id:            v.id,
     provider:      v.provider,
     category:      v.category.toLowerCase() as 'domain',
