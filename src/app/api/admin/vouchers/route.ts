@@ -17,6 +17,7 @@ const VoucherSchema = z.object({
   discount:      z.string().min(1),
   discountValue: z.number().min(0).max(100),
   affiliateUrl:  z.string().url().optional().or(z.literal('')),
+  sourceUrl:     z.string().url().optional().or(z.literal('')),
   expiresAt:     z.string().optional().nullable(),   // ISO date string
   isVerified:    z.boolean().default(false),
   isActive:      z.boolean().default(true),
@@ -53,6 +54,7 @@ export async function POST(req: NextRequest) {
     data: {
       ...data,
       affiliateUrl: data.affiliateUrl || null,
+      sourceUrl:    data.sourceUrl || null,
       expiresAt:    expiresAt ? new Date(expiresAt) : null,
       translations: {
         create: [

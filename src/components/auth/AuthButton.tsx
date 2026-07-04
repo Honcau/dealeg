@@ -1,12 +1,14 @@
 'use client';
 
 import { useSession, signIn } from 'next-auth/react';
+import { useTranslations }     from 'next-intl';
 import { Suspense }           from 'react';
 import Image                  from 'next/image';
 import Link                   from 'next/link';
 
 function Content() {
   const { data: session, status } = useSession();
+  const t = useTranslations('auth');
 
   if (status === 'loading') return <div className="text-xs text-gray-300">...</div>;
 
@@ -16,7 +18,7 @@ function Content() {
         onClick={() => signIn()}
         className="text-xs font-semibold text-indigo-600 hover:text-indigo-700 transition-colors"
       >
-        Đăng nhập
+        {t('signIn')}
       </button>
     );
   }

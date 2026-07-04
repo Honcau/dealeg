@@ -6,6 +6,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { prisma } from '@/lib/db';
 
+// Trang gọi DB → render động lúc request, không pre-render lúc build
+export const dynamic = 'force-dynamic';
+
 type Props = { params: Promise<{ locale: string }> };
 
 export const metadata: Metadata = {
@@ -25,7 +28,7 @@ export default async function CouponIndexPage({ params }: Props) {
 
   const byCategory = grouped.reduce(
     (acc: Record<string, { provider: string; slug: string; count: number; maxDiscount: number }[]>, g: (typeof grouped)[number]) => {
-      const cat = g.category;
+      const cat = String(g.category);
       if (!acc[cat]) acc[cat] = [];
       acc[cat].push({
         provider: g.provider,

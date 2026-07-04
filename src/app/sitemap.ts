@@ -2,6 +2,8 @@ import type { MetadataRoute } from 'next';
 import { prisma } from '@/lib/db';
 import { routing } from '@/i18n/routing';
 
+export const dynamic = 'force-dynamic';
+
 const BASE = 'https://dealeg.com';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

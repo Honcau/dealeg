@@ -1,10 +1,12 @@
 'use client';
 
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 export function LoginButton() {
   const { data: session, status } = useSession();
+  const t = useTranslations('auth');
 
   if (status === 'loading') {
     return <div className="w-8 h-8 rounded-full bg-gray-200 animate-pulse" />;
@@ -24,7 +26,7 @@ export function LoginButton() {
           onClick={() => signOut()}
           className="text-xs text-gray-500 hover:text-red-500 transition-colors"
         >
-          Đăng xuất
+          {t('signOut')}
         </button>
       </div>
     );
@@ -35,7 +37,7 @@ export function LoginButton() {
       onClick={() => signIn('google')}
       className="text-sm font-medium text-indigo-600 hover:text-indigo-700 transition-colors"
     >
-      Đăng nhập
+      {t('signIn')}
     </button>
   );
 }

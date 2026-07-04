@@ -28,7 +28,9 @@
     "expired": "已过期",
     "noExpiry": "永久有效",
     "usedCount": "{count}人使用",
-    "getDiscount": "获取优惠"
+    "getDiscount": "获取优惠",
+    "getCode": "获取代码",
+    "copiedHint": "代码已复制！结账时粘贴。"
   },
   "tools": {
     "title": "免费工具",
@@ -40,5 +42,29 @@
   "footer": {
     "rights": "© 2026 dealeg.com",
     "affiliate": "部分链接为联盟链接。"
+  },
+  "auth": {
+    "signIn": "登录",
+    "signOut": "登出",
+    "signUp": "注册",
+    "signInToComment": "登录后评论",
+    "email": "邮箱",
+    "password": "密码",
+    "name": "姓名",
+    "createAccount": "创建账户",
+    "authenticating": "验证中...",
+    "signInFailed": "登录失败，请重试",
+    "signUpFailed": "注册失败，请重试"
+  },
+  "submit": {
+    "title": "提交新优惠",
+    "submitting": "提交中...",
+    "submit": "提交优惠 →"
+  },
+  "comments": {
+    "myComments": "我的评论",
+    "title": "评论",
+    "post": "发布",
+    "posting": "发布中..."
   }
 }

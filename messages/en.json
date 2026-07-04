@@ -28,7 +28,9 @@
     "expired": "Expired",
     "noExpiry": "No expiry",
     "usedCount": "{count} people used",
-    "getDiscount": "Get deal"
+    "getDiscount": "Get deal",
+    "getCode": "Get Code",
+    "copiedHint": "Code copied! Paste it at checkout."
   },
   "tools": {
     "title": "Free tools",
@@ -40,5 +42,29 @@
   "footer": {
     "rights": "© 2026 dealeg.com",
     "affiliate": "Some links are affiliate links."
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "signUp": "Sign up",
+    "signInToComment": "Sign in to comment",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "createAccount": "Create account",
+    "authenticating": "Authenticating...",
+    "signInFailed": "Sign in failed, try again",
+    "signUpFailed": "Sign up failed, try again"
+  },
+  "submit": {
+    "title": "Submit a new deal",
+    "submitting": "Submitting...",
+    "submit": "Submit deal →"
+  },
+  "comments": {
+    "myComments": "My comments",
+    "title": "Comments",
+    "post": "Post",
+    "posting": "Posting..."
   }
 }

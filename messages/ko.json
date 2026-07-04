@@ -28,7 +28,9 @@
     "expired": "만료됨",
     "noExpiry": "기한 없음",
     "usedCount": "{count}명 사용",
-    "getDiscount": "혜택 받기"
+    "getDiscount": "혜택 받기",
+    "getCode": "코드 받기",
+    "copiedHint": "코드가 복사되었습니다! 결제 시 붙여넣으세요."
   },
   "tools": {
     "title": "무료 도구",
@@ -40,5 +42,29 @@
   "footer": {
     "rights": "© 2026 dealeg.com",
     "affiliate": "일부 링크는 제휴 링크입니다."
+  },
+  "auth": {
+    "signIn": "로그인",
+    "signOut": "로그아웃",
+    "signUp": "회원가입",
+    "signInToComment": "댓글을 남기려면 로그인",
+    "email": "이메일",
+    "password": "비밀번호",
+    "name": "이름",
+    "createAccount": "계정 만들기",
+    "authenticating": "인증 중...",
+    "signInFailed": "로그인 실패, 다시 시도하세요",
+    "signUpFailed": "회원가입 실패, 다시 시도하세요"
+  },
+  "submit": {
+    "title": "새 딜 제출",
+    "submitting": "제출 중...",
+    "submit": "딜 제출 →"
+  },
+  "comments": {
+    "myComments": "내 댓글",
+    "title": "댓글",
+    "post": "게시",
+    "posting": "게시 중..."
   }
 }

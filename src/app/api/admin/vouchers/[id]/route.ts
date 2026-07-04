@@ -16,6 +16,7 @@ const UpdateSchema = z.object({
   discount:      z.string().min(1),
   discountValue: z.number().min(0).max(100),
   affiliateUrl:  z.string().url().optional().or(z.literal('')),
+  sourceUrl:     z.string().url().optional().or(z.literal('')),
   expiresAt:     z.string().optional().nullable(),
   isVerified:    z.boolean(),
   isActive:      z.boolean(),
@@ -61,6 +62,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
     data: {
       ...data,
       affiliateUrl: data.affiliateUrl || null,
+      sourceUrl:    data.sourceUrl || null,
       expiresAt:    expiresAt ? new Date(expiresAt) : null,
       updatedAt:    new Date(),
       translations: {

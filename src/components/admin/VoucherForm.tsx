@@ -12,6 +12,7 @@ export interface VoucherFormData {
   discount:      string;
   discountValue: number;
   affiliateUrl:  string;
+  sourceUrl:     string;
   expiresAt:     string;
   isVerified:    boolean;
   isActive:      boolean;
@@ -23,7 +24,7 @@ export interface VoucherFormData {
 
 const EMPTY: VoucherFormData = {
   code: '', provider: '', category: 'DOMAIN', discount: '', discountValue: 0,
-  affiliateUrl: '', expiresAt: '', isVerified: false, isActive: true,
+  affiliateUrl: '', sourceUrl: '', expiresAt: '', isVerified: false, isActive: true,
   titleVi: '', descVi: '', titleEn: '', descEn: '',
 };
 
@@ -33,6 +34,8 @@ interface Props {
 }
 
 export function VoucherForm({ initial, voucherId }: Props) {
+  const [translating, setTranslating] = useState(false);
+  const [trMsg, setTrMsg] = useState('');
   const [form,    setForm]    = useState<VoucherFormData>({ ...EMPTY, ...initial });
   const [loading, setLoading] = useState(false);
   const [error,   setError]   = useState('');
@@ -71,6 +74,19 @@ export function VoucherForm({ initial, voucherId }: Props) {
 
   const inputCls = 'w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500';
   const labelCls = 'block text-xs font-medium text-gray-600 mb-1';
+
+  async function handleTranslate() {
+    if (!voucherId) return;
+    setTranslating(true); setTrMsg('');
+    try {
+      const res = await fetch(`/api/admin/vouchers/${voucherId}/translate`, { method: 'POST' });
+      const data = await res.json();
+      setTrMsg(data.summary ?? data.error ?? 'Xong');
+    } catch {
+      setTrMsg('Lỗi khi dịch');
+    }
+    setTranslating(false);
+  }
 
   return (
     <div className="space-y-8">
@@ -116,9 +132,26 @@ export function VoucherForm({ initial, voucherId }: Props) {
           </div>
 
           <div>
-            <label className={labelCls}>Affiliate URL</label>
+            <label className={labelCls}>
+              Link affiliate <span className="text-indigo-500">(link kiếm tiền — dùng khi bấm "Nhận mã")</span>
+            </label>
             <input value={form.affiliateUrl} onChange={e => set('affiliateUrl', e.target.value)}
-              placeholder="https://..." className={inputCls} />
+              placeholder="https://provider.com/?ref=your-id" className={inputCls} />
+            <p className="text-xs text-gray-400 mt-1">
+              Link có mã affiliate của bạn. User bấm "Nhận mã" sẽ được đưa qua link này.
+              Để trống nếu chưa có (nút sẽ chỉ copy code, không mở link).
+            </p>
+          </div>
+
+          <div>
+            <label className={labelCls}>
+              Link gốc <span className="text-gray-400">(tùy chọn — trang provider không có affiliate)</span>
+            </label>
+            <input value={form.sourceUrl} onChange={e => set('sourceUrl', e.target.value)}
+              placeholder="https://provider.com" className={inputCls} />
+            <p className="text-xs text-gray-400 mt-1">
+              Link trang chính thức của provider. Dùng để tham khảo, hoặc fallback nếu chưa có link affiliate.
+            </p>
           </div>
 
           <div>
@@ -186,7 +219,7 @@ export function VoucherForm({ initial, voucherId }: Props) {
         </p>
       )}
 
-      <div className="flex gap-3">
+      <div className="flex gap-3 items-center flex-wrap">
         <button onClick={handleSave} disabled={loading}
           className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white font-semibold px-6 py-2.5 rounded-lg text-sm transition-colors">
           {loading ? 'Đang lưu...' : voucherId ? '💾 Cập nhật' : '➕ Tạo voucher'}
@@ -195,7 +228,23 @@ export function VoucherForm({ initial, voucherId }: Props) {
           className="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium px-5 py-2.5 rounded-lg text-sm transition-colors">
           Huỷ
         </button>
+
+        {/* Nút dịch — TÙY CHỌN, chỉ hiện khi sửa voucher đã có */}
+        {voucherId && (
+          <button onClick={handleTranslate} disabled={translating}
+            className="ml-auto bg-purple-600 hover:bg-purple-700 disabled:opacity-60 text-white font-medium px-5 py-2.5 rounded-lg text-sm transition-colors">
+            {translating ? 'Đang dịch...' : '🌐 Dịch mô tả sang 11 ngôn ngữ'}
+          </button>
+        )}
+        {trMsg && <span className="text-xs text-gray-500">{trMsg}</span>}
       </div>
+
+      {voucherId && (
+        <p className="text-xs text-gray-400">
+          Mẹo: mô tả voucher không bắt buộc dịch — % giảm giá + tên provider đã đủ thông tin cho mọi ngôn ngữ.
+          Chỉ dịch nếu mô tả dài và quan trọng. Dịch tốn quota DeepL.
+        </p>
+      )}
     </div>
   );
 }

@@ -3,6 +3,9 @@ import { getTranslations }   from 'next-intl/server';
 import Link                  from 'next/link';
 import { prisma }            from '@/lib/db';
 
+// Trang gọi DB → render động lúc request, không pre-render lúc build
+export const dynamic = 'force-dynamic';
+
 type Props = { params: Promise<{ locale: string }> };
 
 export const metadata: Metadata = { title: 'Blog | Dealeg' };

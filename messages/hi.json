@@ -28,7 +28,9 @@
     "expired": "समाप्त",
     "noExpiry": "कोई समय सीमा नहीं",
     "usedCount": "{count} लोगों ने उपयोग किया",
-    "getDiscount": "डील पाएं"
+    "getDiscount": "डील पाएं",
+    "getCode": "कोड पाएं",
+    "copiedHint": "कोड कॉपी हो गया! चेकआउट पर पेस्ट करें।"
   },
   "tools": {
     "title": "मुफ़्त टूल्स",
@@ -40,5 +42,29 @@
   "footer": {
     "rights": "© 2026 dealeg.com",
     "affiliate": "कुछ लिंक एफिलिएट लिंक हैं।"
+  },
+  "auth": {
+    "signIn": "साइन इन",
+    "signOut": "साइन आउट",
+    "signUp": "साइन अप",
+    "signInToComment": "टिप्पणी के लिए साइन इन करें",
+    "email": "ईमेल",
+    "password": "पासवर्ड",
+    "name": "नाम",
+    "createAccount": "खाता बनाएं",
+    "authenticating": "प्रमाणित हो रहा है...",
+    "signInFailed": "साइन इन विफल, पुनः प्रयास करें",
+    "signUpFailed": "साइन अप विफल, पुनः प्रयास करें"
+  },
+  "submit": {
+    "title": "नया डील सबमिट करें",
+    "submitting": "सबमिट हो रहा है...",
+    "submit": "डील सबमिट करें →"
+  },
+  "comments": {
+    "myComments": "मेरी टिप्पणियां",
+    "title": "टिप्पणियां",
+    "post": "पोस्ट",
+    "posting": "पोस्ट हो रहा है..."
   }
 }

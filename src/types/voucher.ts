@@ -25,6 +25,7 @@ export interface Voucher {
   isVerified:    boolean;
   usedCount:     number;
   affiliateUrl:  string;
+  sourceUrl?:    string;
   conditions?:   string;
   createdAt:     Date;
   updatedAt:     Date;

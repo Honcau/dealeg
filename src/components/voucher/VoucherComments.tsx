@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import { useSession, signIn } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 
@@ -17,6 +19,8 @@ interface Props {
 
 export function VoucherComments({ voucherId }: Props) {
   const { data: session } = useSession();
+  const t = useTranslations('comments');
+  const tAuth = useTranslations('auth');
   const [comments, setComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState('');
   const [loading, setLoading] = useState(false);
@@ -92,7 +96,7 @@ export function VoucherComments({ voucherId }: Props) {
             disabled={loading || !newComment.trim()}
             className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white text-sm font-medium px-4 py-1.5 rounded transition-colors"
           >
-            {loading ? 'Đang gửi...' : 'Gửi bình luận'}
+            {loading ? t('posting') : t('post')}
           </button>
         </div>
       ) : (
@@ -100,7 +104,7 @@ export function VoucherComments({ voucherId }: Props) {
           onClick={() => signIn()}
           className="text-sm text-indigo-600 hover:underline"
         >
-          Đăng nhập để bình luận
+          {tAuth('signInToComment')}
         </button>
       )}
 

@@ -1,44 +1,45 @@
 # ─── Dockerfile cho Next.js 15 standalone ───────────────────────────────────────
-# Multi-stage build để image nhỏ gọn, chạy nhanh trên Contabo VPS
+# Multi-stage build. Alpine cần openssl cho Prisma engine.
 
 # Stage 1: Dependencies
 FROM node:20-alpine AS deps
-RUN apk add --no-cache libc6-compat
+# libc6-compat + openssl (Prisma cần) + build tools cho native modules
+RUN apk add --no-cache libc6-compat openssl python3 make g++
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
-RUN npm ci
+RUN npm ci --legacy-peer-deps || npm install --legacy-peer-deps
 
 # Stage 2: Builder
 FROM node:20-alpine AS builder
+# openssl BẮT BUỘC cho Prisma generate + build
+RUN apk add --no-cache libc6-compat openssl
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Prisma cần generate client trước khi build
+# Prisma generate với binary target cho Alpine (linux-musl-openssl)
 RUN npx prisma generate
 
-# Build Next.js (output: standalone — xem next.config.js)
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
 # Stage 3: Runner (production)
 FROM node:20-alpine AS runner
+# openssl BẮT BUỘC cho Prisma engine lúc runtime (migrate + query)
+RUN apk add --no-cache libc6-compat openssl
 WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Tạo user non-root cho bảo mật
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy standalone output
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Copy Prisma schema + generated client (cần cho migrate lúc runtime)
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@prisma ./node_modules/@prisma

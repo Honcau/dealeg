@@ -28,7 +28,9 @@
     "expired": "Abgelaufen",
     "noExpiry": "Kein Ablaufdatum",
     "usedCount": "{count} Personen verwendet",
-    "getDiscount": "Deal erhalten"
+    "getDiscount": "Deal erhalten",
+    "getCode": "Code holen",
+    "copiedHint": "Code kopiert! Beim Checkout einfügen."
   },
   "tools": {
     "title": "Kostenlose Tools",
@@ -40,5 +42,29 @@
   "footer": {
     "rights": "© 2026 dealeg.com",
     "affiliate": "Einige Links sind Affiliate-Links."
+  },
+  "auth": {
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "signUp": "Registrieren",
+    "signInToComment": "Zum Kommentieren anmelden",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "name": "Name",
+    "createAccount": "Konto erstellen",
+    "authenticating": "Authentifizierung...",
+    "signInFailed": "Anmeldung fehlgeschlagen, erneut versuchen",
+    "signUpFailed": "Registrierung fehlgeschlagen, erneut versuchen"
+  },
+  "submit": {
+    "title": "Neues Angebot einreichen",
+    "submitting": "Senden...",
+    "submit": "Angebot einreichen →"
+  },
+  "comments": {
+    "myComments": "Meine Kommentare",
+    "title": "Kommentare",
+    "post": "Senden",
+    "posting": "Senden..."
   }
 }

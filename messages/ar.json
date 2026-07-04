@@ -28,7 +28,9 @@
     "expired": "منتهي الصلاحية",
     "noExpiry": "بدون انتهاء",
     "usedCount": "استخدمها {count} شخص",
-    "getDiscount": "احصل على العرض"
+    "getDiscount": "احصل على العرض",
+    "getCode": "احصل على الكود",
+    "copiedHint": "تم نسخ الكود! الصقه عند الدفع."
   },
   "tools": {
     "title": "أدوات مجانية",
@@ -40,5 +42,29 @@
   "footer": {
     "rights": "© 2026 dealeg.com",
     "affiliate": "بعض الروابط هي روابط تابعة."
+  },
+  "auth": {
+    "signIn": "تسجيل الدخول",
+    "signOut": "تسجيل الخروج",
+    "signUp": "إنشاء حساب",
+    "signInToComment": "سجّل الدخول للتعليق",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "name": "الاسم",
+    "createAccount": "إنشاء حساب",
+    "authenticating": "جارٍ التحقق...",
+    "signInFailed": "فشل تسجيل الدخول، حاول مرة أخرى",
+    "signUpFailed": "فشل إنشاء الحساب، حاول مرة أخرى"
+  },
+  "submit": {
+    "title": "إرسال عرض جديد",
+    "submitting": "جارٍ الإرسال...",
+    "submit": "إرسال العرض →"
+  },
+  "comments": {
+    "myComments": "تعليقاتي",
+    "title": "التعليقات",
+    "post": "نشر",
+    "posting": "جارٍ النشر..."
   }
 }

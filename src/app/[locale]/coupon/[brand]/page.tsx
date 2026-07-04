@@ -10,6 +10,9 @@ import { VoucherCard } from '@/components/voucher/VoucherCard';
 import { VoucherComments } from '@/components/voucher/VoucherComments';
 import type { Voucher } from '@/types/voucher';
 
+// Trang gọi DB → render động lúc request, không pre-render lúc build
+export const dynamic = 'force-dynamic';
+
 type Props = { params: Promise<{ locale: string; brand: string }> };
 
 function prettyName(slug: string): string {
@@ -53,7 +56,7 @@ export default async function CouponPage({ params }: Props) {
 
   const dbVouchers = await prisma.voucher.findMany({
     where: { provider: { equals: name, mode: 'insensitive' }, isActive: true },
-    include: { translations: { where: { locale } } },
+    include: { translations: { where: { locale: { in: [locale, 'en'] } } } },
     orderBy: [{ isVerified: 'desc' }, { discountValue: 'desc' }],
   });
 
@@ -64,13 +67,14 @@ export default async function CouponPage({ params }: Props) {
     provider:      v.provider,
     category:      v.category.toLowerCase() as 'domain',
     code:          v.code,
-    description:   v.translations[0]?.description ?? v.discount,
+    description:   (v.translations.find((tr: {locale:string}) => tr.locale === locale) ?? v.translations.find((tr: {locale:string}) => tr.locale === 'en'))?.description || v.discount,
     discountType:  'percentage' as const,
     discountValue: v.discountValue ?? 0,
     expiresAt:     v.expiresAt ?? undefined,
     isVerified:    v.isVerified,
     usedCount:     v.useCount,
     affiliateUrl:  v.affiliateUrl ?? '#',
+    sourceUrl:     v.sourceUrl ?? undefined,
     createdAt:     v.createdAt,
     updatedAt:     v.updatedAt,
   }));

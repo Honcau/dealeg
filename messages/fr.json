@@ -28,7 +28,9 @@
     "expired": "Expiré",
     "noExpiry": "Sans expiration",
     "usedCount": "{count} personnes ont utilisé",
-    "getDiscount": "Obtenir l'offre"
+    "getDiscount": "Obtenir l'offre",
+    "getCode": "Obtenir le code",
+    "copiedHint": "Code copié ! Collez-le au paiement."
   },
   "tools": {
     "title": "Outils gratuits",
@@ -40,5 +42,29 @@
   "footer": {
     "rights": "© 2026 dealeg.com",
     "affiliate": "Certains liens sont des liens d'affiliation."
+  },
+  "auth": {
+    "signIn": "Se connecter",
+    "signOut": "Se déconnecter",
+    "signUp": "S'inscrire",
+    "signInToComment": "Connectez-vous pour commenter",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "name": "Nom",
+    "createAccount": "Créer un compte",
+    "authenticating": "Authentification...",
+    "signInFailed": "Échec de connexion, réessayez",
+    "signUpFailed": "Échec d'inscription, réessayez"
+  },
+  "submit": {
+    "title": "Soumettre une nouvelle offre",
+    "submitting": "Envoi...",
+    "submit": "Soumettre →"
+  },
+  "comments": {
+    "myComments": "Mes commentaires",
+    "title": "Commentaires",
+    "post": "Publier",
+    "posting": "Publication..."
   }
 }

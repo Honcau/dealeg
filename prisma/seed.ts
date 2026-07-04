@@ -77,7 +77,7 @@ async function main() {
 
   for (const v of vouchers) {
     const { vi, en, ...data } = v;
-    const voucher = await prisma.voucher.create({ data: { ...data, isActive: true } });
+    const voucher = await prisma.voucher.create({ data: { ...data, isActive: true } as any });
     await prisma.voucherTranslation.createMany({
       data: [
         { voucherId: voucher.id, locale: 'vi', ...vi },

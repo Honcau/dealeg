@@ -28,7 +28,9 @@
     "expired": "Đã hết hạn",
     "noExpiry": "Không giới hạn",
     "usedCount": "{count} người đã dùng",
-    "getDiscount": "Nhận ưu đãi"
+    "getDiscount": "Nhận ưu đãi",
+    "getCode": "Nhận mã",
+    "copiedHint": "Đã copy mã! Dán vào ô giảm giá khi thanh toán."
   },
   "tools": {
     "title": "Công cụ miễn phí",
@@ -40,5 +42,29 @@
   "footer": {
     "rights": "© 2026 dealeg.com",
     "affiliate": "Một số link là affiliate link."
+  },
+  "auth": {
+    "signIn": "Đăng nhập",
+    "signOut": "Đăng xuất",
+    "signUp": "Đăng ký",
+    "signInToComment": "Đăng nhập để bình luận",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "name": "Tên",
+    "createAccount": "Tạo tài khoản",
+    "authenticating": "Đang xác thực...",
+    "signInFailed": "Đăng nhập thất bại, thử lại",
+    "signUpFailed": "Đăng ký thất bại, thử lại"
+  },
+  "submit": {
+    "title": "Gửi deal mới",
+    "submitting": "Đang gửi...",
+    "submit": "Gửi deal →"
+  },
+  "comments": {
+    "myComments": "Bình luận của tôi",
+    "title": "Bình luận",
+    "post": "Gửi",
+    "posting": "Đang gửi..."
   }
 }

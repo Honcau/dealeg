@@ -24,6 +24,7 @@ export default function EditVoucherPage() {
           discount:      v.discount,
           discountValue: v.discountValue ?? 0,
           affiliateUrl:  v.affiliateUrl ?? '',
+          sourceUrl:     v.sourceUrl ?? '',
           expiresAt:     v.expiresAt ? new Date(v.expiresAt).toISOString().slice(0, 10) : '',
           isVerified:    v.isVerified,
           isActive:      v.isActive,

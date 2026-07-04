@@ -10,6 +10,9 @@ import { VoucherGrid }      from '@/components/voucher/VoucherGrid';
 import { VoucherFilter }    from '@/components/voucher/VoucherFilter';
 import type { Voucher }     from '@/types/voucher';
 
+// Trang gọi DB → render động lúc request, không pre-render lúc build
+export const dynamic = 'force-dynamic';
+
 // Slug URL → giá trị enum trong DB (string để tránh import lỗi)
 const VALID_CATEGORIES = ['domain','hosting','vpn','security','email','cdn','ssl','other'] as const;
 type CategorySlug = typeof VALID_CATEGORIES[number];
@@ -34,7 +37,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const slug = category.toLowerCase() as CategorySlug;
   if (!VALID_CATEGORIES.includes(slug)) notFound();
 
-  const dbCategory = slug.toUpperCase(); // 'domain' → 'DOMAIN'
+  const dbCategory = slug.toUpperCase() as any; // 'domain' → 'DOMAIN'
 
   // Query DB
   const [dbVouchers, providerRows] = await Promise.all([
@@ -44,7 +47,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         isActive: true,
         ...(provider ? { provider } : {}),
       },
-      include: { translations: { take: 1 } },
+      include: { translations: { where: { locale: { in: [locale, 'en'] } } } },
       orderBy:
         sort === 'newest'  ? { createdAt:    'desc' } :
         sort === 'popular' ? { useCount:     'desc' } :
@@ -64,13 +67,14 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     provider:      v.provider,
     category:      slug,
     code:          v.code,
-    description:   v.translations[0]?.description ?? v.discount,
+    description:   (v.translations.find((tr: {locale:string}) => tr.locale === locale) ?? v.translations.find((tr: {locale:string}) => tr.locale === 'en'))?.description || v.discount,
     discountType:  'percentage' as const,
     discountValue: v.discountValue ?? 0,
     expiresAt:     v.expiresAt ?? undefined,
     isVerified:    v.isVerified,
     usedCount:     v.useCount,
     affiliateUrl:  v.affiliateUrl ?? '#',
+    sourceUrl:     v.sourceUrl ?? undefined,
     createdAt:     v.createdAt,
     updatedAt:     v.updatedAt,
   }));

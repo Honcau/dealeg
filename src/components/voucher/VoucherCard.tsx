@@ -24,11 +24,34 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
   const [copied, setCopied] = useState(false);
   const expired = isExpired(voucher.expiresAt);
 
-  const handleCopy = async () => {
+  /**
+   * Bấm "Nhận mã": copy code vào clipboard + mở link affiliate ở tab mới.
+   * Đây là mô hình chuẩn của site coupon — user copy code rồi được đưa
+   * thẳng sang trang provider (qua link affiliate của mình) để dùng ngay.
+   */
+  const handleGetCode = async () => {
     if (expired) return;
-    await navigator.clipboard.writeText(voucher.code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+
+    // 1. Copy code
+    try {
+      await navigator.clipboard.writeText(voucher.code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3000);
+    } catch {
+      // clipboard fail không chặn việc mở link
+    }
+
+    // 2. Mở link ở tab mới — ưu tiên link affiliate, fallback link gốc provider
+    const targetUrl =
+      voucher.affiliateUrl && voucher.affiliateUrl !== '#'
+        ? voucher.affiliateUrl
+        : voucher.sourceUrl;
+
+    if (targetUrl) {
+      // Ghi nhận click (tăng useCount) — fire-and-forget
+      fetch(`/api/vouchers/${voucher.id}/click`, { method: 'POST' }).catch(() => {});
+      window.open(targetUrl, '_blank', 'noopener,noreferrer');
+    }
   };
 
   const discountLabel =
@@ -58,28 +81,6 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
       {/* Description */}
       <p className="text-sm text-gray-500 line-clamp-2">{voucher.description}</p>
 
-      {/* Code row */}
-      <button
-        type="button"
-        onClick={handleCopy}
-        disabled={expired}
-        className={`flex items-center justify-between w-full px-4 py-3 rounded-xl border-2 border-dashed transition-all select-none ${
-          expired
-            ? 'border-gray-100 cursor-not-allowed'
-            : copied
-            ? 'border-green-400 bg-green-50'
-            : 'border-indigo-200 hover:border-indigo-400 hover:bg-indigo-50 cursor-pointer'
-        }`}
-        aria-label={`${t('copy')} ${voucher.code}`}
-      >
-        <span className="font-mono font-bold text-sm tracking-widest text-gray-800">
-          {voucher.code}
-        </span>
-        <span className={`text-xs font-semibold transition-colors ${copied ? 'text-green-600' : 'text-indigo-500'}`}>
-          {copied ? t('copied') : t('copy')}
-        </span>
-      </button>
-
       {/* Meta row */}
       <div className="flex items-center justify-between text-xs text-gray-400">
         <span>{t('usedCount', { count: formatCount(voucher.usedCount) })}</span>
@@ -97,16 +98,39 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
         </div>
       </div>
 
-      {/* CTA */}
-      {!expired && (
-        <a
-          href={voucher.affiliateUrl}
-          target="_blank"
-          rel="noopener noreferrer sponsored"
-          className="block text-center bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-sm font-semibold py-2.5 rounded-xl transition-all"
+      {/* Code + affiliate — GỘP: bấm là copy code VÀ mở link affiliate */}
+      {!expired ? (
+        <button
+          type="button"
+          onClick={handleGetCode}
+          className="group relative flex items-stretch w-full rounded-xl overflow-hidden border-2 border-indigo-200 hover:border-indigo-400 transition-all cursor-pointer"
         >
-          {t('getDiscount')} →
-        </a>
+          {/* Bên trái: hiện code */}
+          <span className="flex-1 flex items-center justify-center font-mono font-bold text-sm tracking-widest text-gray-800 bg-white px-4 py-3 group-hover:bg-indigo-50 transition-colors">
+            {copied ? (
+              <span className="text-green-600">{t('copied')}</span>
+            ) : (
+              voucher.code
+            )}
+          </span>
+          {/* Bên phải: nút hành động */}
+          <span className="flex items-center justify-center bg-indigo-600 group-hover:bg-indigo-700 text-white text-sm font-semibold px-5 transition-colors whitespace-nowrap">
+            {t('getCode')} →
+          </span>
+        </button>
+      ) : (
+        <div className="w-full px-4 py-3 rounded-xl border-2 border-dashed border-gray-100 text-center">
+          <span className="font-mono font-bold text-sm tracking-widest text-gray-400 line-through">
+            {voucher.code}
+          </span>
+        </div>
+      )}
+
+      {/* Ghi chú nhỏ: mã đã được copy */}
+      {copied && (
+        <p className="text-xs text-center text-green-600 -mt-2">
+          {t('copiedHint')}
+        </p>
       )}
     </article>
   );

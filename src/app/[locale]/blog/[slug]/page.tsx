@@ -3,6 +3,9 @@ import { notFound }        from 'next/navigation';
 import { prisma }          from '@/lib/db';
 import { getArticleTranslation } from '@/lib/translation';
 
+// Trang gọi DB → render động lúc request, không pre-render lúc build
+export const dynamic = 'force-dynamic';
+
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

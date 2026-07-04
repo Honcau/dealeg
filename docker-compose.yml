@@ -1,9 +1,7 @@
 # ─── Docker Compose cho dealeg.com trên Contabo VPS ─────────────────────────────
 # App chạy trong Docker, PostgreSQL cài trực tiếp trên VPS (host)
-# App kết nối DB qua host.docker.internal hoặc IP của host
 
 services:
-  # ── Next.js app ──────────────────────────────────────────────────────────────
   app:
     build:
       context: .
@@ -14,14 +12,17 @@ services:
       - "3000:3000"
     env_file:
       - .env.production
-    # Cho phép container gọi PostgreSQL trên host (127.0.0.1 của VPS)
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    # Chạy migration trước khi start app
-    command: >
-      sh -c "npx prisma migrate deploy && node server.js"
+    # Fix network ra ngoài: DNS công cộng + ép IPv4 (tránh treo do IPv6)
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    environment:
+      - NODE_OPTIONS=--dns-result-order=ipv4first
+    # Chỉ chạy app. Migration chạy riêng bằng lệnh (xem DEPLOY_CONTABO.md)
+    command: node server.js
 
-  # ── Redis (cho scraper queue, tùy chọn) ─────────────────────────────────────
   redis:
     image: redis:7-alpine
     container_name: dealeg-redis

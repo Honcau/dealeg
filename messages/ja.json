@@ -28,7 +28,9 @@
     "expired": "期限切れ",
     "noExpiry": "期限なし",
     "usedCount": "{count}人が使用",
-    "getDiscount": "割引を取得"
+    "getDiscount": "割引を取得",
+    "getCode": "コードを取得",
+    "copiedHint": "コードをコピーしました！購入時に貼り付けてください。"
   },
   "tools": {
     "title": "無料ツール",
@@ -40,5 +42,29 @@
   "footer": {
     "rights": "© 2026 dealeg.com",
     "affiliate": "一部リンクはアフィリエイトリンクです。"
+  },
+  "auth": {
+    "signIn": "ログイン",
+    "signOut": "ログアウト",
+    "signUp": "新規登録",
+    "signInToComment": "コメントするにはログイン",
+    "email": "メール",
+    "password": "パスワード",
+    "name": "名前",
+    "createAccount": "アカウント作成",
+    "authenticating": "認証中...",
+    "signInFailed": "ログイン失敗、再試行してください",
+    "signUpFailed": "登録失敗、再試行してください"
+  },
+  "submit": {
+    "title": "新しいお得情報を投稿",
+    "submitting": "送信中...",
+    "submit": "投稿する →"
+  },
+  "comments": {
+    "myComments": "マイコメント",
+    "title": "コメント",
+    "post": "投稿",
+    "posting": "投稿中..."
   }
 }
