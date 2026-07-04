@@ -66,5 +66,19 @@
     "title": "Comments",
     "post": "Post",
     "posting": "Posting..."
+  },
+  "newsletter": {
+    "title": "Get the latest deals",
+    "subtitle": "Subscribe to never miss hot coupon codes every week",
+    "placeholder": "Your email",
+    "subscribe": "Subscribe",
+    "success": "Subscribed! Thank you.",
+    "error": "Something went wrong, try again",
+    "privacy": "No spam. Unsubscribe anytime."
+  },
+  "share": {
+    "label": "Share",
+    "shareOn": "Share on",
+    "copyLink": "Copy link"
   }
 }

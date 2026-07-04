@@ -66,5 +66,19 @@
     "title": "Comentários",
     "post": "Publicar",
     "posting": "Publicando..."
+  },
+  "newsletter": {
+    "title": "Receba as últimas ofertas",
+    "subtitle": "Assine para não perder cupons toda semana",
+    "placeholder": "Seu e-mail",
+    "subscribe": "Assinar",
+    "success": "Inscrito! Obrigado.",
+    "error": "Algo deu errado, tente novamente",
+    "privacy": "Sem spam. Cancele quando quiser."
+  },
+  "share": {
+    "label": "Compartilhar",
+    "shareOn": "Compartilhar no",
+    "copyLink": "Copiar link"
   }
 }

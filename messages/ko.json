@@ -66,5 +66,19 @@
     "title": "댓글",
     "post": "게시",
     "posting": "게시 중..."
+  },
+  "newsletter": {
+    "title": "최신 딜 받기",
+    "subtitle": "매주 핫한 쿠폰 코드를 놓치지 않도록 구독하세요",
+    "placeholder": "이메일",
+    "subscribe": "구독",
+    "success": "구독 완료! 감사합니다.",
+    "error": "오류가 발생했습니다. 다시 시도하세요",
+    "privacy": "스팸 없음. 언제든 구독 취소 가능."
+  },
+  "share": {
+    "label": "공유",
+    "shareOn": "공유:",
+    "copyLink": "링크 복사"
   }
 }

@@ -66,5 +66,19 @@
     "title": "Kommentare",
     "post": "Senden",
     "posting": "Senden..."
+  },
+  "newsletter": {
+    "title": "Neueste Angebote erhalten",
+    "subtitle": "Abonnieren Sie, um jede Woche keine Gutscheincodes zu verpassen",
+    "placeholder": "Ihre E-Mail",
+    "subscribe": "Abonnieren",
+    "success": "Abonniert! Danke.",
+    "error": "Etwas ist schiefgelaufen, versuchen Sie es erneut",
+    "privacy": "Kein Spam. Jederzeit abbestellbar."
+  },
+  "share": {
+    "label": "Teilen",
+    "shareOn": "Teilen auf",
+    "copyLink": "Link kopieren"
   }
 }

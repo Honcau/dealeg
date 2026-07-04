@@ -66,5 +66,19 @@
     "title": "评论",
     "post": "发布",
     "posting": "发布中..."
+  },
+  "newsletter": {
+    "title": "获取最新优惠",
+    "subtitle": "订阅以每周不错过热门优惠码",
+    "placeholder": "您的邮箱",
+    "subscribe": "订阅",
+    "success": "订阅成功！谢谢。",
+    "error": "出错了，请重试",
+    "privacy": "无垃圾邮件。随时取消订阅。"
+  },
+  "share": {
+    "label": "分享",
+    "shareOn": "分享到",
+    "copyLink": "复制链接"
   }
 }

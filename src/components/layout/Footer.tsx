@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import { NewsletterForm } from '@/components/newsletter/NewsletterForm';
 
 export async function Footer() {
   const t = await getTranslations('footer');
@@ -8,6 +9,11 @@ export async function Footer() {
   return (
     <footer className="border-t border-gray-100 mt-20">
       <div className="max-w-6xl mx-auto px-4 py-10">
+        {/* Newsletter */}
+        <div className="mb-10 max-w-md">
+          <NewsletterForm source="footer" variant="card" />
+        </div>
+
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
 
           {/* Brand */}

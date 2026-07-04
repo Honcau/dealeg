@@ -66,5 +66,19 @@
     "title": "コメント",
     "post": "投稿",
     "posting": "投稿中..."
+  },
+  "newsletter": {
+    "title": "最新のお得情報を受け取る",
+    "subtitle": "毎週のホットなクーポンを見逃さないよう登録",
+    "placeholder": "メールアドレス",
+    "subscribe": "登録",
+    "success": "登録完了！ありがとうございます。",
+    "error": "エラーが発生しました。再試行してください",
+    "privacy": "スパムなし。いつでも解除可能。"
+  },
+  "share": {
+    "label": "シェア",
+    "shareOn": "シェア:",
+    "copyLink": "リンクをコピー"
   }
 }

@@ -9,6 +9,7 @@ import { prisma } from '@/lib/db';
 import { VoucherCard } from '@/components/voucher/VoucherCard';
 import { VoucherComments } from '@/components/voucher/VoucherComments';
 import type { Voucher } from '@/types/voucher';
+import { ShareButtons } from '@/components/share/ShareButtons';
 
 // Trang gọi DB → render động lúc request, không pre-render lúc build
 export const dynamic = 'force-dynamic';
@@ -174,6 +175,11 @@ export default async function CouponPage({ params }: Props) {
             ))}
           </div>
         </section>
+
+        {/* Chia sẻ trang coupon */}
+        <div className="pt-6 border-t border-gray-100">
+          <ShareButtons title={`${name} coupon codes`} />
+        </div>
       </div>
     </>
   );

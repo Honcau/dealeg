@@ -157,6 +157,29 @@ const ARTICLES = [
     title:    'How to Start a Blog in 2026 (and Make Money)',
     excerpt:  'A complete beginner walkthrough from zero to a live, monetizable blog — platform, hosting, content, audience, and honest ways to earn from it.',
   },
+
+  // ── Batch 3: Online tools (high demand in Vietnam) ───────────────────────────
+  {
+    slug:     'best-pdf-editors-online-2026',
+    category: 'tools',
+    file:     'best-pdf-editors-online-2026.md',
+    title:    'Best Online PDF Editors in 2026: Free and Paid Compared',
+    excerpt:  'Edit, merge, convert, and sign PDFs in your browser. Compare Smallpdf, iLovePDF, Canva, PDF Reader Pro, and PDFelement — with privacy and free-tier limits explained.',
+  },
+  {
+    slug:     'best-online-design-tools-2026',
+    category: 'tools',
+    file:     'best-online-design-tools-2026.md',
+    title:    'Best Online Design Tools in 2026: Canva and Alternatives',
+    excerpt:  'Create professional graphics with no design skills. Compare Canva, Adobe Express, Figma, VistaCreate, and Snappa — matched to beginners, marketers, and pros.',
+  },
+  {
+    slug:     'how-to-edit-pdf-online-free-2026',
+    category: 'tools',
+    file:     'how-to-edit-pdf-online-free-2026.md',
+    title:    'How to Edit a PDF Online for Free in 2026 (Step by Step)',
+    excerpt:  'Fill forms, sign, annotate, merge, and convert PDFs for free in your browser. A step-by-step guide to every common task, and when free tools are not enough.',
+  },
 ];
 
 async function main() {

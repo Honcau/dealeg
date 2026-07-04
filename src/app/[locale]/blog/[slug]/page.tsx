@@ -2,6 +2,8 @@ import type { Metadata }  from 'next';
 import { notFound }        from 'next/navigation';
 import { prisma }          from '@/lib/db';
 import { getArticleTranslation } from '@/lib/translation';
+import { ShareButtons } from '@/components/share/ShareButtons';
+import { NewsletterForm } from '@/components/newsletter/NewsletterForm';
 
 // Trang gọi DB → render động lúc request, không pre-render lúc build
 export const dynamic = 'force-dynamic';
@@ -91,6 +93,16 @@ export default async function ArticlePage({ params }: Props) {
           })}
         </div>
       )}
+
+      {/* Chia sẻ bài viết */}
+      <div className="mt-8 pt-6 border-t border-gray-100">
+        <ShareButtons title={translation.title} />
+      </div>
+
+      {/* Newsletter CTA cuối bài */}
+      <div className="mt-8">
+        <NewsletterForm source="blog-article" variant="card" />
+      </div>
     </article>
   );
 }

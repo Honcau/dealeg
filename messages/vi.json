@@ -66,5 +66,19 @@
     "title": "Bình luận",
     "post": "Gửi",
     "posting": "Đang gửi..."
+  },
+  "newsletter": {
+    "title": "Nhận deal mới nhất",
+    "subtitle": "Đăng ký để không bỏ lỡ mã giảm giá hot mỗi tuần",
+    "placeholder": "Email của bạn",
+    "subscribe": "Đăng ký",
+    "success": "Đăng ký thành công! Cảm ơn bạn.",
+    "error": "Có lỗi, vui lòng thử lại",
+    "privacy": "Chúng tôi không spam. Hủy đăng ký bất cứ lúc nào."
+  },
+  "share": {
+    "label": "Chia sẻ",
+    "shareOn": "Chia sẻ lên",
+    "copyLink": "Sao chép liên kết"
   }
 }

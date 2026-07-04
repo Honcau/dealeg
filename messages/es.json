@@ -66,5 +66,19 @@
     "title": "Comentarios",
     "post": "Publicar",
     "posting": "Publicando..."
+  },
+  "newsletter": {
+    "title": "Recibe las últimas ofertas",
+    "subtitle": "Suscríbete para no perderte códigos de descuento cada semana",
+    "placeholder": "Tu correo",
+    "subscribe": "Suscribirse",
+    "success": "¡Suscrito! Gracias.",
+    "error": "Algo salió mal, inténtalo de nuevo",
+    "privacy": "Sin spam. Cancela cuando quieras."
+  },
+  "share": {
+    "label": "Compartir",
+    "shareOn": "Compartir en",
+    "copyLink": "Copiar enlace"
   }
 }

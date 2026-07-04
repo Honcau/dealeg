@@ -242,6 +242,20 @@ model VoucherAlert {
   @@unique([userId, category])
 }
 
+
+// ── Newsletter ───────────────────────────────────────────────────────────────
+
+model Subscriber {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  locale      String   @default("vi")
+  isActive    Boolean  @default(true)
+  source      String?  // trang nào đăng ký (homepage, blog, coupon...)
+  createdAt   DateTime @default(now())
+
+  @@index([isActive])
+}
+
 // ── Blog / Articles ────────────────────────────────────────────────────────────
 
 enum ArticleStatus {

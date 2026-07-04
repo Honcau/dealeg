@@ -66,5 +66,19 @@
     "title": "Commentaires",
     "post": "Publier",
     "posting": "Publication..."
+  },
+  "newsletter": {
+    "title": "Recevez les dernières offres",
+    "subtitle": "Abonnez-vous pour ne manquer aucun code promo chaque semaine",
+    "placeholder": "Votre e-mail",
+    "subscribe": "S'abonner",
+    "success": "Abonné ! Merci.",
+    "error": "Une erreur s'est produite, réessayez",
+    "privacy": "Pas de spam. Désabonnez-vous à tout moment."
+  },
+  "share": {
+    "label": "Partager",
+    "shareOn": "Partager sur",
+    "copyLink": "Copier le lien"
   }
 }
