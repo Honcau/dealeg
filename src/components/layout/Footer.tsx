@@ -30,8 +30,20 @@ export async function Footer() {
             <Link href="/hosting" className="hover:text-gray-600 transition-colors">{tn('hosting')}</Link>
             <Link href="/vpn"     className="hover:text-gray-600 transition-colors">{tn('vpn')}</Link>
             <Link href="/tools"   className="hover:text-gray-600 transition-colors">{tn('tools')}</Link>
+            <Link href="/blog"    className="hover:text-gray-600 transition-colors">Blog</Link>
             <Link href="/submit"  className="hover:text-gray-600 transition-colors">{tn('submit')}</Link>
-            <Link href="/privacy" className="hover:text-gray-600 transition-colors">Privacy</Link>
+          </nav>
+        </div>
+
+        {/* Legal links */}
+        <div className="mt-6 pt-6 border-t border-gray-100">
+          <nav className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-gray-400">
+            <Link href="/about"      className="hover:text-gray-600 transition-colors">{t('about')}</Link>
+            <Link href="/contact"    className="hover:text-gray-600 transition-colors">{t('contact')}</Link>
+            <Link href="/faq"        className="hover:text-gray-600 transition-colors">FAQ</Link>
+            <Link href="/privacy"    className="hover:text-gray-600 transition-colors">{t('privacy')}</Link>
+            <Link href="/terms"      className="hover:text-gray-600 transition-colors">{t('terms')}</Link>
+            <Link href="/disclaimer" className="hover:text-gray-600 transition-colors">{t('disclaimer')}</Link>
           </nav>
 
         </div>

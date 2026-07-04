@@ -41,7 +41,12 @@
   },
   "footer": {
     "rights": "© 2026 dealeg.com",
-    "affiliate": "Một số link là affiliate link."
+    "affiliate": "Một số link là affiliate link.",
+    "about": "Giới thiệu",
+    "contact": "Liên hệ",
+    "privacy": "Bảo mật",
+    "terms": "Điều khoản",
+    "disclaimer": "Tiết lộ Affiliate"
   },
   "auth": {
     "signIn": "Đăng nhập",
@@ -80,5 +85,35 @@
     "label": "Chia sẻ",
     "shareOn": "Chia sẻ lên",
     "copyLink": "Sao chép liên kết"
+  },
+  "cookie": {
+    "message": "Chúng tôi dùng cookie để cải thiện trải nghiệm và phân tích lưu lượng. Tiếp tục dùng nghĩa là bạn đồng ý.",
+    "learnMore": "Tìm hiểu thêm",
+    "accept": "Chấp nhận",
+    "decline": "Từ chối"
+  },
+  "faq": {
+    "title": "Câu hỏi thường gặp",
+    "subtitle": "Mọi điều bạn cần biết khi dùng Dealeg",
+    "q1": "Mã giảm giá trên Dealeg có miễn phí không?",
+    "a1": "Có, hoàn toàn miễn phí. Dealeg miễn phí cho tất cả mọi người. Bạn chỉ cần tìm mã, sao chép và dùng khi thanh toán trên trang của nhà cung cấp. Chúng tôi nhận hoa hồng nhỏ từ nhà cung cấp khi bạn mua qua liên kết, không tốn thêm chi phí của bạn.",
+    "q2": "Làm sao để dùng mã giảm giá?",
+    "a2": "Bấm nút \"Nhận mã\" trên bất kỳ voucher nào. Thao tác này sao chép mã vào bộ nhớ tạm và mở trang nhà cung cấp. Dán mã vào ô khuyến mãi khi thanh toán để được giảm giá.",
+    "q3": "Tất cả mã có hoạt động không?",
+    "a3": "Chúng tôi cố gắng chỉ đăng mã còn hiệu lực, và cộng đồng bình chọn xem mã còn dùng được không. Tuy nhiên nhà cung cấp kiểm soát ưu đãi nên mã có thể hết hạn. Mỗi mã hiển thị trạng thái xác minh và lượt bình chọn để giúp bạn tìm mã hoạt động.",
+    "q4": "Bao lâu có deal mới?",
+    "a4": "Chúng tôi cập nhật thường xuyên. Mã và ưu đãi mới được thêm khi có, mã hết hạn được gỡ. Đăng ký nhận bản tin để nhận deal mới nhất qua email.",
+    "q5": "Dealeg có ngôn ngữ của tôi không?",
+    "a5": "Dealeg có 12 ngôn ngữ: Việt, Anh, Trung, Hindi, Tây Ban Nha, Bồ Đào Nha, Pháp, Đức, Ả Rập, Nga, Nhật, Hàn. Dùng nút chuyển ngôn ngữ ở đầu trang để đổi.",
+    "q6": "Tôi có cần tài khoản để dùng Dealeg không?",
+    "a6": "Không cần tài khoản để xem và dùng mã. Tuy nhiên tạo tài khoản miễn phí cho phép bạn bình luận, bình chọn mã còn hiệu lực, và lưu deal yêu thích. Đăng nhập bằng Google, Facebook, GitHub hoặc email.",
+    "q7": "Dealeg kiếm tiền thế nào?",
+    "a7": "Khi bạn bấm liên kết và mua hàng, chúng tôi nhận hoa hồng từ nhà cung cấp. Điều này không bao giờ khiến bạn trả thêm — giá vẫn như cũ. Hoa hồng này giúp Dealeg miễn phí. Chúng tôi đánh giá sản phẩm trung thực bất kể hoa hồng. Xem trang Tiết lộ Affiliate để biết thêm.",
+    "q8": "Tôi có thể gửi mã hoặc báo mã hết hạn không?",
+    "a8": "Có! Dùng trang \"Gửi deal\" để chia sẻ mã bạn tìm được, hoặc bình chọn các mã hiện có để báo cộng đồng chúng còn dùng được không. Điều này giúp thông tin luôn chính xác cho mọi người.",
+    "moreTitle": "Vẫn còn thắc mắc?",
+    "moreText": "Không tìm thấy câu trả lời?",
+    "contactUs": "Liên hệ với chúng tôi",
+    "contactUs2": ""
   }
 }

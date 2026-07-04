@@ -47,6 +47,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'daily',
       priority: 0.8,
     });
+    // Legal + info pages
+    for (const p of ['privacy', 'terms', 'disclaimer', 'contact', 'faq']) {
+      entries.push({
+        url: `${BASE}/${locale}/${p}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.3,
+      });
+    }
+
     for (const cat of categories) {
       entries.push({
         url: `${BASE}/${locale}/category/${cat}`,

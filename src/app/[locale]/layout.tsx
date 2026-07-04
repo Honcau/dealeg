@@ -7,6 +7,7 @@ import { routing }                   from '@/i18n/routing';
 import { HtmlAttributeSetter }       from '@/components/HtmlAttributeSetter';
 import { Header }                    from '@/components/layout/Header';
 import { Footer }                    from '@/components/layout/Footer';
+import { CookieConsent }             from '@/components/cookie/CookieConsent';
 
 type Props = {
   children: React.ReactNode;
@@ -55,6 +56,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           {children}
         </main>
         <Footer />
+        <CookieConsent />
       </NextIntlClientProvider>
     </SessionProvider>
   );

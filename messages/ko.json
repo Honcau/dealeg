@@ -41,7 +41,12 @@
   },
   "footer": {
     "rights": "© 2026 dealeg.com",
-    "affiliate": "일부 링크는 제휴 링크입니다."
+    "affiliate": "일부 링크는 제휴 링크입니다.",
+    "about": "소개",
+    "contact": "문의",
+    "privacy": "개인정보",
+    "terms": "이용약관",
+    "disclaimer": "제휴 공시"
   },
   "auth": {
     "signIn": "로그인",
@@ -80,5 +85,34 @@
     "label": "공유",
     "shareOn": "공유:",
     "copyLink": "링크 복사"
+  },
+  "cookie": {
+    "message": "경험 개선과 트래픽 분석을 위해 쿠키를 사용합니다. 계속하면 동의하는 것입니다.",
+    "learnMore": "자세히",
+    "accept": "동의",
+    "decline": "거부"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about using Dealeg",
+    "q1": "Are the coupon codes on Dealeg free to use?",
+    "a1": "Yes, completely free. Dealeg is free for everyone. You simply find a coupon code, copy it, and use it at checkout on the merchant's site. We earn a small commission from merchants when you make a purchase through our links, at no extra cost to you.",
+    "q2": "How do I use a coupon code?",
+    "a2": "Click the \"Get Code\" button on any coupon. This copies the code to your clipboard and opens the merchant's website. Paste the code in the promo or coupon field at checkout to apply your discount.",
+    "q3": "Do all coupon codes work?",
+    "a3": "We make every effort to list only working codes, and our community votes on whether codes are still valid. However, merchants control their offers, so codes can expire or change. Each code shows verification status and votes to help you find working ones.",
+    "q4": "How often are new deals added?",
+    "a4": "We update deals regularly. New coupons and offers are added as they become available, and expired ones are removed. Subscribe to our newsletter to get the latest deals delivered to your inbox.",
+    "q5": "Is Dealeg available in my language?",
+    "a5": "Dealeg is available in 12 languages: Vietnamese, English, Chinese, Hindi, Spanish, Portuguese, French, German, Arabic, Russian, Japanese, and Korean. Use the language switcher at the top of the page to change languages.",
+    "q6": "Do I need an account to use Dealeg?",
+    "a6": "No account is needed to browse and use coupon codes. However, creating a free account lets you comment, vote on whether codes work, and save your favorite deals. You can sign in with Google, Facebook, GitHub, or email.",
+    "q7": "How does Dealeg make money?",
+    "a7": "When you click a link and make a purchase, we may earn a commission from the merchant. This never costs you more — the price is the same. These commissions keep Dealeg free to use. We recommend products honestly regardless of commission. See our Affiliate Disclosure for details.",
+    "q8": "Can I submit a coupon or report an expired one?",
+    "a8": "Yes! Use the \"Submit\" page to share a coupon you found, or vote on existing coupons to tell the community whether they still work. This helps keep our information accurate for everyone.",
+    "moreTitle": "Still have questions?",
+    "moreText": "Can't find the answer you're looking for?",
+    "contactUs": "Contact us"
   }
 }
