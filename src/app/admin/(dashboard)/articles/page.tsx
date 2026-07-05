@@ -99,7 +99,9 @@ export default function AdminArticlesPage() {
                         <Link href={`/admin/articles/${a.id}/edit`}
                           className="text-xs text-indigo-600 hover:underline font-medium">Sửa</Link>
                         <button id={`tr-${a.id}`} onClick={() => handleTranslate(a.id)}
-                          className="text-xs text-purple-600 hover:underline font-medium">Dịch</button>
+                          className="text-xs text-purple-600 hover:underline font-medium">Dịch API</button>
+                        <Link href={`/admin/articles/${a.id}/translate-paste`}
+                          className="text-xs text-green-600 hover:underline font-medium">Dịch Paste</Link>
                         <button onClick={() => handleDelete(a.id, a.slug)}
                           className="text-xs text-red-500 hover:underline font-medium">Xoá</button>
                       </div>
