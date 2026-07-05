@@ -4,7 +4,7 @@ import { useSession, signIn } from 'next-auth/react';
 import { useTranslations }     from 'next-intl';
 import { Suspense }           from 'react';
 import Image                  from 'next/image';
-import Link                   from 'next/link';
+import { Link } from '@/i18n/navigation';
 
 function Content() {
   const { data: session, status } = useSession();

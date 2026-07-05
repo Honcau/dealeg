@@ -3,7 +3,7 @@
  * URL: /en/coupon
  */
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { prisma } from '@/lib/db';
 import { ShareButtons } from '@/components/share/ShareButtons';
 

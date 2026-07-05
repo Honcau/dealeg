@@ -1,6 +1,6 @@
 import type { Metadata }     from 'next';
 import { getTranslations }   from 'next-intl/server';
-import Link                  from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { prisma }            from '@/lib/db';
 
 // Trang gọi DB → render động lúc request, không pre-render lúc build
