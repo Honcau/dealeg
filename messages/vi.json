@@ -30,7 +30,8 @@
     "usedCount": "{count} người đã dùng",
     "getDiscount": "Nhận ưu đãi",
     "getCode": "Nhận mã",
-    "copiedHint": "Đã copy mã! Dán vào ô giảm giá khi thanh toán."
+    "copiedHint": "Đã copy mã! Dán vào ô giảm giá khi thanh toán.",
+    "details": "Chi tiết"
   },
   "tools": {
     "title": "Công cụ miễn phí",

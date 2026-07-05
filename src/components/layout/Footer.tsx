@@ -26,9 +26,9 @@ export async function Footer() {
 
           {/* Links */}
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-400">
-            <Link href="/domain"  className="hover:text-gray-600 transition-colors">{tn('domain')}</Link>
-            <Link href="/hosting" className="hover:text-gray-600 transition-colors">{tn('hosting')}</Link>
-            <Link href="/vpn"     className="hover:text-gray-600 transition-colors">{tn('vpn')}</Link>
+            <Link href="/category/domain"  className="hover:text-gray-600 transition-colors">{tn('domain')}</Link>
+            <Link href="/category/hosting" className="hover:text-gray-600 transition-colors">{tn('hosting')}</Link>
+            <Link href="/category/vpn"     className="hover:text-gray-600 transition-colors">{tn('vpn')}</Link>
             <Link href="/tools"   className="hover:text-gray-600 transition-colors">{tn('tools')}</Link>
             <Link href="/blog"    className="hover:text-gray-600 transition-colors">Blog</Link>
             <Link href="/submit"  className="hover:text-gray-600 transition-colors">{tn('submit')}</Link>

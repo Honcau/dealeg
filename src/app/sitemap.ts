@@ -38,6 +38,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
+  // 2b. Trang chi tiết từng voucher
+  const allVouchers = await prisma.voucher.findMany({
+    where: { isActive: true },
+    select: { id: true, updatedAt: true },
+  });
+  for (const v of allVouchers) {
+    for (const locale of routing.locales) {
+      entries.push({
+        url: `${BASE}/${locale}/voucher/${v.id}`,
+        lastModified: v.updatedAt,
+        changeFrequency: 'weekly',
+        priority: 0.7,
+      });
+    }
+  }
+
   // 3. Coupon index + category pages
   const categories = ['domain', 'hosting', 'vpn', 'security', 'email', 'cdn', 'ssl', 'other'];
   for (const locale of routing.locales) {

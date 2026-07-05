@@ -30,7 +30,8 @@
     "usedCount": "{count} personas usaron",
     "getDiscount": "Obtener oferta",
     "getCode": "Obtener código",
-    "copiedHint": "¡Código copiado! Pégalo al pagar."
+    "copiedHint": "¡Código copiado! Pégalo al pagar.",
+    "details": "Detalles"
   },
   "tools": {
     "title": "Herramientas gratis",

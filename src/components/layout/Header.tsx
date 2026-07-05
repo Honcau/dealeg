@@ -2,6 +2,7 @@ import { getTranslations }  from 'next-intl/server';
 import { Link }             from '@/i18n/navigation';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { AuthButton }       from '@/components/auth/AuthButton';
+import { MobileMenu }       from './MobileMenu';
 
 export async function Header() {
   const t  = await getTranslations('nav');
@@ -13,7 +14,7 @@ export async function Header() {
     { href: '/category/vpn',     label: t('vpn')     },
     { href: '/tools',            label: t('tools')   },
     { href: '/blog',             label: t('blog')    },
-  ] as const;
+  ];
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
@@ -21,6 +22,8 @@ export async function Header() {
         <Link href="/" className="text-xl font-extrabold text-indigo-600 tracking-tight shrink-0">
           {tc('appName')}
         </Link>
+
+        {/* Menu desktop */}
         <nav className="hidden md:flex items-center gap-5 text-sm text-gray-500">
           {navLinks.map(({ href, label }) => (
             <Link key={href} href={href} className="hover:text-gray-900 transition-colors">
@@ -28,6 +31,7 @@ export async function Header() {
             </Link>
           ))}
         </nav>
+
         <div className="flex items-center gap-3 shrink-0">
           <AuthButton />
           <LanguageSwitcher />
@@ -35,6 +39,9 @@ export async function Header() {
             className="hidden md:inline-block text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white px-3.5 py-1.5 rounded-lg transition-colors">
             {t('submit')}
           </Link>
+
+          {/* Menu mobile (hamburger) */}
+          <MobileMenu navLinks={navLinks} submitLabel={t('submit')} />
         </div>
       </div>
     </header>

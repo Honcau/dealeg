@@ -9,6 +9,7 @@ import { prisma }           from '@/lib/db';
 import { VoucherGrid }      from '@/components/voucher/VoucherGrid';
 import { VoucherFilter }    from '@/components/voucher/VoucherFilter';
 import type { Voucher }     from '@/types/voucher';
+import { ShareButtons } from '@/components/share/ShareButtons';
 
 // Trang gọi DB → render động lúc request, không pre-render lúc build
 export const dynamic = 'force-dynamic';
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function CategoryPage({ params, searchParams }: Props) {
-  const { category }                 = await params;
+  const { locale, category }         = await params;
   const { sort = 'discount', provider } = await searchParams;
 
   // Validate: chỉ cho phép category hợp lệ
@@ -88,6 +89,10 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         category={slug}
       />
       <VoucherGrid vouchers={vouchers} />
+
+      <div className="pt-6 border-t border-gray-100">
+        <ShareButtons title={`${slug} deals & coupons - Dealeg`} />
+      </div>
     </div>
   );
 }

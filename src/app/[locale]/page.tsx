@@ -7,6 +7,7 @@ import { getTranslations } from 'next-intl/server';
 import { prisma }          from '@/lib/db';
 import { VoucherGrid }     from '@/components/voucher/VoucherGrid';
 import type { Voucher }    from '@/types/voucher';
+import { ShareButtons } from '@/components/share/ShareButtons';
 
 // Trang gọi DB → render động lúc request, không pre-render lúc build
 export const dynamic = 'force-dynamic';
@@ -73,6 +74,10 @@ export default async function HomePage({ params }: Props) {
           {t('featured')}
         </h2>
         <VoucherGrid vouchers={vouchers} />
+      </section>
+
+      <section className="pt-4 border-t border-gray-100">
+        <ShareButtons title="Best tech deals & coupon codes - Dealeg" />
       </section>
     </div>
   );

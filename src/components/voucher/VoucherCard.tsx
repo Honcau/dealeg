@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import type { Voucher } from '@/types/voucher';
 import { isExpired, formatDate, formatCount } from '@/lib/utils';
 
@@ -22,6 +23,7 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
   const t = useTranslations('voucher');
   const locale = useLocale();
   const [copied, setCopied] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
   const expired = isExpired(voucher.expiresAt);
 
   /**
@@ -53,6 +55,11 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
       window.open(targetUrl, '_blank', 'noopener,noreferrer');
     }
   };
+
+  // URL trang chi tiết voucher (cho share)
+  const shareUrl = typeof window !== 'undefined'
+    ? `${window.location.origin}/${locale}/voucher/${voucher.id}`
+    : `https://dealeg.com/${locale}/voucher/${voucher.id}`;
 
   const discountLabel =
     voucher.discountType === 'percentage' ? `-${voucher.discountValue}%`
@@ -132,6 +139,41 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
           {t('copiedHint')}
         </p>
       )}
+
+      {/* Hàng dưới: link chi tiết + share nhanh */}
+      <div className="flex items-center justify-between pt-1">
+        <Link
+          href={`/voucher/${voucher.id}`}
+          className="text-xs text-gray-400 hover:text-indigo-600 transition-colors"
+        >
+          {t('details')} →
+        </Link>
+
+        {/* Share nhanh: Facebook, Zalo, Telegram */}
+        <div className="flex items-center gap-1.5">
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
+            target="_blank" rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            title="Facebook"
+            className="w-6 h-6 rounded-full bg-[#1877F2] text-white flex items-center justify-center text-[10px] hover:opacity-80 transition-opacity"
+          >f</a>
+          <a
+            href={`https://zalo.me/share/?u=${encodeURIComponent(shareUrl)}`}
+            target="_blank" rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            title="Zalo"
+            className="w-6 h-6 rounded-full bg-[#0068FF] text-white flex items-center justify-center text-[8px] font-bold hover:opacity-80 transition-opacity"
+          >Z</a>
+          <a
+            href={`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(voucher.provider + ' ' + voucher.code)}`}
+            target="_blank" rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            title="Telegram"
+            className="w-6 h-6 rounded-full bg-[#0088cc] text-white flex items-center justify-center text-[10px] hover:opacity-80 transition-opacity"
+          >t</a>
+        </div>
+      </div>
     </article>
   );
 }

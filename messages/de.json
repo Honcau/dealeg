@@ -30,7 +30,8 @@
     "usedCount": "{count} Personen verwendet",
     "getDiscount": "Deal erhalten",
     "getCode": "Code holen",
-    "copiedHint": "Code kopiert! Beim Checkout einfügen."
+    "copiedHint": "Code kopiert! Beim Checkout einfügen.",
+    "details": "Details"
   },
   "tools": {
     "title": "Kostenlose Tools",

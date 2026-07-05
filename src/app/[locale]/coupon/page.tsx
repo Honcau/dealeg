@@ -5,6 +5,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { prisma } from '@/lib/db';
+import { ShareButtons } from '@/components/share/ShareButtons';
 
 // Trang gọi DB → render động lúc request, không pre-render lúc build
 export const dynamic = 'force-dynamic';
@@ -94,6 +95,9 @@ export default async function CouponIndexPage({ params }: Props) {
           </div>
         </section>
       ))}
+    <div className="pt-6 border-t border-gray-100 mt-8">
+        <ShareButtons title="All coupon codes by brand - Dealeg" />
+      </div>
     </div>
   );
 }

@@ -30,7 +30,8 @@
     "usedCount": "{count}人使用",
     "getDiscount": "获取优惠",
     "getCode": "获取代码",
-    "copiedHint": "代码已复制！结账时粘贴。"
+    "copiedHint": "代码已复制！结账时粘贴。",
+    "details": "详情"
   },
   "tools": {
     "title": "免费工具",

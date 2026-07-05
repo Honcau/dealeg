@@ -30,7 +30,8 @@
     "usedCount": "{count} pessoas usaram",
     "getDiscount": "Obter oferta",
     "getCode": "Obter código",
-    "copiedHint": "Código copiado! Cole no checkout."
+    "copiedHint": "Código copiado! Cole no checkout.",
+    "details": "Detalhes"
   },
   "tools": {
     "title": "Ferramentas gratuitas",

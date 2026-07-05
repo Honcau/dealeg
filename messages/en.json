@@ -30,7 +30,8 @@
     "usedCount": "{count} people used",
     "getDiscount": "Get deal",
     "getCode": "Get Code",
-    "copiedHint": "Code copied! Paste it at checkout."
+    "copiedHint": "Code copied! Paste it at checkout.",
+    "details": "Details"
   },
   "tools": {
     "title": "Free tools",

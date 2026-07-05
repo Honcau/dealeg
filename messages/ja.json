@@ -30,7 +30,8 @@
     "usedCount": "{count}人が使用",
     "getDiscount": "割引を取得",
     "getCode": "コードを取得",
-    "copiedHint": "コードをコピーしました！購入時に貼り付けてください。"
+    "copiedHint": "コードをコピーしました！購入時に貼り付けてください。",
+    "details": "詳細"
   },
   "tools": {
     "title": "無料ツール",
