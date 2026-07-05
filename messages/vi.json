@@ -150,5 +150,19 @@
     "linkedAccounts": "Tài khoản liên kết",
     "myComments": "Bình luận của tôi",
     "noComments": "Chưa có bình luận nào."
+  },
+  "search": {
+    "placeholder": "Tìm voucher, bài viết...",
+    "searching": "Đang tìm...",
+    "noResults": "Không tìm thấy",
+    "vouchers": "Voucher",
+    "articles": "Bài viết",
+    "viewAll": "Xem tất cả kết quả cho \"{query}\"",
+    "title": "Tìm kiếm",
+    "resultsFor": "Kết quả cho \"{query}\"",
+    "foundCount": "Tìm thấy {count} kết quả",
+    "typeToSearch": "Nhập từ khóa để tìm kiếm",
+    "noResultsFor": "Không tìm thấy kết quả cho \"{query}\"",
+    "tryDifferent": "Thử từ khóa khác"
   }
 }

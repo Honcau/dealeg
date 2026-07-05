@@ -149,5 +149,19 @@
     "linkedAccounts": "Linked accounts",
     "myComments": "My comments",
     "noComments": "No comments yet."
+  },
+  "search": {
+    "placeholder": "Search vouchers, articles...",
+    "searching": "Searching...",
+    "noResults": "No results",
+    "vouchers": "Vouchers",
+    "articles": "Articles",
+    "viewAll": "View all results for \"{query}\"",
+    "title": "Search",
+    "resultsFor": "Results for \"{query}\"",
+    "foundCount": "Found {count} results",
+    "typeToSearch": "Type a keyword to search",
+    "noResultsFor": "No results found for \"{query}\"",
+    "tryDifferent": "Try a different keyword"
   }
 }

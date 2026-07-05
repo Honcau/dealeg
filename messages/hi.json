@@ -149,5 +149,19 @@
     "linkedAccounts": "लिंक किए गए खाते",
     "myComments": "मेरी टिप्पणियां",
     "noComments": "अभी तक कोई टिप्पणी नहीं।"
+  },
+  "search": {
+    "placeholder": "वाउचर, लेख खोजें...",
+    "searching": "खोज रहे हैं...",
+    "noResults": "कोई परिणाम नहीं",
+    "vouchers": "वाउचर",
+    "articles": "लेख",
+    "viewAll": "\"{query}\" के सभी परिणाम देखें",
+    "title": "खोज",
+    "resultsFor": "\"{query}\" के परिणाम",
+    "foundCount": "{count} परिणाम मिले",
+    "typeToSearch": "खोजने के लिए कीवर्ड टाइप करें",
+    "noResultsFor": "\"{query}\" के लिए कोई परिणाम नहीं",
+    "tryDifferent": "अलग कीवर्ड आज़माएं"
   }
 }

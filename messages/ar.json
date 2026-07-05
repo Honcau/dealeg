@@ -149,5 +149,19 @@
     "linkedAccounts": "الحسابات المرتبطة",
     "myComments": "تعليقاتي",
     "noComments": "لا توجد تعليقات بعد."
+  },
+  "search": {
+    "placeholder": "ابحث عن قسائم، مقالات...",
+    "searching": "جاري البحث...",
+    "noResults": "لا نتائج",
+    "vouchers": "قسائم",
+    "articles": "مقالات",
+    "viewAll": "عرض كل نتائج \"{query}\"",
+    "title": "بحث",
+    "resultsFor": "نتائج \"{query}\"",
+    "foundCount": "تم العثور على {count} نتيجة",
+    "typeToSearch": "اكتب كلمة للبحث",
+    "noResultsFor": "لا نتائج لـ \"{query}\"",
+    "tryDifferent": "جرب كلمة أخرى"
   }
 }

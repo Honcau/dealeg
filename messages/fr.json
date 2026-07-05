@@ -149,5 +149,19 @@
     "linkedAccounts": "Comptes liés",
     "myComments": "Mes commentaires",
     "noComments": "Aucun commentaire pour le moment."
+  },
+  "search": {
+    "placeholder": "Rechercher codes, articles...",
+    "searching": "Recherche...",
+    "noResults": "Aucun résultat",
+    "vouchers": "Codes promo",
+    "articles": "Articles",
+    "viewAll": "Voir tous les résultats pour \"{query}\"",
+    "title": "Recherche",
+    "resultsFor": "Résultats pour \"{query}\"",
+    "foundCount": "{count} résultats trouvés",
+    "typeToSearch": "Tapez un mot-clé pour rechercher",
+    "noResultsFor": "Aucun résultat pour \"{query}\"",
+    "tryDifferent": "Essayez un autre mot-clé"
   }
 }

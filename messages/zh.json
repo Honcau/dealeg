@@ -149,5 +149,19 @@
     "linkedAccounts": "关联账户",
     "myComments": "我的评论",
     "noComments": "还没有评论。"
+  },
+  "search": {
+    "placeholder": "搜索优惠券、文章...",
+    "searching": "搜索中...",
+    "noResults": "无结果",
+    "vouchers": "优惠券",
+    "articles": "文章",
+    "viewAll": "查看\"{query}\"的所有结果",
+    "title": "搜索",
+    "resultsFor": "\"{query}\"的结果",
+    "foundCount": "找到 {count} 个结果",
+    "typeToSearch": "输入关键词搜索",
+    "noResultsFor": "未找到\"{query}\"的结果",
+    "tryDifferent": "尝试其他关键词"
   }
 }

@@ -149,5 +149,19 @@
     "linkedAccounts": "Verknüpfte Konten",
     "myComments": "Meine Kommentare",
     "noComments": "Noch keine Kommentare."
+  },
+  "search": {
+    "placeholder": "Gutscheine, Artikel suchen...",
+    "searching": "Suche...",
+    "noResults": "Keine Ergebnisse",
+    "vouchers": "Gutscheine",
+    "articles": "Artikel",
+    "viewAll": "Alle Ergebnisse für \"{query}\" ansehen",
+    "title": "Suche",
+    "resultsFor": "Ergebnisse für \"{query}\"",
+    "foundCount": "{count} Ergebnisse gefunden",
+    "typeToSearch": "Stichwort zum Suchen eingeben",
+    "noResultsFor": "Keine Ergebnisse für \"{query}\"",
+    "tryDifferent": "Anderes Stichwort versuchen"
   }
 }

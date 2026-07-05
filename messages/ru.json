@@ -149,5 +149,19 @@
     "linkedAccounts": "Связанные аккаунты",
     "myComments": "Мои комментарии",
     "noComments": "Пока нет комментариев."
+  },
+  "search": {
+    "placeholder": "Поиск купонов, статей...",
+    "searching": "Поиск...",
+    "noResults": "Нет результатов",
+    "vouchers": "Купоны",
+    "articles": "Статьи",
+    "viewAll": "Показать все результаты по \"{query}\"",
+    "title": "Поиск",
+    "resultsFor": "Результаты по \"{query}\"",
+    "foundCount": "Найдено {count} результатов",
+    "typeToSearch": "Введите слово для поиска",
+    "noResultsFor": "Нет результатов по \"{query}\"",
+    "tryDifferent": "Попробуйте другое слово"
   }
 }

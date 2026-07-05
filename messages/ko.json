@@ -149,5 +149,19 @@
     "linkedAccounts": "연결된 계정",
     "myComments": "내 댓글",
     "noComments": "아직 댓글이 없습니다."
+  },
+  "search": {
+    "placeholder": "쿠폰, 기사 검색...",
+    "searching": "검색 중...",
+    "noResults": "결과 없음",
+    "vouchers": "쿠폰",
+    "articles": "기사",
+    "viewAll": "\"{query}\"의 모든 결과 보기",
+    "title": "검색",
+    "resultsFor": "\"{query}\" 결과",
+    "foundCount": "{count}개 결과",
+    "typeToSearch": "검색어를 입력하세요",
+    "noResultsFor": "\"{query}\"에 대한 결과 없음",
+    "tryDifferent": "다른 검색어를 시도하세요"
   }
 }

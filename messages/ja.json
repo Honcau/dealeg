@@ -149,5 +149,19 @@
     "linkedAccounts": "連携アカウント",
     "myComments": "マイコメント",
     "noComments": "まだコメントがありません。"
+  },
+  "search": {
+    "placeholder": "クーポン、記事を検索...",
+    "searching": "検索中...",
+    "noResults": "結果なし",
+    "vouchers": "クーポン",
+    "articles": "記事",
+    "viewAll": "\"{query}\"のすべての結果を見る",
+    "title": "検索",
+    "resultsFor": "\"{query}\"の結果",
+    "foundCount": "{count}件の結果",
+    "typeToSearch": "キーワードを入力して検索",
+    "noResultsFor": "\"{query}\"の結果がありません",
+    "tryDifferent": "別のキーワードを試す"
   }
 }

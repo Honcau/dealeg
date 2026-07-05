@@ -3,6 +3,7 @@ import { Link }             from '@/i18n/navigation';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { AuthButton }       from '@/components/auth/AuthButton';
 import { MobileMenu }       from './MobileMenu';
+import { SearchBox }        from '@/components/search/SearchBox';
 
 export async function Header() {
   const t  = await getTranslations('nav');
@@ -18,19 +19,24 @@ export async function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
-      <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
+      <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-3">
         <Link href="/" className="text-xl font-extrabold text-indigo-600 tracking-tight shrink-0">
           {tc('appName')}
         </Link>
 
         {/* Menu desktop */}
-        <nav className="hidden md:flex items-center gap-5 text-sm text-gray-500">
+        <nav className="hidden lg:flex items-center gap-5 text-sm text-gray-500 shrink-0">
           {navLinks.map(({ href, label }) => (
             <Link key={href} href={href} className="hover:text-gray-900 transition-colors">
               {label}
             </Link>
           ))}
         </nav>
+
+        {/* Ô tìm kiếm - desktop (chiếm khoảng giữa) */}
+        <div className="hidden md:block flex-1 max-w-xs mx-2">
+          <SearchBox variant="desktop" />
+        </div>
 
         <div className="flex items-center gap-3 shrink-0">
           <AuthButton />
@@ -43,6 +49,11 @@ export async function Header() {
           {/* Menu mobile (hamburger) */}
           <MobileMenu navLinks={navLinks} submitLabel={t('submit')} />
         </div>
+      </div>
+
+      {/* Ô tìm kiếm - mobile (hàng riêng dưới header) */}
+      <div className="md:hidden border-t border-gray-50 px-4 py-2">
+        <SearchBox variant="mobile" />
       </div>
     </header>
   );

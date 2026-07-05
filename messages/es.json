@@ -149,5 +149,19 @@
     "linkedAccounts": "Cuentas vinculadas",
     "myComments": "Mis comentarios",
     "noComments": "Aún no hay comentarios."
+  },
+  "search": {
+    "placeholder": "Buscar cupones, artículos...",
+    "searching": "Buscando...",
+    "noResults": "Sin resultados",
+    "vouchers": "Cupones",
+    "articles": "Artículos",
+    "viewAll": "Ver todos los resultados de \"{query}\"",
+    "title": "Buscar",
+    "resultsFor": "Resultados de \"{query}\"",
+    "foundCount": "{count} resultados encontrados",
+    "typeToSearch": "Escribe una palabra para buscar",
+    "noResultsFor": "Sin resultados para \"{query}\"",
+    "tryDifferent": "Prueba otra palabra"
   }
 }
