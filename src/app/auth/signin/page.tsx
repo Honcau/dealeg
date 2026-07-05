@@ -13,7 +13,9 @@ const MESSAGES: Record<string, Record<string, string>> = {
     withGoogle: 'Tiếp tục với Google', withFacebook: 'Tiếp tục với Facebook', withGithub: 'Tiếp tục với GitHub',
     orEmail: 'hoặc dùng email', name: 'Tên', email: 'Email', password: 'Mật khẩu', confirmPassword: 'Xác nhận mật khẩu',
     signinBtn: 'Đăng nhập', signupBtn: 'Tạo tài khoản', loading: 'Đang xử lý...',
-    errWrong: L.errWrong, errConfirm: L.errConfirm, errSignup: L.errSignup,
+    errWrong: 'Email hoặc mật khẩu không đúng', errConfirm: 'Mật khẩu xác nhận không khớp', errSignup: 'Đăng ký thất bại, thử lại',
+    displayName: 'Tên hiển thị', passwordMin: 'Mật khẩu (tối thiểu 6 ký tự)', processing: 'Đang xử lý...', createAccount: 'Tạo tài khoản',
+    agreeText: 'Bằng cách đăng nhập, bạn đồng ý với', terms: 'Điều khoản', and: 'và', privacy: 'Chính sách bảo mật', loadingPage: 'Đang tải...',
   },
   en: {
     tagline: 'Best tech vouchers', signin: 'Sign in', signup: 'Sign up',
@@ -21,6 +23,8 @@ const MESSAGES: Record<string, Record<string, string>> = {
     orEmail: 'or use email', name: 'Name', email: 'Email', password: 'Password', confirmPassword: 'Confirm password',
     signinBtn: 'Sign in', signupBtn: 'Create account', loading: 'Processing...',
     errWrong: 'Wrong email or password', errConfirm: 'Passwords do not match', errSignup: 'Sign up failed, try again',
+    displayName: 'Display name', passwordMin: 'Password (min 6 characters)', processing: 'Processing...', createAccount: 'Create account',
+    agreeText: 'By signing in, you agree to our', terms: 'Terms', and: 'and', privacy: 'Privacy Policy', loadingPage: 'Loading...',
   },
 };
 
@@ -55,6 +59,7 @@ const GitHubIcon = () => (
 
 // ── Main component ─────────────────────────────────────────────────────────────
 function AuthPageContent() {
+  const L = MESSAGES[getLocale()];
   const [mode,     setMode]     = useState<'signin' | 'signup'>('signin');
   const [name,     setName]     = useState('');
   const [email,    setEmail]    = useState('');

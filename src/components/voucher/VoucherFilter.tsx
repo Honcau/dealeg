@@ -12,9 +12,6 @@ interface Props {
   category:        string;
 }
 
-const SORT_VALUES = ['discount', 'newest', 'popular'] as const;
-];
-
 export async function VoucherFilter({ currentSort, currentProvider, providers, category }: Props) {
   const t = await getTranslations('voucher');
   const base = `/category/${category}`;
