@@ -31,7 +31,11 @@
     "getDiscount": "احصل على العرض",
     "getCode": "احصل على الكود",
     "copiedHint": "تم نسخ الكود! الصقه عند الدفع.",
-    "details": "التفاصيل"
+    "details": "التفاصيل",
+    "sortDiscount": "أكبر خصم",
+    "sortNewest": "الأحدث",
+    "sortPopular": "الأكثر شعبية",
+    "all": "الكل"
   },
   "tools": {
     "title": "أدوات مجانية",
@@ -65,13 +69,33 @@
   "submit": {
     "title": "إرسال عرض جديد",
     "submitting": "جارٍ الإرسال...",
-    "submit": "إرسال العرض →"
+    "submit": "إرسال العرض →",
+    "subtitle": "تعرف قسيمة ليست على Dealeg؟ شاركها لمساعدة المجتمع!",
+    "code": "الكود",
+    "codePlaceholder": "مثل CHEAP2026",
+    "provider": "المزود",
+    "providerPlaceholder": "مثل Namecheap، Hostinger...",
+    "discount": "الخصم",
+    "discountPlaceholder": "مثل 30% أو $5",
+    "url": "رابط الصفحة",
+    "yourEmail": "بريدك",
+    "emailOptional": "(اختياري — لإعلامك عند الموافقة)",
+    "errRequired": "يرجى ملء الكود والمزود",
+    "errGeneric": "حدث خطأ",
+    "errConnect": "تعذر الاتصال بالخادم",
+    "success": "شكراً! تم إرسال عرضك وهو قيد المراجعة."
   },
   "comments": {
     "myComments": "تعليقاتي",
     "title": "التعليقات",
     "post": "نشر",
-    "posting": "جارٍ النشر..."
+    "posting": "جارٍ النشر...",
+    "communityTitle": "تحقق المجتمع",
+    "stillWorks": "لا يزال يعمل",
+    "expired": "منتهي",
+    "placeholder": "هل لا تزال هذه القسيمة تعمل؟ شارك تجربتك...",
+    "works": "يعمل",
+    "notWork": "منتهي"
   },
   "newsletter": {
     "title": "احصل على أحدث العروض",
@@ -115,5 +139,15 @@
     "moreTitle": "Still have questions?",
     "moreText": "Can't find the answer you're looking for?",
     "contactUs": "Contact us"
+  },
+  "profile": {
+    "title": "ملفك الشخصي",
+    "loading": "جارٍ التحميل...",
+    "displayName": "الاسم المعروض",
+    "save": "حفظ",
+    "saved": "✓ تم الحفظ",
+    "linkedAccounts": "الحسابات المرتبطة",
+    "myComments": "تعليقاتي",
+    "noComments": "لا توجد تعليقات بعد."
   }
 }

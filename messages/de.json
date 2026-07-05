@@ -31,7 +31,11 @@
     "getDiscount": "Deal erhalten",
     "getCode": "Code holen",
     "copiedHint": "Code kopiert! Beim Checkout einfügen.",
-    "details": "Details"
+    "details": "Details",
+    "sortDiscount": "Größter Rabatt",
+    "sortNewest": "Neueste",
+    "sortPopular": "Beliebteste",
+    "all": "Alle"
   },
   "tools": {
     "title": "Kostenlose Tools",
@@ -63,15 +67,35 @@
     "signUpFailed": "Registrierung fehlgeschlagen, erneut versuchen"
   },
   "submit": {
-    "title": "Neues Angebot einreichen",
+    "title": "Angebot einreichen",
     "submitting": "Senden...",
-    "submit": "Angebot einreichen →"
+    "submit": "Angebot einreichen →",
+    "subtitle": "Kennen Sie einen Gutschein, der noch nicht auf Dealeg ist? Teilen Sie ihn!",
+    "code": "Code",
+    "codePlaceholder": "z.B. CHEAP2026",
+    "provider": "Anbieter",
+    "providerPlaceholder": "z.B. Namecheap, Hostinger...",
+    "discount": "Rabatt",
+    "discountPlaceholder": "z.B. 30% oder $5 off",
+    "url": "Landingpage-URL",
+    "yourEmail": "Ihre E-Mail",
+    "emailOptional": "(optional — Benachrichtigung bei Freigabe)",
+    "errRequired": "Bitte Code und Anbieter ausfüllen",
+    "errGeneric": "Etwas ist schiefgelaufen",
+    "errConnect": "Keine Verbindung zum Server",
+    "success": "Danke! Ihr Angebot wurde eingereicht und wird geprüft."
   },
   "comments": {
     "myComments": "Meine Kommentare",
     "title": "Kommentare",
     "post": "Senden",
-    "posting": "Senden..."
+    "posting": "Senden...",
+    "communityTitle": "Community-Verifizierung",
+    "stillWorks": "Funktioniert noch",
+    "expired": "Abgelaufen",
+    "placeholder": "Funktioniert dieser Gutschein noch? Teilen Sie Ihre Erfahrung...",
+    "works": "Gültig",
+    "notWork": "Abgelaufen"
   },
   "newsletter": {
     "title": "Neueste Angebote erhalten",
@@ -115,5 +139,15 @@
     "moreTitle": "Still have questions?",
     "moreText": "Can't find the answer you're looking for?",
     "contactUs": "Contact us"
+  },
+  "profile": {
+    "title": "Ihr Profil",
+    "loading": "Wird geladen...",
+    "displayName": "Anzeigename",
+    "save": "Speichern",
+    "saved": "✓ Gespeichert",
+    "linkedAccounts": "Verknüpfte Konten",
+    "myComments": "Meine Kommentare",
+    "noComments": "Noch keine Kommentare."
   }
 }

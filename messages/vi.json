@@ -31,7 +31,11 @@
     "getDiscount": "Nhận ưu đãi",
     "getCode": "Nhận mã",
     "copiedHint": "Đã copy mã! Dán vào ô giảm giá khi thanh toán.",
-    "details": "Chi tiết"
+    "details": "Chi tiết",
+    "sortDiscount": "Giảm nhiều nhất",
+    "sortNewest": "Mới nhất",
+    "sortPopular": "Phổ biến nhất",
+    "all": "Tất cả"
   },
   "tools": {
     "title": "Công cụ miễn phí",
@@ -65,13 +69,33 @@
   "submit": {
     "title": "Gửi deal mới",
     "submitting": "Đang gửi...",
-    "submit": "Gửi deal →"
+    "submit": "Gửi deal →",
+    "subtitle": "Bạn biết một voucher chưa có trên Dealeg? Chia sẻ để cộng đồng cùng tiết kiệm!",
+    "code": "Mã voucher",
+    "codePlaceholder": "Ví dụ: CHEAP2026",
+    "provider": "Nhà cung cấp",
+    "providerPlaceholder": "Ví dụ: Namecheap, Hostinger...",
+    "discount": "Mức giảm giá",
+    "discountPlaceholder": "Ví dụ: 30% hoặc $5 off",
+    "url": "Link trang áp dụng",
+    "yourEmail": "Email của bạn",
+    "emailOptional": "(tuỳ chọn — để nhận thông báo khi được duyệt)",
+    "errRequired": "Vui lòng điền Mã voucher và Nhà cung cấp",
+    "errGeneric": "Có lỗi xảy ra",
+    "errConnect": "Không thể kết nối server",
+    "success": "Cảm ơn! Deal của bạn đã được gửi và đang chờ duyệt."
   },
   "comments": {
     "myComments": "Bình luận của tôi",
     "title": "Bình luận",
     "post": "Gửi",
-    "posting": "Đang gửi..."
+    "posting": "Đang gửi...",
+    "communityTitle": "Xác nhận từ cộng đồng",
+    "stillWorks": "Còn dùng được",
+    "expired": "Đã hết hạn",
+    "placeholder": "Voucher này còn hoạt động không? Chia sẻ trải nghiệm của bạn...",
+    "works": "Còn",
+    "notWork": "Hết"
   },
   "newsletter": {
     "title": "Nhận deal mới nhất",
@@ -116,5 +140,15 @@
     "moreText": "Không tìm thấy câu trả lời?",
     "contactUs": "Liên hệ với chúng tôi",
     "contactUs2": ""
+  },
+  "profile": {
+    "title": "Hồ sơ của bạn",
+    "loading": "Đang tải...",
+    "displayName": "Tên hiển thị",
+    "save": "Lưu",
+    "saved": "✓ Đã lưu",
+    "linkedAccounts": "Tài khoản liên kết",
+    "myComments": "Bình luận của tôi",
+    "noComments": "Chưa có bình luận nào."
   }
 }

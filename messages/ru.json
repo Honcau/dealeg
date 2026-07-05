@@ -31,7 +31,11 @@
     "getDiscount": "Получить скидку",
     "getCode": "Получить код",
     "copiedHint": "Код скопирован! Вставьте при оплате.",
-    "details": "Подробнее"
+    "details": "Подробнее",
+    "sortDiscount": "Наибольшая скидка",
+    "sortNewest": "Новейшие",
+    "sortPopular": "Популярные",
+    "all": "Все"
   },
   "tools": {
     "title": "Бесплатные инструменты",
@@ -63,15 +67,35 @@
     "signUpFailed": "Ошибка регистрации, попробуйте снова"
   },
   "submit": {
-    "title": "Отправить новую акцию",
+    "title": "Отправить акцию",
     "submitting": "Отправка...",
-    "submit": "Отправить →"
+    "submit": "Отправить →",
+    "subtitle": "Знаете купон, которого нет на Dealeg? Поделитесь с сообществом!",
+    "code": "Код",
+    "codePlaceholder": "напр. CHEAP2026",
+    "provider": "Провайдер",
+    "providerPlaceholder": "напр. Namecheap, Hostinger...",
+    "discount": "Скидка",
+    "discountPlaceholder": "напр. 30% или $5",
+    "url": "URL страницы",
+    "yourEmail": "Ваш email",
+    "emailOptional": "(необязательно — уведомим при одобрении)",
+    "errRequired": "Заполните Код и Провайдер",
+    "errGeneric": "Что-то пошло не так",
+    "errConnect": "Не удалось подключиться к серверу",
+    "success": "Спасибо! Ваша акция отправлена и ожидает проверки."
   },
   "comments": {
     "myComments": "Мои комментарии",
     "title": "Комментарии",
     "post": "Опубликовать",
-    "posting": "Публикация..."
+    "posting": "Публикация...",
+    "communityTitle": "Проверка сообществом",
+    "stillWorks": "Ещё работает",
+    "expired": "Истёк",
+    "placeholder": "Этот купон ещё работает? Поделитесь опытом...",
+    "works": "Работает",
+    "notWork": "Истёк"
   },
   "newsletter": {
     "title": "Получайте свежие предложения",
@@ -115,5 +139,15 @@
     "moreTitle": "Still have questions?",
     "moreText": "Can't find the answer you're looking for?",
     "contactUs": "Contact us"
+  },
+  "profile": {
+    "title": "Ваш профиль",
+    "loading": "Загрузка...",
+    "displayName": "Отображаемое имя",
+    "save": "Сохранить",
+    "saved": "✓ Сохранено",
+    "linkedAccounts": "Связанные аккаунты",
+    "myComments": "Мои комментарии",
+    "noComments": "Пока нет комментариев."
   }
 }

@@ -3,6 +3,7 @@
  * Không cần useState — bấm là URL thay đổi → page re-render với data mới
  */
 import { Link } from '@/i18n/navigation';
+import { getTranslations } from 'next-intl/server';
 
 interface Props {
   currentSort:     string;
@@ -11,14 +12,18 @@ interface Props {
   category:        string;
 }
 
-const SORT_OPTIONS = [
-  { value: 'discount', label: 'Giảm nhiều nhất' },
-  { value: 'newest',   label: 'Mới nhất' },
-  { value: 'popular',  label: 'Phổ biến nhất' },
+const SORT_VALUES = ['discount', 'newest', 'popular'] as const;
 ];
 
-export function VoucherFilter({ currentSort, currentProvider, providers, category }: Props) {
+export async function VoucherFilter({ currentSort, currentProvider, providers, category }: Props) {
+  const t = await getTranslations('voucher');
   const base = `/category/${category}`;
+
+  const SORT_OPTIONS = [
+    { value: 'discount', label: t('sortDiscount') },
+    { value: 'newest',   label: t('sortNewest') },
+    { value: 'popular',  label: t('sortPopular') },
+  ];
 
   function sortHref(sort: string) {
     const params = new URLSearchParams();
@@ -64,7 +69,7 @@ export function VoucherFilter({ currentSort, currentProvider, providers, categor
                 : 'bg-white border border-gray-200 text-gray-600 hover:border-gray-400'
             }`}
           >
-            Tất cả
+            {t('all')}
           </Link>
           {providers.map(p => (
             <Link

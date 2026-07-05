@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import { useSession }   from 'next-auth/react';
 import { useRouter }    from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -18,6 +20,7 @@ interface LinkedAccount {
 }
 
 export default function ProfilePage() {
+  const t = useTranslations('profile');
   const { data: session, status, update } = useSession();
   const router = useRouter();
 
@@ -65,7 +68,7 @@ export default function ProfilePage() {
   }
 
   if (status === 'loading') {
-    return <div className="flex justify-center py-20 text-gray-400">Đang tải...</div>;
+    return <div className="flex justify-center py-20 text-gray-400">{t('loading')}</div>;
   }
 
   if (!session) return null;
@@ -86,7 +89,7 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-8">
-      <h1 className="text-2xl font-extrabold text-gray-900">Hồ sơ của bạn</h1>
+      <h1 className="text-2xl font-extrabold text-gray-900">{t('title')}</h1>
 
       {/* Avatar + basic info */}
       <div className="bg-white rounded-2xl border border-gray-200 p-6 space-y-5">
@@ -112,7 +115,7 @@ export default function ProfilePage() {
         {/* Chỉnh tên */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Tên hiển thị
+            {t('displayName')}
           </label>
           <div className="flex gap-2">
             <input
@@ -125,7 +128,7 @@ export default function ProfilePage() {
               disabled={saving || !name.trim()}
               className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white text-sm font-medium rounded-lg transition-colors"
             >
-              {saved ? '✓ Đã lưu' : saving ? '...' : 'Lưu'}
+              {saved ? t('saved') : saving ? '...' : t('save')}
             </button>
           </div>
         </div>
@@ -134,7 +137,7 @@ export default function ProfilePage() {
       {/* Tài khoản liên kết */}
       {accounts.length > 0 && (
         <div className="bg-white rounded-2xl border border-gray-200 p-6">
-          <h2 className="font-semibold text-gray-900 mb-4">Tài khoản liên kết</h2>
+          <h2 className="font-semibold text-gray-900 mb-4">{t('linkedAccounts')}</h2>
           <div className="flex flex-wrap gap-2">
             {accounts.map(acc => (
               <span
@@ -151,11 +154,11 @@ export default function ProfilePage() {
       {/* Bình luận của tôi */}
       <div className="bg-white rounded-2xl border border-gray-200 p-6">
         <h2 className="font-semibold text-gray-900 mb-4">
-          Bình luận của tôi
+          {t('myComments')}
           <span className="ml-2 text-sm font-normal text-gray-400">({comments.length})</span>
         </h2>
         {comments.length === 0 ? (
-          <p className="text-sm text-gray-400">Chưa có bình luận nào.</p>
+          <p className="text-sm text-gray-400">{t('noComments')}</p>
         ) : (
           <div className="space-y-3">
             {comments.map(c => {

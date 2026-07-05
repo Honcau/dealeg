@@ -31,7 +31,11 @@
     "getDiscount": "혜택 받기",
     "getCode": "코드 받기",
     "copiedHint": "코드가 복사되었습니다! 결제 시 붙여넣으세요.",
-    "details": "상세"
+    "details": "상세",
+    "sortDiscount": "최대 할인",
+    "sortNewest": "최신",
+    "sortPopular": "인기순",
+    "all": "전체"
   },
   "tools": {
     "title": "무료 도구",
@@ -65,13 +69,33 @@
   "submit": {
     "title": "새 딜 제출",
     "submitting": "제출 중...",
-    "submit": "딜 제출 →"
+    "submit": "딜 제출 →",
+    "subtitle": "Dealeg에 없는 쿠폰을 아시나요? 커뮤니티를 위해 공유하세요!",
+    "code": "코드",
+    "codePlaceholder": "예: CHEAP2026",
+    "provider": "제공업체",
+    "providerPlaceholder": "예: Namecheap, Hostinger...",
+    "discount": "할인",
+    "discountPlaceholder": "예: 30% 또는 $5",
+    "url": "페이지 URL",
+    "yourEmail": "이메일",
+    "emailOptional": "(선택 — 승인 시 알림)",
+    "errRequired": "코드와 제공업체를 입력하세요",
+    "errGeneric": "오류가 발생했습니다",
+    "errConnect": "서버에 연결할 수 없습니다",
+    "success": "감사합니다! 딜이 제출되어 검토 중입니다."
   },
   "comments": {
     "myComments": "내 댓글",
     "title": "댓글",
     "post": "게시",
-    "posting": "게시 중..."
+    "posting": "게시 중...",
+    "communityTitle": "커뮤니티 확인",
+    "stillWorks": "아직 사용 가능",
+    "expired": "만료됨",
+    "placeholder": "이 쿠폰이 아직 작동하나요? 경험을 공유하세요...",
+    "works": "사용가능",
+    "notWork": "만료"
   },
   "newsletter": {
     "title": "최신 딜 받기",
@@ -115,5 +139,15 @@
     "moreTitle": "Still have questions?",
     "moreText": "Can't find the answer you're looking for?",
     "contactUs": "Contact us"
+  },
+  "profile": {
+    "title": "내 프로필",
+    "loading": "로딩 중...",
+    "displayName": "표시 이름",
+    "save": "저장",
+    "saved": "✓ 저장됨",
+    "linkedAccounts": "연결된 계정",
+    "myComments": "내 댓글",
+    "noComments": "아직 댓글이 없습니다."
   }
 }

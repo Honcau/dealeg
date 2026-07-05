@@ -31,7 +31,11 @@
     "getDiscount": "Obtener oferta",
     "getCode": "Obtener código",
     "copiedHint": "¡Código copiado! Pégalo al pagar.",
-    "details": "Detalles"
+    "details": "Detalles",
+    "sortDiscount": "Mayor descuento",
+    "sortNewest": "Más recientes",
+    "sortPopular": "Más populares",
+    "all": "Todos"
   },
   "tools": {
     "title": "Herramientas gratis",
@@ -65,13 +69,33 @@
   "submit": {
     "title": "Enviar nueva oferta",
     "submitting": "Enviando...",
-    "submit": "Enviar oferta →"
+    "submit": "Enviar oferta →",
+    "subtitle": "¿Conoces un cupón que no está en Dealeg? ¡Compártelo para ayudar a la comunidad!",
+    "code": "Código",
+    "codePlaceholder": "ej. CHEAP2026",
+    "provider": "Proveedor",
+    "providerPlaceholder": "ej. Namecheap, Hostinger...",
+    "discount": "Descuento",
+    "discountPlaceholder": "ej. 30% o $5 off",
+    "url": "URL de la página",
+    "yourEmail": "Tu correo",
+    "emailOptional": "(opcional — para avisarte cuando se apruebe)",
+    "errRequired": "Completa Código y Proveedor",
+    "errGeneric": "Algo salió mal",
+    "errConnect": "No se puede conectar al servidor",
+    "success": "¡Gracias! Tu oferta fue enviada y está pendiente de revisión."
   },
   "comments": {
     "myComments": "Mis comentarios",
     "title": "Comentarios",
     "post": "Publicar",
-    "posting": "Publicando..."
+    "posting": "Publicando...",
+    "communityTitle": "Verificación de la comunidad",
+    "stillWorks": "Aún funciona",
+    "expired": "Caducado",
+    "placeholder": "¿Este cupón todavía funciona? Comparte tu experiencia...",
+    "works": "Funciona",
+    "notWork": "Caducado"
   },
   "newsletter": {
     "title": "Recibe las últimas ofertas",
@@ -115,5 +139,15 @@
     "moreTitle": "Still have questions?",
     "moreText": "Can't find the answer you're looking for?",
     "contactUs": "Contact us"
+  },
+  "profile": {
+    "title": "Tu perfil",
+    "loading": "Cargando...",
+    "displayName": "Nombre visible",
+    "save": "Guardar",
+    "saved": "✓ Guardado",
+    "linkedAccounts": "Cuentas vinculadas",
+    "myComments": "Mis comentarios",
+    "noComments": "Aún no hay comentarios."
   }
 }

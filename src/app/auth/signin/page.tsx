@@ -5,6 +5,32 @@ import { signIn }            from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense }          from 'react';
 
+
+// ── i18n cho trang auth (ngoài [locale] nên tự xử lý) ───────────────────────────
+const MESSAGES: Record<string, Record<string, string>> = {
+  vi: {
+    tagline: 'Voucher công nghệ tốt nhất', signin: 'Đăng nhập', signup: 'Đăng ký',
+    withGoogle: 'Tiếp tục với Google', withFacebook: 'Tiếp tục với Facebook', withGithub: 'Tiếp tục với GitHub',
+    orEmail: 'hoặc dùng email', name: 'Tên', email: 'Email', password: 'Mật khẩu', confirmPassword: 'Xác nhận mật khẩu',
+    signinBtn: 'Đăng nhập', signupBtn: 'Tạo tài khoản', loading: 'Đang xử lý...',
+    errWrong: L.errWrong, errConfirm: L.errConfirm, errSignup: L.errSignup,
+  },
+  en: {
+    tagline: 'Best tech vouchers', signin: 'Sign in', signup: 'Sign up',
+    withGoogle: 'Continue with Google', withFacebook: 'Continue with Facebook', withGithub: 'Continue with GitHub',
+    orEmail: 'or use email', name: 'Name', email: 'Email', password: 'Password', confirmPassword: 'Confirm password',
+    signinBtn: 'Sign in', signupBtn: 'Create account', loading: 'Processing...',
+    errWrong: 'Wrong email or password', errConfirm: 'Passwords do not match', errSignup: 'Sign up failed, try again',
+  },
+};
+
+function getLocale(): string {
+  if (typeof document === 'undefined') return 'en';
+  const m = document.cookie.match(/NEXT_LOCALE=([^;]+)/);
+  const loc = m?.[1] ?? 'vi';
+  return MESSAGES[loc] ? loc : 'en';
+}
+
 // ── Icons ──────────────────────────────────────────────────────────────────────
 const GoogleIcon = () => (
   <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -59,7 +85,7 @@ function AuthPageContent() {
     });
 
     if (res?.error) {
-      setErrors({ form: 'Email hoặc mật khẩu không đúng' });
+      setErrors({ form: L.errWrong });
       setLoading(null);
     } else {
       router.push(callbackUrl);
@@ -72,7 +98,7 @@ function AuthPageContent() {
     setErrors({});
 
     if (password !== confirm) {
-      setErrors({ confirm: 'Mật khẩu xác nhận không khớp' });
+      setErrors({ confirm: L.errConfirm });
       return;
     }
 
@@ -92,7 +118,7 @@ function AuthPageContent() {
       if (data.error?.email)    errs.email    = data.error.email[0];
       if (data.error?.password) errs.password = data.error.password[0];
       if (data.error?.name)     errs.name     = data.error.name[0];
-      if (!Object.keys(errs).length) errs.form = 'Đăng ký thất bại, thử lại';
+      if (!Object.keys(errs).length) errs.form = L.errSignup;
       setErrors(errs);
       setLoading(null);
       return;
@@ -127,7 +153,7 @@ function AuthPageContent() {
         {/* Logo */}
         <div className="text-center mb-6">
           <a href="/" className="text-2xl font-extrabold text-indigo-600">Dealeg</a>
-          <p className="text-gray-500 text-sm mt-1">Voucher công nghệ tốt nhất</p>
+          <p className="text-gray-500 text-sm mt-1">{L.tagline}</p>
         </div>
 
         {/* Tab toggle */}
@@ -142,7 +168,7 @@ function AuthPageContent() {
                   : 'text-gray-500 hover:text-gray-700'
               }`}
             >
-              {m === 'signin' ? 'Đăng nhập' : 'Đăng ký'}
+              {m === 'signin' ? L.signin : L.signup}
             </button>
           ))}
         </div>
@@ -153,28 +179,28 @@ function AuthPageContent() {
             disabled={!!loading}
             className={`${socialBtnBase} border-gray-300`}>
             <GoogleIcon />
-            <span>Tiếp tục với Google</span>
+            <span>{L.withGoogle}</span>
           </button>
 
           <button onClick={() => handleSocial('facebook')}
             disabled={!!loading}
             className={`${socialBtnBase} border-[#1877F2] text-[#1877F2] hover:bg-blue-50`}>
             <FacebookIcon />
-            <span>Tiếp tục với Facebook</span>
+            <span>{L.withFacebook}</span>
           </button>
 
           <button onClick={() => handleSocial('github')}
             disabled={!!loading}
             className={`${socialBtnBase} border-gray-800 text-gray-800 hover:bg-gray-50`}>
             <GitHubIcon />
-            <span>Tiếp tục với GitHub</span>
+            <span>{L.withGithub}</span>
           </button>
         </div>
 
         {/* Divider */}
         <div className="flex items-center gap-3 mb-5">
           <div className="flex-1 h-px bg-gray-200"/>
-          <span className="text-xs text-gray-400">hoặc dùng email</span>
+          <span className="text-xs text-gray-400">{L.orEmail}</span>
           <div className="flex-1 h-px bg-gray-200"/>
         </div>
 
@@ -189,7 +215,7 @@ function AuthPageContent() {
           {mode === 'signup' && (
             <div>
               <input value={name} onChange={e => setName(e.target.value)}
-                placeholder="Tên hiển thị"
+                placeholder={L.displayName}
                 className={input(!!errors.name)} />
               {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
             </div>
@@ -204,7 +230,7 @@ function AuthPageContent() {
 
           <div>
             <input type="password" value={password} onChange={e => setPassword(e.target.value)}
-              placeholder={mode === 'signup' ? 'Mật khẩu (tối thiểu 6 ký tự)' : 'Mật khẩu'}
+              placeholder={mode === 'signup' ? L.passwordMin : L.password}
               className={input(!!errors.password)} />
             {errors.password && <p className="text-xs text-red-500 mt-1">{errors.password}</p>}
           </div>
@@ -212,7 +238,7 @@ function AuthPageContent() {
           {mode === 'signup' && (
             <div>
               <input type="password" value={confirm} onChange={e => setConfirm(e.target.value)}
-                placeholder="Xác nhận mật khẩu"
+                placeholder={L.confirmPassword}
                 className={input(!!errors.confirm)} />
               {errors.confirm && <p className="text-xs text-red-500 mt-1">{errors.confirm}</p>}
             </div>
@@ -221,17 +247,17 @@ function AuthPageContent() {
           <button type="submit" disabled={!!loading}
             className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white font-semibold py-2.5 rounded-xl text-sm transition-colors">
             {loading
-              ? 'Đang xử lý...'
-              : mode === 'signin' ? 'Đăng nhập' : 'Tạo tài khoản'}
+              ? L.processing
+              : mode === 'signin' ? L.signinBtn : L.createAccount}
           </button>
         </form>
 
         {/* Footer */}
         <p className="text-center text-xs text-gray-400 mt-5">
-          Bằng cách đăng nhập, bạn đồng ý với{' '}
-          <a href="/terms" className="underline hover:text-gray-600">Điều khoản</a>{' '}
-          và{' '}
-          <a href="/privacy" className="underline hover:text-gray-600">Chính sách bảo mật</a>
+          {L.agreeText}{' '}
+          <a href="/terms" className="underline hover:text-gray-600">{L.terms}</a>{' '}
+          {L.and}{' '}
+          <a href="/privacy" className="underline hover:text-gray-600">{L.privacy}</a>
         </p>
       </div>
     </div>
@@ -241,7 +267,7 @@ function AuthPageContent() {
 export default function AuthPage() {
   return (
     <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="text-gray-400">Đang tải...</div>
+      <div className="text-gray-400">Loading...</div>
     </div>}>
       <AuthPageContent />
     </Suspense>

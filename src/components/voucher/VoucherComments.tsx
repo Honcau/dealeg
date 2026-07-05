@@ -72,12 +72,12 @@ export function VoucherComments({ voucherId }: Props) {
 
   return (
     <div className="mt-8 border-t border-gray-200 pt-6 space-y-4">
-      <h3 className="font-semibold text-gray-900">Xác nhận từ cộng đồng</h3>
+      <h3 className="font-semibold text-gray-900">{t('communityTitle')}</h3>
 
       {/* Stats */}
       <div className="flex gap-4 text-sm">
-        <span className="text-green-600">✓ {stillWorks} Còn dùng được</span>
-        <span className="text-red-600">✗ {expired} Đã hết hạn</span>
+        <span className="text-green-600">✓ {stillWorks} {t('stillWorks')}</span>
+        <span className="text-red-600">✗ {expired} {t('expired')}</span>
       </div>
 
       {/* Comment form */}
@@ -86,7 +86,7 @@ export function VoucherComments({ voucherId }: Props) {
           <textarea
             value={newComment}
             onChange={e => setNewComment(e.target.value)}
-            placeholder="Voucher này còn hoạt động không? Chia sẻ trải nghiệm của bạn..."
+            placeholder={t('placeholder')}
             className="w-full px-3 py-2 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
             rows={2}
             maxLength={500}
@@ -134,7 +134,7 @@ export function VoucherComments({ voucherId }: Props) {
                       : 'bg-gray-200 text-gray-600 hover:bg-green-100'
                   }`}
                 >
-                  ✓ Còn ({upvotes})
+                  ✓ {t('works')} ({upvotes})
                 </button>
                 <button
                   onClick={() => handleVote(comment.id, -1)}
@@ -144,7 +144,7 @@ export function VoucherComments({ voucherId }: Props) {
                       : 'bg-gray-200 text-gray-600 hover:bg-red-100'
                   }`}
                 >
-                  ✗ Hết ({downvotes})
+                  ✗ {t('notWork')} ({downvotes})
                 </button>
               </div>
             </div>

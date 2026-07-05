@@ -31,7 +31,11 @@
     "getDiscount": "डील पाएं",
     "getCode": "कोड पाएं",
     "copiedHint": "कोड कॉपी हो गया! चेकआउट पर पेस्ट करें।",
-    "details": "विवरण"
+    "details": "विवरण",
+    "sortDiscount": "सबसे बड़ी छूट",
+    "sortNewest": "नवीनतम",
+    "sortPopular": "सबसे लोकप्रिय",
+    "all": "सभी"
   },
   "tools": {
     "title": "मुफ़्त टूल्स",
@@ -65,13 +69,33 @@
   "submit": {
     "title": "नया डील सबमिट करें",
     "submitting": "सबमिट हो रहा है...",
-    "submit": "डील सबमिट करें →"
+    "submit": "डील सबमिट करें →",
+    "subtitle": "कोई वाउचर जानते हैं जो Dealeg पर नहीं है? समुदाय की मदद के लिए साझा करें!",
+    "code": "वाउचर कोड",
+    "codePlaceholder": "जैसे CHEAP2026",
+    "provider": "प्रदाता",
+    "providerPlaceholder": "जैसे Namecheap, Hostinger...",
+    "discount": "छूट",
+    "discountPlaceholder": "जैसे 30% या $5 off",
+    "url": "लैंडिंग पेज URL",
+    "yourEmail": "आपका ईमेल",
+    "emailOptional": "(वैकल्पिक — अनुमोदित होने पर सूचना)",
+    "errRequired": "कृपया वाउचर कोड और प्रदाता भरें",
+    "errGeneric": "कुछ गलत हुआ",
+    "errConnect": "सर्वर से कनेक्ट नहीं हो सका",
+    "success": "धन्यवाद! आपका डील सबमिट हो गया।"
   },
   "comments": {
     "myComments": "मेरी टिप्पणियां",
     "title": "टिप्पणियां",
     "post": "पोस्ट",
-    "posting": "पोस्ट हो रहा है..."
+    "posting": "पोस्ट हो रहा है...",
+    "communityTitle": "समुदाय सत्यापन",
+    "stillWorks": "अभी भी काम करता है",
+    "expired": "समाप्त",
+    "placeholder": "क्या यह वाउचर अभी भी काम करता है? अपना अनुभव साझा करें...",
+    "works": "काम करता है",
+    "notWork": "समाप्त"
   },
   "newsletter": {
     "title": "नवीनतम डील पाएं",
@@ -115,5 +139,15 @@
     "moreTitle": "Still have questions?",
     "moreText": "Can't find the answer you're looking for?",
     "contactUs": "Contact us"
+  },
+  "profile": {
+    "title": "आपकी प्रोफ़ाइल",
+    "loading": "लोड हो रहा है...",
+    "displayName": "प्रदर्शित नाम",
+    "save": "सहेजें",
+    "saved": "✓ सहेजा गया",
+    "linkedAccounts": "लिंक किए गए खाते",
+    "myComments": "मेरी टिप्पणियां",
+    "noComments": "अभी तक कोई टिप्पणी नहीं।"
   }
 }

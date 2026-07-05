@@ -31,7 +31,11 @@
     "getDiscount": "获取优惠",
     "getCode": "获取代码",
     "copiedHint": "代码已复制！结账时粘贴。",
-    "details": "详情"
+    "details": "详情",
+    "sortDiscount": "最大折扣",
+    "sortNewest": "最新",
+    "sortPopular": "最热门",
+    "all": "全部"
   },
   "tools": {
     "title": "免费工具",
@@ -65,13 +69,33 @@
   "submit": {
     "title": "提交新优惠",
     "submitting": "提交中...",
-    "submit": "提交优惠 →"
+    "submit": "提交优惠 →",
+    "subtitle": "知道 Dealeg 上还没有的优惠券吗？分享给社区一起省钱！",
+    "code": "优惠码",
+    "codePlaceholder": "例如 CHEAP2026",
+    "provider": "提供商",
+    "providerPlaceholder": "例如 Namecheap、Hostinger...",
+    "discount": "折扣",
+    "discountPlaceholder": "例如 30% 或 $5 off",
+    "url": "落地页链接",
+    "yourEmail": "您的邮箱",
+    "emailOptional": "（可选 — 批准时通知您）",
+    "errRequired": "请填写优惠码和提供商",
+    "errGeneric": "出错了",
+    "errConnect": "无法连接服务器",
+    "success": "谢谢！您的优惠已提交，等待审核。"
   },
   "comments": {
     "myComments": "我的评论",
     "title": "评论",
     "post": "发布",
-    "posting": "发布中..."
+    "posting": "发布中...",
+    "communityTitle": "社区验证",
+    "stillWorks": "仍然有效",
+    "expired": "已过期",
+    "placeholder": "这个优惠券还能用吗？分享您的经验...",
+    "works": "有效",
+    "notWork": "过期"
   },
   "newsletter": {
     "title": "获取最新优惠",
@@ -115,5 +139,15 @@
     "moreTitle": "Still have questions?",
     "moreText": "Can't find the answer you're looking for?",
     "contactUs": "Contact us"
+  },
+  "profile": {
+    "title": "您的资料",
+    "loading": "加载中...",
+    "displayName": "显示名称",
+    "save": "保存",
+    "saved": "✓ 已保存",
+    "linkedAccounts": "关联账户",
+    "myComments": "我的评论",
+    "noComments": "还没有评论。"
   }
 }

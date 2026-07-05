@@ -5,10 +5,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 const CATEGORIES = ['DOMAIN','HOSTING','VPN','SECURITY','EMAIL','CDN','SSL','OTHER'];
 
 export default function SubmitPage() {
+  const t = useTranslations('submit');
   const [form, setForm] = useState({
     code: '', provider: '', discount: '', url: '', email: ''
   });
@@ -23,7 +25,7 @@ export default function SubmitPage() {
     e.preventDefault();
     if (!form.code || !form.provider) {
       setStatus('error');
-      setMessage('Vui lòng điền Mã voucher và Nhà cung cấp');
+      setMessage(t('errRequired'));
       return;
     }
     setStatus('loading');
@@ -40,19 +42,19 @@ export default function SubmitPage() {
         setForm({ code: '', provider: '', discount: '', url: '', email: '' });
       } else {
         setStatus('error');
-        setMessage(data.error ?? 'Có lỗi xảy ra');
+        setMessage(data.error ?? t('errGeneric'));
       }
     } catch {
       setStatus('error');
-      setMessage('Không thể kết nối server');
+      setMessage(t('errConnect'));
     }
   };
 
   return (
     <div className="max-w-lg mx-auto">
-      <h1 className="text-2xl font-extrabold text-gray-900 mb-2">Gửi deal mới</h1>
+      <h1 className="text-2xl font-extrabold text-gray-900 mb-2">{t('title')}</h1>
       <p className="text-gray-500 text-sm mb-8">
-        Bạn biết một voucher chưa có trên Dealeg? Chia sẻ để cộng đồng cùng tiết kiệm!
+        {t('subtitle')}
       </p>
 
       <div className="bg-white rounded-2xl border border-gray-200 p-6 space-y-4">
@@ -60,11 +62,11 @@ export default function SubmitPage() {
         {/* Mã voucher */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Mã voucher <span className="text-red-500">*</span>
+            {t('code')} <span className="text-red-500">*</span>
           </label>
           <input
             name="code" value={form.code} onChange={handleChange}
-            placeholder="Ví dụ: CHEAP2026"
+            placeholder={t('codePlaceholder')}
             className="w-full px-3 py-2 rounded-lg border border-gray-300 font-mono text-sm uppercase focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
@@ -72,11 +74,11 @@ export default function SubmitPage() {
         {/* Nhà cung cấp */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Nhà cung cấp <span className="text-red-500">*</span>
+            {t('provider')} <span className="text-red-500">*</span>
           </label>
           <input
             name="provider" value={form.provider} onChange={handleChange}
-            placeholder="Ví dụ: Namecheap, Hostinger..."
+            placeholder={t('providerPlaceholder')}
             className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
@@ -84,11 +86,11 @@ export default function SubmitPage() {
         {/* Mức giảm */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Mức giảm giá
+            {t('discount')}
           </label>
           <input
             name="discount" value={form.discount} onChange={handleChange}
-            placeholder="Ví dụ: 30% hoặc $5 off"
+            placeholder={t('discountPlaceholder')}
             className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
@@ -96,7 +98,7 @@ export default function SubmitPage() {
         {/* Link */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Link trang áp dụng
+            {t('url')}
           </label>
           <input
             name="url" value={form.url} onChange={handleChange}
@@ -108,7 +110,7 @@ export default function SubmitPage() {
         {/* Email (tuỳ chọn) */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Email của bạn <span className="text-gray-400 font-normal">(tuỳ chọn — để nhận thông báo khi được duyệt)</span>
+            {t('yourEmail')} <span className="text-gray-400 font-normal">{t('emailOptional')}</span>
           </label>
           <input
             name="email" value={form.email} onChange={handleChange}
@@ -134,7 +136,7 @@ export default function SubmitPage() {
           disabled={status === 'loading'}
           className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white font-semibold py-3 rounded-xl transition-colors"
         >
-          {status === 'loading' ? 'Đang gửi...' : 'Gửi deal →'}
+          {status === 'loading' ? t('submitting') : t('submit')}
         </button>
       </div>
     </div>

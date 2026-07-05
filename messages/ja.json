@@ -31,7 +31,11 @@
     "getDiscount": "割引を取得",
     "getCode": "コードを取得",
     "copiedHint": "コードをコピーしました！購入時に貼り付けてください。",
-    "details": "詳細"
+    "details": "詳細",
+    "sortDiscount": "割引率順",
+    "sortNewest": "最新",
+    "sortPopular": "人気順",
+    "all": "すべて"
   },
   "tools": {
     "title": "無料ツール",
@@ -65,13 +69,33 @@
   "submit": {
     "title": "新しいお得情報を投稿",
     "submitting": "送信中...",
-    "submit": "投稿する →"
+    "submit": "投稿する →",
+    "subtitle": "Dealegにまだないクーポンをご存知ですか？共有してコミュニティを助けましょう！",
+    "code": "コード",
+    "codePlaceholder": "例：CHEAP2026",
+    "provider": "プロバイダー",
+    "providerPlaceholder": "例：Namecheap、Hostinger...",
+    "discount": "割引",
+    "discountPlaceholder": "例：30% または $5",
+    "url": "ページURL",
+    "yourEmail": "メール",
+    "emailOptional": "（任意 — 承認時に通知）",
+    "errRequired": "コードとプロバイダーを入力してください",
+    "errGeneric": "エラーが発生しました",
+    "errConnect": "サーバーに接続できません",
+    "success": "ありがとうございます！投稿は審査待ちです。"
   },
   "comments": {
     "myComments": "マイコメント",
     "title": "コメント",
     "post": "投稿",
-    "posting": "投稿中..."
+    "posting": "投稿中...",
+    "communityTitle": "コミュニティ確認",
+    "stillWorks": "まだ使える",
+    "expired": "期限切れ",
+    "placeholder": "このクーポンはまだ使えますか？体験を共有してください...",
+    "works": "使える",
+    "notWork": "期限切れ"
   },
   "newsletter": {
     "title": "最新のお得情報を受け取る",
@@ -115,5 +139,15 @@
     "moreTitle": "Still have questions?",
     "moreText": "Can't find the answer you're looking for?",
     "contactUs": "Contact us"
+  },
+  "profile": {
+    "title": "プロフィール",
+    "loading": "読み込み中...",
+    "displayName": "表示名",
+    "save": "保存",
+    "saved": "✓ 保存しました",
+    "linkedAccounts": "連携アカウント",
+    "myComments": "マイコメント",
+    "noComments": "まだコメントがありません。"
   }
 }

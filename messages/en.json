@@ -31,7 +31,11 @@
     "getDiscount": "Get deal",
     "getCode": "Get Code",
     "copiedHint": "Code copied! Paste it at checkout.",
-    "details": "Details"
+    "details": "Details",
+    "sortDiscount": "Biggest discount",
+    "sortNewest": "Newest",
+    "sortPopular": "Most popular",
+    "all": "All"
   },
   "tools": {
     "title": "Free tools",
@@ -65,13 +69,33 @@
   "submit": {
     "title": "Submit a new deal",
     "submitting": "Submitting...",
-    "submit": "Submit deal →"
+    "submit": "Submit deal →",
+    "subtitle": "Know a voucher not yet on Dealeg? Share it to help the community save!",
+    "code": "Voucher code",
+    "codePlaceholder": "e.g. CHEAP2026",
+    "provider": "Provider",
+    "providerPlaceholder": "e.g. Namecheap, Hostinger...",
+    "discount": "Discount",
+    "discountPlaceholder": "e.g. 30% or $5 off",
+    "url": "Landing page URL",
+    "yourEmail": "Your email",
+    "emailOptional": "(optional — to be notified when approved)",
+    "errRequired": "Please fill in Voucher code and Provider",
+    "errGeneric": "Something went wrong",
+    "errConnect": "Cannot connect to server",
+    "success": "Thank you! Your deal has been submitted and is pending review."
   },
   "comments": {
     "myComments": "My comments",
     "title": "Comments",
     "post": "Post",
-    "posting": "Posting..."
+    "posting": "Posting...",
+    "communityTitle": "Community verification",
+    "stillWorks": "Still works",
+    "expired": "Expired",
+    "placeholder": "Does this voucher still work? Share your experience...",
+    "works": "Works",
+    "notWork": "Expired"
   },
   "newsletter": {
     "title": "Get the latest deals",
@@ -115,5 +139,15 @@
     "moreTitle": "Still have questions?",
     "moreText": "Can't find the answer you're looking for?",
     "contactUs": "Contact us"
+  },
+  "profile": {
+    "title": "Your Profile",
+    "loading": "Loading...",
+    "displayName": "Display name",
+    "save": "Save",
+    "saved": "✓ Saved",
+    "linkedAccounts": "Linked accounts",
+    "myComments": "My comments",
+    "noComments": "No comments yet."
   }
 }

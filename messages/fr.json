@@ -31,7 +31,11 @@
     "getDiscount": "Obtenir l'offre",
     "getCode": "Obtenir le code",
     "copiedHint": "Code copié ! Collez-le au paiement.",
-    "details": "Détails"
+    "details": "Détails",
+    "sortDiscount": "Plus grande réduction",
+    "sortNewest": "Plus récents",
+    "sortPopular": "Plus populaires",
+    "all": "Tous"
   },
   "tools": {
     "title": "Outils gratuits",
@@ -63,15 +67,35 @@
     "signUpFailed": "Échec d'inscription, réessayez"
   },
   "submit": {
-    "title": "Soumettre une nouvelle offre",
+    "title": "Soumettre une offre",
     "submitting": "Envoi...",
-    "submit": "Soumettre →"
+    "submit": "Soumettre →",
+    "subtitle": "Vous connaissez un code absent de Dealeg ? Partagez-le pour aider la communauté !",
+    "code": "Code",
+    "codePlaceholder": "ex. CHEAP2026",
+    "provider": "Fournisseur",
+    "providerPlaceholder": "ex. Namecheap, Hostinger...",
+    "discount": "Réduction",
+    "discountPlaceholder": "ex. 30% ou $5 off",
+    "url": "URL de la page",
+    "yourEmail": "Votre e-mail",
+    "emailOptional": "(facultatif — pour être averti à l'approbation)",
+    "errRequired": "Remplissez Code et Fournisseur",
+    "errGeneric": "Une erreur est survenue",
+    "errConnect": "Impossible de se connecter au serveur",
+    "success": "Merci ! Votre offre a été envoyée et est en attente de validation."
   },
   "comments": {
     "myComments": "Mes commentaires",
     "title": "Commentaires",
     "post": "Publier",
-    "posting": "Publication..."
+    "posting": "Publication...",
+    "communityTitle": "Vérification communautaire",
+    "stillWorks": "Fonctionne encore",
+    "expired": "Expiré",
+    "placeholder": "Ce code fonctionne-t-il encore ? Partagez votre expérience...",
+    "works": "Marche",
+    "notWork": "Expiré"
   },
   "newsletter": {
     "title": "Recevez les dernières offres",
@@ -115,5 +139,15 @@
     "moreTitle": "Still have questions?",
     "moreText": "Can't find the answer you're looking for?",
     "contactUs": "Contact us"
+  },
+  "profile": {
+    "title": "Votre profil",
+    "loading": "Chargement...",
+    "displayName": "Nom affiché",
+    "save": "Enregistrer",
+    "saved": "✓ Enregistré",
+    "linkedAccounts": "Comptes liés",
+    "myComments": "Mes commentaires",
+    "noComments": "Aucun commentaire pour le moment."
   }
 }
