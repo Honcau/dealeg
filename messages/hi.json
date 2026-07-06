@@ -192,5 +192,8 @@
     "backHome": "होम पर जाएं",
     "browseDeals": "डील देखें",
     "popularPages": "लोकप्रिय पृष्ठ"
+  },
+  "blog": {
+    "publishedOn": "प्रकाशित"
   }
 }

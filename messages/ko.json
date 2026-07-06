@@ -192,5 +192,8 @@
     "backHome": "홈으로",
     "browseDeals": "딜 보기",
     "popularPages": "인기 페이지"
+  },
+  "blog": {
+    "publishedOn": "게시일"
   }
 }

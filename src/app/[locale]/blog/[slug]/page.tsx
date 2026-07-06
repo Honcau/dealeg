@@ -1,5 +1,6 @@
 import type { Metadata }  from 'next';
 import { notFound }        from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import { prisma }          from '@/lib/db';
 import { getArticleTranslation } from '@/lib/translation';
 import { ShareButtons } from '@/components/share/ShareButtons';
@@ -35,6 +36,7 @@ function markdownToHtml(md: string): string {
 
 export default async function ArticlePage({ params }: Props) {
   const { locale, slug } = await params;
+  const t = await getTranslations('blog');
 
   const article = await prisma.article.findUnique({
     where: { slug, status: 'PUBLISHED' },
@@ -88,7 +90,7 @@ export default async function ArticlePage({ params }: Props) {
       {/* Published date */}
       {article.publishedAt && (
         <div className="mt-12 pt-6 border-t border-gray-100 text-sm text-gray-400">
-          Đăng ngày {new Date(article.publishedAt).toLocaleDateString(locale, {
+          {t('publishedOn')} {new Date(article.publishedAt).toLocaleDateString(locale, {
             year: 'numeric', month: 'long', day: 'numeric'
           })}
         </div>

@@ -192,5 +192,8 @@
     "backHome": "返回首页",
     "browseDeals": "浏览优惠",
     "popularPages": "热门页面"
+  },
+  "blog": {
+    "publishedOn": "发布于"
   }
 }

@@ -192,5 +192,8 @@
     "backHome": "ホームへ",
     "browseDeals": "お得情報を見る",
     "popularPages": "人気ページ"
+  },
+  "blog": {
+    "publishedOn": "公開日"
   }
 }

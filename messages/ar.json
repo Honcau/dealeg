@@ -192,5 +192,8 @@
     "backHome": "الرئيسية",
     "browseDeals": "تصفح العروض",
     "popularPages": "صفحات شائعة"
+  },
+  "blog": {
+    "publishedOn": "نُشر في"
   }
 }

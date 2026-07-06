@@ -25,6 +25,27 @@ const nextConfig = {
       { protocol: 'https', hostname: 'platform-lookaside.fbsbx.com' },
     ],
   },
+
+  // Cache headers cho file tĩnh trong public/ (favicon, OG, ảnh).
+  // Giúp trình duyệt cache lâu → khách quay lại không tải lại (Expires headers).
+  async headers() {
+    return [
+      {
+        // Ảnh và icon: cache 30 ngày (chúng ít đổi)
+        source: '/:path*.(png|jpg|jpeg|svg|ico|webp|gif)',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=86400' },
+        ],
+      },
+      {
+        // Manifest + favicon: cache 7 ngày
+        source: '/:path*.(json|txt)',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=604800' },
+        ],
+      },
+    ];
+  },
 };
 
 module.exports = withNextIntl(nextConfig);

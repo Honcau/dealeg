@@ -192,5 +192,8 @@
     "backHome": "Início",
     "browseDeals": "Ver ofertas",
     "popularPages": "Páginas populares"
+  },
+  "blog": {
+    "publishedOn": "Publicado em"
   }
 }

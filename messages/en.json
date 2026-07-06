@@ -192,5 +192,8 @@
     "backHome": "Back home",
     "browseDeals": "Browse deals",
     "popularPages": "Popular pages"
+  },
+  "blog": {
+    "publishedOn": "Published"
   }
 }
