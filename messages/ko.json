@@ -41,10 +41,73 @@
   },
   "tools": {
     "title": "무료 도구",
-    "pdf": "PDF 편집",
-    "office": "온라인 오피스",
-    "image": "이미지 편집",
-    "convert": "파일 변환"
+    "subtitle": "돈 & 유틸리티 도구 — 무료, 가입 불필요",
+    "dealsCta": "테크 딜을 찾고 있나요? 최신 쿠폰 보기",
+    "vietqr": {
+      "name": "VietQR 생성기",
+      "desc": "베트남 은행 이체 QR 코드 생성 (Napas 표준)",
+      "bank": "은행",
+      "account": "계좌번호",
+      "accountName": "예금주",
+      "amount": "금액",
+      "message": "이체 메모",
+      "note": "계좌번호를 입력하면 QR 코드가 생성됩니다",
+      "download": "QR 다운로드"
+    },
+    "discount": {
+      "name": "할인 계산기",
+      "desc": "세일 가격과 절약률을 빠르게 계산",
+      "mode1Title": "할인 후 가격",
+      "price": "원가",
+      "percent": "할인",
+      "finalPrice": "최종 가격",
+      "saved": "절약",
+      "mode2Title": "할인율 계산",
+      "original": "원가",
+      "salePrice": "세일 가격",
+      "percentOff": "할인율"
+    },
+    "grossnet": {
+      "name": "베트남 Gross-Net 급여",
+      "desc": "베트남 새 세법 기준 Gross ↔ Net 급여 변환 (2026 과세연도부터)",
+      "gross": "세전 급여",
+      "net": "세후 급여",
+      "dependents": "부양가족",
+      "region": "지역",
+      "bhxh": "사회보험",
+      "bhyt": "건강보험",
+      "bhtn": "실업보험",
+      "deduction": "가족 공제",
+      "taxable": "과세소득",
+      "tax": "소득세",
+      "note": "2026년 기준 참고 결과입니다."
+    },
+    "password": {
+      "name": "비밀번호 생성기",
+      "desc": "브라우저에서 안전한 무작위 비밀번호 생성 — 아무 데도 전송되지 않음",
+      "length": "길이",
+      "upper": "대문자 (A-Z)",
+      "lower": "소문자 (a-z)",
+      "digits": "숫자 (0-9)",
+      "symbols": "특수문자",
+      "generate": "생성",
+      "copy": "복사",
+      "copied": "복사됨",
+      "weak": "약함",
+      "medium": "보통",
+      "strong": "강함"
+    },
+    "currency": {
+      "name": "환율 변환기",
+      "desc": "인기 20개 통화 변환, 매일 업데이트",
+      "amount": "금액",
+      "from": "에서",
+      "to": "으로",
+      "swap": "교환",
+      "rateNote": "참고 환율, 매일 업데이트. 실제 은행 환율과 다를 수 있습니다.",
+      "loading": "환율 로딩 중...",
+      "error": "환율을 불러올 수 없습니다"
+    }
   },
   "footer": {
     "rights": "© 2026 dealeg.com",

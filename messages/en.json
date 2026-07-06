@@ -40,11 +40,74 @@
     "saved": "Saved"
   },
   "tools": {
-    "title": "Free tools",
-    "pdf": "Edit PDF",
-    "office": "Online Office",
-    "image": "Edit image",
-    "convert": "Convert file"
+    "title": "Free Tools",
+    "subtitle": "Money & utility tools — free, no sign-up needed",
+    "dealsCta": "Hunting tech deals? See the latest vouchers",
+    "vietqr": {
+      "name": "VietQR Generator",
+      "desc": "Generate Vietnamese bank transfer QR codes (Napas standard) — get paid fast with zero account-number typos",
+      "bank": "Bank",
+      "account": "Account number",
+      "accountName": "Account holder name",
+      "amount": "Amount",
+      "message": "Transfer note",
+      "note": "Enter an account number to generate the QR code",
+      "download": "Download QR"
+    },
+    "discount": {
+      "name": "Discount Calculator",
+      "desc": "Quickly compute sale prices and percent saved",
+      "mode1Title": "Price after discount",
+      "price": "Original price",
+      "percent": "Discount",
+      "finalPrice": "Final price",
+      "saved": "You save",
+      "mode2Title": "Find the % off",
+      "original": "Original price",
+      "salePrice": "Sale price",
+      "percentOff": "Discount"
+    },
+    "grossnet": {
+      "name": "Gross - Net Salary (Vietnam)",
+      "desc": "Convert Gross ↔ Net salary under Vietnam's new PIT law (5-bracket table, 15.5M deduction — from tax year 2026)",
+      "gross": "Gross salary",
+      "net": "Net salary",
+      "dependents": "Dependents",
+      "region": "Region",
+      "bhxh": "Social ins.",
+      "bhyt": "Health ins.",
+      "bhtn": "Unemployment ins.",
+      "deduction": "Family deduction",
+      "taxable": "Taxable income",
+      "tax": "Personal income tax",
+      "note": "Reference result using 2026 parameters (15.5M/6.2M deductions, 5-bracket table, 46.8M social/health insurance cap). Assumes full salary is the insurance base."
+    },
+    "password": {
+      "name": "Password Generator",
+      "desc": "Generate secure random passwords in your browser — nothing is sent anywhere",
+      "length": "Length",
+      "upper": "Uppercase (A-Z)",
+      "lower": "Lowercase (a-z)",
+      "digits": "Numbers (0-9)",
+      "symbols": "Symbols",
+      "generate": "Generate",
+      "copy": "Copy",
+      "copied": "Copied",
+      "weak": "Weak",
+      "medium": "Medium",
+      "strong": "Strong"
+    },
+    "currency": {
+      "name": "Currency Converter",
+      "desc": "Convert between 20 popular currencies, updated daily",
+      "amount": "Amount",
+      "from": "From",
+      "to": "To",
+      "swap": "Swap",
+      "rateNote": "Reference rates, updated daily (source: open.er-api.com). Actual bank rates may differ.",
+      "loading": "Loading rates...",
+      "error": "Could not load rates, try again later"
+    }
   },
   "footer": {
     "rights": "© 2026 dealeg.com",

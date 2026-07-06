@@ -41,10 +41,73 @@
   },
   "tools": {
     "title": "Kostenlose Tools",
-    "pdf": "PDF bearbeiten",
-    "office": "Online Office",
-    "image": "Bild bearbeiten",
-    "convert": "Datei konvertieren"
+    "subtitle": "Geld- und Nützlichkeits-Tools — kostenlos, ohne Anmeldung",
+    "dealsCta": "Auf Tech-Deal-Jagd? Neueste Gutscheine ansehen",
+    "vietqr": {
+      "name": "VietQR-Generator",
+      "desc": "Vietnamesische Banküberweisungs-QR-Codes erstellen (Napas-Standard)",
+      "bank": "Bank",
+      "account": "Kontonummer",
+      "accountName": "Kontoinhaber",
+      "amount": "Betrag",
+      "message": "Verwendungszweck",
+      "note": "Kontonummer eingeben, um den QR-Code zu erstellen",
+      "download": "QR herunterladen"
+    },
+    "discount": {
+      "name": "Rabattrechner",
+      "desc": "Sale-Preise und gesparten Prozentsatz schnell berechnen",
+      "mode1Title": "Preis nach Rabatt",
+      "price": "Originalpreis",
+      "percent": "Rabatt",
+      "finalPrice": "Endpreis",
+      "saved": "Sie sparen",
+      "mode2Title": "Rabatt-% ermitteln",
+      "original": "Originalpreis",
+      "salePrice": "Sale-Preis",
+      "percentOff": "Rabatt"
+    },
+    "grossnet": {
+      "name": "Brutto-Netto-Gehalt (Vietnam)",
+      "desc": "Gross ↔ Net Gehalt nach Vietnams neuem Steuergesetz (ab Steuerjahr 2026)",
+      "gross": "Bruttogehalt",
+      "net": "Nettogehalt",
+      "dependents": "Angehörige",
+      "region": "Region",
+      "bhxh": "Sozialvers.",
+      "bhyt": "Krankenvers.",
+      "bhtn": "Arbeitslosenvers.",
+      "deduction": "Familienfreibetrag",
+      "taxable": "Zu versteuerndes Einkommen",
+      "tax": "Einkommensteuer",
+      "note": "Referenzergebnis mit Parametern von 2026."
+    },
+    "password": {
+      "name": "Passwort-Generator",
+      "desc": "Sichere Zufallspasswörter im Browser erstellen — nichts wird gesendet",
+      "length": "Länge",
+      "upper": "Großbuchstaben (A-Z)",
+      "lower": "Kleinbuchstaben (a-z)",
+      "digits": "Zahlen (0-9)",
+      "symbols": "Sonderzeichen",
+      "generate": "Generieren",
+      "copy": "Kopieren",
+      "copied": "Kopiert",
+      "weak": "Schwach",
+      "medium": "Mittel",
+      "strong": "Stark"
+    },
+    "currency": {
+      "name": "Währungsrechner",
+      "desc": "Zwischen 20 gängigen Währungen umrechnen, täglich aktualisiert",
+      "amount": "Betrag",
+      "from": "Von",
+      "to": "Nach",
+      "swap": "Tauschen",
+      "rateNote": "Referenzkurse, täglich aktualisiert. Tatsächliche Bankkurse können abweichen.",
+      "loading": "Kurse werden geladen...",
+      "error": "Kurse konnten nicht geladen werden"
+    }
   },
   "footer": {
     "rights": "© 2026 dealeg.com",

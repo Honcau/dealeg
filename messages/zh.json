@@ -41,10 +41,73 @@
   },
   "tools": {
     "title": "免费工具",
-    "pdf": "PDF编辑",
-    "office": "在线办公",
-    "image": "图片编辑",
-    "convert": "文件转换"
+    "subtitle": "金钱与实用工具 — 免费，无需注册",
+    "dealsCta": "在找科技优惠？查看最新优惠券",
+    "vietqr": {
+      "name": "VietQR 生成器",
+      "desc": "生成越南银行转账二维码（Napas 标准）",
+      "bank": "银行",
+      "account": "账号",
+      "accountName": "户主姓名",
+      "amount": "金额",
+      "message": "转账备注",
+      "note": "输入账号以生成二维码",
+      "download": "下载二维码"
+    },
+    "discount": {
+      "name": "折扣计算器",
+      "desc": "快速计算折后价和节省百分比",
+      "mode1Title": "折后价格",
+      "price": "原价",
+      "percent": "折扣",
+      "finalPrice": "最终价格",
+      "saved": "节省",
+      "mode2Title": "计算折扣率",
+      "original": "原价",
+      "salePrice": "促销价",
+      "percentOff": "折扣"
+    },
+    "grossnet": {
+      "name": "越南税前税后工资",
+      "desc": "按越南新个税法换算 Gross ↔ Net 工资（2026 税务年度起）",
+      "gross": "税前工资",
+      "net": "税后工资",
+      "dependents": "抚养人数",
+      "region": "地区",
+      "bhxh": "社保",
+      "bhyt": "医保",
+      "bhtn": "失业保险",
+      "deduction": "家庭扣除",
+      "taxable": "应税收入",
+      "tax": "个人所得税",
+      "note": "参考结果，采用 2026 年参数。假设全部工资为保险基数。"
+    },
+    "password": {
+      "name": "密码生成器",
+      "desc": "在浏览器中生成安全随机密码 — 不会发送到任何地方",
+      "length": "长度",
+      "upper": "大写 (A-Z)",
+      "lower": "小写 (a-z)",
+      "digits": "数字 (0-9)",
+      "symbols": "特殊字符",
+      "generate": "生成",
+      "copy": "复制",
+      "copied": "已复制",
+      "weak": "弱",
+      "medium": "中",
+      "strong": "强"
+    },
+    "currency": {
+      "name": "货币换算",
+      "desc": "20 种常用货币换算，每日更新",
+      "amount": "金额",
+      "from": "从",
+      "to": "到",
+      "swap": "互换",
+      "rateNote": "参考汇率，每日更新。实际银行汇率可能不同。",
+      "loading": "加载汇率中...",
+      "error": "无法加载汇率，请稍后重试"
+    }
   },
   "footer": {
     "rights": "© 2026 dealeg.com",

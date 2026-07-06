@@ -29,6 +29,7 @@ export async function Footer() {
             <Link href="/category/domain"  className="hover:text-gray-600 transition-colors">{tn('domain')}</Link>
             <Link href="/category/hosting" className="hover:text-gray-600 transition-colors">{tn('hosting')}</Link>
             <Link href="/category/vpn"     className="hover:text-gray-600 transition-colors">{tn('vpn')}</Link>
+            <Link href="/tools"   className="hover:text-gray-600 transition-colors">{tn('tools')}</Link>
             <Link href="/blog"    className="hover:text-gray-600 transition-colors">Blog</Link>
             <Link href="/submit"  className="hover:text-gray-600 transition-colors">{tn('submit')}</Link>
           </nav>

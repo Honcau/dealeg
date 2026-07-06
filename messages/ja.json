@@ -41,10 +41,73 @@
   },
   "tools": {
     "title": "無料ツール",
-    "pdf": "PDF編集",
-    "office": "オンラインオフィス",
-    "image": "画像編集",
-    "convert": "ファイル変換"
+    "subtitle": "お金と便利ツール — 無料、登録不要",
+    "dealsCta": "テックのお得情報をお探し？最新クーポンを見る",
+    "vietqr": {
+      "name": "VietQR ジェネレーター",
+      "desc": "ベトナムの銀行振込QRコードを作成（Napas標準）",
+      "bank": "銀行",
+      "account": "口座番号",
+      "accountName": "口座名義",
+      "amount": "金額",
+      "message": "振込メモ",
+      "note": "口座番号を入力するとQRコードが生成されます",
+      "download": "QRをダウンロード"
+    },
+    "discount": {
+      "name": "割引計算機",
+      "desc": "セール価格と節約率をすばやく計算",
+      "mode1Title": "割引後の価格",
+      "price": "元の価格",
+      "percent": "割引",
+      "finalPrice": "最終価格",
+      "saved": "節約額",
+      "mode2Title": "割引率を計算",
+      "original": "元の価格",
+      "salePrice": "セール価格",
+      "percentOff": "割引率"
+    },
+    "grossnet": {
+      "name": "ベトナム給与 Gross-Net",
+      "desc": "ベトナム新税法に基づく Gross ↔ Net 給与換算（2026課税年度から）",
+      "gross": "総支給額",
+      "net": "手取り額",
+      "dependents": "扶養家族",
+      "region": "地域",
+      "bhxh": "社会保険",
+      "bhyt": "健康保険",
+      "bhtn": "失業保険",
+      "deduction": "家族控除",
+      "taxable": "課税所得",
+      "tax": "所得税",
+      "note": "2026年パラメータによる参考結果です。"
+    },
+    "password": {
+      "name": "パスワード生成",
+      "desc": "ブラウザ内で安全なランダムパスワードを生成 — どこにも送信されません",
+      "length": "長さ",
+      "upper": "大文字 (A-Z)",
+      "lower": "小文字 (a-z)",
+      "digits": "数字 (0-9)",
+      "symbols": "記号",
+      "generate": "生成",
+      "copy": "コピー",
+      "copied": "コピー済み",
+      "weak": "弱い",
+      "medium": "普通",
+      "strong": "強い"
+    },
+    "currency": {
+      "name": "通貨換算",
+      "desc": "人気20通貨を換算、毎日更新",
+      "amount": "金額",
+      "from": "から",
+      "to": "へ",
+      "swap": "入替",
+      "rateNote": "参考レート（毎日更新）。実際の銀行レートとは異なる場合があります。",
+      "loading": "レート読み込み中...",
+      "error": "レートを読み込めませんでした"
+    }
   },
   "footer": {
     "rights": "© 2026 dealeg.com",

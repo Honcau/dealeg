@@ -41,10 +41,73 @@
   },
   "tools": {
     "title": "Công cụ miễn phí",
-    "pdf": "Chỉnh sửa PDF",
-    "office": "Office trực tuyến",
-    "image": "Chỉnh sửa ảnh",
-    "convert": "Chuyển đổi file"
+    "subtitle": "Bộ công cụ tiền bạc & tiện ích — miễn phí, không cần đăng ký",
+    "dealsCta": "Đang săn deal công nghệ? Xem voucher mới nhất",
+    "vietqr": {
+      "name": "Tạo mã VietQR",
+      "desc": "Tạo mã QR chuyển khoản ngân hàng Việt Nam theo chuẩn Napas — nhận tiền nhanh, không sai số tài khoản",
+      "bank": "Ngân hàng",
+      "account": "Số tài khoản",
+      "accountName": "Tên chủ tài khoản",
+      "amount": "Số tiền",
+      "message": "Nội dung chuyển khoản",
+      "note": "Nhập số tài khoản để tạo mã QR",
+      "download": "Tải mã QR"
+    },
+    "discount": {
+      "name": "Tính % giảm giá",
+      "desc": "Tính nhanh giá sau giảm và phần trăm tiết kiệm",
+      "mode1Title": "Giá sau khi giảm",
+      "price": "Giá gốc",
+      "percent": "Giảm giá",
+      "finalPrice": "Giá cuối",
+      "saved": "Tiết kiệm",
+      "mode2Title": "Tính % giảm",
+      "original": "Giá gốc",
+      "salePrice": "Giá sale",
+      "percentOff": "Mức giảm"
+    },
+    "grossnet": {
+      "name": "Tính lương Gross - Net",
+      "desc": "Chuyển đổi lương Gross ↔ Net theo luật thuế TNCN mới (biểu thuế 5 bậc, giảm trừ 15,5 triệu — áp dụng từ kỳ thuế 2026)",
+      "gross": "Lương Gross",
+      "net": "Lương Net",
+      "dependents": "Người phụ thuộc",
+      "region": "Vùng",
+      "bhxh": "BHXH",
+      "bhyt": "BHYT",
+      "bhtn": "BHTN",
+      "deduction": "Giảm trừ gia cảnh",
+      "taxable": "Thu nhập tính thuế",
+      "tax": "Thuế TNCN",
+      "note": "Kết quả tham khảo theo thông số 2026 (giảm trừ 15,5tr/6,2tr, biểu thuế 5 bậc, trần BHXH/BHYT 46,8tr, lương tối thiểu vùng theo NĐ 293/2025/NĐ-CP). Giả định toàn bộ lương là mức đóng bảo hiểm."
+    },
+    "password": {
+      "name": "Tạo mật khẩu mạnh",
+      "desc": "Tạo mật khẩu ngẫu nhiên an toàn ngay trên trình duyệt — không gửi đi đâu",
+      "length": "Độ dài",
+      "upper": "Chữ hoa (A-Z)",
+      "lower": "Chữ thường (a-z)",
+      "digits": "Số (0-9)",
+      "symbols": "Ký tự đặc biệt",
+      "generate": "Tạo mới",
+      "copy": "Sao chép",
+      "copied": "Đã chép",
+      "weak": "Yếu",
+      "medium": "Trung bình",
+      "strong": "Mạnh"
+    },
+    "currency": {
+      "name": "Đổi tiền tệ",
+      "desc": "Chuyển đổi tỷ giá 20 loại tiền tệ phổ biến, cập nhật hàng ngày",
+      "amount": "Số tiền",
+      "from": "Từ",
+      "to": "Sang",
+      "swap": "Đảo chiều",
+      "rateNote": "Tỷ giá tham khảo, cập nhật hàng ngày (nguồn: open.er-api.com). Tỷ giá thực tế tại ngân hàng có thể khác.",
+      "loading": "Đang tải tỷ giá...",
+      "error": "Không tải được tỷ giá, thử lại sau"
+    }
   },
   "footer": {
     "rights": "© 2026 dealeg.com",

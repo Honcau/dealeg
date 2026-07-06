@@ -41,10 +41,73 @@
   },
   "tools": {
     "title": "Herramientas gratis",
-    "pdf": "Editar PDF",
-    "office": "Office en línea",
-    "image": "Editar imagen",
-    "convert": "Convertir archivo"
+    "subtitle": "Herramientas de dinero y utilidades — gratis, sin registro",
+    "dealsCta": "¿Buscas ofertas tech? Ve los cupones más recientes",
+    "vietqr": {
+      "name": "Generador VietQR",
+      "desc": "Genera códigos QR de transferencia bancaria vietnamita (estándar Napas)",
+      "bank": "Banco",
+      "account": "Número de cuenta",
+      "accountName": "Titular",
+      "amount": "Monto",
+      "message": "Concepto",
+      "note": "Ingresa un número de cuenta para generar el QR",
+      "download": "Descargar QR"
+    },
+    "discount": {
+      "name": "Calculadora de descuentos",
+      "desc": "Calcula precios rebajados y porcentaje ahorrado",
+      "mode1Title": "Precio con descuento",
+      "price": "Precio original",
+      "percent": "Descuento",
+      "finalPrice": "Precio final",
+      "saved": "Ahorras",
+      "mode2Title": "Calcular % de descuento",
+      "original": "Precio original",
+      "salePrice": "Precio de oferta",
+      "percentOff": "Descuento"
+    },
+    "grossnet": {
+      "name": "Salario Bruto-Neto (Vietnam)",
+      "desc": "Convierte salario Gross ↔ Net según la nueva ley fiscal de Vietnam (desde 2026)",
+      "gross": "Salario bruto",
+      "net": "Salario neto",
+      "dependents": "Dependientes",
+      "region": "Región",
+      "bhxh": "Seg. social",
+      "bhyt": "Seg. salud",
+      "bhtn": "Seg. desempleo",
+      "deduction": "Deducción familiar",
+      "taxable": "Base imponible",
+      "tax": "Impuesto",
+      "note": "Resultado de referencia con parámetros 2026."
+    },
+    "password": {
+      "name": "Generador de contraseñas",
+      "desc": "Genera contraseñas seguras en tu navegador — no se envía nada",
+      "length": "Longitud",
+      "upper": "Mayúsculas (A-Z)",
+      "lower": "Minúsculas (a-z)",
+      "digits": "Números (0-9)",
+      "symbols": "Símbolos",
+      "generate": "Generar",
+      "copy": "Copiar",
+      "copied": "Copiado",
+      "weak": "Débil",
+      "medium": "Media",
+      "strong": "Fuerte"
+    },
+    "currency": {
+      "name": "Conversor de divisas",
+      "desc": "Convierte entre 20 monedas populares, actualizado a diario",
+      "amount": "Cantidad",
+      "from": "De",
+      "to": "A",
+      "swap": "Invertir",
+      "rateNote": "Tasas de referencia, actualizadas a diario. Las tasas bancarias reales pueden variar.",
+      "loading": "Cargando tasas...",
+      "error": "No se pudieron cargar las tasas"
+    }
   },
   "footer": {
     "rights": "© 2026 dealeg.com",

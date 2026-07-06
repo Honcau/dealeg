@@ -41,10 +41,73 @@
   },
   "tools": {
     "title": "Outils gratuits",
-    "pdf": "Modifier PDF",
-    "office": "Office en ligne",
-    "image": "Modifier image",
-    "convert": "Convertir fichier"
+    "subtitle": "Outils argent et utilitaires — gratuits, sans inscription",
+    "dealsCta": "En quête de bons plans tech ? Voir les derniers codes",
+    "vietqr": {
+      "name": "Générateur VietQR",
+      "desc": "Générez des QR codes de virement bancaire vietnamien (norme Napas)",
+      "bank": "Banque",
+      "account": "Numéro de compte",
+      "accountName": "Titulaire",
+      "amount": "Montant",
+      "message": "Libellé",
+      "note": "Saisissez un numéro de compte pour générer le QR",
+      "download": "Télécharger le QR"
+    },
+    "discount": {
+      "name": "Calculateur de remise",
+      "desc": "Calculez les prix soldés et le pourcentage économisé",
+      "mode1Title": "Prix après remise",
+      "price": "Prix d'origine",
+      "percent": "Remise",
+      "finalPrice": "Prix final",
+      "saved": "Vous économisez",
+      "mode2Title": "Trouver le % de remise",
+      "original": "Prix d'origine",
+      "salePrice": "Prix soldé",
+      "percentOff": "Remise"
+    },
+    "grossnet": {
+      "name": "Salaire Brut-Net (Vietnam)",
+      "desc": "Convertissez salaire Gross ↔ Net selon la nouvelle loi fiscale vietnamienne (dès 2026)",
+      "gross": "Salaire brut",
+      "net": "Salaire net",
+      "dependents": "Personnes à charge",
+      "region": "Région",
+      "bhxh": "Séc. sociale",
+      "bhyt": "Ass. santé",
+      "bhtn": "Ass. chômage",
+      "deduction": "Déduction familiale",
+      "taxable": "Revenu imposable",
+      "tax": "Impôt sur le revenu",
+      "note": "Résultat indicatif selon les paramètres 2026."
+    },
+    "password": {
+      "name": "Générateur de mots de passe",
+      "desc": "Générez des mots de passe sûrs dans votre navigateur — rien n'est envoyé",
+      "length": "Longueur",
+      "upper": "Majuscules (A-Z)",
+      "lower": "Minuscules (a-z)",
+      "digits": "Chiffres (0-9)",
+      "symbols": "Symboles",
+      "generate": "Générer",
+      "copy": "Copier",
+      "copied": "Copié",
+      "weak": "Faible",
+      "medium": "Moyen",
+      "strong": "Fort"
+    },
+    "currency": {
+      "name": "Convertisseur de devises",
+      "desc": "Convertissez entre 20 devises populaires, mis à jour chaque jour",
+      "amount": "Montant",
+      "from": "De",
+      "to": "Vers",
+      "swap": "Inverser",
+      "rateNote": "Taux indicatifs, mis à jour quotidiennement. Les taux bancaires réels peuvent différer.",
+      "loading": "Chargement des taux...",
+      "error": "Impossible de charger les taux"
+    }
   },
   "footer": {
     "rights": "© 2026 dealeg.com",

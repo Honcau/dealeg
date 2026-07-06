@@ -19,6 +19,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   }
 
+  // 1b. Trang công cụ (SEO magnet — tool pages hút traffic tìm kiếm)
+  const toolRoutes = ['/tools', '/tools/vietqr', '/tools/discount', '/tools/gross-net', '/tools/password', '/tools/currency'];
+  for (const locale of routing.locales) {
+    for (const route of toolRoutes) {
+      entries.push({
+        url: `${BASE}/${locale}${route}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.7,
+      });
+    }
+  }
+
   // 2. Trang coupon mỗi brand × locale (quan trọng nhất cho SEO)
   const providers = await prisma.voucher.findMany({
     where: { isActive: true },
