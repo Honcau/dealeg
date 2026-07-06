@@ -21,6 +21,11 @@ COPY . .
 # Prisma generate với binary target cho Alpine (linux-musl-openssl)
 RUN npx prisma generate
 
+# NEXT_PUBLIC_* phải có mặt LÚC BUILD (được nhúng vào bundle JS).
+# Nhận từ build arg → set thành ENV để `npm run build` thấy được.
+ARG NEXT_PUBLIC_GA_ID
+ENV NEXT_PUBLIC_GA_ID=$NEXT_PUBLIC_GA_ID
+
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 

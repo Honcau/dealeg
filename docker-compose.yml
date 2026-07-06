@@ -6,6 +6,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        # Truyền NEXT_PUBLIC_GA_ID vào lúc build (nhúng vào bundle).
+        # Đọc từ shell env hoặc .env.production khi chạy docker compose build.
+        NEXT_PUBLIC_GA_ID: ${NEXT_PUBLIC_GA_ID}
+    image: dealeg-app
     container_name: dealeg-app
     restart: unless-stopped
     ports:
