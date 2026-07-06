@@ -35,7 +35,9 @@
     "sortDiscount": "Maior desconto",
     "sortNewest": "Mais recentes",
     "sortPopular": "Mais populares",
-    "all": "Todos"
+    "all": "Todos",
+    "save": "Salvar",
+    "saved": "Salvo"
   },
   "tools": {
     "title": "Ferramentas gratuitas",
@@ -148,7 +150,27 @@
     "saved": "✓ Salvo",
     "linkedAccounts": "Contas vinculadas",
     "myComments": "Meus comentários",
-    "noComments": "Ainda não há comentários."
+    "noComments": "Ainda não há comentários.",
+    "savedDeals": "Ofertas salvas",
+    "noSaved": "Nenhuma oferta salva.",
+    "remove": "Remover",
+    "security": "Segurança",
+    "changePassword": "Alterar senha",
+    "cancel": "Cancelar",
+    "currentPassword": "Senha atual",
+    "newPassword": "Nova senha (mín. 6 caracteres)",
+    "updatePassword": "Atualizar senha",
+    "pwdChanged": "✓ Senha alterada",
+    "pwdError": "Algo deu errado",
+    "pwdTooShort": "A nova senha deve ter pelo menos 6 caracteres",
+    "pwdOAuthHint": "Se você entrou com Google/Facebook e não definiu senha, deixe o campo de senha atual vazio.",
+    "logout": "Sair",
+    "logoutHint": "Sair deste dispositivo",
+    "deleteAccount": "Excluir conta",
+    "deleteHint": "Exclua permanentemente sua conta e todos os dados",
+    "deleteConfirm": "Isso não pode ser desfeito. Digite seu e-mail {email} para confirmar:",
+    "deleteForever": "Excluir para sempre",
+    "deleteError": "Não foi possível excluir, tente novamente"
   },
   "search": {
     "placeholder": "Buscar cupons, artigos...",
@@ -163,5 +185,12 @@
     "typeToSearch": "Digite uma palavra para buscar",
     "noResultsFor": "Sem resultados para \"{query}\"",
     "tryDifferent": "Tente outra palavra"
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "description": "A página que você procura não existe ou foi movida.",
+    "backHome": "Início",
+    "browseDeals": "Ver ofertas",
+    "popularPages": "Páginas populares"
   }
 }

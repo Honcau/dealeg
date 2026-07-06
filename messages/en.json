@@ -35,7 +35,9 @@
     "sortDiscount": "Biggest discount",
     "sortNewest": "Newest",
     "sortPopular": "Most popular",
-    "all": "All"
+    "all": "All",
+    "save": "Save",
+    "saved": "Saved"
   },
   "tools": {
     "title": "Free tools",
@@ -148,7 +150,27 @@
     "saved": "✓ Saved",
     "linkedAccounts": "Linked accounts",
     "myComments": "My comments",
-    "noComments": "No comments yet."
+    "noComments": "No comments yet.",
+    "savedDeals": "Saved deals",
+    "noSaved": "No saved deals yet.",
+    "remove": "Remove",
+    "security": "Security",
+    "changePassword": "Change password",
+    "cancel": "Cancel",
+    "currentPassword": "Current password",
+    "newPassword": "New password (min 6 characters)",
+    "updatePassword": "Update password",
+    "pwdChanged": "✓ Password changed",
+    "pwdError": "Something went wrong",
+    "pwdTooShort": "New password must be at least 6 characters",
+    "pwdOAuthHint": "If you signed in with Google/Facebook and haven't set a password, leave the current password field empty.",
+    "logout": "Log out",
+    "logoutHint": "Sign out from this device",
+    "deleteAccount": "Delete account",
+    "deleteHint": "Permanently delete your account and all data",
+    "deleteConfirm": "This cannot be undone. Type your email {email} to confirm:",
+    "deleteForever": "Delete forever",
+    "deleteError": "Could not delete, try again"
   },
   "search": {
     "placeholder": "Search vouchers, articles...",
@@ -163,5 +185,12 @@
     "typeToSearch": "Type a keyword to search",
     "noResultsFor": "No results found for \"{query}\"",
     "tryDifferent": "Try a different keyword"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "backHome": "Back home",
+    "browseDeals": "Browse deals",
+    "popularPages": "Popular pages"
   }
 }

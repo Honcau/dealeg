@@ -52,19 +52,20 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <div className="space-y-14">
-      {/* Hero */}
-      <section className="text-center py-14 px-4">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+      {/* Hero — thuần typography, tối giản */}
+      <section className="pt-16 pb-10 px-4 max-w-3xl">
+        <h1 className="font-display text-4xl md:text-6xl font-bold text-gray-900 tracking-tight leading-[1.05] mb-5">
           {t('hero.title')}
         </h1>
-        <p className="text-lg text-gray-500 max-w-xl mx-auto mb-8">
+        <p className="text-lg text-gray-500 max-w-xl mb-8 leading-relaxed">
           {t('hero.subtitle')}
         </p>
         <a
           href="#deals"
-          className="inline-block bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white font-semibold px-7 py-3 rounded-xl transition-all"
+          className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg transition-colors text-sm"
         >
           {t('hero.cta')}
+          <span aria-hidden>↓</span>
         </a>
       </section>
 

@@ -35,7 +35,9 @@
     "sortDiscount": "Giảm nhiều nhất",
     "sortNewest": "Mới nhất",
     "sortPopular": "Phổ biến nhất",
-    "all": "Tất cả"
+    "all": "Tất cả",
+    "save": "Lưu deal",
+    "saved": "Đã lưu"
   },
   "tools": {
     "title": "Công cụ miễn phí",
@@ -149,7 +151,27 @@
     "saved": "✓ Đã lưu",
     "linkedAccounts": "Tài khoản liên kết",
     "myComments": "Bình luận của tôi",
-    "noComments": "Chưa có bình luận nào."
+    "noComments": "Chưa có bình luận nào.",
+    "savedDeals": "Deal đã lưu",
+    "noSaved": "Chưa lưu deal nào.",
+    "remove": "Bỏ lưu",
+    "security": "Bảo mật",
+    "changePassword": "Đổi mật khẩu",
+    "cancel": "Hủy",
+    "currentPassword": "Mật khẩu hiện tại",
+    "newPassword": "Mật khẩu mới (tối thiểu 6 ký tự)",
+    "updatePassword": "Cập nhật mật khẩu",
+    "pwdChanged": "✓ Đã đổi mật khẩu",
+    "pwdError": "Có lỗi xảy ra",
+    "pwdTooShort": "Mật khẩu mới tối thiểu 6 ký tự",
+    "pwdOAuthHint": "Nếu bạn đăng nhập bằng Google/Facebook và chưa đặt mật khẩu, để trống ô mật khẩu hiện tại.",
+    "logout": "Đăng xuất",
+    "logoutHint": "Đăng xuất khỏi thiết bị này",
+    "deleteAccount": "Xóa tài khoản",
+    "deleteHint": "Xóa vĩnh viễn tài khoản và toàn bộ dữ liệu",
+    "deleteConfirm": "Hành động này không thể hoàn tác. Gõ email {email} để xác nhận:",
+    "deleteForever": "Xóa vĩnh viễn",
+    "deleteError": "Không thể xóa, thử lại"
   },
   "search": {
     "placeholder": "Tìm voucher, bài viết...",
@@ -164,5 +186,12 @@
     "typeToSearch": "Nhập từ khóa để tìm kiếm",
     "noResultsFor": "Không tìm thấy kết quả cho \"{query}\"",
     "tryDifferent": "Thử từ khóa khác"
+  },
+  "notFound": {
+    "title": "Không tìm thấy trang",
+    "description": "Trang bạn tìm không tồn tại hoặc đã bị di chuyển.",
+    "backHome": "Về trang chủ",
+    "browseDeals": "Xem deal",
+    "popularPages": "Trang phổ biến"
   }
 }

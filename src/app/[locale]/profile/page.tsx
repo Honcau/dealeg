@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-import { useSession }   from 'next-auth/react';
+import { useSession, signOut }   from 'next-auth/react';
 import { useRouter }    from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Image             from 'next/image';
@@ -19,6 +19,15 @@ interface LinkedAccount {
   provider: string;
 }
 
+interface SavedVoucher {
+  id: string;
+  provider: string;
+  code: string;
+  discount: string;
+  discountValue: number | null;
+  savedAt: string;
+}
+
 export default function ProfilePage() {
   const t = useTranslations('profile');
   const { data: session, status, update } = useSession();
@@ -29,6 +38,20 @@ export default function ProfilePage() {
   const [saved,       setSaved]       = useState(false);
   const [comments,    setComments]    = useState<UserComment[]>([]);
   const [accounts,    setAccounts]    = useState<LinkedAccount[]>([]);
+  const [savedVouchers, setSavedVouchers] = useState<SavedVoucher[]>([]);
+
+  // Đổi mật khẩu
+  const [showPwd,     setShowPwd]     = useState(false);
+  const [curPwd,      setCurPwd]      = useState('');
+  const [newPwd,      setNewPwd]      = useState('');
+  const [pwdMsg,      setPwdMsg]      = useState('');
+  const [pwdSaving,   setPwdSaving]   = useState(false);
+
+  // Xóa tài khoản
+  const [showDelete,  setShowDelete]  = useState(false);
+  const [confirmEmail, setConfirmEmail] = useState('');
+  const [deleting,    setDeleting]    = useState(false);
+  const [deleteMsg,   setDeleteMsg]   = useState('');
 
   useEffect(() => {
     if (status === 'unauthenticated') router.push('/auth/signin');
@@ -47,6 +70,67 @@ export default function ProfilePage() {
     const data = await res.json();
     setComments(data.comments ?? []);
     setAccounts(data.accounts ?? []);
+    // Lấy voucher đã lưu
+    fetch('/api/user/saved')
+      .then(r => r.json())
+      .then(d => setSavedVouchers(d.saved ?? []))
+      .catch(() => {});
+  }
+
+  async function handleChangePassword() {
+    if (newPwd.length < 6) { setPwdMsg(t('pwdTooShort')); return; }
+    setPwdSaving(true); setPwdMsg('');
+    try {
+      const res = await fetch('/api/user/password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currentPassword: curPwd, newPassword: newPwd }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setPwdMsg(t('pwdChanged'));
+        setCurPwd(''); setNewPwd('');
+        setTimeout(() => { setShowPwd(false); setPwdMsg(''); }, 2000);
+      } else {
+        setPwdMsg(data.error ?? t('pwdError'));
+      }
+    } catch {
+      setPwdMsg(t('pwdError'));
+    }
+    setPwdSaving(false);
+  }
+
+  async function handleDeleteAccount() {
+    setDeleting(true); setDeleteMsg('');
+    try {
+      const res = await fetch('/api/user/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ confirmEmail }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        // Xóa xong → đăng xuất + về trang chủ
+        await signOut({ callbackUrl: '/' });
+      } else {
+        setDeleteMsg(data.error ?? t('deleteError'));
+        setDeleting(false);
+      }
+    } catch {
+      setDeleteMsg(t('deleteError'));
+      setDeleting(false);
+    }
+  }
+
+  async function handleUnsave(voucherId: string) {
+    try {
+      await fetch('/api/user/saved', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ voucherId }),
+      });
+      setSavedVouchers(prev => prev.filter(v => v.id !== voucherId));
+    } catch {}
   }
 
   async function handleSave() {
@@ -185,6 +269,113 @@ export default function ProfilePage() {
                 </div>
               );
             })}
+          </div>
+        )}
+      </div>
+      {/* Deal đã lưu */}
+      <div className="bg-white rounded-2xl border border-gray-200 p-6">
+        <h2 className="font-semibold text-gray-900 mb-4">
+          {t('savedDeals')}
+          <span className="ml-2 text-sm font-normal text-gray-400">({savedVouchers.length})</span>
+        </h2>
+        {savedVouchers.length === 0 ? (
+          <p className="text-sm text-gray-400">{t('noSaved')}</p>
+        ) : (
+          <div className="space-y-2">
+            {savedVouchers.map(v => (
+              <div key={v.id} className="flex items-center justify-between border border-gray-100 rounded-lg p-3">
+                <a href={`/voucher/${v.id}`} className="min-w-0 flex-1">
+                  <span className="font-medium text-sm text-gray-800">{v.provider}</span>
+                  <span className="text-xs text-gray-400 font-mono ml-2">{v.code}</span>
+                </a>
+                <div className="flex items-center gap-3 shrink-0">
+                  <span className="text-indigo-600 font-bold text-sm">
+                    {v.discountValue ? `-${v.discountValue}%` : v.discount}
+                  </span>
+                  <button onClick={() => handleUnsave(v.id)}
+                    className="text-xs text-red-400 hover:text-red-600" title={t('remove')}>✕</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Bảo mật: đổi mật khẩu */}
+      <div className="bg-white rounded-2xl border border-gray-200 p-6">
+        <div className="flex items-center justify-between">
+          <h2 className="font-semibold text-gray-900">{t('security')}</h2>
+          <button onClick={() => setShowPwd(!showPwd)}
+            className="text-sm text-indigo-600 hover:underline">
+            {showPwd ? t('cancel') : t('changePassword')}
+          </button>
+        </div>
+
+        {showPwd && (
+          <div className="mt-4 space-y-3">
+            <input type="password" value={curPwd} onChange={e => setCurPwd(e.target.value)}
+              placeholder={t('currentPassword')}
+              className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            <input type="password" value={newPwd} onChange={e => setNewPwd(e.target.value)}
+              placeholder={t('newPassword')}
+              className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            <div className="flex items-center gap-3">
+              <button onClick={handleChangePassword} disabled={pwdSaving || !newPwd}
+                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white text-sm font-medium rounded-lg transition-colors">
+                {pwdSaving ? '...' : t('updatePassword')}
+              </button>
+              {pwdMsg && <span className={`text-sm ${pwdMsg === t('pwdChanged') ? 'text-green-600' : 'text-red-500'}`}>{pwdMsg}</span>}
+            </div>
+            <p className="text-xs text-gray-400">{t('pwdOAuthHint')}</p>
+          </div>
+        )}
+      </div>
+
+      {/* Đăng xuất */}
+      <div className="bg-white rounded-2xl border border-gray-200 p-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="font-semibold text-gray-900">{t('logout')}</h2>
+            <p className="text-sm text-gray-400 mt-0.5">{t('logoutHint')}</p>
+          </div>
+          <button onClick={() => signOut({ callbackUrl: '/' })}
+            className="px-5 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-lg transition-colors">
+            {t('logout')}
+          </button>
+        </div>
+      </div>
+
+      {/* Vùng nguy hiểm: xóa tài khoản */}
+      <div className="bg-red-50 rounded-2xl border border-red-200 p-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="font-semibold text-red-700">{t('deleteAccount')}</h2>
+            <p className="text-sm text-red-400 mt-0.5">{t('deleteHint')}</p>
+          </div>
+          {!showDelete && (
+            <button onClick={() => setShowDelete(true)}
+              className="px-5 py-2 bg-white border border-red-300 hover:bg-red-50 text-red-600 text-sm font-medium rounded-lg transition-colors">
+              {t('deleteAccount')}
+            </button>
+          )}
+        </div>
+
+        {showDelete && (
+          <div className="mt-4 space-y-3">
+            <p className="text-sm text-red-700">{t('deleteConfirm', { email: session.user.email ?? '' })}</p>
+            <input value={confirmEmail} onChange={e => setConfirmEmail(e.target.value)}
+              placeholder={session.user.email ?? ''}
+              className="w-full px-3 py-2 rounded-lg border border-red-300 text-sm focus:outline-none focus:ring-2 focus:ring-red-500" />
+            <div className="flex items-center gap-3">
+              <button onClick={handleDeleteAccount}
+                disabled={deleting || confirmEmail !== session.user.email}
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white text-sm font-medium rounded-lg transition-colors">
+                {deleting ? '...' : t('deleteForever')}
+              </button>
+              <button onClick={() => { setShowDelete(false); setConfirmEmail(''); }}
+                className="text-sm text-gray-500 hover:text-gray-700">{t('cancel')}</button>
+              {deleteMsg && <span className="text-sm text-red-500">{deleteMsg}</span>}
+            </div>
           </div>
         )}
       </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Space_Grotesk } from 'next/font/google';
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import './globals.css';
 
@@ -9,6 +9,13 @@ const inter = Inter({
   display: 'swap',
   fallback: ['system-ui', 'arial'],
   adjustFontFallback: true,
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin', 'vietnamese'],
+  variable: '--font-display',
+  display: 'swap',
+  weight: ['500', '700'],
 });
 
 const SITE_URL = 'https://dealeg.com';
@@ -68,7 +75,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html suppressHydrationWarning className={inter.variable}>
+    <html suppressHydrationWarning className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body
         suppressHydrationWarning
         className="min-h-screen bg-gray-50 text-gray-900 antialiased font-sans"

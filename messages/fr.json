@@ -35,7 +35,9 @@
     "sortDiscount": "Plus grande réduction",
     "sortNewest": "Plus récents",
     "sortPopular": "Plus populaires",
-    "all": "Tous"
+    "all": "Tous",
+    "save": "Enregistrer",
+    "saved": "Enregistré"
   },
   "tools": {
     "title": "Outils gratuits",
@@ -148,7 +150,27 @@
     "saved": "✓ Enregistré",
     "linkedAccounts": "Comptes liés",
     "myComments": "Mes commentaires",
-    "noComments": "Aucun commentaire pour le moment."
+    "noComments": "Aucun commentaire pour le moment.",
+    "savedDeals": "Offres enregistrées",
+    "noSaved": "Aucune offre enregistrée.",
+    "remove": "Retirer",
+    "security": "Sécurité",
+    "changePassword": "Changer le mot de passe",
+    "cancel": "Annuler",
+    "currentPassword": "Mot de passe actuel",
+    "newPassword": "Nouveau mot de passe (min. 6 caractères)",
+    "updatePassword": "Mettre à jour",
+    "pwdChanged": "✓ Mot de passe changé",
+    "pwdError": "Une erreur est survenue",
+    "pwdTooShort": "Le nouveau mot de passe doit contenir au moins 6 caractères",
+    "pwdOAuthHint": "Si vous vous êtes connecté avec Google/Facebook sans mot de passe, laissez le champ mot de passe actuel vide.",
+    "logout": "Déconnexion",
+    "logoutHint": "Se déconnecter de cet appareil",
+    "deleteAccount": "Supprimer le compte",
+    "deleteHint": "Supprimez définitivement votre compte et toutes les données",
+    "deleteConfirm": "Ceci est irréversible. Tapez votre e-mail {email} pour confirmer :",
+    "deleteForever": "Supprimer définitivement",
+    "deleteError": "Impossible de supprimer, réessayez"
   },
   "search": {
     "placeholder": "Rechercher codes, articles...",
@@ -163,5 +185,12 @@
     "typeToSearch": "Tapez un mot-clé pour rechercher",
     "noResultsFor": "Aucun résultat pour \"{query}\"",
     "tryDifferent": "Essayez un autre mot-clé"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "backHome": "Accueil",
+    "browseDeals": "Voir les offres",
+    "popularPages": "Pages populaires"
   }
 }

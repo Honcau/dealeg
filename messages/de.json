@@ -35,7 +35,9 @@
     "sortDiscount": "Größter Rabatt",
     "sortNewest": "Neueste",
     "sortPopular": "Beliebteste",
-    "all": "Alle"
+    "all": "Alle",
+    "save": "Speichern",
+    "saved": "Gespeichert"
   },
   "tools": {
     "title": "Kostenlose Tools",
@@ -148,7 +150,27 @@
     "saved": "✓ Gespeichert",
     "linkedAccounts": "Verknüpfte Konten",
     "myComments": "Meine Kommentare",
-    "noComments": "Noch keine Kommentare."
+    "noComments": "Noch keine Kommentare.",
+    "savedDeals": "Gespeicherte Angebote",
+    "noSaved": "Noch keine Angebote gespeichert.",
+    "remove": "Entfernen",
+    "security": "Sicherheit",
+    "changePassword": "Passwort ändern",
+    "cancel": "Abbrechen",
+    "currentPassword": "Aktuelles Passwort",
+    "newPassword": "Neues Passwort (mind. 6 Zeichen)",
+    "updatePassword": "Passwort aktualisieren",
+    "pwdChanged": "✓ Passwort geändert",
+    "pwdError": "Etwas ist schiefgelaufen",
+    "pwdTooShort": "Neues Passwort muss mindestens 6 Zeichen haben",
+    "pwdOAuthHint": "Wenn Sie sich mit Google/Facebook angemeldet und kein Passwort festgelegt haben, lassen Sie das Feld für das aktuelle Passwort leer.",
+    "logout": "Abmelden",
+    "logoutHint": "Von diesem Gerät abmelden",
+    "deleteAccount": "Konto löschen",
+    "deleteHint": "Löschen Sie Ihr Konto und alle Daten dauerhaft",
+    "deleteConfirm": "Dies kann nicht rückgängig gemacht werden. Geben Sie Ihre E-Mail {email} ein:",
+    "deleteForever": "Endgültig löschen",
+    "deleteError": "Konnte nicht gelöscht werden"
   },
   "search": {
     "placeholder": "Gutscheine, Artikel suchen...",
@@ -163,5 +185,12 @@
     "typeToSearch": "Stichwort zum Suchen eingeben",
     "noResultsFor": "Keine Ergebnisse für \"{query}\"",
     "tryDifferent": "Anderes Stichwort versuchen"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "description": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
+    "backHome": "Startseite",
+    "browseDeals": "Angebote ansehen",
+    "popularPages": "Beliebte Seiten"
   }
 }

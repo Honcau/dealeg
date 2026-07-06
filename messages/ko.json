@@ -35,7 +35,9 @@
     "sortDiscount": "최대 할인",
     "sortNewest": "최신",
     "sortPopular": "인기순",
-    "all": "전체"
+    "all": "전체",
+    "save": "저장",
+    "saved": "저장됨"
   },
   "tools": {
     "title": "무료 도구",
@@ -148,7 +150,27 @@
     "saved": "✓ 저장됨",
     "linkedAccounts": "연결된 계정",
     "myComments": "내 댓글",
-    "noComments": "아직 댓글이 없습니다."
+    "noComments": "아직 댓글이 없습니다.",
+    "savedDeals": "저장한 딜",
+    "noSaved": "저장한 딜이 없습니다.",
+    "remove": "제거",
+    "security": "보안",
+    "changePassword": "비밀번호 변경",
+    "cancel": "취소",
+    "currentPassword": "현재 비밀번호",
+    "newPassword": "새 비밀번호 (6자 이상)",
+    "updatePassword": "비밀번호 업데이트",
+    "pwdChanged": "✓ 비밀번호가 변경되었습니다",
+    "pwdError": "오류가 발생했습니다",
+    "pwdTooShort": "새 비밀번호는 6자 이상",
+    "pwdOAuthHint": "Google/Facebook으로 로그인하고 비밀번호를 설정하지 않았다면 현재 비밀번호 칸을 비워두세요.",
+    "logout": "로그아웃",
+    "logoutHint": "이 기기에서 로그아웃",
+    "deleteAccount": "계정 삭제",
+    "deleteHint": "계정과 모든 데이터를 영구 삭제",
+    "deleteConfirm": "되돌릴 수 없습니다. 확인하려면 이메일 {email}을 입력하세요:",
+    "deleteForever": "영구 삭제",
+    "deleteError": "삭제할 수 없습니다"
   },
   "search": {
     "placeholder": "쿠폰, 기사 검색...",
@@ -163,5 +185,12 @@
     "typeToSearch": "검색어를 입력하세요",
     "noResultsFor": "\"{query}\"에 대한 결과 없음",
     "tryDifferent": "다른 검색어를 시도하세요"
+  },
+  "notFound": {
+    "title": "페이지를 찾을 수 없습니다",
+    "description": "찾으시는 페이지가 존재하지 않거나 이동되었습니다.",
+    "backHome": "홈으로",
+    "browseDeals": "딜 보기",
+    "popularPages": "인기 페이지"
   }
 }

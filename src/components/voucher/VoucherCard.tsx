@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import type { Voucher } from '@/types/voucher';
+import { SaveButton } from './SaveButton';
 import { isExpired, formatDate, formatCount } from '@/lib/utils';
 
 interface VoucherCardProps {
@@ -72,16 +73,19 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
         expired ? 'opacity-55' : ''
       }`}
     >
-      {/* Provider + category */}
+      {/* Provider + category + save */}
       <div className="flex items-center justify-between gap-2">
         <span className="font-bold text-gray-900">{voucher.provider}</span>
-        <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${CATEGORY_COLORS[voucher.category] ?? 'bg-gray-100 text-gray-600'}`}>
-          {voucher.category}
-        </span>
+        <div className="flex items-center gap-2">
+          <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${CATEGORY_COLORS[voucher.category] ?? 'bg-gray-100 text-gray-600'}`}>
+            {voucher.category}
+          </span>
+          <SaveButton voucherId={voucher.id} />
+        </div>
       </div>
 
       {/* Discount */}
-      <div className="text-3xl font-black text-indigo-600 tracking-tight">
+      <div className="font-display text-4xl font-bold text-indigo-600 tracking-tight tabular-nums">
         {discountLabel}
       </div>
 
@@ -110,18 +114,20 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
         <button
           type="button"
           onClick={handleGetCode}
-          className="group relative flex items-stretch w-full rounded-xl overflow-hidden border-2 border-indigo-200 hover:border-indigo-400 transition-all cursor-pointer"
+          className="group relative flex items-stretch w-full rounded-lg overflow-hidden border border-gray-200 hover:border-indigo-500 transition-colors cursor-pointer"
         >
-          {/* Bên trái: hiện code */}
-          <span className="flex-1 flex items-center justify-center font-mono font-bold text-sm tracking-widest text-gray-800 bg-white px-4 py-3 group-hover:bg-indigo-50 transition-colors">
+          {/* Bên trái: code (phần cuống vé) */}
+          <span className="flex-1 flex items-center justify-center font-mono font-bold text-sm tracking-widest text-gray-900 bg-gray-50 px-4 py-3 group-hover:bg-indigo-50 transition-colors">
             {copied ? (
               <span className="text-green-600">{t('copied')}</span>
             ) : (
               voucher.code
             )}
           </span>
-          {/* Bên phải: nút hành động */}
-          <span className="flex items-center justify-center bg-indigo-600 group-hover:bg-indigo-700 text-white text-sm font-semibold px-5 transition-colors whitespace-nowrap">
+          {/* Bên phải: nút hành động — khía vé + đường đứt như vé xé */}
+          <span className="relative flex items-center justify-center bg-indigo-600 group-hover:bg-indigo-700 text-white text-sm font-semibold px-5 transition-colors whitespace-nowrap border-l-2 border-dashed border-white/50">
+            <span aria-hidden className="absolute -left-[7px] -top-[7px] w-3.5 h-3.5 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
+            <span aria-hidden className="absolute -left-[7px] -bottom-[7px] w-3.5 h-3.5 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
             {t('getCode')} →
           </span>
         </button>

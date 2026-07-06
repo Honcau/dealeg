@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import type { Voucher } from '@/types/voucher';
 import { isExpired, formatDate, formatCount } from '@/lib/utils';
+import { SaveButton } from './SaveButton';
 
 const CATEGORY_COLORS: Record<string, string> = {
   domain:   'bg-violet-50 text-violet-700',
@@ -50,13 +51,16 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
       {/* Header */}
       <div className="flex items-center justify-between gap-3 mb-4">
         <h1 className="text-2xl font-extrabold text-gray-900">{voucher.provider}</h1>
-        <span className={`text-xs font-medium px-3 py-1 rounded-full ${CATEGORY_COLORS[voucher.category] ?? 'bg-gray-100 text-gray-600'}`}>
-          {voucher.category}
-        </span>
+        <div className="flex items-center gap-3">
+          <span className={`text-xs font-medium px-3 py-1 rounded-full ${CATEGORY_COLORS[voucher.category] ?? 'bg-gray-100 text-gray-600'}`}>
+            {voucher.category}
+          </span>
+          <SaveButton voucherId={voucher.id} size="lg" />
+        </div>
       </div>
 
       {/* Discount lớn */}
-      <div className="text-5xl font-black text-indigo-600 tracking-tight mb-4">
+      <div className="font-display text-6xl font-bold text-indigo-600 tracking-tight tabular-nums mb-4">
         {discountLabel}
       </div>
 
@@ -80,12 +84,14 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
       {!expired ? (
         <button
           onClick={handleGetCode}
-          className="group w-full flex items-stretch rounded-xl overflow-hidden border-2 border-indigo-200 hover:border-indigo-400 transition-all"
+          className="group relative w-full flex items-stretch rounded-lg overflow-hidden border border-gray-200 hover:border-indigo-500 transition-colors"
         >
-          <span className="flex-1 flex items-center justify-center font-mono font-bold text-lg tracking-widest text-gray-800 bg-white px-4 py-4 group-hover:bg-indigo-50 transition-colors">
+          <span className="flex-1 flex items-center justify-center font-mono font-bold text-lg tracking-widest text-gray-900 bg-gray-50 px-4 py-4 group-hover:bg-indigo-50 transition-colors">
             {copied ? <span className="text-green-600">{t('copied')}</span> : voucher.code}
           </span>
-          <span className="flex items-center justify-center bg-indigo-600 group-hover:bg-indigo-700 text-white text-base font-semibold px-8 transition-colors whitespace-nowrap">
+          <span className="relative flex items-center justify-center bg-indigo-600 group-hover:bg-indigo-700 text-white text-base font-semibold px-8 transition-colors whitespace-nowrap border-l-2 border-dashed border-white/50">
+            <span aria-hidden className="absolute -left-[8px] -top-[8px] w-4 h-4 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
+            <span aria-hidden className="absolute -left-[8px] -bottom-[8px] w-4 h-4 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
             {t('getCode')} →
           </span>
         </button>

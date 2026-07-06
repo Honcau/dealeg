@@ -35,7 +35,9 @@
     "sortDiscount": "最大折扣",
     "sortNewest": "最新",
     "sortPopular": "最热门",
-    "all": "全部"
+    "all": "全部",
+    "save": "保存",
+    "saved": "已保存"
   },
   "tools": {
     "title": "免费工具",
@@ -148,7 +150,27 @@
     "saved": "✓ 已保存",
     "linkedAccounts": "关联账户",
     "myComments": "我的评论",
-    "noComments": "还没有评论。"
+    "noComments": "还没有评论。",
+    "savedDeals": "已保存优惠",
+    "noSaved": "还没有保存优惠。",
+    "remove": "移除",
+    "security": "安全",
+    "changePassword": "修改密码",
+    "cancel": "取消",
+    "currentPassword": "当前密码",
+    "newPassword": "新密码（至少6个字符）",
+    "updatePassword": "更新密码",
+    "pwdChanged": "✓ 密码已修改",
+    "pwdError": "出错了",
+    "pwdTooShort": "新密码至少6个字符",
+    "pwdOAuthHint": "如果您使用Google/Facebook登录且未设置密码，请将当前密码留空。",
+    "logout": "退出登录",
+    "logoutHint": "从此设备退出",
+    "deleteAccount": "删除账户",
+    "deleteHint": "永久删除您的账户和所有数据",
+    "deleteConfirm": "此操作无法撤销。输入您的邮箱 {email} 确认：",
+    "deleteForever": "永久删除",
+    "deleteError": "无法删除，请重试"
   },
   "search": {
     "placeholder": "搜索优惠券、文章...",
@@ -163,5 +185,12 @@
     "typeToSearch": "输入关键词搜索",
     "noResultsFor": "未找到\"{query}\"的结果",
     "tryDifferent": "尝试其他关键词"
+  },
+  "notFound": {
+    "title": "页面未找到",
+    "description": "您查找的页面不存在或已被移动。",
+    "backHome": "返回首页",
+    "browseDeals": "浏览优惠",
+    "popularPages": "热门页面"
   }
 }

@@ -13,14 +13,13 @@ export async function Header() {
     { href: '/category/domain',  label: t('domain')  },
     { href: '/category/hosting', label: t('hosting') },
     { href: '/category/vpn',     label: t('vpn')     },
-    { href: '/tools',            label: t('tools')   },
     { href: '/blog',             label: t('blog')    },
   ];
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-100">
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-3">
-        <Link href="/" className="text-xl font-extrabold text-indigo-600 tracking-tight shrink-0">
+        <Link href="/" className="font-display text-xl font-bold text-gray-900 tracking-tight shrink-0">
           {tc('appName')}
         </Link>
 

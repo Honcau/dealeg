@@ -64,7 +64,7 @@ export function NewsletterForm({ source = 'unknown', variant = 'card' }: Props) 
   }
 
   return (
-    <div className="bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-100 rounded-2xl p-6">
+    <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
       <h3 className="font-bold text-gray-900 text-lg mb-1">{t('title')}</h3>
       <p className="text-sm text-gray-600 mb-4">{t('subtitle')}</p>
       <form onSubmit={handleSubmit}>

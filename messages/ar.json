@@ -35,7 +35,9 @@
     "sortDiscount": "أكبر خصم",
     "sortNewest": "الأحدث",
     "sortPopular": "الأكثر شعبية",
-    "all": "الكل"
+    "all": "الكل",
+    "save": "حفظ",
+    "saved": "محفوظ"
   },
   "tools": {
     "title": "أدوات مجانية",
@@ -148,7 +150,27 @@
     "saved": "✓ تم الحفظ",
     "linkedAccounts": "الحسابات المرتبطة",
     "myComments": "تعليقاتي",
-    "noComments": "لا توجد تعليقات بعد."
+    "noComments": "لا توجد تعليقات بعد.",
+    "savedDeals": "العروض المحفوظة",
+    "noSaved": "لا عروض محفوظة بعد.",
+    "remove": "إزالة",
+    "security": "الأمان",
+    "changePassword": "تغيير كلمة المرور",
+    "cancel": "إلغاء",
+    "currentPassword": "كلمة المرور الحالية",
+    "newPassword": "كلمة مرور جديدة (6 أحرف على الأقل)",
+    "updatePassword": "تحديث كلمة المرور",
+    "pwdChanged": "✓ تم تغيير كلمة المرور",
+    "pwdError": "حدث خطأ",
+    "pwdTooShort": "كلمة المرور الجديدة 6 أحرف على الأقل",
+    "pwdOAuthHint": "إذا سجّلت الدخول عبر Google/Facebook ولم تعيّن كلمة مرور، اترك حقل كلمة المرور الحالية فارغاً.",
+    "logout": "تسجيل الخروج",
+    "logoutHint": "الخروج من هذا الجهاز",
+    "deleteAccount": "حذف الحساب",
+    "deleteHint": "احذف حسابك وكل البيانات نهائياً",
+    "deleteConfirm": "لا يمكن التراجع. اكتب بريدك {email} للتأكيد:",
+    "deleteForever": "حذف نهائي",
+    "deleteError": "تعذّر الحذف، حاول مجدداً"
   },
   "search": {
     "placeholder": "ابحث عن قسائم، مقالات...",
@@ -163,5 +185,12 @@
     "typeToSearch": "اكتب كلمة للبحث",
     "noResultsFor": "لا نتائج لـ \"{query}\"",
     "tryDifferent": "جرب كلمة أخرى"
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "description": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+    "backHome": "الرئيسية",
+    "browseDeals": "تصفح العروض",
+    "popularPages": "صفحات شائعة"
   }
 }

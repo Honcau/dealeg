@@ -35,7 +35,9 @@
     "sortDiscount": "割引率順",
     "sortNewest": "最新",
     "sortPopular": "人気順",
-    "all": "すべて"
+    "all": "すべて",
+    "save": "保存",
+    "saved": "保存済み"
   },
   "tools": {
     "title": "無料ツール",
@@ -148,7 +150,27 @@
     "saved": "✓ 保存しました",
     "linkedAccounts": "連携アカウント",
     "myComments": "マイコメント",
-    "noComments": "まだコメントがありません。"
+    "noComments": "まだコメントがありません。",
+    "savedDeals": "保存したお得情報",
+    "noSaved": "保存したお得情報はありません。",
+    "remove": "削除",
+    "security": "セキュリティ",
+    "changePassword": "パスワード変更",
+    "cancel": "キャンセル",
+    "currentPassword": "現在のパスワード",
+    "newPassword": "新しいパスワード（6文字以上）",
+    "updatePassword": "パスワードを更新",
+    "pwdChanged": "✓ パスワードを変更しました",
+    "pwdError": "エラーが発生しました",
+    "pwdTooShort": "新しいパスワードは6文字以上",
+    "pwdOAuthHint": "Google/Facebookでログインしパスワード未設定の場合、現在のパスワード欄は空のままにしてください。",
+    "logout": "ログアウト",
+    "logoutHint": "このデバイスからサインアウト",
+    "deleteAccount": "アカウント削除",
+    "deleteHint": "アカウントと全データを完全に削除",
+    "deleteConfirm": "元に戻せません。確認のためメール {email} を入力：",
+    "deleteForever": "完全に削除",
+    "deleteError": "削除できませんでした"
   },
   "search": {
     "placeholder": "クーポン、記事を検索...",
@@ -163,5 +185,12 @@
     "typeToSearch": "キーワードを入力して検索",
     "noResultsFor": "\"{query}\"の結果がありません",
     "tryDifferent": "別のキーワードを試す"
+  },
+  "notFound": {
+    "title": "ページが見つかりません",
+    "description": "お探しのページは存在しないか、移動されました。",
+    "backHome": "ホームへ",
+    "browseDeals": "お得情報を見る",
+    "popularPages": "人気ページ"
   }
 }
