@@ -50,6 +50,28 @@ export async function PUT(req: NextRequest, { params }: Params) {
   return NextResponse.json(article);
 }
 
+// PATCH: đổi nhanh 1 trường (dùng cho quick action publish/draft)
+export async function PATCH(req: NextRequest, { params }: Params) {
+  if (!checkAuth(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const { id } = await params;
+  const { status } = await req.json();
+
+  if (!['PUBLISHED', 'DRAFT', 'ARCHIVED'].includes(status)) {
+    return NextResponse.json({ error: 'Invalid status' }, { status: 400 });
+  }
+
+  const article = await prisma.article.update({
+    where: { id },
+    data: {
+      status,
+      publishedAt: status === 'PUBLISHED' ? new Date() : null,
+      updatedAt: new Date(),
+    },
+  });
+
+  return NextResponse.json(article);
+}
+
 export async function DELETE(req: NextRequest, { params }: Params) {
   if (!checkAuth(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const { id } = await params;
