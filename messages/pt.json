@@ -399,7 +399,8 @@
     "foundCount": "{count} resultados encontrados",
     "typeToSearch": "Digite uma palavra para buscar",
     "noResultsFor": "Sem resultados para \"{query}\"",
-    "tryDifferent": "Tente outra palavra"
+    "tryDifferent": "Tente outra palavra",
+    "tools": "Ferramentas"
   },
   "notFound": {
     "title": "Página não encontrada",

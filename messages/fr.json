@@ -399,7 +399,8 @@
     "foundCount": "{count} résultats trouvés",
     "typeToSearch": "Tapez un mot-clé pour rechercher",
     "noResultsFor": "Aucun résultat pour \"{query}\"",
-    "tryDifferent": "Essayez un autre mot-clé"
+    "tryDifferent": "Essayez un autre mot-clé",
+    "tools": "Outils"
   },
   "notFound": {
     "title": "Page introuvable",

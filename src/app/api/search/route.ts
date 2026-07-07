@@ -1,22 +1,52 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { TOOLS } from '@/lib/tools-list';
 
 /**
  * GET /api/search?q=...&locale=vi
- * Tìm trong voucher (provider, code, mô tả) + bài viết (tiêu đề, nội dung).
- * Trả kết quả gọn để hiện dropdown gợi ý.
+ * Tìm trong: công cụ (tên/mô tả đã dịch), voucher, bài viết.
  */
 export async function GET(req: NextRequest) {
   const q = req.nextUrl.searchParams.get('q')?.trim() ?? '';
   const locale = req.nextUrl.searchParams.get('locale') ?? 'vi';
 
-  // Query quá ngắn → không tìm
   if (q.length < 2) {
-    return NextResponse.json({ vouchers: [], articles: [] });
+    return NextResponse.json({ tools: [], vouchers: [], articles: [] });
   }
 
+  // ── Tìm công cụ ──
+  // Đọc bản dịch tools từ messages theo locale (fallback en)
+  let toolMessages: Record<string, { name?: string; desc?: string }> = {};
+  try {
+    const msgs = (await import(`../../../../messages/${locale}.json`)).default;
+    toolMessages = msgs.tools ?? {};
+  } catch {
+    try {
+      const en = (await import(`../../../../messages/en.json`)).default;
+      toolMessages = en.tools ?? {};
+    } catch {}
+  }
+
+  const qLower = q.toLowerCase();
+  const toolResults = TOOLS
+    .filter(tool => {
+      // VN-only chỉ hiện khi locale vi
+      if (tool.vnOnly && locale !== 'vi') return false;
+      const tr = toolMessages[tool.key];
+      if (!tr) return false;
+      const name = (tr.name ?? '').toLowerCase();
+      const desc = (tr.desc ?? '').toLowerCase();
+      // Khớp tên/mô tả, hoặc khớp slug (vd gõ "qr", "pdf", "json")
+      return name.includes(qLower) || desc.includes(qLower) || tool.href.includes(qLower);
+    })
+    .slice(0, 5)
+    .map(tool => ({
+      href: tool.href,
+      name: toolMessages[tool.key]?.name ?? tool.key,
+    }));
+
+  // ── Tìm voucher + bài viết (song song) ──
   const [vouchers, articles] = await Promise.all([
-    // Tìm voucher: theo provider, code, hoặc mô tả (trong translation)
     prisma.voucher.findMany({
       where: {
         isActive: true,
@@ -32,8 +62,6 @@ export async function GET(req: NextRequest) {
       take: 6,
       orderBy: [{ useCount: 'desc' }, { discountValue: 'desc' }],
     }),
-
-    // Tìm bài viết: theo tiêu đề hoặc nội dung (trong translation), chỉ PUBLISHED
     prisma.article.findMany({
       where: {
         status: 'PUBLISHED',
@@ -49,28 +77,19 @@ export async function GET(req: NextRequest) {
     }),
   ]);
 
-  // Format gọn cho client
   const voucherResults = vouchers.map(v => {
     const tr = v.translations.find(t => t.locale === locale) ?? v.translations.find(t => t.locale === 'en');
     return {
-      id:       v.id,
-      provider: v.provider,
-      code:     v.code,
-      discount: v.discount,
-      discountValue: v.discountValue,
-      title:    tr?.title || `${v.provider} ${v.discount}`,
+      id: v.id, provider: v.provider, code: v.code,
+      discount: v.discount, discountValue: v.discountValue,
+      title: tr?.title || `${v.provider} ${v.discount}`,
     };
   });
 
   const articleResults = articles.map(a => {
     const tr = a.translations.find(t => t.locale === locale) ?? a.translations.find(t => t.locale === 'en');
-    return {
-      slug:    a.slug,
-      title:   tr?.title || a.slug,
-      excerpt: tr?.excerpt || '',
-      category: a.category,
-    };
+    return { slug: a.slug, title: tr?.title || a.slug, excerpt: tr?.excerpt || '', category: a.category };
   });
 
-  return NextResponse.json({ vouchers: voucherResults, articles: articleResults });
+  return NextResponse.json({ tools: toolResults, vouchers: voucherResults, articles: articleResults });
 }

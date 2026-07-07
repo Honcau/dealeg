@@ -399,7 +399,8 @@
     "foundCount": "找到 {count} 个结果",
     "typeToSearch": "输入关键词搜索",
     "noResultsFor": "未找到\"{query}\"的结果",
-    "tryDifferent": "尝试其他关键词"
+    "tryDifferent": "尝试其他关键词",
+    "tools": "工具"
   },
   "notFound": {
     "title": "页面未找到",

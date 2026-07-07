@@ -399,7 +399,8 @@
     "foundCount": "{count} Ergebnisse gefunden",
     "typeToSearch": "Stichwort zum Suchen eingeben",
     "noResultsFor": "Keine Ergebnisse für \"{query}\"",
-    "tryDifferent": "Anderes Stichwort versuchen"
+    "tryDifferent": "Anderes Stichwort versuchen",
+    "tools": "Tools"
   },
   "notFound": {
     "title": "Seite nicht gefunden",

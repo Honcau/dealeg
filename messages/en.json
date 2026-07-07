@@ -399,7 +399,8 @@
     "foundCount": "Found {count} results",
     "typeToSearch": "Type a keyword to search",
     "noResultsFor": "No results found for \"{query}\"",
-    "tryDifferent": "Try a different keyword"
+    "tryDifferent": "Try a different keyword",
+    "tools": "Tools"
   },
   "notFound": {
     "title": "Page not found",

@@ -399,7 +399,8 @@
     "foundCount": "{count}件の結果",
     "typeToSearch": "キーワードを入力して検索",
     "noResultsFor": "\"{query}\"の結果がありません",
-    "tryDifferent": "別のキーワードを試す"
+    "tryDifferent": "別のキーワードを試す",
+    "tools": "ツール"
   },
   "notFound": {
     "title": "ページが見つかりません",

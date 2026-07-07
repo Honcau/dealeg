@@ -399,7 +399,8 @@
     "foundCount": "تم العثور على {count} نتيجة",
     "typeToSearch": "اكتب كلمة للبحث",
     "noResultsFor": "لا نتائج لـ \"{query}\"",
-    "tryDifferent": "جرب كلمة أخرى"
+    "tryDifferent": "جرب كلمة أخرى",
+    "tools": "أدوات"
   },
   "notFound": {
     "title": "الصفحة غير موجودة",

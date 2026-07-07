@@ -400,7 +400,8 @@
     "foundCount": "Tìm thấy {count} kết quả",
     "typeToSearch": "Nhập từ khóa để tìm kiếm",
     "noResultsFor": "Không tìm thấy kết quả cho \"{query}\"",
-    "tryDifferent": "Thử từ khóa khác"
+    "tryDifferent": "Thử từ khóa khác",
+    "tools": "Công cụ"
   },
   "notFound": {
     "title": "Không tìm thấy trang",

@@ -399,7 +399,8 @@
     "foundCount": "{count} परिणाम मिले",
     "typeToSearch": "खोजने के लिए कीवर्ड टाइप करें",
     "noResultsFor": "\"{query}\" के लिए कोई परिणाम नहीं",
-    "tryDifferent": "अलग कीवर्ड आज़माएं"
+    "tryDifferent": "अलग कीवर्ड आज़माएं",
+    "tools": "टूल"
   },
   "notFound": {
     "title": "पृष्ठ नहीं मिला",

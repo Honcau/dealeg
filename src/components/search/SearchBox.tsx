@@ -5,6 +5,7 @@ import { useRouter } from '@/i18n/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 
+interface ToolHit { href: string; name: string; }
 interface VoucherHit { id: string; provider: string; code: string; discount: string; discountValue: number | null; title: string; }
 interface ArticleHit { slug: string; title: string; excerpt: string; category: string; }
 
@@ -16,6 +17,7 @@ export function SearchBox({ variant = 'desktop' }: { variant?: 'desktop' | 'mobi
   const [q, setQ] = useState('');
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [tools, setTools] = useState<ToolHit[]>([]);
   const [vouchers, setVouchers] = useState<VoucherHit[]>([]);
   const [articles, setArticles] = useState<ArticleHit[]>([]);
   const boxRef = useRef<HTMLDivElement>(null);
@@ -23,7 +25,7 @@ export function SearchBox({ variant = 'desktop' }: { variant?: 'desktop' | 'mobi
   // Debounce: chờ 300ms sau khi ngừng gõ mới gọi API
   useEffect(() => {
     if (q.trim().length < 2) {
-      setVouchers([]); setArticles([]); setOpen(false);
+      setTools([]); setVouchers([]); setArticles([]); setOpen(false);
       return;
     }
     setLoading(true);
@@ -31,6 +33,7 @@ export function SearchBox({ variant = 'desktop' }: { variant?: 'desktop' | 'mobi
       try {
         const res = await fetch(`/api/search?q=${encodeURIComponent(q)}&locale=${locale}`);
         const data = await res.json();
+        setTools(data.tools ?? []);
         setVouchers(data.vouchers ?? []);
         setArticles(data.articles ?? []);
         setOpen(true);
@@ -56,7 +59,7 @@ export function SearchBox({ variant = 'desktop' }: { variant?: 'desktop' | 'mobi
     router.push(`/search?q=${encodeURIComponent(q.trim())}`);
   }
 
-  const hasResults = vouchers.length > 0 || articles.length > 0;
+  const hasResults = tools.length > 0 || vouchers.length > 0 || articles.length > 0;
 
   return (
     <div ref={boxRef} className={`relative ${variant === 'desktop' ? 'w-full max-w-xs' : 'w-full'}`}>
@@ -87,6 +90,29 @@ export function SearchBox({ variant = 'desktop' }: { variant?: 'desktop' | 'mobi
 
           {!loading && !hasResults && (
             <div className="px-4 py-3 text-sm text-gray-400">{t('noResults')}</div>
+          )}
+
+          {/* Tool hits */}
+          {tools.length > 0 && (
+            <div>
+              <div className="px-4 pt-3 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wide">
+                {t('tools')}
+              </div>
+              {tools.map(tool => (
+                <Link
+                  key={tool.href}
+                  href={tool.href}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-2 px-4 py-2.5 hover:bg-gray-50 transition-colors"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+                    className="w-4 h-4 text-gray-400 shrink-0" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
+                  </svg>
+                  <span className="font-medium text-sm text-gray-800 truncate">{tool.name}</span>
+                </Link>
+              ))}
+            </div>
           )}
 
           {/* Voucher hits */}

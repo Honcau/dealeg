@@ -399,7 +399,8 @@
     "foundCount": "Найдено {count} результатов",
     "typeToSearch": "Введите слово для поиска",
     "noResultsFor": "Нет результатов по \"{query}\"",
-    "tryDifferent": "Попробуйте другое слово"
+    "tryDifferent": "Попробуйте другое слово",
+    "tools": "Инструменты"
   },
   "notFound": {
     "title": "Страница не найдена",
