@@ -20,20 +20,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // 1b. Trang công cụ (SEO magnet — tool pages hút traffic tìm kiếm)
-  const toolRoutes = [
-    '/tools', '/tools/vietqr', '/tools/discount', '/tools/gross-net', '/tools/password', '/tools/currency',
-    '/tools/vn-font', '/tools/id-photo', '/tools/lunar-calendar', '/tools/interest', '/tools/unit-price',
+  // Công cụ VN-only: chỉ index bản vi + en (Việt kiều) — tránh loãng SEO 12 ngôn ngữ
+  const vnOnlyTools = ['/tools/vietqr', '/tools/gross-net', '/tools/vn-font', '/tools/id-photo', '/tools/lunar-calendar', '/tools/interest'];
+  // Công cụ chung: index đủ 12 ngôn ngữ
+  const globalTools = [
+    '/tools', '/tools/discount', '/tools/currency', '/tools/password', '/tools/unit-price',
     '/tools/number-to-words', '/tools/text-counter', '/tools/image-compress', '/tools/pdf', '/tools/qr',
     '/tools/date-calculator', '/tools/utm-builder', '/tools/json', '/tools/base64', '/tools/hash',
   ];
+  // Global tools × mọi locale
   for (const locale of routing.locales) {
-    for (const route of toolRoutes) {
-      entries.push({
-        url: `${BASE}/${locale}${route}`,
-        lastModified: new Date(),
-        changeFrequency: 'monthly',
-        priority: 0.7,
-      });
+    for (const route of globalTools) {
+      entries.push({ url: `${BASE}/${locale}${route}`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 });
+    }
+  }
+  // VN-only tools × chỉ vi + en
+  for (const locale of ['vi', 'en']) {
+    for (const route of vnOnlyTools) {
+      entries.push({ url: `${BASE}/${locale}${route}`, lastModified: new Date(), changeFrequency: 'monthly', priority: locale === 'vi' ? 0.8 : 0.6 });
     }
   }
 

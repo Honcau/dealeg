@@ -32,7 +32,7 @@ export default function ContactPage() {
           <h2 className="text-xl font-bold text-gray-900 mb-2">Get in Touch</h2>
           <p>We'd love to hear from you. Whether you have a question, feedback, a partnership inquiry, or want to report an expired coupon, reach out:</p>
           <div className="bg-gray-50 rounded-xl p-5 mt-3 not-prose">
-            <p className="text-sm text-gray-700"><strong>Email:</strong> <a href="mailto:hello@dealeg.com" className="text-indigo-600 hover:underline">hello@dealeg.com</a></p>
+            <p className="text-sm text-gray-700"><strong>Email:</strong> <a href="mailto:contact@dealeg.com" className="text-indigo-600 hover:underline">contact@dealeg.com</a></p>
             <p className="text-sm text-gray-500 mt-2">We aim to respond within a few business days.</p>
           </div>
         </section>
