@@ -16,7 +16,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = await prisma.article.findUnique({ where: { slug } });
   if (!article) return {};
   const { translation } = await getArticleTranslation(article.id, locale);
-  return { title: translation?.title ?? slug };
+  const title = translation?.title ?? slug;
+  const cover = article.coverImage
+    ? `https://dealeg.com${article.coverImage}`
+    : 'https://dealeg.com/og-image.png';
+
+  return {
+    title,
+    description: translation?.excerpt ?? undefined,
+    openGraph: {
+      title,
+      description: translation?.excerpt ?? undefined,
+      type: 'article',
+      images: [{ url: cover, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: translation?.excerpt ?? undefined,
+      images: [cover],
+    },
+  };
 }
 
 /** Chuyển Markdown đơn giản → HTML (không cần thư viện nặng) */
