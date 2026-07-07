@@ -107,6 +107,158 @@
       "rateNote": "Tỷ giá tham khảo, cập nhật hàng ngày (nguồn: open.er-api.com). Tỷ giá thực tế tại ngân hàng có thể khác.",
       "loading": "Đang tải tỷ giá...",
       "error": "Không tải được tỷ giá, thử lại sau"
+    },
+    "sectionVn": "Cho Việt Nam",
+    "sectionGlobal": "Công cụ chung",
+    "common": {
+      "input": "Đầu vào",
+      "output": "Kết quả",
+      "copy": "Sao chép",
+      "copied": "Đã chép",
+      "download": "Tải về",
+      "result": "Kết quả"
+    },
+    "vnfont": {
+      "name": "Sửa lỗi font TCVN3 & bỏ dấu",
+      "desc": "Chuyển văn bản lỗi font TCVN3 (ABC) sang Unicode và bỏ dấu tiếng Việt",
+      "removeTone": "Bỏ dấu tiếng Việt",
+      "note": "Bảng mã TCVN3 chuẩn cộng đồng — nếu gặp ký tự chưa đúng, báo qua trang Liên hệ. VNI sẽ bổ sung sau."
+    },
+    "idphoto": {
+      "name": "Cắt ảnh thẻ 3×4 / 4×6",
+      "desc": "Cắt ảnh thẻ chuẩn 3×4, 4×6 cm (300 DPI) ngay trên trình duyệt — ảnh không tải lên máy chủ",
+      "bgWhite": "Nền trắng",
+      "bgBlue": "Nền xanh",
+      "zoom": "Phóng to",
+      "download": "Tải ảnh",
+      "dragHint": "Kéo ảnh để căn vị trí, dùng thanh trượt để phóng to",
+      "note": "Chọn ảnh để bắt đầu. Ảnh xử lý hoàn toàn trên máy bạn."
+    },
+    "lunar": {
+      "name": "Lịch âm ↔ dương",
+      "desc": "Đổi ngày dương sang âm lịch và ngược lại (thuật toán âm lịch Việt Nam, có can chi)",
+      "solarToLunar": "Dương → Âm",
+      "lunarToSolar": "Âm → Dương",
+      "day": "Ngày",
+      "month": "Tháng",
+      "year": "Năm",
+      "leap": "nhuận",
+      "lunar": "Ngày âm lịch",
+      "solar": "Ngày dương lịch"
+    },
+    "interest": {
+      "name": "Tính lãi vay & tiết kiệm",
+      "desc": "Tính khoản trả hàng tháng khi vay (dư nợ giảm dần / trả đều) và lãi gửi tiết kiệm",
+      "tabLoan": "Vay",
+      "tabSavings": "Tiết kiệm",
+      "amount": "Số tiền",
+      "rate": "Lãi suất (%/năm)",
+      "term": "Kỳ hạn (tháng)",
+      "methodDeclining": "Dư nợ giảm dần",
+      "methodAnnuity": "Trả đều hàng tháng",
+      "monthlyPayment": "Trả hàng tháng",
+      "firstPayment": "Kỳ đầu",
+      "lastPayment": "Kỳ cuối",
+      "totalInterest": "Tổng lãi",
+      "totalPayment": "Tổng gốc + lãi",
+      "simple": "lãi đơn",
+      "compound": "lãi kép",
+      "note": "Kết quả tham khảo, chưa gồm phí. Lãi suất thực tế theo từng ngân hàng."
+    },
+    "unitprice": {
+      "name": "So sánh giá theo đơn vị",
+      "desc": "So sánh 2 sản phẩm theo giá mỗi đơn vị — biết ngay cái nào rẻ hơn",
+      "productA": "Sản phẩm A",
+      "productB": "Sản phẩm B",
+      "price": "Giá",
+      "quantity": "Số lượng / khối lượng",
+      "perUnit": "Giá mỗi đơn vị",
+      "cheaper": "Rẻ hơn"
+    },
+    "num2words": {
+      "name": "Đổi số thành chữ",
+      "desc": "Đọc số tiền bằng chữ tiếng Việt & tiếng Anh — cho hóa đơn, hợp đồng",
+      "number": "Số",
+      "note": "Hiện hỗ trợ tiếng Việt và English. Ngôn ngữ khác sẽ bổ sung sau."
+    },
+    "textcounter": {
+      "name": "Đếm từ & đổi hoa-thường",
+      "desc": "Đếm từ, ký tự, dòng và chuyển đổi chữ hoa/thường tức thì",
+      "words": "Từ",
+      "characters": "Ký tự",
+      "noSpaces": "Không dấu cách",
+      "lines": "Dòng",
+      "upper": "CHỮ HOA",
+      "lower": "chữ thường",
+      "titleCase": "Viết Hoa Mỗi Từ",
+      "sentenceCase": "Viết hoa đầu câu"
+    },
+    "imagecompress": {
+      "name": "Nén & đổi định dạng ảnh",
+      "desc": "Nén ảnh JPG/WebP/PNG ngay trên trình duyệt — không tải lên máy chủ",
+      "quality": "Chất lượng",
+      "original": "Gốc",
+      "compressed": "Sau nén"
+    },
+    "pdf": {
+      "name": "Ghép & tách PDF",
+      "desc": "Ghép nhiều PDF thành một, tách trang — xử lý trên máy bạn, không upload",
+      "tabMerge": "Ghép PDF",
+      "tabSplit": "Tách trang",
+      "pageRange": "Trang (vd: 1-3,5)",
+      "merge": "Ghép & tải về",
+      "split": "Tách & tải về",
+      "errorGeneric": "Lỗi xử lý file — kiểm tra PDF hợp lệ",
+      "errorRange": "Khoảng trang không hợp lệ",
+      "note": "File xử lý hoàn toàn trên trình duyệt, không gửi đi đâu."
+    },
+    "qr": {
+      "name": "WiFi QR & vCard QR",
+      "desc": "Tạo QR WiFi (quét là kết nối) và QR danh thiếp — mật khẩu không gửi đi đâu",
+      "ssid": "Tên WiFi (SSID)",
+      "password": "Mật khẩu",
+      "security": "Bảo mật",
+      "hidden": "Mạng ẩn",
+      "fullName": "Họ tên",
+      "phone": "Điện thoại",
+      "company": "Công ty",
+      "note": "Điền thông tin để tạo mã QR",
+      "privacyNote": "QR tạo hoàn toàn trên trình duyệt — thông tin không gửi lên máy chủ nào."
+    },
+    "datecalc": {
+      "name": "Tính tuổi & khoảng cách ngày",
+      "desc": "Tính tuổi chính xác theo năm-tháng-ngày và số ngày giữa hai mốc",
+      "tabAge": "Tính tuổi",
+      "tabDiff": "Khoảng cách ngày",
+      "birthDate": "Ngày sinh",
+      "fromDate": "Từ ngày",
+      "toDate": "Đến ngày",
+      "years": "năm",
+      "months": "tháng",
+      "days": "ngày",
+      "totalDays": "ngày tổng",
+      "weeks": "tuần"
+    },
+    "utm": {
+      "name": "UTM Builder",
+      "desc": "Tạo link UTM theo dõi chiến dịch marketing (Google Analytics)"
+    },
+    "json": {
+      "name": "JSON Formatter",
+      "desc": "Định dạng, nén và kiểm tra JSON hợp lệ",
+      "format": "Định dạng",
+      "minify": "Nén"
+    },
+    "base64": {
+      "name": "Base64 Encode / Decode",
+      "desc": "Mã hóa và giải mã Base64, hỗ trợ Unicode",
+      "encode": "Mã hóa",
+      "decode": "Giải mã"
+    },
+    "hash": {
+      "name": "Tạo mã Hash SHA",
+      "desc": "Tạo hash SHA-1/256/384/512 ngay trên trình duyệt",
+      "input": "Nhập văn bản..."
     }
   },
   "footer": {

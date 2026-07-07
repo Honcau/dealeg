@@ -107,6 +107,158 @@
       "rateNote": "Tasas de referencia, actualizadas a diario. Las tasas bancarias reales pueden variar.",
       "loading": "Cargando tasas...",
       "error": "No se pudieron cargar las tasas"
+    },
+    "sectionVn": "Para Vietnam",
+    "sectionGlobal": "Herramientas generales",
+    "common": {
+      "input": "Entrada",
+      "output": "Salida",
+      "copy": "Copiar",
+      "copied": "Copiado",
+      "download": "Descargar",
+      "result": "Resultado"
+    },
+    "vnfont": {
+      "name": "Arreglar fuente TCVN3",
+      "desc": "Convierte texto vietnamita TCVN3 a Unicode y quita acentos",
+      "removeTone": "Quitar acentos vietnamitas",
+      "note": "Tabla TCVN3 estándar."
+    },
+    "idphoto": {
+      "name": "Foto carnet 3×4/4×6",
+      "desc": "Recorta fotos de carnet (300 DPI) en tu navegador — sin subir nada",
+      "bgWhite": "Fondo blanco",
+      "bgBlue": "Fondo azul",
+      "zoom": "Zoom",
+      "download": "Descargar foto",
+      "dragHint": "Arrastra para posicionar, desliza para ampliar",
+      "note": "Elige una foto para empezar."
+    },
+    "lunar": {
+      "name": "Calendario lunar ↔ solar",
+      "desc": "Convierte fechas al calendario lunar vietnamita",
+      "solarToLunar": "Solar → Lunar",
+      "lunarToSolar": "Lunar → Solar",
+      "day": "Día",
+      "month": "Mes",
+      "year": "Año",
+      "leap": "bisiesto",
+      "lunar": "Fecha lunar",
+      "solar": "Fecha solar"
+    },
+    "interest": {
+      "name": "Préstamos y ahorros",
+      "desc": "Cuota mensual de préstamos e interés de ahorros",
+      "tabLoan": "Préstamo",
+      "tabSavings": "Ahorro",
+      "amount": "Monto",
+      "rate": "Tasa (%/año)",
+      "term": "Plazo (meses)",
+      "methodDeclining": "Saldo decreciente",
+      "methodAnnuity": "Cuotas iguales",
+      "monthlyPayment": "Cuota mensual",
+      "firstPayment": "Primera cuota",
+      "lastPayment": "Última cuota",
+      "totalInterest": "Interés total",
+      "totalPayment": "Total pagado",
+      "simple": "simple",
+      "compound": "compuesto",
+      "note": "Solo referencia, sin comisiones."
+    },
+    "unitprice": {
+      "name": "Comparar precio unitario",
+      "desc": "Compara dos productos por precio por unidad",
+      "productA": "Producto A",
+      "productB": "Producto B",
+      "price": "Precio",
+      "quantity": "Cantidad / peso",
+      "perUnit": "Precio por unidad",
+      "cheaper": "Más barato"
+    },
+    "num2words": {
+      "name": "Número a letras",
+      "desc": "Escribe montos en letras (vietnamita e inglés)",
+      "number": "Número",
+      "note": "Por ahora vietnamita e inglés."
+    },
+    "textcounter": {
+      "name": "Contador de palabras",
+      "desc": "Cuenta palabras, caracteres, líneas y cambia mayúsculas",
+      "words": "Palabras",
+      "characters": "Caracteres",
+      "noSpaces": "Sin espacios",
+      "lines": "Líneas",
+      "upper": "MAYÚSCULAS",
+      "lower": "minúsculas",
+      "titleCase": "Tipo Título",
+      "sentenceCase": "Tipo oración"
+    },
+    "imagecompress": {
+      "name": "Comprimir imágenes",
+      "desc": "Comprime JPG/WebP/PNG en tu navegador — sin subir nada",
+      "quality": "Calidad",
+      "original": "Original",
+      "compressed": "Comprimida"
+    },
+    "pdf": {
+      "name": "Unir y dividir PDF",
+      "desc": "Combina PDFs o extrae páginas — sin subir archivos",
+      "tabMerge": "Unir PDF",
+      "tabSplit": "Dividir",
+      "pageRange": "Páginas (ej. 1-3,5)",
+      "merge": "Unir y descargar",
+      "split": "Dividir y descargar",
+      "errorGeneric": "Error — verifica el PDF",
+      "errorRange": "Rango inválido",
+      "note": "Los archivos se procesan en tu navegador."
+    },
+    "qr": {
+      "name": "QR WiFi y vCard",
+      "desc": "Crea QR de WiFi y tarjetas de contacto — la contraseña no sale de tu equipo",
+      "ssid": "Nombre WiFi (SSID)",
+      "password": "Contraseña",
+      "security": "Seguridad",
+      "hidden": "Red oculta",
+      "fullName": "Nombre completo",
+      "phone": "Teléfono",
+      "company": "Empresa",
+      "note": "Completa el formulario para generar el QR",
+      "privacyNote": "El QR se genera en tu navegador — nada se envía a servidores."
+    },
+    "datecalc": {
+      "name": "Edad y diferencia de fechas",
+      "desc": "Edad exacta y días entre dos fechas",
+      "tabAge": "Edad",
+      "tabDiff": "Diferencia",
+      "birthDate": "Fecha de nacimiento",
+      "fromDate": "Desde",
+      "toDate": "Hasta",
+      "years": "años",
+      "months": "meses",
+      "days": "días",
+      "totalDays": "días totales",
+      "weeks": "semanas"
+    },
+    "utm": {
+      "name": "Generador UTM",
+      "desc": "Crea enlaces UTM para campañas de marketing"
+    },
+    "json": {
+      "name": "Formateador JSON",
+      "desc": "Formatea, minifica y valida JSON",
+      "format": "Formatear",
+      "minify": "Minificar"
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Codifica y decodifica Base64 con Unicode",
+      "encode": "Codificar",
+      "decode": "Decodificar"
+    },
+    "hash": {
+      "name": "Generador Hash SHA",
+      "desc": "Genera hashes SHA en tu navegador",
+      "input": "Escribe texto..."
     }
   },
   "footer": {

@@ -107,6 +107,158 @@
       "rateNote": "Taux indicatifs, mis à jour quotidiennement. Les taux bancaires réels peuvent différer.",
       "loading": "Chargement des taux...",
       "error": "Impossible de charger les taux"
+    },
+    "sectionVn": "Pour le Vietnam",
+    "sectionGlobal": "Outils généraux",
+    "common": {
+      "input": "Entrée",
+      "output": "Sortie",
+      "copy": "Copier",
+      "copied": "Copié",
+      "download": "Télécharger",
+      "result": "Résultat"
+    },
+    "vnfont": {
+      "name": "Réparer police TCVN3",
+      "desc": "Convertit le texte vietnamien TCVN3 en Unicode et retire les accents",
+      "removeTone": "Retirer les accents vietnamiens",
+      "note": "Table TCVN3 standard."
+    },
+    "idphoto": {
+      "name": "Photo identité 3×4/4×6",
+      "desc": "Recadrez vos photos d identité (300 DPI) dans le navigateur — rien n est envoyé",
+      "bgWhite": "Fond blanc",
+      "bgBlue": "Fond bleu",
+      "zoom": "Zoom",
+      "download": "Télécharger la photo",
+      "dragHint": "Glissez pour positionner, curseur pour zoomer",
+      "note": "Choisissez une photo pour commencer."
+    },
+    "lunar": {
+      "name": "Calendrier lunaire ↔ solaire",
+      "desc": "Convertit les dates vers le calendrier lunaire vietnamien",
+      "solarToLunar": "Solaire → Lunaire",
+      "lunarToSolar": "Lunaire → Solaire",
+      "day": "Jour",
+      "month": "Mois",
+      "year": "Année",
+      "leap": "bissextile",
+      "lunar": "Date lunaire",
+      "solar": "Date solaire"
+    },
+    "interest": {
+      "name": "Prêts et épargne",
+      "desc": "Mensualités de prêt et intérêts d épargne",
+      "tabLoan": "Prêt",
+      "tabSavings": "Épargne",
+      "amount": "Montant",
+      "rate": "Taux (%/an)",
+      "term": "Durée (mois)",
+      "methodDeclining": "Capital constant",
+      "methodAnnuity": "Mensualités égales",
+      "monthlyPayment": "Mensualité",
+      "firstPayment": "Première échéance",
+      "lastPayment": "Dernière échéance",
+      "totalInterest": "Intérêts totaux",
+      "totalPayment": "Total payé",
+      "simple": "simple",
+      "compound": "composé",
+      "note": "Indicatif, hors frais."
+    },
+    "unitprice": {
+      "name": "Comparateur prix unitaire",
+      "desc": "Comparez deux produits au prix unitaire",
+      "productA": "Produit A",
+      "productB": "Produit B",
+      "price": "Prix",
+      "quantity": "Quantité / poids",
+      "perUnit": "Prix unitaire",
+      "cheaper": "Moins cher"
+    },
+    "num2words": {
+      "name": "Nombre en lettres",
+      "desc": "Montants en toutes lettres (vietnamien et anglais)",
+      "number": "Nombre",
+      "note": "Vietnamien et anglais pour l instant."
+    },
+    "textcounter": {
+      "name": "Compteur de mots",
+      "desc": "Comptez mots, caractères, lignes et changez la casse",
+      "words": "Mots",
+      "characters": "Caractères",
+      "noSpaces": "Sans espaces",
+      "lines": "Lignes",
+      "upper": "MAJUSCULES",
+      "lower": "minuscules",
+      "titleCase": "Casse Titre",
+      "sentenceCase": "Casse phrase"
+    },
+    "imagecompress": {
+      "name": "Compresser des images",
+      "desc": "Compressez JPG/WebP/PNG dans le navigateur — sans envoi",
+      "quality": "Qualité",
+      "original": "Original",
+      "compressed": "Compressée"
+    },
+    "pdf": {
+      "name": "Fusionner et diviser PDF",
+      "desc": "Combinez des PDF ou extrayez des pages — sans envoi de fichiers",
+      "tabMerge": "Fusionner",
+      "tabSplit": "Diviser",
+      "pageRange": "Pages (ex. 1-3,5)",
+      "merge": "Fusionner et télécharger",
+      "split": "Diviser et télécharger",
+      "errorGeneric": "Erreur — vérifiez le PDF",
+      "errorRange": "Plage invalide",
+      "note": "Fichiers traités dans votre navigateur."
+    },
+    "qr": {
+      "name": "QR WiFi et vCard",
+      "desc": "Créez des QR WiFi et cartes de visite — le mot de passe ne quitte pas votre appareil",
+      "ssid": "Nom WiFi (SSID)",
+      "password": "Mot de passe",
+      "security": "Sécurité",
+      "hidden": "Réseau masqué",
+      "fullName": "Nom complet",
+      "phone": "Téléphone",
+      "company": "Société",
+      "note": "Remplissez pour générer le QR",
+      "privacyNote": "QR généré dans votre navigateur — rien n est envoyé."
+    },
+    "datecalc": {
+      "name": "Âge et écart de dates",
+      "desc": "Âge exact et jours entre deux dates",
+      "tabAge": "Âge",
+      "tabDiff": "Écart",
+      "birthDate": "Date de naissance",
+      "fromDate": "Du",
+      "toDate": "Au",
+      "years": "ans",
+      "months": "mois",
+      "days": "jours",
+      "totalDays": "jours au total",
+      "weeks": "semaines"
+    },
+    "utm": {
+      "name": "Générateur UTM",
+      "desc": "Créez des liens UTM pour vos campagnes marketing"
+    },
+    "json": {
+      "name": "Formateur JSON",
+      "desc": "Formatez, minifiez et validez du JSON",
+      "format": "Formater",
+      "minify": "Minifier"
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Encodez et décodez du Base64 avec Unicode",
+      "encode": "Encoder",
+      "decode": "Décoder"
+    },
+    "hash": {
+      "name": "Générateur de hash SHA",
+      "desc": "Générez des hash SHA dans le navigateur",
+      "input": "Saisissez du texte..."
     }
   },
   "footer": {

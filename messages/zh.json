@@ -107,6 +107,158 @@
       "rateNote": "参考汇率，每日更新。实际银行汇率可能不同。",
       "loading": "加载汇率中...",
       "error": "无法加载汇率，请稍后重试"
+    },
+    "sectionVn": "越南专用",
+    "sectionGlobal": "通用工具",
+    "common": {
+      "input": "输入",
+      "output": "输出",
+      "copy": "复制",
+      "copied": "已复制",
+      "download": "下载",
+      "result": "结果"
+    },
+    "vnfont": {
+      "name": "修复TCVN3字体 & 去声调",
+      "desc": "将TCVN3(ABC)乱码越南语转为Unicode并去除声调",
+      "removeTone": "去除越南语声调",
+      "note": "社区标准TCVN3对照表，如有错字请联系我们。"
+    },
+    "idphoto": {
+      "name": "证件照裁剪 3×4/4×6",
+      "desc": "浏览器内裁剪证件照(300 DPI)，照片不上传",
+      "bgWhite": "白底",
+      "bgBlue": "蓝底",
+      "zoom": "缩放",
+      "download": "下载照片",
+      "dragHint": "拖动定位，滑块缩放",
+      "note": "选择照片开始，完全在本机处理。"
+    },
+    "lunar": {
+      "name": "农历 ↔ 公历",
+      "desc": "越南农历与公历互转",
+      "solarToLunar": "公历 → 农历",
+      "lunarToSolar": "农历 → 公历",
+      "day": "日",
+      "month": "月",
+      "year": "年",
+      "leap": "闰",
+      "lunar": "农历日期",
+      "solar": "公历日期"
+    },
+    "interest": {
+      "name": "贷款 & 储蓄利息",
+      "desc": "计算月供(等本/等额)和存款利息",
+      "tabLoan": "贷款",
+      "tabSavings": "储蓄",
+      "amount": "金额",
+      "rate": "利率(%/年)",
+      "term": "期限(月)",
+      "methodDeclining": "等额本金",
+      "methodAnnuity": "等额本息",
+      "monthlyPayment": "月供",
+      "firstPayment": "首期",
+      "lastPayment": "末期",
+      "totalInterest": "总利息",
+      "totalPayment": "本息合计",
+      "simple": "单利",
+      "compound": "复利",
+      "note": "仅供参考，不含费用。"
+    },
+    "unitprice": {
+      "name": "单价比较",
+      "desc": "按单位价格比较两件商品",
+      "productA": "商品A",
+      "productB": "商品B",
+      "price": "价格",
+      "quantity": "数量/重量",
+      "perUnit": "单价",
+      "cheaper": "更便宜"
+    },
+    "num2words": {
+      "name": "数字转文字",
+      "desc": "金额大写(越南语&英语)",
+      "number": "数字",
+      "note": "目前支持越南语和英语。"
+    },
+    "textcounter": {
+      "name": "字数统计 & 大小写",
+      "desc": "统计字词行数，转换大小写",
+      "words": "词",
+      "characters": "字符",
+      "noSpaces": "不含空格",
+      "lines": "行",
+      "upper": "大写",
+      "lower": "小写",
+      "titleCase": "首字母大写",
+      "sentenceCase": "句首大写"
+    },
+    "imagecompress": {
+      "name": "图片压缩 & 转格式",
+      "desc": "浏览器内压缩JPG/WebP/PNG，不上传",
+      "quality": "质量",
+      "original": "原始",
+      "compressed": "压缩后"
+    },
+    "pdf": {
+      "name": "PDF合并 & 拆分",
+      "desc": "合并PDF或提取页面，本机处理",
+      "tabMerge": "合并PDF",
+      "tabSplit": "拆分页面",
+      "pageRange": "页码(如1-3,5)",
+      "merge": "合并并下载",
+      "split": "拆分并下载",
+      "errorGeneric": "处理出错，请检查PDF",
+      "errorRange": "页码范围无效",
+      "note": "文件完全在浏览器中处理。"
+    },
+    "qr": {
+      "name": "WiFi二维码 & 名片码",
+      "desc": "生成WiFi二维码和电子名片码，密码不外传",
+      "ssid": "WiFi名称(SSID)",
+      "password": "密码",
+      "security": "加密",
+      "hidden": "隐藏网络",
+      "fullName": "姓名",
+      "phone": "电话",
+      "company": "公司",
+      "note": "填写信息生成二维码",
+      "privacyNote": "二维码完全在浏览器生成，不发送到任何服务器。"
+    },
+    "datecalc": {
+      "name": "年龄 & 日期计算",
+      "desc": "精确年龄和两日期间隔",
+      "tabAge": "算年龄",
+      "tabDiff": "日期间隔",
+      "birthDate": "出生日期",
+      "fromDate": "开始",
+      "toDate": "结束",
+      "years": "年",
+      "months": "月",
+      "days": "天",
+      "totalDays": "总天数",
+      "weeks": "周"
+    },
+    "utm": {
+      "name": "UTM生成器",
+      "desc": "生成营销活动UTM跟踪链接"
+    },
+    "json": {
+      "name": "JSON格式化",
+      "desc": "格式化、压缩、校验JSON",
+      "format": "格式化",
+      "minify": "压缩"
+    },
+    "base64": {
+      "name": "Base64编解码",
+      "desc": "Base64编码解码，支持Unicode",
+      "encode": "编码",
+      "decode": "解码"
+    },
+    "hash": {
+      "name": "SHA哈希生成",
+      "desc": "浏览器内生成SHA哈希",
+      "input": "输入文本..."
     }
   },
   "footer": {

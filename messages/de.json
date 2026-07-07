@@ -107,6 +107,158 @@
       "rateNote": "Referenzkurse, täglich aktualisiert. Tatsächliche Bankkurse können abweichen.",
       "loading": "Kurse werden geladen...",
       "error": "Kurse konnten nicht geladen werden"
+    },
+    "sectionVn": "Für Vietnam",
+    "sectionGlobal": "Allgemeine Tools",
+    "common": {
+      "input": "Eingabe",
+      "output": "Ausgabe",
+      "copy": "Kopieren",
+      "copied": "Kopiert",
+      "download": "Herunterladen",
+      "result": "Ergebnis"
+    },
+    "vnfont": {
+      "name": "TCVN3-Schrift reparieren",
+      "desc": "Konvertiert vietnamesischen TCVN3-Text zu Unicode und entfernt Akzente",
+      "removeTone": "Vietnamesische Akzente entfernen",
+      "note": "Standard-TCVN3-Tabelle."
+    },
+    "idphoto": {
+      "name": "Passfoto 3×4/4×6",
+      "desc": "Passfotos im Browser zuschneiden (300 DPI) — nichts wird hochgeladen",
+      "bgWhite": "Weißer Hintergrund",
+      "bgBlue": "Blauer Hintergrund",
+      "zoom": "Zoom",
+      "download": "Foto herunterladen",
+      "dragHint": "Ziehen zum Positionieren, Regler zum Zoomen",
+      "note": "Foto auswählen, um zu starten."
+    },
+    "lunar": {
+      "name": "Mond- ↔ Sonnenkalender",
+      "desc": "Daten in den vietnamesischen Mondkalender umrechnen",
+      "solarToLunar": "Sonne → Mond",
+      "lunarToSolar": "Mond → Sonne",
+      "day": "Tag",
+      "month": "Monat",
+      "year": "Jahr",
+      "leap": "Schalt",
+      "lunar": "Monddatum",
+      "solar": "Sonnendatum"
+    },
+    "interest": {
+      "name": "Kredit- & Sparrechner",
+      "desc": "Monatsraten (fallende Restschuld / Annuität) und Sparzinsen",
+      "tabLoan": "Kredit",
+      "tabSavings": "Sparen",
+      "amount": "Betrag",
+      "rate": "Zins (%/Jahr)",
+      "term": "Laufzeit (Monate)",
+      "methodDeclining": "Fallende Restschuld",
+      "methodAnnuity": "Gleiche Raten",
+      "monthlyPayment": "Monatsrate",
+      "firstPayment": "Erste Rate",
+      "lastPayment": "Letzte Rate",
+      "totalInterest": "Gesamtzinsen",
+      "totalPayment": "Gesamtzahlung",
+      "simple": "einfach",
+      "compound": "Zinseszins",
+      "note": "Nur Referenz, ohne Gebühren."
+    },
+    "unitprice": {
+      "name": "Grundpreis-Vergleich",
+      "desc": "Zwei Produkte nach Preis pro Einheit vergleichen",
+      "productA": "Produkt A",
+      "productB": "Produkt B",
+      "price": "Preis",
+      "quantity": "Menge / Gewicht",
+      "perUnit": "Preis pro Einheit",
+      "cheaper": "Günstiger"
+    },
+    "num2words": {
+      "name": "Zahl in Worten",
+      "desc": "Beträge ausschreiben (Vietnamesisch & Englisch)",
+      "number": "Zahl",
+      "note": "Derzeit Vietnamesisch und Englisch."
+    },
+    "textcounter": {
+      "name": "Wortzähler & Groß-/Klein",
+      "desc": "Wörter, Zeichen, Zeilen zählen und Schreibweise ändern",
+      "words": "Wörter",
+      "characters": "Zeichen",
+      "noSpaces": "Ohne Leerzeichen",
+      "lines": "Zeilen",
+      "upper": "GROSS",
+      "lower": "klein",
+      "titleCase": "Titel-Schreibweise",
+      "sentenceCase": "Satz-Schreibweise"
+    },
+    "imagecompress": {
+      "name": "Bilder komprimieren",
+      "desc": "JPG/WebP/PNG im Browser komprimieren — kein Upload",
+      "quality": "Qualität",
+      "original": "Original",
+      "compressed": "Komprimiert"
+    },
+    "pdf": {
+      "name": "PDF zusammenfügen & teilen",
+      "desc": "PDFs kombinieren oder Seiten extrahieren — ohne Upload",
+      "tabMerge": "Zusammenfügen",
+      "tabSplit": "Teilen",
+      "pageRange": "Seiten (z.B. 1-3,5)",
+      "merge": "Zusammenfügen & laden",
+      "split": "Teilen & laden",
+      "errorGeneric": "Fehler — PDF prüfen",
+      "errorRange": "Ungültiger Bereich",
+      "note": "Dateien werden im Browser verarbeitet."
+    },
+    "qr": {
+      "name": "WLAN-QR & vCard-QR",
+      "desc": "WLAN-QR und Kontakt-QR erstellen — Passwort verlässt Ihr Gerät nicht",
+      "ssid": "WLAN-Name (SSID)",
+      "password": "Passwort",
+      "security": "Sicherheit",
+      "hidden": "Verstecktes Netz",
+      "fullName": "Name",
+      "phone": "Telefon",
+      "company": "Firma",
+      "note": "Formular ausfüllen für den QR",
+      "privacyNote": "QR wird im Browser erzeugt — nichts wird gesendet."
+    },
+    "datecalc": {
+      "name": "Alter & Datumsdifferenz",
+      "desc": "Exaktes Alter und Tage zwischen zwei Daten",
+      "tabAge": "Alter",
+      "tabDiff": "Differenz",
+      "birthDate": "Geburtsdatum",
+      "fromDate": "Von",
+      "toDate": "Bis",
+      "years": "Jahre",
+      "months": "Monate",
+      "days": "Tage",
+      "totalDays": "Tage gesamt",
+      "weeks": "Wochen"
+    },
+    "utm": {
+      "name": "UTM-Builder",
+      "desc": "UTM-Tracking-Links für Kampagnen erstellen"
+    },
+    "json": {
+      "name": "JSON-Formatter",
+      "desc": "JSON formatieren, minifizieren, validieren",
+      "format": "Formatieren",
+      "minify": "Minifizieren"
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Base64 mit Unicode kodieren/dekodieren",
+      "encode": "Kodieren",
+      "decode": "Dekodieren"
+    },
+    "hash": {
+      "name": "SHA-Hash-Generator",
+      "desc": "SHA-Hashes im Browser erzeugen",
+      "input": "Text eingeben..."
     }
   },
   "footer": {

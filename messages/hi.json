@@ -107,6 +107,158 @@
       "rateNote": "संदर्भ दरें, दैनिक अपडेट। बैंक दरें भिन्न हो सकती हैं।",
       "loading": "दरें लोड हो रही हैं...",
       "error": "दरें लोड नहीं हुईं, बाद में प्रयास करें"
+    },
+    "sectionVn": "वियतनाम के लिए",
+    "sectionGlobal": "सामान्य टूल",
+    "common": {
+      "input": "इनपुट",
+      "output": "आउटपुट",
+      "copy": "कॉपी",
+      "copied": "कॉपी हुआ",
+      "download": "डाउनलोड",
+      "result": "परिणाम"
+    },
+    "vnfont": {
+      "name": "TCVN3 फॉन्ट ठीक करें",
+      "desc": "TCVN3 वियतनामी टेक्स्ट को Unicode में बदलें",
+      "removeTone": "स्वर चिह्न हटाएं",
+      "note": "मानक TCVN3 तालिका।"
+    },
+    "idphoto": {
+      "name": "ID फोटो क्रॉप 3×4/4×6",
+      "desc": "ब्राउज़र में ID फोटो क्रॉप (300 DPI), अपलोड नहीं",
+      "bgWhite": "सफेद",
+      "bgBlue": "नीला",
+      "zoom": "ज़ूम",
+      "download": "फोटो डाउनलोड",
+      "dragHint": "खींचकर सेट करें",
+      "note": "शुरू करने के लिए फोटो चुनें।"
+    },
+    "lunar": {
+      "name": "चंद्र ↔ सौर कैलेंडर",
+      "desc": "वियतनामी चंद्र कैलेंडर रूपांतरण",
+      "solarToLunar": "सौर → चंद्र",
+      "lunarToSolar": "चंद्र → सौर",
+      "day": "दिन",
+      "month": "माह",
+      "year": "वर्ष",
+      "leap": "अधिक",
+      "lunar": "चंद्र तिथि",
+      "solar": "सौर तिथि"
+    },
+    "interest": {
+      "name": "ऋण & बचत ब्याज",
+      "desc": "मासिक किस्त और बचत ब्याज",
+      "tabLoan": "ऋण",
+      "tabSavings": "बचत",
+      "amount": "राशि",
+      "rate": "दर (%/वर्ष)",
+      "term": "अवधि (माह)",
+      "methodDeclining": "घटती शेष",
+      "methodAnnuity": "समान किस्त",
+      "monthlyPayment": "मासिक किस्त",
+      "firstPayment": "पहली किस्त",
+      "lastPayment": "अंतिम किस्त",
+      "totalInterest": "कुल ब्याज",
+      "totalPayment": "कुल भुगतान",
+      "simple": "साधारण",
+      "compound": "चक्रवृद्धि",
+      "note": "केवल संदर्भ हेतु।"
+    },
+    "unitprice": {
+      "name": "इकाई मूल्य तुलना",
+      "desc": "प्रति इकाई कीमत से तुलना",
+      "productA": "उत्पाद A",
+      "productB": "उत्पाद B",
+      "price": "कीमत",
+      "quantity": "मात्रा",
+      "perUnit": "प्रति इकाई",
+      "cheaper": "सस्ता"
+    },
+    "num2words": {
+      "name": "संख्या से शब्द",
+      "desc": "राशि शब्दों में (वियतनामी व अंग्रेज़ी)",
+      "number": "संख्या",
+      "note": "अभी वियतनामी और अंग्रेज़ी।"
+    },
+    "textcounter": {
+      "name": "शब्द गणना & केस",
+      "desc": "शब्द, अक्षर, पंक्ति गिनें; केस बदलें",
+      "words": "शब्द",
+      "characters": "अक्षर",
+      "noSpaces": "बिना स्पेस",
+      "lines": "पंक्तियां",
+      "upper": "बड़े",
+      "lower": "छोटे",
+      "titleCase": "Title Case",
+      "sentenceCase": "वाक्य केस"
+    },
+    "imagecompress": {
+      "name": "छवि संपीड़न",
+      "desc": "ब्राउज़र में JPG/WebP/PNG संपीड़ित करें",
+      "quality": "गुणवत्ता",
+      "original": "मूल",
+      "compressed": "संपीड़ित"
+    },
+    "pdf": {
+      "name": "PDF मर्ज & स्प्लिट",
+      "desc": "PDF जोड़ें या पेज निकालें, बिना अपलोड",
+      "tabMerge": "मर्ज",
+      "tabSplit": "स्प्लिट",
+      "pageRange": "पेज (1-3,5)",
+      "merge": "मर्ज करें",
+      "split": "स्प्लिट करें",
+      "errorGeneric": "त्रुटि — PDF जांचें",
+      "errorRange": "अमान्य रेंज",
+      "note": "फ़ाइलें ब्राउज़र में ही प्रोसेस होती हैं।"
+    },
+    "qr": {
+      "name": "WiFi QR & vCard QR",
+      "desc": "WiFi और संपर्क QR बनाएं, पासवर्ड बाहर नहीं जाता",
+      "ssid": "WiFi नाम",
+      "password": "पासवर्ड",
+      "security": "सुरक्षा",
+      "hidden": "छिपा नेटवर्क",
+      "fullName": "पूरा नाम",
+      "phone": "फोन",
+      "company": "कंपनी",
+      "note": "QR के लिए विवरण भरें",
+      "privacyNote": "QR ब्राउज़र में ही बनता है।"
+    },
+    "datecalc": {
+      "name": "आयु & तिथि अंतर",
+      "desc": "सटीक आयु और दो तिथियों का अंतर",
+      "tabAge": "आयु",
+      "tabDiff": "तिथि अंतर",
+      "birthDate": "जन्म तिथि",
+      "fromDate": "से",
+      "toDate": "तक",
+      "years": "वर्ष",
+      "months": "माह",
+      "days": "दिन",
+      "totalDays": "कुल दिन",
+      "weeks": "सप्ताह"
+    },
+    "utm": {
+      "name": "UTM बिल्डर",
+      "desc": "मार्केटिंग UTM लिंक बनाएं"
+    },
+    "json": {
+      "name": "JSON फ़ॉर्मेटर",
+      "desc": "JSON फॉर्मेट, मिनिफाई, जांच",
+      "format": "फॉर्मेट",
+      "minify": "मिनिफाई"
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Base64 एन्कोड/डिकोड",
+      "encode": "एन्कोड",
+      "decode": "डिकोड"
+    },
+    "hash": {
+      "name": "SHA हैश",
+      "desc": "ब्राउज़र में SHA हैश बनाएं",
+      "input": "टेक्स्ट लिखें..."
     }
   },
   "footer": {

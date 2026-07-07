@@ -20,7 +20,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // 1b. Trang công cụ (SEO magnet — tool pages hút traffic tìm kiếm)
-  const toolRoutes = ['/tools', '/tools/vietqr', '/tools/discount', '/tools/gross-net', '/tools/password', '/tools/currency'];
+  const toolRoutes = [
+    '/tools', '/tools/vietqr', '/tools/discount', '/tools/gross-net', '/tools/password', '/tools/currency',
+    '/tools/vn-font', '/tools/id-photo', '/tools/lunar-calendar', '/tools/interest', '/tools/unit-price',
+    '/tools/number-to-words', '/tools/text-counter', '/tools/image-compress', '/tools/pdf', '/tools/qr',
+    '/tools/date-calculator', '/tools/utm-builder', '/tools/json', '/tools/base64', '/tools/hash',
+  ];
   for (const locale of routing.locales) {
     for (const route of toolRoutes) {
       entries.push({

@@ -33,7 +33,9 @@
     "@auth/prisma-adapter": "^2.4.1",
     "react-markdown": "^9.0.1",
     "bcryptjs": "^2.4.3",
-    "remark-gfm": "^4.0.0"
+    "remark-gfm": "^4.0.0",
+    "qrcode": "^1.5.3",
+    "pdf-lib": "^1.17.1"
   },
   "devDependencies": {
     "@types/node": "^22",

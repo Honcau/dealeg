@@ -107,6 +107,158 @@
       "rateNote": "参考レート（毎日更新）。実際の銀行レートとは異なる場合があります。",
       "loading": "レート読み込み中...",
       "error": "レートを読み込めませんでした"
+    },
+    "sectionVn": "ベトナム向け",
+    "sectionGlobal": "汎用ツール",
+    "common": {
+      "input": "入力",
+      "output": "出力",
+      "copy": "コピー",
+      "copied": "コピー済み",
+      "download": "ダウンロード",
+      "result": "結果"
+    },
+    "vnfont": {
+      "name": "TCVN3フォント修復",
+      "desc": "TCVN3のベトナム語文字化けをUnicodeに変換、声調記号除去",
+      "removeTone": "声調記号を除去",
+      "note": "標準TCVN3対応表。"
+    },
+    "idphoto": {
+      "name": "証明写真 3×4/4×6",
+      "desc": "ブラウザで証明写真を切り抜き(300 DPI) — アップロードなし",
+      "bgWhite": "白背景",
+      "bgBlue": "青背景",
+      "zoom": "ズーム",
+      "download": "写真をダウンロード",
+      "dragHint": "ドラッグで位置調整、スライダーで拡大",
+      "note": "写真を選んで開始。"
+    },
+    "lunar": {
+      "name": "旧暦 ↔ 新暦",
+      "desc": "ベトナム旧暦と新暦の変換",
+      "solarToLunar": "新暦 → 旧暦",
+      "lunarToSolar": "旧暦 → 新暦",
+      "day": "日",
+      "month": "月",
+      "year": "年",
+      "leap": "閏",
+      "lunar": "旧暦日付",
+      "solar": "新暦日付"
+    },
+    "interest": {
+      "name": "ローン・預金計算",
+      "desc": "月々の返済額と預金利息を計算",
+      "tabLoan": "ローン",
+      "tabSavings": "預金",
+      "amount": "金額",
+      "rate": "金利(%/年)",
+      "term": "期間(月)",
+      "methodDeclining": "元金均等",
+      "methodAnnuity": "元利均等",
+      "monthlyPayment": "月々の支払い",
+      "firstPayment": "初回",
+      "lastPayment": "最終回",
+      "totalInterest": "利息合計",
+      "totalPayment": "総支払額",
+      "simple": "単利",
+      "compound": "複利",
+      "note": "参考値、手数料含まず。"
+    },
+    "unitprice": {
+      "name": "単価比較",
+      "desc": "2つの商品を単価で比較",
+      "productA": "商品A",
+      "productB": "商品B",
+      "price": "価格",
+      "quantity": "数量/重量",
+      "perUnit": "単価",
+      "cheaper": "お得"
+    },
+    "num2words": {
+      "name": "数字を文字に",
+      "desc": "金額を文字で表記(ベトナム語・英語)",
+      "number": "数字",
+      "note": "現在ベトナム語と英語対応。"
+    },
+    "textcounter": {
+      "name": "文字数カウント",
+      "desc": "単語・文字・行数を数え、大文字小文字変換",
+      "words": "単語",
+      "characters": "文字",
+      "noSpaces": "空白除く",
+      "lines": "行",
+      "upper": "大文字",
+      "lower": "小文字",
+      "titleCase": "先頭大文字",
+      "sentenceCase": "文頭大文字"
+    },
+    "imagecompress": {
+      "name": "画像圧縮・変換",
+      "desc": "ブラウザでJPG/WebP/PNG圧縮 — アップロードなし",
+      "quality": "品質",
+      "original": "元",
+      "compressed": "圧縮後"
+    },
+    "pdf": {
+      "name": "PDF結合・分割",
+      "desc": "PDF結合やページ抽出 — 端末内で処理",
+      "tabMerge": "結合",
+      "tabSplit": "分割",
+      "pageRange": "ページ(例:1-3,5)",
+      "merge": "結合してDL",
+      "split": "分割してDL",
+      "errorGeneric": "エラー — PDFを確認",
+      "errorRange": "範囲が無効",
+      "note": "ファイルはブラウザ内で処理されます。"
+    },
+    "qr": {
+      "name": "WiFi QR・vCard QR",
+      "desc": "WiFi接続QRと名刺QRを作成 — パスワードは端末外に出ません",
+      "ssid": "WiFi名(SSID)",
+      "password": "パスワード",
+      "security": "セキュリティ",
+      "hidden": "非公開ネットワーク",
+      "fullName": "氏名",
+      "phone": "電話",
+      "company": "会社",
+      "note": "入力するとQRが生成されます",
+      "privacyNote": "QRはブラウザ内で生成 — どこにも送信されません。"
+    },
+    "datecalc": {
+      "name": "年齢・日数計算",
+      "desc": "正確な年齢と2日付間の日数",
+      "tabAge": "年齢",
+      "tabDiff": "日数差",
+      "birthDate": "生年月日",
+      "fromDate": "開始",
+      "toDate": "終了",
+      "years": "年",
+      "months": "ヶ月",
+      "days": "日",
+      "totalDays": "合計日数",
+      "weeks": "週"
+    },
+    "utm": {
+      "name": "UTMビルダー",
+      "desc": "マーケティング用UTMリンクを作成"
+    },
+    "json": {
+      "name": "JSONフォーマッター",
+      "desc": "JSONの整形・圧縮・検証",
+      "format": "整形",
+      "minify": "圧縮"
+    },
+    "base64": {
+      "name": "Base64",
+      "desc": "Base64エンコード/デコード(Unicode対応)",
+      "encode": "エンコード",
+      "decode": "デコード"
+    },
+    "hash": {
+      "name": "SHAハッシュ生成",
+      "desc": "ブラウザでSHAハッシュ生成",
+      "input": "テキストを入力..."
     }
   },
   "footer": {

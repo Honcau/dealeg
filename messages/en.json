@@ -107,6 +107,158 @@
       "rateNote": "Reference rates, updated daily (source: open.er-api.com). Actual bank rates may differ.",
       "loading": "Loading rates...",
       "error": "Could not load rates, try again later"
+    },
+    "sectionVn": "For Vietnam",
+    "sectionGlobal": "General tools",
+    "common": {
+      "input": "Input",
+      "output": "Output",
+      "copy": "Copy",
+      "copied": "Copied",
+      "download": "Download",
+      "result": "Result"
+    },
+    "vnfont": {
+      "name": "Fix TCVN3 font & remove accents",
+      "desc": "Convert broken TCVN3 (ABC) Vietnamese text to Unicode and strip diacritics",
+      "removeTone": "Remove Vietnamese accents",
+      "note": "Standard community TCVN3 table — report odd characters via Contact. VNI coming later."
+    },
+    "idphoto": {
+      "name": "ID Photo Crop 3×4 / 4×6",
+      "desc": "Crop ID photos to 3×4 / 4×6 cm (300 DPI) in your browser — photos never leave your device",
+      "bgWhite": "White background",
+      "bgBlue": "Blue background",
+      "zoom": "Zoom",
+      "download": "Download photo",
+      "dragHint": "Drag to position, use slider to zoom",
+      "note": "Pick a photo to start. Processed entirely on your device."
+    },
+    "lunar": {
+      "name": "Lunar ↔ Solar Calendar",
+      "desc": "Convert solar dates to Vietnamese lunar calendar and back",
+      "solarToLunar": "Solar → Lunar",
+      "lunarToSolar": "Lunar → Solar",
+      "day": "Day",
+      "month": "Month",
+      "year": "Year",
+      "leap": "leap",
+      "lunar": "Lunar date",
+      "solar": "Solar date"
+    },
+    "interest": {
+      "name": "Loan & Savings Calculator",
+      "desc": "Monthly loan payments (declining balance / annuity) and savings interest",
+      "tabLoan": "Loan",
+      "tabSavings": "Savings",
+      "amount": "Amount",
+      "rate": "Rate (%/year)",
+      "term": "Term (months)",
+      "methodDeclining": "Declining balance",
+      "methodAnnuity": "Equal payments",
+      "monthlyPayment": "Monthly payment",
+      "firstPayment": "First payment",
+      "lastPayment": "Last payment",
+      "totalInterest": "Total interest",
+      "totalPayment": "Total paid",
+      "simple": "simple",
+      "compound": "compound",
+      "note": "Reference only, excludes fees. Actual rates vary by bank."
+    },
+    "unitprice": {
+      "name": "Unit Price Comparison",
+      "desc": "Compare two products by price per unit — instantly see which is cheaper",
+      "productA": "Product A",
+      "productB": "Product B",
+      "price": "Price",
+      "quantity": "Quantity / weight",
+      "perUnit": "Price per unit",
+      "cheaper": "Cheaper"
+    },
+    "num2words": {
+      "name": "Number to Words",
+      "desc": "Spell out amounts in Vietnamese & English — for invoices and contracts",
+      "number": "Number",
+      "note": "Currently Vietnamese and English. More languages coming."
+    },
+    "textcounter": {
+      "name": "Word Counter & Case Converter",
+      "desc": "Count words, characters, lines and switch letter case instantly",
+      "words": "Words",
+      "characters": "Characters",
+      "noSpaces": "No spaces",
+      "lines": "Lines",
+      "upper": "UPPERCASE",
+      "lower": "lowercase",
+      "titleCase": "Title Case",
+      "sentenceCase": "Sentence case"
+    },
+    "imagecompress": {
+      "name": "Image Compress & Convert",
+      "desc": "Compress JPG/WebP/PNG in your browser — nothing is uploaded",
+      "quality": "Quality",
+      "original": "Original",
+      "compressed": "Compressed"
+    },
+    "pdf": {
+      "name": "Merge & Split PDF",
+      "desc": "Combine PDFs or extract pages — processed on your device, no upload",
+      "tabMerge": "Merge PDF",
+      "tabSplit": "Split pages",
+      "pageRange": "Pages (e.g. 1-3,5)",
+      "merge": "Merge & download",
+      "split": "Split & download",
+      "errorGeneric": "Processing error — check the PDF is valid",
+      "errorRange": "Invalid page range",
+      "note": "Files are processed entirely in your browser."
+    },
+    "qr": {
+      "name": "WiFi QR & vCard QR",
+      "desc": "Create WiFi QR (scan to connect) and contact-card QR — passwords never leave your device",
+      "ssid": "WiFi name (SSID)",
+      "password": "Password",
+      "security": "Security",
+      "hidden": "Hidden network",
+      "fullName": "Full name",
+      "phone": "Phone",
+      "company": "Company",
+      "note": "Fill the form to generate the QR",
+      "privacyNote": "QR is generated entirely in your browser — nothing is sent to any server."
+    },
+    "datecalc": {
+      "name": "Age & Date Calculator",
+      "desc": "Exact age in years-months-days and days between two dates",
+      "tabAge": "Age",
+      "tabDiff": "Date difference",
+      "birthDate": "Birth date",
+      "fromDate": "From",
+      "toDate": "To",
+      "years": "years",
+      "months": "months",
+      "days": "days",
+      "totalDays": "total days",
+      "weeks": "weeks"
+    },
+    "utm": {
+      "name": "UTM Builder",
+      "desc": "Build UTM tracking links for marketing campaigns (Google Analytics)"
+    },
+    "json": {
+      "name": "JSON Formatter",
+      "desc": "Format, minify and validate JSON",
+      "format": "Format",
+      "minify": "Minify"
+    },
+    "base64": {
+      "name": "Base64 Encode / Decode",
+      "desc": "Encode and decode Base64 with Unicode support",
+      "encode": "Encode",
+      "decode": "Decode"
+    },
+    "hash": {
+      "name": "SHA Hash Generator",
+      "desc": "Generate SHA-1/256/384/512 hashes in your browser",
+      "input": "Type text..."
     }
   },
   "footer": {
