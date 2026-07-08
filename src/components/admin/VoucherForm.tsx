@@ -233,7 +233,7 @@ export function VoucherForm({ initial, voucherId }: Props) {
         {voucherId && (
           <button onClick={handleTranslate} disabled={translating}
             className="ml-auto bg-purple-600 hover:bg-purple-700 disabled:opacity-60 text-white font-medium px-5 py-2.5 rounded-lg text-sm transition-colors">
-            {translating ? 'Đang dịch...' : '🌐 Dịch mô tả sang 11 ngôn ngữ'}
+            {translating ? 'Đang dịch...' : '🌐 Dịch mô tả sang 11 ngôn ngữ (DeepL)'}
           </button>
         )}
         {trMsg && <span className="text-xs text-gray-500">{trMsg}</span>}
@@ -242,7 +242,7 @@ export function VoucherForm({ initial, voucherId }: Props) {
       {voucherId && (
         <p className="text-xs text-gray-400">
           Mẹo: mô tả voucher không bắt buộc dịch — % giảm giá + tên provider đã đủ thông tin cho mọi ngôn ngữ.
-          Chỉ dịch nếu mô tả dài và quan trọng. Dịch tốn quota DeepL.
+          Chỉ dịch nếu mô tả dài và quan trọng. Dịch tốn quota DeepL — hoặc dùng "Dịch Paste" bên dưới (miễn phí).
         </p>
       )}
     </div>

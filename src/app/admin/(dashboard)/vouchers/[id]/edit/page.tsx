@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams }           from 'next/navigation';
 import { VoucherForm }         from '@/components/admin/VoucherForm';
+import { VoucherPasteTranslation } from '@/components/admin/VoucherPasteTranslation';
 import type { VoucherFormData } from '@/components/admin/VoucherForm';
 
 export default function EditVoucherPage() {
@@ -41,10 +42,16 @@ export default function EditVoucherPage() {
   if (!data)   return <div className="text-center py-16 text-red-400">Không tìm thấy voucher</div>;
 
   return (
-    <div>
-      <h1 className="text-xl font-bold text-gray-900 mb-6">Sửa voucher</h1>
+    <div className="space-y-6">
+      <h1 className="text-xl font-bold text-gray-900">Sửa voucher</h1>
       <div className="bg-white rounded-xl border border-gray-200 p-6">
         <VoucherForm initial={data} voucherId={id} />
+      </div>
+
+      {/* Dịch Paste — miễn phí qua DeepL web */}
+      <div className="bg-white rounded-xl border border-gray-200 p-6">
+        <h2 className="font-semibold text-gray-900 mb-4">Dịch Paste (miễn phí)</h2>
+        <VoucherPasteTranslation voucherId={id} />
       </div>
     </div>
   );

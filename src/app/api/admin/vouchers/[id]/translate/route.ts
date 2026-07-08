@@ -32,14 +32,13 @@ async function translate(text: string, target: string): Promise<string> {
 
 /**
  * POST /api/admin/vouchers/[id]/translate
- * Dịch title + description tiếng Anh của voucher sang 11 ngôn ngữ.
+ * Dịch title + description tiếng Anh của voucher sang 11 ngôn ngữ bằng DeepL.
  * TÙY CHỌN — chỉ dùng khi admin bấm nút, không tự động.
  */
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   if (!checkAuth(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const { id } = await params;
 
-  // Lấy bản tiếng Anh làm nguồn
   const en = await prisma.voucherTranslation.findUnique({
     where: { voucherId_locale: { voucherId: id, locale: 'en' } },
   });
