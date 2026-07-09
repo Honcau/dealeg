@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
+import { GoogleTagManager, GoogleTagManagerNoScript } from '@/components/analytics/GoogleTagManager';
 import './globals.css';
 
 const inter = Inter({
@@ -80,7 +81,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         suppressHydrationWarning
         className="min-h-screen bg-gray-50 text-gray-900 antialiased font-sans"
       >
+        <GoogleTagManagerNoScript />
         {children}
+        <GoogleTagManager />
         <GoogleAnalytics />
       </body>
     </html>
