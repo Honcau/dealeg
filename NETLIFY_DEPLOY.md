@@ -18,7 +18,6 @@ Vào **Site settings → Environment variables**, thêm TRƯỚC lần deploy đ
 | `DEEPL_API_KEY` | key DeepL (kết thúc `:fx` nếu free) |
 | `ADMIN_SECRET` | mật khẩu admin panel |
 | `NAMECHEAP_AFFILIATE_ID` / `HOSTINGER_AFFILIATE_ID` / `NORDVPN_AFFILIATE_ID` | (nếu có) |
-| `CRON_SECRET` | tùy chọn — chỉ cần nếu gọi tay `/api/cron/scrape` |
 
 > **Quan trọng — connection string:** Trên serverless mỗi request có thể mở 1 kết nối mới.
 > Dùng **pooler (6543)** cho `DATABASE_URL` trên Netlify để không cạn kết nối Supabase.
@@ -53,25 +52,7 @@ Sau khi có domain Netlify (vd `dealeg-xyz.netlify.app`), vào console từng pr
 
 ---
 
-## 4. Bật scraper qua GitHub Actions
-
-Cron scrape cũ (Vercel) đã chuyển sang `.github/workflows/scrape.yml` — chạy mỗi 6 giờ
-trong môi trường Node đầy đủ, ghi thẳng vào Supabase (không dính giới hạn timeout của Netlify).
-
-Vào **GitHub repo → Settings → Secrets and variables → Actions → New repository secret**, thêm:
-
-| Secret | Giá trị |
-|---|---|
-| `DATABASE_URL` | connection **trực tiếp** Supabase (port **5432**) |
-| `NAMECHEAP_AFFILIATE_ID` | (nếu có) |
-| `HOSTINGER_AFFILIATE_ID` | (nếu có) |
-| `NORDVPN_AFFILIATE_ID` | (nếu có) |
-
-Chạy thử tay: tab **Actions → Scrape vouchers → Run workflow**.
-
----
-
-## 5. Những gì đã đổi trong code
+## 4. Những gì đã đổi trong code
 
 | File | Thay đổi |
 |---|---|
@@ -82,7 +63,6 @@ Chạy thử tay: tab **Actions → Scrape vouchers → Run workflow**.
 | `src/app/api/admin/articles/[id]/translate/route.ts` | nhận `{ locale }` → dịch 1 ngôn ngữ/lần |
 | `src/app/admin/(dashboard)/articles/page.tsx` | nút "Dịch" gọi lần lượt 11 ngôn ngữ (hiện tiến độ) |
 | `netlify.toml` | **mới** — cấu hình build |
-| `.github/workflows/scrape.yml` | **mới** — thay Vercel Cron |
 | `vercel.json` | **đã xoá** |
 
 ### Vì sao tách dịch theo từng ngôn ngữ?

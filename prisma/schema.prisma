@@ -20,19 +20,6 @@ enum Category {
   OTHER
 }
 
-enum ScrapeType {
-  AFFILIATE_API
-  CHEERIO
-  PLAYWRIGHT
-}
-
-enum JobStatus {
-  PENDING
-  RUNNING
-  COMPLETED
-  FAILED
-}
-
 enum SubmissionStatus {
   PENDING
   APPROVED
@@ -102,28 +89,9 @@ model Provider {
   category        Category
   hasAffiliateApi Boolean     @default(false)
   affiliateId     String?
-  scrapeUrl       String?
-  scrapeType      ScrapeType  @default(CHEERIO)
   isActive        Boolean     @default(true)
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
-
-  scraperJobs     ScraperJob[]
-}
-
-model ScraperJob {
-  id          String    @id @default(cuid())
-  providerId  String
-  status      JobStatus @default(PENDING)
-  foundCount  Int       @default(0)
-  newCount    Int       @default(0)
-  error       String?
-  startedAt   DateTime?
-  finishedAt  DateTime?
-  createdAt   DateTime  @default(now())
-  provider    Provider  @relation(fields: [providerId], references: [id])
-
-  @@index([providerId])
 }
 
 // ── Auth (NextAuth + Prisma Adapter) ─────────────────────────────────────────

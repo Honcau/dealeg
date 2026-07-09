@@ -12,5 +12,3 @@
 #   - Free tier : 10 giây / lần gọi
 #   - Pro       : 26 giây / lần gọi
 # Route dịch DeepL đã được tách để gọi từng ngôn ngữ một → luôn dưới 10s.
-# Tác vụ scrape chạy dài được chuyển sang GitHub Actions (.github/workflows/scrape.yml),
-# không chạy trên Netlify Functions.
