@@ -129,24 +129,7 @@ Website sẽ có URL dạng: `https://dealeg-xxx.vercel.app`
 
 ---
 
-## Bước 8 — Test cron scraper
-
-Sau khi deploy, truy cập (thay secret của bạn):
-```
-https://dealeg.com/api/cron/scrape
-Authorization: Bearer YOUR_CRON_SECRET
-```
-
-Hoặc dùng curl:
-```bash
-curl -H "Authorization: Bearer YOUR_CRON_SECRET" https://dealeg.com/api/cron/scrape
-```
-
-Vercel sẽ tự gọi endpoint này mỗi 6 giờ theo lịch trong `vercel.json`.
-
----
-
-## Thêm voucher thủ công (khi chưa scraper tự động)
+## Thêm voucher thủ công
 
 Chạy Prisma Studio — giao diện quản lý DB đẹp, không cần code:
 ```bash
@@ -172,22 +155,14 @@ src/
 │   ├── VoucherGrid.tsx       ← Lưới vouchers
 │   └── VoucherFilter.tsx     ← Bộ lọc + sắp xếp
 ├── lib/
-│   ├── db.ts                 ← Prisma client
-│   └── scrapers/
-│       ├── index.ts          ← Chạy tất cả scrapers
-│       ├── namecheap.ts      ← Scraper Namecheap
-│       ├── hostinger.ts      ← Scraper Hostinger
-│       └── nordvpn.ts        ← Scraper NordVPN
+│   └── db.ts                 ← Prisma client
 └── app/api/
     ├── vouchers/route.ts         ← GET danh sách voucher
-    ├── vouchers/submit/route.ts  ← POST submit voucher mới
-    └── cron/scrape/route.ts      ← GET chạy scraper (cron)
+    └── vouchers/submit/route.ts  ← POST submit voucher mới
 
 prisma/
 ├── schema.prisma             ← Cấu trúc database
 └── seed.ts                   ← Data mẫu ban đầu
-
-vercel.json                   ← Cấu hình deploy + cron
 ```
 
 ---
@@ -206,7 +181,6 @@ vercel.json                   ← Cấu hình deploy + cron
 
 ## Bước tiếp theo sau khi website chạy
 
-- **Thêm scraper mới**: copy `src/lib/scrapers/nordvpn.ts` → đổi tên → import vào `scrapers/index.ts`
-- **Fine-tune selectors**: mở F12 trên website cần scrape → tìm CSS class chứa coupon code → cập nhật trong scraper tương ứng
+- **Thêm voucher**: nhập thủ công qua `/admin/vouchers` hoặc Prisma Studio (bảng `Voucher`)
 - **Duyệt submission**: vào Prisma Studio → bảng `VoucherSubmission` → đổi `status` từ `PENDING` sang `APPROVED`
 - **Phase 2**: triển khai ilovepdf, OnlyOffice theo README.md

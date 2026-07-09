@@ -13,18 +13,17 @@ async function main() {
   // Xoá data cũ để seed lại sạch
   await prisma.voucherTranslation.deleteMany();
   await prisma.voucher.deleteMany();
-  await prisma.scraperJob.deleteMany();
   await prisma.provider.deleteMany();
 
   // ── 1. Providers ───────────────────────────────────────────────────────────
   await prisma.provider.createMany({
     data: [
-      { name: 'Namecheap', slug: 'namecheap', website: 'https://namecheap.com',  category: 'DOMAIN',  hasAffiliateApi: true,  scrapeUrl: 'https://www.namecheap.com/promos/',     scrapeType: 'CHEERIO', isActive: true },
-      { name: 'Hostinger', slug: 'hostinger', website: 'https://hostinger.com',  category: 'HOSTING', hasAffiliateApi: false, scrapeUrl: 'https://www.hostinger.com/coupons',     scrapeType: 'CHEERIO', isActive: true },
-      { name: 'NordVPN',   slug: 'nordvpn',   website: 'https://nordvpn.com',    category: 'VPN',     hasAffiliateApi: false, scrapeUrl: 'https://nordvpn.com/coupon/',           scrapeType: 'CHEERIO', isActive: true },
-      { name: 'Porkbun',   slug: 'porkbun',   website: 'https://porkbun.com',    category: 'DOMAIN',  hasAffiliateApi: false, scrapeUrl: 'https://porkbun.com/promotions',        scrapeType: 'CHEERIO', isActive: true },
+      { name: 'Namecheap', slug: 'namecheap', website: 'https://namecheap.com',  category: 'DOMAIN',  hasAffiliateApi: true,  isActive: true },
+      { name: 'Hostinger', slug: 'hostinger', website: 'https://hostinger.com',  category: 'HOSTING', hasAffiliateApi: false, isActive: true },
+      { name: 'NordVPN',   slug: 'nordvpn',   website: 'https://nordvpn.com',    category: 'VPN',     hasAffiliateApi: false, isActive: true },
+      { name: 'Porkbun',   slug: 'porkbun',   website: 'https://porkbun.com',    category: 'DOMAIN',  hasAffiliateApi: false, isActive: true },
       { name: 'Cloudflare',slug: 'cloudflare',website: 'https://cloudflare.com', category: 'CDN',     hasAffiliateApi: false, isActive: true },
-      { name: 'ExpressVPN',slug: 'expressvpn',website: 'https://expressvpn.com', category: 'VPN',     hasAffiliateApi: false, scrapeUrl: 'https://www.expressvpn.com/order',      scrapeType: 'CHEERIO', isActive: true },
+      { name: 'ExpressVPN',slug: 'expressvpn',website: 'https://expressvpn.com', category: 'VPN',     hasAffiliateApi: false, isActive: true },
     ],
   });
   console.log('✅ Providers created');
