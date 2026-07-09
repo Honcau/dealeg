@@ -7,7 +7,8 @@
 - [x] **Trang chủ** — Featured vouchers từ DB
 - [x] **Category pages** — Filter, sort, pagination per category
 - [x] **Form submit voucher** — User tự submit deal
-- [x] **Admin panel** — CRUD voucher, quản lý toàn bộ (nhập voucher thủ công)
+- [x] **Admin panel** — CRUD voucher, quản lý toàn bộ
+- [x] **Scraper skeleton** — Cheerio + fallback
 - [x] **NextAuth + Google OAuth** — Đăng nhập bằng Google
 - [x] **Community comments** — User comment xác nhận voucher còn dùng
 - [x] **Voting system** — Vote "Còn dùng" hoặc "Đã hết hạn"
@@ -17,8 +18,10 @@
 
 ## Phase 2 🚀 (Tiếp theo)
 
-### Affiliate Integration
+### Scraper + Impact.com Integration
 - [ ] Tích hợp Impact.com API (khi được duyệt)
+- [ ] Fine-tune CSS selectors coupert.com + dealhack.com
+- [ ] Cron job tự động chạy 6h/lần trên Vercel
 - [ ] Email alert khi có voucher mới
 
 ### Tools
@@ -59,6 +62,7 @@ Backend:      Node.js (API routes)
 Database:     PostgreSQL (Supabase)
 ORM:          Prisma
 Auth:         NextAuth.js + Google OAuth
+Scraping:     Cheerio + Playwright (fallback)
 Hosting:      Vercel (frontend) + Supabase (DB)
 ```
 
@@ -70,6 +74,7 @@ Hosting:      Vercel (frontend) + Supabase (DB)
 - Voucher submission rate
 - Most popular provider
 - Highest voted comment
+- Scraper uptime
 
 ---
 

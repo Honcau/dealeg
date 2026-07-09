@@ -197,6 +197,23 @@ systemctl reload nginx
 
 ---
 
+## Bước 9 — Cron cho scraper
+
+```bash
+# Sửa CRON_SECRET trong script
+nano deploy/cron-scrape.sh
+# (điền CRON_SECRET giống trong .env.production)
+
+# Thêm vào crontab
+crontab -e
+```
+Thêm dòng:
+```
+0 */6 * * * /home/dealeg/deploy/cron-scrape.sh >> /var/log/dealeg-scrape.log 2>&1
+```
+
+---
+
 ## Cập nhật code sau này
 
 Mỗi khi có code mới trên GitHub:

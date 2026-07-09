@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 interface Props {
   url?:   string;   // URL chia sẻ, mặc định = trang hiện tại
@@ -10,7 +10,6 @@ interface Props {
 
 export function ShareButtons({ url, title = '' }: Props) {
   const t = useTranslations('share');
-  const locale = useLocale();
   const [copied, setCopied] = useState(false);
 
   // URL hiện tại (client-side)
@@ -30,17 +29,16 @@ export function ShareButtons({ url, title = '' }: Props) {
         </svg>
       ),
     },
-    // Zalo chủ yếu phổ biến ở VN → chỉ hiện khi giao diện đang là tiếng Việt
-    ...(locale === 'vi' ? [{
+    {
       name: 'Zalo',
       color: 'bg-[#0068FF] hover:bg-[#0055d4]',
       href: `https://zalo.me/share/?u=${encodedUrl}`,
       icon: (
-        <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-          <path d="M12.49 10.2722v-.4496h1.3467v6.3218h-.7704a.576.576 0 01-.5763-.5729l-.0006.0005a3.273 3.273 0 01-1.9372.6321c-1.8138 0-3.2844-1.4697-3.2844-3.2823 0-1.8125 1.4706-3.2822 3.2844-3.2822a3.273 3.273 0 011.9372.6321l.0006.0005zM6.9188 7.7896v.205c0 .3823-.051.6944-.2995 1.0605l-.03.0343c-.0542.0615-.1815.206-.2421.2843L2.024 14.8h4.8948v.7682a.5764.5764 0 01-.5767.5761H0v-.3622c0-.4436.1102-.6414.2495-.8476L4.8582 9.23H.1922V7.7896h6.7266zm8.5513 8.3548a.4805.4805 0 01-.4803-.4798v-7.875h1.4416v8.3548H15.47zM20.6934 9.6C22.52 9.6 24 11.0807 24 12.9044c0 1.8252-1.4801 3.306-3.3066 3.306-1.8264 0-3.3066-1.4808-3.3066-3.306 0-1.8237 1.4802-3.3044 3.3066-3.3044zm-10.1412 5.253c1.0675 0 1.9324-.8645 1.9324-1.9312 0-1.065-.865-1.9295-1.9324-1.9295s-1.9324.8644-1.9324 1.9295c0 1.0667.865 1.9312 1.9324 1.9312zm10.1412-.0033c1.0737 0 1.945-.8707 1.945-1.9453 0-1.073-.8713-1.9436-1.945-1.9436-1.0753 0-1.945.8706-1.945 1.9436 0 1.0746.8697 1.9453 1.945 1.9453z"/>
+        <svg viewBox="0 0 48 48" fill="currentColor" className="w-4 h-4">
+          <path d="M24 4C12.4 4 3 12.6 3 23.2c0 5.9 2.9 11.2 7.5 14.8v6.5l6.1-3.4c2.3.7 4.8 1.1 7.4 1.1 11.6 0 21-8.6 21-19.2S35.6 4 24 4zm-9.6 22.6h-4c-.5 0-.9-.4-.9-.9V18c0-.5.4-.9.9-.9s.9.4.9.9v6.8h3.1c.5 0 .9.4.9.9s-.4.9-.9.9zm5-.9c0 .5-.4.9-.9.9s-.9-.4-.9-.9V18c0-.5.4-.9.9-.9s.9.4.9.9v7.7zm9.3.9c-.2 0-.5-.1-.6-.3l-4.3-5.4v4.8c0 .5-.4.9-.9.9s-.9-.4-.9-.9V18c0-.4.2-.7.6-.8.4-.1.7 0 1 .3l4.3 5.4V18c0-.5.4-.9.9-.9s.9.4.9.9v7.7c0 .4-.3.7-.6.8-.1.1-.2.1-.4.1zm8.4 0h-4c-.5 0-.9-.4-.9-.9V18c0-.5.4-.9.9-.9h4c.5 0 .9.4.9.9s-.4.9-.9.9h-3.1v2.1h3.1c.5 0 .9.4.9.9s-.4.9-.9.9h-3.1v2.1h3.1c.5 0 .9.4.9.9s-.4.8-.9.8z"/>
         </svg>
       ),
-    }] : []),
+    },
     {
       name: 'X',
       color: 'bg-black hover:bg-gray-800',
@@ -90,10 +88,10 @@ export function ShareButtons({ url, title = '' }: Props) {
       <button
         onClick={copyLink}
         title={t('copyLink')}
-        className="bg-gray-600 hover:bg-gray-700 text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors"
+        className="bg-gray-100 hover:bg-gray-200 text-gray-600 w-9 h-9 rounded-full flex items-center justify-center transition-colors"
       >
         {copied ? (
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 text-green-300">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 text-green-600">
             <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         ) : (

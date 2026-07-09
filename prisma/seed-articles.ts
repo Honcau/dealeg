@@ -322,6 +322,78 @@ const ARTICLES = [
     title:    'How to Send Transactional Email in 2026 (That Actually Arrives)',
     excerpt:  'Why sending email from your own server fails, how to choose a transactional email service, and the three DNS records (SPF, DKIM, DMARC) that get mail into inboxes instead of spam.',
   },
+  // ── Provider comparisons (honest, two-sided) ────────────────────────────────
+  {
+    slug:     'kinsta-vs-wpengine-2026',
+    category: 'hosting',
+    file:     'kinsta-vs-wpengine-2026.md',
+    title:    'Kinsta vs WP Engine 2026: Which Premium WordPress Host Wins?',
+    excerpt:  'An honest side-by-side of the two top premium managed WordPress hosts \u2014 dashboard, performance, support, and the weaknesses of each. Which fits bloggers vs agencies.',
+  },
+  {
+    slug:     'digitalocean-vs-vultr-2026',
+    category: 'vps',
+    file:     'digitalocean-vs-vultr-2026.md',
+    title:    'DigitalOcean vs Vultr 2026: Which Cloud VPS Is Better?',
+    excerpt:  'Two developer-favorite VPS providers compared honestly \u2014 documentation, locations, price-to-performance, and where each falls short. Which to pick for learning vs specific regions.',
+  },
+  {
+    slug:     'n8n-vs-zapier-2026',
+    category: 'software',
+    file:     'n8n-vs-zapier-2026.md',
+    title:    'n8n vs Zapier 2026: Which Automation Tool Should You Use?',
+    excerpt:  'Open-source control vs no-code simplicity. An honest comparison of n8n and Zapier \u2014 app libraries, cost at scale, learning curve, and who each really suits.',
+  },
+  {
+    slug:     'webflow-vs-squarespace-2026',
+    category: 'website-builder',
+    file:     'webflow-vs-squarespace-2026.md',
+    title:    'Webflow vs Squarespace 2026: Design Freedom vs Simplicity',
+    excerpt:  'Powerful design control vs launch-fast simplicity. An honest look at Webflow and Squarespace \u2014 learning curve, flexibility, pricing, and which fits designers vs small businesses.',
+  },
+  {
+    slug:     'getresponse-vs-mailchimp-2026',
+    category: 'software',
+    file:     'getresponse-vs-mailchimp-2026.md',
+    title:    'GetResponse vs Mailchimp 2026: Which Email Platform Wins?',
+    excerpt:  'All-in-one marketing toolkit vs polished email-first platform. An honest comparison of features, automation, cost as your list grows, and where each falls short.',
+  },
+  // ── Provider-focused how-to guides ──────────────────────────────────────────
+  {
+    slug:     'how-to-migrate-wordpress-to-kinsta',
+    category: 'hosting',
+    file:     'how-to-migrate-wordpress-to-kinsta.md',
+    title:    'How to Migrate a WordPress Site to Kinsta (Step by Step)',
+    excerpt:  'Moving to premium managed hosting is smoother than you think. A step-by-step migration guide \u2014 backup, free migration service, staging tests, DNS switch \u2014 and what to watch for.',
+  },
+  {
+    slug:     'how-to-launch-wordpress-cloudways',
+    category: 'hosting',
+    file:     'how-to-launch-wordpress-cloudways.md',
+    title:    'How to Launch a WordPress Site on Cloudways',
+    excerpt:  'Cloud power without server admin. A step-by-step guide to launching WordPress on Cloudways \u2014 choosing a server, SSL, caching, backups \u2014 and who this middle path suits.',
+  },
+  {
+    slug:     'how-to-build-first-automation-make',
+    category: 'software',
+    file:     'how-to-build-first-automation-make.md',
+    title:    'How to Build Your First Automation with Make (No Code)',
+    excerpt:  'Automate repetitive tasks without code. A beginner walkthrough of building your first Make scenario \u2014 triggers, actions, testing \u2014 plus the mindset that makes automation useful.',
+  },
+  {
+    slug:     'how-to-set-up-vpn-all-devices',
+    category: 'vpn',
+    file:     'how-to-set-up-vpn-all-devices.md',
+    title:    'How to Set Up a VPN on All Your Devices',
+    excerpt:  'Protect your phone, computer, and more with a commercial VPN. A step-by-step setup guide, what a VPN can and cannot do, and how to choose between the good options.',
+  },
+  {
+    slug:     'how-to-start-email-newsletter',
+    category: 'software',
+    file:     'how-to-start-email-newsletter.md',
+    title:    'How to Start an Email Newsletter from Scratch',
+    excerpt:  'Build the one marketing asset you actually own. A step-by-step guide \u2014 choosing a tool, signup forms, welcome emails, sustainable sending \u2014 and what actually grows a list.',
+  },
 ];
 
 async function main() {

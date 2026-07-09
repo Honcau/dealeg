@@ -10,7 +10,7 @@ const LOCALE_LABELS: Record<Locale, string> = {
   zh: '🇨🇳 中文',
   hi: '🇮🇳 हिं',
   es: '🇪🇸 ES',
-  pt: '🇵🇹 PT',
+  pt: '🇧🇷 PT',
   fr: '🇫🇷 FR',
   de: '🇩🇪 DE',
   ar: '🇸🇦 عر',

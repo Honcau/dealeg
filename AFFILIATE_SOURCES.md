@@ -56,7 +56,9 @@ FRAMER_AFFILIATE_ID="..."
 REPLIT_AFFILIATE_ID="..."
 ```
 
-2. Thêm provider + voucher thủ công qua `/admin/vouchers` (chọn category phù hợp, vd `OTHER`) — điền `affiliateUrl` kèm ID là xong.
+2. Provider đã có sẵn trong `src/lib/scrapers/providers.ts` (`WEBSITE_BUILDER_PROVIDERS`, `CODING_TOOL_PROVIDERS`) — điền `affiliateId` + `affiliateParam` là xong.
+
+3. Hoặc thêm voucher thủ công qua `/admin/vouchers` với category `OTHER`.
 
 ---
 

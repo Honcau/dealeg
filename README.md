@@ -50,6 +50,7 @@ docker compose up -d
 - Community comments + voting (verify if codes still work)
 - Blog with DeepL auto-translation (write in English → 11 languages)
 - Admin panel (HMAC cookie auth) for vouchers + articles
+- Scraper engine (coupert.com, dealhack.com) with cron
 - Auto-generated sitemap + robots.txt
 
 ## Docs

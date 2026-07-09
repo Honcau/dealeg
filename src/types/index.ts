@@ -1,7 +1,7 @@
-import type { Category, SubmissionStatus } from '@prisma/client';
+import type { Category, JobStatus, ScrapeType, SubmissionStatus } from '@prisma/client';
 
 // Re-export Prisma enums
-export type { Category, SubmissionStatus };
+export type { Category, JobStatus, ScrapeType, SubmissionStatus };
 
 // Voucher with active translation
 export interface VoucherWithTranslation {
@@ -20,6 +20,34 @@ export interface VoucherWithTranslation {
   createdAt: Date;
   title: string;       // from translation
   description: string | null;
+}
+
+// Scraper result
+export interface ScrapedVoucher {
+  code: string;
+  title: string;
+  description?: string;
+  discount: string;
+  discountValue?: number;
+  expiresAt?: Date;
+  sourceUrl?: string;
+}
+
+// Provider scraper config (stored as Json in DB)
+export interface CheerioScrapeConfig {
+  selectors: {
+    container: string; // e.g. ".coupon-item"
+    code: string;      // e.g. ".coupon-code"
+    title: string;     // e.g. ".coupon-title"
+    discount: string;  // e.g. ".discount-value"
+    expiry?: string;   // e.g. ".expiry-date"
+  };
+}
+
+export interface PlaywrightScrapeConfig {
+  waitFor?: string;    // selector to wait for before scraping
+  clickAccept?: string; // cookie accept button selector
+  selectors: CheerioScrapeConfig['selectors'];
 }
 
 // API response shape
