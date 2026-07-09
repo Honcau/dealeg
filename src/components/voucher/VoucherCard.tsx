@@ -22,9 +22,10 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 export function VoucherCard({ voucher }: VoucherCardProps) {
   const t = useTranslations('voucher');
+  const tShare = useTranslations('share');
   const locale = useLocale();
   const [copied, setCopied] = useState(false);
-  const [shareOpen, setShareOpen] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
   const expired = isExpired(voucher.expiresAt);
 
   /**
@@ -155,7 +156,7 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
           {t('details')} →
         </Link>
 
-        {/* Share nhanh: Facebook, Zalo, Telegram */}
+        {/* Share nhanh: Facebook, Telegram, X, copy link */}
         <div className="flex items-center gap-1.5">
           <a
             href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
@@ -169,17 +170,6 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
             </svg>
           </a>
           <a
-            href={`https://zalo.me/share/?u=${encodeURIComponent(shareUrl)}`}
-            target="_blank" rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            title="Zalo"
-            className="w-6 h-6 rounded-full bg-[#0068FF] text-white flex items-center justify-center hover:opacity-80 transition-opacity"
-          >
-            <svg viewBox="0 0 48 48" fill="currentColor" className="w-3.5 h-3.5">
-              <path d="M24 4C12.4 4 3 12.6 3 23.2c0 5.9 2.9 11.2 7.5 14.8v6.5l6.1-3.4c2.3.7 4.8 1.1 7.4 1.1 11.6 0 21-8.6 21-19.2S35.6 4 24 4zm-9.6 22.6h-4c-.5 0-.9-.4-.9-.9V18c0-.5.4-.9.9-.9s.9.4.9.9v6.8h3.1c.5 0 .9.4.9.9s-.4.9-.9.9zm5-.9c0 .5-.4.9-.9.9s-.9-.4-.9-.9V18c0-.5.4-.9.9-.9s.9.4.9.9v7.7zm9.3.9c-.2 0-.5-.1-.6-.3l-4.3-5.4v4.8c0 .5-.4.9-.9.9s-.9-.4-.9-.9V18c0-.4.2-.7.6-.8.4-.1.7 0 1 .3l4.3 5.4V18c0-.5.4-.9.9-.9s.9.4.9.9v7.7c0 .4-.3.7-.6.8-.1.1-.2.1-.4.1zm8.4 0h-4c-.5 0-.9-.4-.9-.9V18c0-.5.4-.9.9-.9h4c.5 0 .9.4.9.9s-.4.9-.9.9h-3.1v2.1h3.1c.5 0 .9.4.9.9s-.4.9-.9.9h-3.1v2.1h3.1c.5 0 .9.4.9.9s-.4.8-.9.8z"/>
-            </svg>
-          </a>
-          <a
             href={`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(voucher.provider + ' ' + voucher.code)}`}
             target="_blank" rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
@@ -190,6 +180,40 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
               <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
             </svg>
           </a>
+          <a
+            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(voucher.provider + ' ' + voucher.code)}`}
+            target="_blank" rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            title="X"
+            className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center hover:opacity-80 transition-opacity"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3">
+              <path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.6l5.24 6.93zM17.6 20.65h2.04L6.49 3.24H4.3z"/>
+            </svg>
+          </a>
+          <button
+            onClick={async (e) => {
+              e.stopPropagation();
+              try {
+                await navigator.clipboard.writeText(shareUrl);
+                setLinkCopied(true);
+                setTimeout(() => setLinkCopied(false), 2000);
+              } catch {}
+            }}
+            title={tShare('copyLink')}
+            className="w-6 h-6 rounded-full bg-gray-600 text-white flex items-center justify-center hover:opacity-80 transition-opacity"
+          >
+            {linkCopied ? (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3.5 h-3.5 text-green-300">
+                <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3.5 h-3.5">
+                <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            )}
+          </button>
         </div>
       </div>
     </article>
