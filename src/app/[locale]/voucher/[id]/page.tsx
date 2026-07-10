@@ -16,7 +16,7 @@ import { VoucherComments } from '@/components/voucher/VoucherComments';
 import { ShareButtons } from '@/components/share/ShareButtons';
 import type { Voucher } from '@/types/voucher';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 300; // ISR: cache & tự làm mới mỗi 5 phút
 
 type Props = { params: Promise<{ locale: string; id: string }> };
 
@@ -96,7 +96,7 @@ export default async function VoucherDetailPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
 
       <div className="max-w-2xl mx-auto space-y-6">
         {/* Breadcrumb */}

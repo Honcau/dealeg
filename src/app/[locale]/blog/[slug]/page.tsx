@@ -1,4 +1,5 @@
 import type { Metadata }  from 'next';
+import Image from 'next/image';
 import { notFound }        from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { prisma }          from '@/lib/db';
@@ -6,8 +7,8 @@ import { getArticleTranslation } from '@/lib/translation';
 import { ShareButtons } from '@/components/share/ShareButtons';
 import { NewsletterForm } from '@/components/newsletter/NewsletterForm';
 
-// Trang gọi DB → render động lúc request, không pre-render lúc build
-export const dynamic = 'force-dynamic';
+// ISR: cache trang đã render, tự làm mới mỗi 5 phút (nhanh hơn nhiều so với render mỗi request)
+export const revalidate = 300;
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -86,8 +87,11 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* Header */}
       {article.coverImage && (
-        <img src={article.coverImage} alt={translation.title}
-          className="w-full h-64 object-cover rounded-2xl mb-8" />
+        <div className="relative w-full h-64 mb-8">
+          <Image src={article.coverImage} alt={translation.title} fill priority
+            sizes="(max-width: 768px) 100vw, 768px"
+            className="object-cover rounded-2xl" />
+        </div>
       )}
       {article.category && (
         <span className="text-xs font-semibold text-indigo-600 uppercase tracking-wide">

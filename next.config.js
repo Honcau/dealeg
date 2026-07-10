@@ -31,6 +31,19 @@ const nextConfig = {
   async headers() {
     return [
       {
+        // Security headers cho toàn site. CSP bỏ qua ở đây vì GTM/GA/OAuth
+        // cần inline script + domain ngoài — thêm CSP report-only riêng nếu cần.
+        source: '/:path*',
+        headers: [
+          { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains' },
+          { key: 'X-Content-Type-Options',    value: 'nosniff' },
+          { key: 'X-Frame-Options',           value: 'SAMEORIGIN' },
+          { key: 'Referrer-Policy',           value: 'strict-origin-when-cross-origin' },
+          { key: 'Permissions-Policy',        value: 'camera=(), microphone=(), geolocation=()' },
+          { key: 'X-DNS-Prefetch-Control',    value: 'on' },
+        ],
+      },
+      {
         // Ảnh và icon: cache 30 ngày (chúng ít đổi)
         source: '/:path*.(png|jpg|jpeg|svg|ico|webp|gif)',
         headers: [

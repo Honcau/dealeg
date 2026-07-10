@@ -12,7 +12,7 @@ import type { Voucher } from '@/types/voucher';
 import { ShareButtons } from '@/components/share/ShareButtons';
 
 // Trang gọi DB → render động lúc request, không pre-render lúc build
-export const dynamic = 'force-dynamic';
+export const revalidate = 300; // ISR: cache & tự làm mới mỗi 5 phút
 
 type Props = { params: Promise<{ locale: string; brand: string }> };
 
@@ -127,7 +127,7 @@ export default async function CouponPage({ params }: Props) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
       />
 
       <div className="max-w-3xl mx-auto space-y-8">

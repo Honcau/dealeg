@@ -1,10 +1,11 @@
 import type { Metadata }     from 'next';
+import Image from 'next/image';
 import { getTranslations }   from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { prisma }            from '@/lib/db';
 
-// Trang gọi DB → render động lúc request, không pre-render lúc build
-export const dynamic = 'force-dynamic';
+// ISR: cache trang đã render, tự làm mới mỗi 5 phút (nhanh hơn nhiều so với render mỗi request)
+export const revalidate = 300;
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -41,8 +42,11 @@ export default async function BlogPage({ params }: Props) {
               className="bg-white rounded-2xl border border-gray-200 p-5 hover:shadow-md transition-shadow group"
             >
               {article.coverImage && (
-                <img src={article.coverImage} alt={title}
-                  className="w-full h-40 object-cover rounded-xl mb-4" />
+                <div className="relative w-full h-40 mb-4">
+                  <Image src={article.coverImage} alt={title} fill
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    className="object-cover rounded-xl" />
+                </div>
               )}
               {article.category && (
                 <span className="text-xs font-medium text-indigo-600 uppercase tracking-wide">

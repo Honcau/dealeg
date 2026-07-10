@@ -10,7 +10,7 @@ import type { Voucher }    from '@/types/voucher';
 import { ShareButtons } from '@/components/share/ShareButtons';
 
 // Trang gọi DB → render động lúc request, không pre-render lúc build
-export const dynamic = 'force-dynamic';
+export const revalidate = 300; // ISR: cache & tự làm mới mỗi 5 phút
 
 type Props = { params: Promise<{ locale: string }> };
 

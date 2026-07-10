@@ -7,8 +7,8 @@ import { Link } from '@/i18n/navigation';
 import { prisma } from '@/lib/db';
 import { ShareButtons } from '@/components/share/ShareButtons';
 
-// Trang gọi DB → render động lúc request, không pre-render lúc build
-export const dynamic = 'force-dynamic';
+// ISR: cache trang đã render, tự làm mới mỗi 5 phút (nhanh hơn nhiều so với render mỗi request)
+export const revalidate = 300;
 
 type Props = { params: Promise<{ locale: string }> };
 

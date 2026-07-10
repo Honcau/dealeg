@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAdminToken, COOKIE_NAME } from '@/lib/admin-auth';
+import { getAdminToken, COOKIE_NAME, safeEqual } from '@/lib/admin-auth';
 
 export async function POST(req: NextRequest) {
   const { password } = await req.json();
 
-  if (!password || password !== process.env.ADMIN_SECRET) {
+  const secret = process.env.ADMIN_SECRET ?? '';
+  if (!password || !secret || !safeEqual(String(password), secret)) {
     return NextResponse.json({ error: 'Sai mật khẩu' }, { status: 401 });
   }
 
