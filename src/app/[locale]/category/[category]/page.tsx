@@ -68,6 +68,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
     provider:      v.provider,
     category:      slug,
     code:          v.code,
+    title:         (v.translations.find((tr: {locale:string}) => tr.locale === locale) ?? v.translations.find((tr: {locale:string}) => tr.locale === 'en'))?.title || '',
     description:   (v.translations.find((tr: {locale:string}) => tr.locale === locale) ?? v.translations.find((tr: {locale:string}) => tr.locale === 'en'))?.description || v.discount,
     discountType:  'percentage' as const,
     discountValue: v.discountValue ?? 0,

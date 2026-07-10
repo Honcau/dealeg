@@ -57,6 +57,7 @@ export default async function VoucherDetailPage({ params }: Props) {
     provider:      v.provider,
     category:      v.category.toLowerCase() as 'domain',
     code:          v.code,
+    title:         tr?.title || '',
     description:   tr?.description || v.discount,
     discountType:  'percentage',
     discountValue: v.discountValue ?? 0,

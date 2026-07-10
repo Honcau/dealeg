@@ -90,6 +90,13 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
         {discountLabel}
       </div>
 
+      {/* Tiêu đề */}
+      {voucher.title && (
+        <h3 className="text-base font-semibold text-gray-900 leading-snug line-clamp-2">
+          {voucher.title}
+        </h3>
+      )}
+
       {/* Description */}
       <p className="text-sm text-gray-500 line-clamp-2">{voucher.description}</p>
 

@@ -64,6 +64,11 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
         {discountLabel}
       </div>
 
+      {/* Tiêu đề */}
+      {voucher.title && (
+        <h2 className="text-xl font-bold text-gray-900 leading-snug mb-3">{voucher.title}</h2>
+      )}
+
       {/* Mô tả */}
       <p className="text-gray-600 leading-relaxed mb-6">{voucher.description}</p>
 

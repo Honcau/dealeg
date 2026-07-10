@@ -17,6 +17,7 @@ export interface Voucher {
   logo?:         string;
   category:      VoucherCategory;
   code:          string;
+  title?:        string;   // tiêu đề dịch (VoucherTranslation.title)
   description:   string;
   discountType:  DiscountType;
   discountValue: number;
