@@ -41,10 +41,13 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
     }
   };
 
+  // Nhãn giảm giá: ưu tiên chuỗi `discount` do admin nhập (VD "Miễn phí 3 tháng").
+  // Fallback tính từ discountValue nếu chuỗi trống.
   const discountLabel =
-    voucher.discountType === 'percentage' ? `-${voucher.discountValue}%`
-    : voucher.discountType === 'free'     ? 'FREE'
-    : `-${voucher.currency ?? '$'}${voucher.discountValue}`;
+    voucher.discount?.trim() ||
+    (voucher.discountType === 'free' ? 'FREE'
+      : voucher.discountValue ? `-${voucher.discountValue}%`
+      : '');
 
   return (
     <article className={`bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 ${expired ? 'opacity-60' : ''}`}>

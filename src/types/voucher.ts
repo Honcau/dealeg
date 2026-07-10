@@ -18,6 +18,7 @@ export interface Voucher {
   category:      VoucherCategory;
   code:          string;
   title?:        string;   // tiêu đề dịch (VoucherTranslation.title)
+  discount?:     string;   // nhãn giảm giá hiển thị trên card (VD "-30%", "Miễn phí 3 tháng")
   description:   string;
   discountType:  DiscountType;
   discountValue: number;

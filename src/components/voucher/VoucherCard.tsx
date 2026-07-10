@@ -63,10 +63,13 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
     ? `${window.location.origin}/${locale}/voucher/${voucher.id}`
     : `https://dealeg.com/${locale}/voucher/${voucher.id}`;
 
+  // Nhãn giảm giá: ưu tiên chuỗi `discount` do admin nhập (VD "Miễn phí 3 tháng").
+  // Fallback tính từ discountValue nếu chuỗi trống.
   const discountLabel =
-    voucher.discountType === 'percentage' ? `-${voucher.discountValue}%`
-    : voucher.discountType === 'free'     ? 'FREE'
-    : `-${voucher.currency ?? '$'}${voucher.discountValue}`;
+    voucher.discount?.trim() ||
+    (voucher.discountType === 'free' ? 'FREE'
+      : voucher.discountValue ? `-${voucher.discountValue}%`
+      : '');
 
   return (
     <article
