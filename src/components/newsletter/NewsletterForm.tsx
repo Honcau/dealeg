@@ -28,7 +28,8 @@ export function NewsletterForm({ source = 'unknown', variant = 'card', showFrequ
   const locale = useLocale();
   const [email, setEmail] = useState('');
   const [frequency, setFrequency] = useState<'weekly' | 'daily'>('weekly');
-  const [categories, setCategories] = useState<string[]>([]);
+  // Mặc định quan tâm HẾT các category (user bỏ chọn cái không muốn).
+  const [categories, setCategories] = useState<string[]>(CATEGORY_OPTIONS.map(c => c.code));
   const toggleCategory = (c: string) =>
     setCategories(prev => prev.includes(c) ? prev.filter(x => x !== c) : [...prev, c]);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');

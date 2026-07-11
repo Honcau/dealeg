@@ -40,6 +40,7 @@ export async function POST(req: NextRequest) {
       const r = await subscribeToListmonk({
         email,
         locale,
+        categories,
         attribs: { source, frequency, categories },
       });
       await saveLocal().catch(() => {}); // mirror, không chặn

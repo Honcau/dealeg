@@ -11,7 +11,7 @@ export async function Footer() {
       <div className="max-w-6xl mx-auto px-4 py-10">
         {/* Newsletter */}
         <div className="mb-10 max-w-md">
-          <NewsletterForm source="footer" variant="card" />
+          <NewsletterForm source="footer" variant="card" showFrequency showCategories />
         </div>
 
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
