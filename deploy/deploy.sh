@@ -11,20 +11,28 @@ echo "🚀 Bắt đầu deploy dealeg.com..."
 echo "📥 Pull code từ GitHub..."
 git pull origin main
 
-# 2. Build Docker image
+# 2. Đồng bộ schema DB production (thêm cột mới TRƯỚC khi chạy code mới)
+#    DB production nằm trên host → dùng localhost (không phải host.docker.internal).
+#    db push chỉ tự áp dụng thay đổi ADDITIVE; nếu có drop cột (mất dữ liệu) lệnh sẽ
+#    dừng deploy để xử lý tay (an toàn). Prisma pin 5.22.0 vì schema dùng url=env().
+echo "🗄️  Đồng bộ schema database..."
+PROD_DB=$(grep -m1 '^DATABASE_URL=' .env.production | cut -d= -f2- | tr -d '"' | sed 's/host\.docker\.internal/localhost/')
+DATABASE_URL="$PROD_DB" npx --yes prisma@5.22.0 db push --skip-generate
+
+# 3. Build Docker image
 echo "🔨 Build Docker image..."
 docker compose build
 
-# 3. Restart container (migration tự chạy khi start)
+# 4. Restart container
 echo "♻️  Restart app..."
 docker compose down
 docker compose up -d
 
-# 4. Chờ app khởi động
+# 5. Chờ app khởi động
 echo "⏳ Chờ app khởi động..."
 sleep 5
 
-# 5. Kiểm tra
+# 6. Kiểm tra
 if curl -sf http://localhost:3000 > /dev/null; then
   echo "✅ Deploy thành công! App đang chạy."
 else
