@@ -418,6 +418,8 @@
     "popularPages": "Trang phổ biến"
   },
   "blog": {
-    "publishedOn": "Đăng ngày"
+    "publishedOn": "Đăng ngày",
+    "relatedVouchers": "Voucher liên quan",
+    "relatedPosts": "Bài viết liên quan"
   }
 }

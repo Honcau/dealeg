@@ -417,6 +417,8 @@
     "popularPages": "Popular pages"
   },
   "blog": {
-    "publishedOn": "Published"
+    "publishedOn": "Published",
+    "relatedVouchers": "Related vouchers",
+    "relatedPosts": "Related posts"
   }
 }

@@ -5,7 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import { prisma }          from '@/lib/db';
 import { getArticleTranslation } from '@/lib/translation';
 import { ShareButtons } from '@/components/share/ShareButtons';
-import { NewsletterForm } from '@/components/newsletter/NewsletterForm';
+import { Link } from '@/i18n/navigation';
 
 // ISR: cache trang đã render, tự làm mới mỗi 5 phút (nhanh hơn nhiều so với render mỗi request)
 export const revalidate = 300;
@@ -70,6 +70,34 @@ export default async function ArticlePage({ params }: Props) {
 
   const html = markdownToHtml(translation.content);
 
+  // ── Liên quan (thay box newsletter cuối bài): voucher phổ biến + blog khác ──
+  const relatedVouchers = await prisma.voucher.findMany({
+    where: { isActive: true },
+    orderBy: { useCount: 'desc' },
+    take: 5,
+    select: { id: true, code: true, provider: true, discount: true },
+  });
+  let relatedRows = await prisma.article.findMany({
+    where: { status: 'PUBLISHED', slug: { not: slug }, ...(article.category ? { category: article.category } : {}) },
+    orderBy: { publishedAt: 'desc' },
+    take: 5,
+    include: { translations: { where: { locale: { in: [locale, 'en'] } } } },
+  });
+  if (relatedRows.length < 5) {
+    const seen = new Set([slug, ...relatedRows.map(p => p.slug)]);
+    const more = await prisma.article.findMany({
+      where: { status: 'PUBLISHED', slug: { notIn: [...seen] } },
+      orderBy: { publishedAt: 'desc' },
+      take: 5 - relatedRows.length,
+      include: { translations: { where: { locale: { in: [locale, 'en'] } } } },
+    });
+    relatedRows = [...relatedRows, ...more];
+  }
+  const relatedPosts = relatedRows.map(p => {
+    const tr = p.translations.find(x => x.locale === locale) ?? p.translations.find(x => x.locale === 'en');
+    return { slug: p.slug, title: tr?.title ?? p.slug };
+  });
+
   const localeNames: Record<string, string> = {
     vi:'Tiếng Việt', en:'English', zh:'中文', hi:'हिंदी',
     es:'Español', pt:'Português', fr:'Français', de:'Deutsch',
@@ -125,10 +153,45 @@ export default async function ArticlePage({ params }: Props) {
         <ShareButtons title={translation.title} />
       </div>
 
-      {/* Newsletter CTA cuối bài */}
-      <div className="mt-8">
-        <NewsletterForm source="blog-article" variant="card" />
-      </div>
+      {/* Liên quan: voucher + blog (2 cột) */}
+      {(relatedVouchers.length > 0 || relatedPosts.length > 0) && (
+        <div className="mt-12 pt-8 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {relatedVouchers.length > 0 && (
+            <div>
+              <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">
+                {t.has('relatedVouchers') ? t('relatedVouchers') : 'Related vouchers'}
+              </h2>
+              <div className="space-y-2">
+                {relatedVouchers.map(v => (
+                  <Link key={v.id} href={`/voucher/${v.id}`}
+                    className="flex items-center justify-between gap-2 bg-white rounded-xl border border-gray-200 p-3 hover:border-indigo-300 transition-colors">
+                    <span className="min-w-0">
+                      <span className="block font-mono font-bold text-sm text-gray-800 truncate">{v.code}</span>
+                      <span className="text-xs text-gray-400">{v.provider}</span>
+                    </span>
+                    <span className="shrink-0 text-indigo-600 font-bold text-sm">{v.discount}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+          {relatedPosts.length > 0 && (
+            <div>
+              <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">
+                {t.has('relatedPosts') ? t('relatedPosts') : 'Related posts'}
+              </h2>
+              <div className="space-y-2">
+                {relatedPosts.map(p => (
+                  <Link key={p.slug} href={`/blog/${p.slug}`}
+                    className="block bg-white rounded-xl border border-gray-200 p-3 hover:border-indigo-300 transition-colors">
+                    <span className="text-sm font-medium text-gray-800 line-clamp-2">{p.title}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </article>
   );
 }

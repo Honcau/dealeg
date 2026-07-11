@@ -17,17 +17,14 @@ const CATEGORY_OPTIONS = [
 interface Props {
   source?: string;
   variant?: 'inline' | 'card';
-  /** Hiện lựa chọn tần suất (weekly/daily) — dùng cho card/exit-intent. */
-  showFrequency?: boolean;
   /** Hiện chọn category/brand quan tâm — dùng cho card/exit-intent. */
   showCategories?: boolean;
 }
 
-export function NewsletterForm({ source = 'unknown', variant = 'card', showFrequency = false, showCategories = false }: Props) {
+export function NewsletterForm({ source = 'unknown', variant = 'card', showCategories = false }: Props) {
   const t = useTranslations('newsletter');
   const locale = useLocale();
   const [email, setEmail] = useState('');
-  const [frequency, setFrequency] = useState<'weekly' | 'daily'>('weekly');
   // Mặc định quan tâm HẾT các category (user bỏ chọn cái không muốn).
   const [categories, setCategories] = useState<string[]>(CATEGORY_OPTIONS.map(c => c.code));
   const toggleCategory = (c: string) =>
@@ -46,7 +43,7 @@ export function NewsletterForm({ source = 'unknown', variant = 'card', showFrequ
       const res = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, locale, source, frequency, categories }),
+        body: JSON.stringify({ email, locale, source, categories }),
       });
       if (res.ok) {
         const data = await res.json().catch(() => ({}));
@@ -76,21 +73,6 @@ export function NewsletterForm({ source = 'unknown', variant = 'card', showFrequ
 
   const inputCls = 'flex-1 px-4 py-2.5 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500';
   const btnCls = 'bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white font-semibold px-5 py-2.5 rounded-lg text-sm whitespace-nowrap transition-colors';
-
-  const frequencyToggle = showFrequency && (
-    <div className="flex items-center gap-3 mt-3 text-sm">
-      <span className="text-gray-500">{tx('frequencyLabel', 'Frequency')}:</span>
-      {(['weekly', 'daily'] as const).map(f => (
-        <label key={f} className="flex items-center gap-1.5 cursor-pointer">
-          <input type="radio" name={`freq-${source}`} checked={frequency === f}
-            onChange={() => setFrequency(f)} className="accent-indigo-600" />
-          <span className={frequency === f ? 'text-gray-900 font-medium' : 'text-gray-500'}>
-            {f === 'weekly' ? tx('freqWeekly', 'Weekly') : tx('freqDaily', 'Daily')}
-          </span>
-        </label>
-      ))}
-    </div>
-  );
 
   const categoryChips = showCategories && (
     <div className="mt-3">
@@ -122,7 +104,6 @@ export function NewsletterForm({ source = 'unknown', variant = 'card', showFrequ
             {status === 'loading' ? '...' : t('subscribe')}
           </button>
         </div>
-        {frequencyToggle}
         {msg && status === 'error' && <p className="text-xs text-red-500 mt-1">{msg}</p>}
       </form>
     );
@@ -140,7 +121,6 @@ export function NewsletterForm({ source = 'unknown', variant = 'card', showFrequ
             {status === 'loading' ? '...' : t('subscribe')}
           </button>
         </div>
-        {frequencyToggle}
         {categoryChips}
         {msg && status === 'error' && <p className="text-xs text-red-500 mt-2">{msg}</p>}
         <p className="text-xs text-gray-400 mt-2">{t('privacy')}</p>

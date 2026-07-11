@@ -94,10 +94,10 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
           onClick={handleGetCode}
           className="group relative w-full flex items-stretch rounded-lg overflow-hidden border border-gray-200 hover:border-indigo-500 transition-colors"
         >
-          <span className="flex-1 flex items-center justify-center font-mono font-bold text-lg tracking-widest text-gray-900 bg-gray-50 px-4 py-4 group-hover:bg-indigo-50 transition-colors">
-            {copied ? <span className="text-green-600">{t('copied')}</span> : voucher.code}
+          <span className="flex-1 min-w-0 flex items-center justify-center font-mono font-bold text-lg tracking-widest text-gray-900 bg-gray-50 px-4 py-4 group-hover:bg-indigo-50 transition-colors">
+            {copied ? <span className="text-green-600">{t('copied')}</span> : <span className="truncate max-w-full">{voucher.code}</span>}
           </span>
-          <span className="relative flex items-center justify-center bg-indigo-600 group-hover:bg-indigo-700 text-white text-base font-semibold px-8 transition-colors whitespace-nowrap border-l-2 border-dashed border-white/50">
+          <span className="relative shrink-0 flex items-center justify-center bg-indigo-600 group-hover:bg-indigo-700 text-white text-base font-semibold px-8 transition-colors whitespace-nowrap border-l-2 border-dashed border-white/50">
             <span aria-hidden className="absolute -left-[8px] -top-[8px] w-4 h-4 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
             <span aria-hidden className="absolute -left-[8px] -bottom-[8px] w-4 h-4 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
             {t('getCode')} →

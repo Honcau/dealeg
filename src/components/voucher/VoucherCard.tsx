@@ -128,15 +128,15 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
           className="group relative flex items-stretch w-full rounded-lg overflow-hidden border border-gray-200 hover:border-indigo-500 transition-colors cursor-pointer"
         >
           {/* Bên trái: code (phần cuống vé) */}
-          <span className="flex-1 flex items-center justify-center font-mono font-bold text-sm tracking-widest text-gray-900 bg-gray-50 px-4 py-3 group-hover:bg-indigo-50 transition-colors">
+          <span className="flex-1 min-w-0 flex items-center justify-center font-mono font-bold text-sm tracking-widest text-gray-900 bg-gray-50 px-4 py-3 group-hover:bg-indigo-50 transition-colors">
             {copied ? (
               <span className="text-green-600">{t('copied')}</span>
             ) : (
-              voucher.code
+              <span className="truncate max-w-full">{voucher.code}</span>
             )}
           </span>
-          {/* Bên phải: nút hành động — khía vé + đường đứt như vé xé */}
-          <span className="relative flex items-center justify-center bg-indigo-600 group-hover:bg-indigo-700 text-white text-sm font-semibold px-5 transition-colors whitespace-nowrap border-l-2 border-dashed border-white/50">
+          {/* Bên phải: nút hành động — khía vé + đường đứt như vé xé. shrink-0 để mã dài không đè lên */}
+          <span className="relative shrink-0 flex items-center justify-center bg-indigo-600 group-hover:bg-indigo-700 text-white text-sm font-semibold px-5 transition-colors whitespace-nowrap border-l-2 border-dashed border-white/50">
             <span aria-hidden className="absolute -left-[7px] -top-[7px] w-3.5 h-3.5 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
             <span aria-hidden className="absolute -left-[7px] -bottom-[7px] w-3.5 h-3.5 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
             {t('getCode')} →
