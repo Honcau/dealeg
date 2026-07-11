@@ -130,7 +130,7 @@ export function SearchBox({ variant = 'desktop' }: { variant?: 'desktop' | 'mobi
                 >
                   <div className="min-w-0">
                     <div className="font-medium text-sm text-gray-800 truncate">{v.provider}</div>
-                    <div className="text-xs text-gray-400 font-mono">{v.code}</div>
+                    <div className="text-xs text-gray-400 truncate">{v.title}</div>
                   </div>
                   <span className="text-indigo-600 font-bold text-sm shrink-0 ml-2">
                     {v.discountValue ? `-${v.discountValue}%` : v.discount}
