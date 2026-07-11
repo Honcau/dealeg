@@ -61,7 +61,7 @@ export function ExitIntentSignup() {
         >
           ×
         </button>
-        <NewsletterForm source="exit-intent" variant="card" showFrequency />
+        <NewsletterForm source="exit-intent" variant="card" showFrequency showCategories />
       </div>
     </div>
   );

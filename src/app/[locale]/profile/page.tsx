@@ -1,11 +1,12 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 import { useSession, signOut }   from 'next-auth/react';
 import { useRouter }    from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Image             from 'next/image';
+import { LOCALE_OPTIONS } from '@/lib/locales';
 
 interface UserComment {
   id: string;
@@ -30,10 +31,13 @@ interface SavedVoucher {
 
 export default function ProfilePage() {
   const t = useTranslations('profile');
+  const tx = (k: string, f: string) => (t.has(k) ? t(k) : f);
+  const locale = useLocale();
   const { data: session, status, update } = useSession();
   const router = useRouter();
 
   const [name,        setName]        = useState('');
+  const [language,    setLanguage]    = useState('en');
   const [saving,      setSaving]      = useState(false);
   const [saved,       setSaved]       = useState(false);
   const [comments,    setComments]    = useState<UserComment[]>([]);
@@ -70,6 +74,7 @@ export default function ProfilePage() {
     const data = await res.json();
     setComments(data.comments ?? []);
     setAccounts(data.accounts ?? []);
+    setLanguage(data.language ?? 'en');
     // Lấy voucher đã lưu
     fetch('/api/user/saved')
       .then(r => r.json())
@@ -140,13 +145,18 @@ export default function ProfilePage() {
     const res = await fetch('/api/profile', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name }),
+      body: JSON.stringify({ name, language }),
     });
 
     if (res.ok) {
       await update({ name }); // Cập nhật session
       setSaved(true);
       setTimeout(() => setSaved(false), 2000);
+      if (language !== locale) {
+        // Đổi ngôn ngữ → reload sang locale mới để nạp bản dịch
+        window.location.href = `/${language}/profile`;
+        return;
+      }
     }
     setSaving(false);
   }
@@ -215,6 +225,23 @@ export default function ProfilePage() {
               {saved ? t('saved') : saving ? '...' : t('save')}
             </button>
           </div>
+        </div>
+
+        {/* Ngôn ngữ */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            {tx('language', 'Language')}
+          </label>
+          <select
+            value={language}
+            onChange={e => setLanguage(e.target.value)}
+            className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            {LOCALE_OPTIONS.map(o => <option key={o.code} value={o.code}>{o.label}</option>)}
+          </select>
+          <p className="text-xs text-gray-400 mt-1">
+            {tx('languageHint', 'Changing this switches the site language after you press Save.')}
+          </p>
         </div>
       </div>
 

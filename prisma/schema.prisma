@@ -103,6 +103,7 @@ model User {
   emailVerified DateTime?
   image         String?
   password      String?
+  language      String    @default("en")  // ngôn ngữ giao diện ưa thích
   accounts      Account[]
   sessions      Session[]
   comments      Comment[]

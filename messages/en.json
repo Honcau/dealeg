@@ -325,7 +325,8 @@
     "confirm": "Almost done! Check your email to confirm your subscription.",
     "frequencyLabel": "Frequency",
     "freqWeekly": "Weekly",
-    "freqDaily": "Daily"
+    "freqDaily": "Daily",
+    "categoriesLabel": "Interested in"
   },
   "share": {
     "label": "Share",
@@ -365,6 +366,8 @@
     "title": "Your Profile",
     "loading": "Loading...",
     "displayName": "Display name",
+    "language": "Language",
+    "languageHint": "Changing this switches the site language after you press Save.",
     "save": "Save",
     "saved": "✓ Saved",
     "linkedAccounts": "Linked accounts",

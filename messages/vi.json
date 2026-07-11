@@ -325,7 +325,8 @@
     "confirm": "Sắp xong! Kiểm tra email để xác nhận đăng ký của bạn.",
     "frequencyLabel": "Tần suất",
     "freqWeekly": "Hàng tuần",
-    "freqDaily": "Hàng ngày"
+    "freqDaily": "Hàng ngày",
+    "categoriesLabel": "Quan tâm đến"
   },
   "share": {
     "label": "Chia sẻ",
@@ -366,6 +367,8 @@
     "title": "Hồ sơ của bạn",
     "loading": "Đang tải...",
     "displayName": "Tên hiển thị",
+    "language": "Ngôn ngữ",
+    "languageHint": "Đổi mục này sẽ chuyển ngôn ngữ giao diện sau khi bấm Lưu.",
     "save": "Lưu",
     "saved": "✓ Đã lưu",
     "linkedAccounts": "Tài khoản liên kết",

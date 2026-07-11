@@ -4,6 +4,7 @@ import { useState }          from 'react';
 import { signIn }            from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense }          from 'react';
+import { LOCALE_OPTIONS }    from '@/lib/locales';
 
 
 // ── i18n cho trang auth (ngoài [locale] nên tự xử lý) ───────────────────────────
@@ -15,7 +16,7 @@ const MESSAGES: Record<string, Record<string, string>> = {
     signinBtn: 'Đăng nhập', signupBtn: 'Tạo tài khoản', loading: 'Đang xử lý...',
     errWrong: 'Email hoặc mật khẩu không đúng', errConfirm: 'Mật khẩu xác nhận không khớp', errSignup: 'Đăng ký thất bại, thử lại',
     displayName: 'Tên hiển thị', passwordMin: 'Mật khẩu (tối thiểu 6 ký tự)', processing: 'Đang xử lý...', createAccount: 'Tạo tài khoản',
-    agreeText: 'Bằng cách đăng nhập, bạn đồng ý với', terms: 'Điều khoản', and: 'và', privacy: 'Chính sách bảo mật', loadingPage: 'Đang tải...',
+    agreeText: 'Bằng cách đăng nhập, bạn đồng ý với', terms: 'Điều khoản', and: 'và', privacy: 'Chính sách bảo mật', loadingPage: 'Đang tải...', language: 'Ngôn ngữ',
   },
   en: {
     tagline: 'Best tech vouchers', signin: 'Sign in', signup: 'Sign up',
@@ -24,7 +25,7 @@ const MESSAGES: Record<string, Record<string, string>> = {
     signinBtn: 'Sign in', signupBtn: 'Create account', loading: 'Processing...',
     errWrong: 'Wrong email or password', errConfirm: 'Passwords do not match', errSignup: 'Sign up failed, try again',
     displayName: 'Display name', passwordMin: 'Password (min 6 characters)', processing: 'Processing...', createAccount: 'Create account',
-    agreeText: 'By signing in, you agree to our', terms: 'Terms', and: 'and', privacy: 'Privacy Policy', loadingPage: 'Loading...',
+    agreeText: 'By signing in, you agree to our', terms: 'Terms', and: 'and', privacy: 'Privacy Policy', loadingPage: 'Loading...', language: 'Language',
   },
 };
 
@@ -65,6 +66,7 @@ function AuthPageContent() {
   const [email,    setEmail]    = useState('');
   const [password, setPassword] = useState('');
   const [confirm,  setConfirm]  = useState('');
+  const [language, setLanguage] = useState('en');   // mặc định en
   const [errors,   setErrors]   = useState<Record<string, string>>({});
   const [loading,  setLoading]  = useState<string | null>(null);
 
@@ -112,7 +114,7 @@ function AuthPageContent() {
     const res = await fetch('/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ name, email, password, language }),
     });
 
     const data = await res.json();
@@ -128,6 +130,9 @@ function AuthPageContent() {
       setLoading(null);
       return;
     }
+
+    // Lưu ngôn ngữ đã chọn vào cookie để UI hiển thị đúng sau khi vào
+    document.cookie = `NEXT_LOCALE=${language}; path=/; max-age=31536000`;
 
     // Đăng ký thành công → tự động đăng nhập
     const loginRes = await signIn('credentials', {
@@ -246,6 +251,16 @@ function AuthPageContent() {
                 placeholder={L.confirmPassword}
                 className={input(!!errors.confirm)} />
               {errors.confirm && <p className="text-xs text-red-500 mt-1">{errors.confirm}</p>}
+            </div>
+          )}
+
+          {mode === 'signup' && (
+            <div>
+              <label className="block text-xs text-gray-500 mb-1">{L.language}</label>
+              <select value={language} onChange={e => setLanguage(e.target.value)}
+                className={input(false)}>
+                {LOCALE_OPTIONS.map(o => <option key={o.code} value={o.code}>{o.label}</option>)}
+              </select>
             </div>
           )}
 
