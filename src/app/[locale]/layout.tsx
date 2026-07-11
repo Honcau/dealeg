@@ -8,6 +8,7 @@ import { HtmlAttributeSetter }       from '@/components/HtmlAttributeSetter';
 import { Header }                    from '@/components/layout/Header';
 import { Footer }                    from '@/components/layout/Footer';
 import { CookieConsent }             from '@/components/cookie/CookieConsent';
+import { ExitIntentSignup }          from '@/components/newsletter/ExitIntentSignup';
 
 type Props = {
   children: React.ReactNode;
@@ -57,6 +58,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         </main>
         <Footer />
         <CookieConsent />
+        <ExitIntentSignup />
       </NextIntlClientProvider>
     </SessionProvider>
   );

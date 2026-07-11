@@ -219,6 +219,8 @@ model Subscriber {
   locale      String   @default("vi")
   isActive    Boolean  @default(true)
   source      String?  // trang nào đăng ký (homepage, blog, coupon...)
+  frequency   String   @default("weekly")  // weekly | daily (preference center)
+  categories  String[] @default([])         // deal categories quan tâm
   createdAt   DateTime @default(now())
 
   @@index([isActive])

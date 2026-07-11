@@ -321,7 +321,11 @@
     "subscribe": "Đăng ký",
     "success": "Đăng ký thành công! Cảm ơn bạn.",
     "error": "Có lỗi, vui lòng thử lại",
-    "privacy": "Chúng tôi không spam. Hủy đăng ký bất cứ lúc nào."
+    "privacy": "Chúng tôi không spam. Hủy đăng ký bất cứ lúc nào.",
+    "confirm": "Sắp xong! Kiểm tra email để xác nhận đăng ký của bạn.",
+    "frequencyLabel": "Tần suất",
+    "freqWeekly": "Hàng tuần",
+    "freqDaily": "Hàng ngày"
   },
   "share": {
     "label": "Chia sẻ",

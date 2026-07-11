@@ -321,7 +321,11 @@
     "subscribe": "Subscribe",
     "success": "Subscribed! Thank you.",
     "error": "Something went wrong, try again",
-    "privacy": "No spam. Unsubscribe anytime."
+    "privacy": "No spam. Unsubscribe anytime.",
+    "confirm": "Almost done! Check your email to confirm your subscription.",
+    "frequencyLabel": "Frequency",
+    "freqWeekly": "Weekly",
+    "freqDaily": "Daily"
   },
   "share": {
     "label": "Share",

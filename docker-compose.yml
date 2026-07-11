@@ -38,5 +38,21 @@ services:
       - redis-data:/data
     command: redis-server --appendonly yes
 
+  # ─── Listmonk — email list manager (Phase 0) ─────────────────────────────────
+  # Backed by PostgreSQL trên host (DB riêng "listmonk"). SMTP (Brevo) cấu hình
+  # trong Admin UI. Xem LISTMONK_SETUP.md. Admin/API chỉ mở 127.0.0.1 → Nginx proxy.
+  listmonk:
+    image: listmonk/listmonk:v3.0.0
+    container_name: dealeg-listmonk
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:9000:9000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./deploy/listmonk/config.toml:/listmonk/config.toml:ro
+    # Tự cài schema lần đầu (idempotent) + upgrade, rồi chạy.
+    command: [sh, -c, "./listmonk --install --idempotent --yes --config /listmonk/config.toml && ./listmonk --upgrade --yes --config /listmonk/config.toml && ./listmonk --config /listmonk/config.toml"]
+
 volumes:
   redis-data:

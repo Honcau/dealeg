@@ -1,0 +1,29 @@
+# ─── Listmonk config (Phase 0) ──────────────────────────────────────────────
+# Chỉ chứa app address + admin + kết nối DB. Mọi thứ khác (SMTP, lists, templates)
+# cấu hình trong Admin UI và lưu trong DB. Xem LISTMONK_SETUP.md.
+#
+# ⚠️ ĐỔI các giá trị CHANGE_ME trước khi chạy production.
+
+[app]
+# Nghe trong container; ánh xạ 127.0.0.1:9000 ở docker-compose (Nginx proxy ra ngoài).
+address = "0.0.0.0:9000"
+
+# Admin đăng nhập lần đầu. Đổi mật khẩu mạnh; sau khi tạo user thật có thể xoá.
+admin_username = "admin"
+admin_password = "CHANGE_ME_admin_password_min_8_chars"
+
+[db]
+# PostgreSQL trên host VPS (giống dealeg). Tạo DB + user "listmonk" riêng — xem doc.
+host     = "host.docker.internal"
+port     = 5432
+user     = "listmonk"
+password = "CHANGE_ME_db_password"
+database = "listmonk"
+
+ssl_mode = "disable"
+max_open = 25
+max_idle = 25
+max_lifetime = "300s"
+
+# Không bật params tự động — Listmonk quản lý migration.
+params = ""

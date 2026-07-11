@@ -6,14 +6,20 @@ import { useTranslations, useLocale } from 'next-intl';
 interface Props {
   source?: string;
   variant?: 'inline' | 'card';
+  /** Hiện lựa chọn tần suất (weekly/daily) — dùng cho card/exit-intent. */
+  showFrequency?: boolean;
 }
 
-export function NewsletterForm({ source = 'unknown', variant = 'card' }: Props) {
+export function NewsletterForm({ source = 'unknown', variant = 'card', showFrequency = false }: Props) {
   const t = useTranslations('newsletter');
   const locale = useLocale();
   const [email, setEmail] = useState('');
+  const [frequency, setFrequency] = useState<'weekly' | 'daily'>('weekly');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [msg, setMsg] = useState('');
+
+  // Fallback tiếng Anh cho các key mới nếu locale chưa dịch (chỉ en/vi có sẵn).
+  const tx = (key: string, fallback: string) => (t.has(key) ? t(key) : fallback);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -23,10 +29,16 @@ export function NewsletterForm({ source = 'unknown', variant = 'card' }: Props) 
       const res = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, locale, source }),
+        body: JSON.stringify({ email, locale, source, frequency }),
       });
       if (res.ok) {
-        setStatus('success'); setMsg(t('success')); setEmail('');
+        const data = await res.json().catch(() => ({}));
+        setStatus('success');
+        // Double opt-in (Listmonk) → yêu cầu xác nhận email; ngược lại "đã đăng ký".
+        setMsg(data?.pending
+          ? tx('confirm', 'Almost done! Check your email to confirm your subscription.')
+          : t('success'));
+        setEmail('');
       } else {
         setStatus('error'); setMsg(t('error'));
       }
@@ -48,6 +60,21 @@ export function NewsletterForm({ source = 'unknown', variant = 'card' }: Props) 
   const inputCls = 'flex-1 px-4 py-2.5 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500';
   const btnCls = 'bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white font-semibold px-5 py-2.5 rounded-lg text-sm whitespace-nowrap transition-colors';
 
+  const frequencyToggle = showFrequency && (
+    <div className="flex items-center gap-3 mt-3 text-sm">
+      <span className="text-gray-500">{tx('frequencyLabel', 'Frequency')}:</span>
+      {(['weekly', 'daily'] as const).map(f => (
+        <label key={f} className="flex items-center gap-1.5 cursor-pointer">
+          <input type="radio" name={`freq-${source}`} checked={frequency === f}
+            onChange={() => setFrequency(f)} className="accent-indigo-600" />
+          <span className={frequency === f ? 'text-gray-900 font-medium' : 'text-gray-500'}>
+            {f === 'weekly' ? tx('freqWeekly', 'Weekly') : tx('freqDaily', 'Daily')}
+          </span>
+        </label>
+      ))}
+    </div>
+  );
+
   if (variant === 'inline') {
     return (
       <form onSubmit={handleSubmit} className="w-full">
@@ -58,6 +85,7 @@ export function NewsletterForm({ source = 'unknown', variant = 'card' }: Props) 
             {status === 'loading' ? '...' : t('subscribe')}
           </button>
         </div>
+        {frequencyToggle}
         {msg && status === 'error' && <p className="text-xs text-red-500 mt-1">{msg}</p>}
       </form>
     );
@@ -75,6 +103,7 @@ export function NewsletterForm({ source = 'unknown', variant = 'card' }: Props) 
             {status === 'loading' ? '...' : t('subscribe')}
           </button>
         </div>
+        {frequencyToggle}
         {msg && status === 'error' && <p className="text-xs text-red-500 mt-2">{msg}</p>}
         <p className="text-xs text-gray-400 mt-2">{t('privacy')}</p>
       </form>
