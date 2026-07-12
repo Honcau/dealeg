@@ -49,6 +49,10 @@ services:
       - "127.0.0.1:9000:9000"
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    # Đọc .env.production để lấy LISTMONK_db__password (override [db] password trong
+    # config.toml) — nhờ vậy config.toml không chứa secret, pull không xung đột.
+    env_file:
+      - .env.production
     environment:
       # Super admin (v3) — chỉ tạo ở lần --install ĐẦU TIÊN. Truyền qua shell:
       #   LISTMONK_ADMIN_USER=admin LISTMONK_ADMIN_PASSWORD=xxx docker compose up -d listmonk

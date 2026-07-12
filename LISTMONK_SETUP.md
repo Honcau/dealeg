@@ -24,10 +24,16 @@ SQL
 Đảm bảo Postgres cho phép container kết nối (giống dealeg — xem DEPLOY_CONTABO.md
 Bước 2: `listen_addresses='*'` + dòng `pg_hba.conf` cho dải Docker `172.16.0.0/12`).
 
-## 2. Cấu hình `deploy/listmonk/config.toml`
+## 2. Cấu hình DB password (qua env — KHÔNG sửa config.toml)
 
-v3 chỉ cần `[db]` (super admin không còn đặt trong config nữa — xem bước 3):
-- Sửa `[db] password` = đúng mật khẩu user `listmonk` ở bước 1.
+`config.toml` giờ **không chứa secret** (không cần sửa gì — nên pull code sau này
+không xung đột). Password DB Listmonk đặt trong **`.env.production`**; docker-compose
+truyền vào container (override `[db] password`):
+
+```bash
+# thêm vào .env.production (dùng đúng mật khẩu user "listmonk" ở bước 1)
+LISTMONK_db__password="MAT_KHAU_DB_LISTMONK"
+```
 
 ## 3. Chạy Listmonk lần đầu (tạo super admin)
 
