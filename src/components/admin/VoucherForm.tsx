@@ -46,7 +46,7 @@ export function VoucherForm({ initial, voucherId }: Props) {
   }
 
   async function handleSave() {
-    if (!form.code || !form.provider || !form.discount) {
+    if (!form.code || !form.provider) {
       setError('Vui lòng điền các trường bắt buộc (*)');
       return;
     }
@@ -119,13 +119,7 @@ export function VoucherForm({ initial, voucherId }: Props) {
           </div>
 
           <div>
-            <label className={labelCls}>Mô tả giảm giá * <span className="text-gray-400">(hiển thị trên card)</span></label>
-            <input value={form.discount} onChange={e => set('discount', e.target.value)}
-              placeholder="VD: -30% hoặc Miễn phí 3 tháng" className={inputCls} />
-          </div>
-
-          <div>
-            <label className={labelCls}>Giá trị % <span className="text-gray-400">(để sort, 0 nếu không phải %)</span></label>
+            <label className={labelCls}>Giá trị % * <span className="text-gray-400">(hiển thị trên card & để sort, 0 nếu không phải %)</span></label>
             <input type="number" min={0} max={100}
               value={form.discountValue} onChange={e => set('discountValue', Number(e.target.value))}
               className={inputCls} />

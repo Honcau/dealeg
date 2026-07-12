@@ -13,7 +13,7 @@ const UpdateSchema = z.object({
   code:          z.string().min(1).transform(v => v.trim().toUpperCase()),
   provider:      z.string().min(1).transform(v => v.trim()),
   category:      z.enum(['DOMAIN','HOSTING','VPN','SECURITY','EMAIL','CDN','SSL','OTHER']),
-  discount:      z.string().min(1),
+  discount:      z.string().optional(),   // derive từ discountValue (không nhập tay nữa)
   discountValue: z.number().min(0).max(100),
   affiliateUrl:  z.string().url().optional().or(z.literal('')),
   sourceUrl:     z.string().url().optional().or(z.literal('')),
@@ -61,6 +61,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
     where: { id },
     data: {
       ...data,
+      discount:     data.discountValue > 0 ? `-${data.discountValue}%` : '',
       affiliateUrl: data.affiliateUrl || null,
       sourceUrl:    data.sourceUrl || null,
       expiresAt:    expiresAt ? new Date(expiresAt) : null,
