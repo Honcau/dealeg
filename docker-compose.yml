@@ -42,7 +42,7 @@ services:
   # Backed by PostgreSQL trên host (DB riêng "listmonk"). SMTP (Brevo) cấu hình
   # trong Admin UI. Xem LISTMONK_SETUP.md. Admin/API chỉ mở 127.0.0.1 → Nginx proxy.
   listmonk:
-    image: listmonk/listmonk:v3.0.0
+    image: listmonk/listmonk:v6.2.0
     container_name: dealeg-listmonk
     restart: unless-stopped
     ports:
@@ -54,7 +54,7 @@ services:
     env_file:
       - .env.production
     environment:
-      # Super admin (v3) — chỉ tạo ở lần --install ĐẦU TIÊN. Truyền qua shell:
+      # Super admin (v6) — chỉ tạo ở lần --install ĐẦU TIÊN. Truyền qua shell:
       #   LISTMONK_ADMIN_USER=admin LISTMONK_ADMIN_PASSWORD=xxx docker compose up -d listmonk
       # Các lần sau chạy bình thường, Listmonk bỏ qua 2 biến này.
       - LISTMONK_ADMIN_USER

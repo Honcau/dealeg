@@ -1,8 +1,8 @@
-# ─── Listmonk config (v3.0.0) ────────────────────────────────────────────────
-# v3 chỉ cần [app] address + [db]. Mọi thứ khác (SMTP, lists, templates, users)
+# ─── Listmonk config (v6.2.0) ────────────────────────────────────────────────
+# v6 chỉ cần [app] address + [db]. Mọi thứ khác (SMTP, lists, templates, users)
 # cấu hình trong Admin UI và lưu trong DB. Xem LISTMONK_SETUP.md.
 #
-# ⚠️ Super admin KHÔNG còn đặt ở đây nữa (v3 đã bỏ admin_username/admin_password).
+# ⚠️ Super admin KHÔNG còn đặt ở đây nữa (từ v3 đã bỏ admin_username/admin_password).
 #    Tạo admin lần chạy ĐẦU bằng env: LISTMONK_ADMIN_USER + LISTMONK_ADMIN_PASSWORD
 #    (xem bước 3 trong doc). Password DB cũng đặt qua env (LISTMONK_db__password
 #    trong .env.production) — file này KHÔNG chứa secret nên không xung đột khi pull.

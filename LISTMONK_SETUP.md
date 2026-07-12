@@ -1,6 +1,6 @@
-# Listmonk Setup (v3.0.0) — Phase 0 Email Infrastructure
+# Listmonk Setup (v6.2.0) — Phase 0 Email Infrastructure
 
-Hướng dẫn dựng **Listmonk v3.0.0** (email list manager) cho dealeg theo bản nghiên cứu
+Hướng dẫn dựng **Listmonk v6.2.0** (email list manager) cho dealeg theo bản nghiên cứu
 growth. dealeg chỉ là proxy: form đăng ký → `/api/newsletter` → Listmonk API.
 Listmonk lo **double opt-in, welcome email, preference center, gửi campaign**.
 
@@ -37,7 +37,7 @@ LISTMONK_db__password="MAT_KHAU_DB_LISTMONK"
 
 ## 3. Chạy Listmonk lần đầu (tạo super admin)
 
-v3 tạo super admin qua **biến môi trường, chỉ ở lần chạy đầu tiên**:
+v6 tạo super admin qua **biến môi trường, chỉ ở lần chạy đầu tiên**:
 
 ```bash
 LISTMONK_ADMIN_USER=admin LISTMONK_ADMIN_PASSWORD='DAT_MAT_KHAU_ADMIN_MANH' \
@@ -105,14 +105,16 @@ Xác thực domain trong Brevo (Senders → Domains) trước khi gửi thật.
 
 Chỉnh **welcome/opt-in email template** (Campaigns → Templates) theo brand dealeg.
 
-## 8. Tạo API user cho dealeg (v3 dùng RBAC)
+## 8. Tạo API user cho dealeg (Admin → Users)
 
-v3 có phân quyền (roles). Tạo user API kèm role có quyền quản lý subscribers/lists:
+Listmonk v6 dùng RBAC (**User roles** + **List roles**). Tạo user kiểu **API**:
 
-1. **Admin → User roles → New**: tạo role cấp quyền `subscribers` (manage) và
-   `lists` (manage/subscription) — hoặc dùng role Admin có sẵn cho nhanh.
-2. **Admin → Users → New user**: chọn **Type: API**, gán role ở bước 1.
-3. Copy **username** + **token** (token chỉ hiện 1 lần — lưu ngay).
+1. **Admin → User roles**: tạo (hoặc dùng) một User role có quyền **`subscribers:manage`**
+   và **`lists:manage_all`** (đủ để thêm subscriber vào mọi list). Muốn giới hạn theo
+   từng list thì tạo thêm **List role** cấp quyền cho các list ở bước 7.
+2. **Admin → Users → New**: đặt **Type = API**, gán User role (± List role) ở bước 1.
+3. Lưu → Listmonk hiện **API token MỘT LẦN** (v6 hash token, không xem lại được).
+   Copy `username` + `token` ngay.
 
 ## 9. Nối vào dealeg (.env.production)
 
@@ -138,7 +140,7 @@ Restart dealeg: `docker compose up -d app`.
 
 - **Chưa cấu hình env** → dealeg tự fallback lưu vào bảng `Subscriber` (single opt-in
   tạm thời) nên form không bao giờ chết trước khi Listmonk lên.
-- Auth API dùng header `Authorization: token <user>:<token>` (chuẩn v3) — đã cài
+- Auth API dùng header `Authorization: token <user>:<token>` (chuẩn v6) — đã cài
   sẵn trong `src/lib/listmonk.ts`. BasicAuth (`curl -u user:token`) cũng chấp nhận.
 - Compliance EU (Đức/Pháp): **double opt-in bắt buộc** — đã bật ở bước 7; giữ log
   consent (Listmonk tự lưu timestamp + IP xác nhận).
