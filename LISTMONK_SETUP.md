@@ -95,10 +95,9 @@ Xác thực domain trong Brevo (Senders → Domains) trước khi gửi thật.
 **Lists → New** cho từng ngôn ngữ ưu tiên (theo research: bắt đầu de, en; sau ja, pt):
 - Name: `Deals — English (Weekly)` · Type: **Public** · Opt-in: **Double**
 - Lặp lại cho các ngôn ngữ. **Ghi lại List ID** (hiện ở URL/list table).
-- **Lists theo brand/category** (để gửi theo nhóm quan tâm): tạo thêm 1 list cho mỗi
-  category — `hosting, vpn, domain, security, email, cdn, ssl` (Public, Double opt-in).
-  Subscriber tự được thêm vào các list category họ chọn (form mặc định chọn hết).
-  Ghi lại List ID từng cái → điền `LISTMONK_CATEGORY_LIST_MAP` ở bước 9.
+
+> Newsletter chỉ phân nhóm **theo ngôn ngữ** (mỗi locale = 1 list). Không dùng list
+> theo category/brand.
 
 > Preference center (đổi ngôn ngữ/tần suất/hủy) = trang quản lý subscription tích
 > hợp sẵn của Listmonk, link tự chèn trong mỗi email. Không cần build thêm ở dealeg.
@@ -124,7 +123,6 @@ LISTMONK_API_USER="<api username>"
 LISTMONK_API_TOKEN="<api token>"
 LISTMONK_LIST_MAP='{"en":1,"de":2,"vi":3}'   # locale → List ID ở bước 7
 LISTMONK_DEFAULT_LIST_ID="1"
-LISTMONK_CATEGORY_LIST_MAP='{"hosting":10,"vpn":11,"domain":12,"security":13,"email":14,"cdn":15,"ssl":16}'   # category → List ID riêng
 ```
 Restart dealeg: `docker compose up -d app`.
 

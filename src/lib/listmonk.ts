@@ -37,26 +37,11 @@ export function listIdsForLocale(locale: string): number[] {
   return id ? [id] : [];
 }
 
-/** Map các category (brand quan tâm) → danh sách listId riêng của Listmonk (từ env). */
-export function listIdsForCategories(categories: string[]): number[] {
-  let map: Record<string, number> = {};
-  try {
-    map = JSON.parse(process.env.LISTMONK_CATEGORY_LIST_MAP ?? '{}');
-  } catch {
-    map = {};
-  }
-  return categories
-    .map(c => map[c])
-    .filter((id): id is number => typeof id === 'number' && id > 0);
-}
-
 export interface SubscribeInput {
   email: string;
   name?: string;
   locale: string;
-  /** Category/brand quan tâm → mỗi cái map sang 1 list riêng của Listmonk. */
-  categories?: string[];
-  /** Thuộc tính tuỳ ý lưu kèm subscriber (source, frequency, categories...). */
+  /** Thuộc tính tuỳ ý lưu kèm subscriber (source, frequency...). */
   attribs?: Record<string, unknown>;
 }
 
@@ -74,11 +59,8 @@ export async function subscribeToListmonk(input: SubscribeInput): Promise<Subscr
     throw new Error('Listmonk chưa được cấu hình (thiếu LISTMONK_URL/USER/TOKEN)');
   }
 
-  // Gộp list theo ngôn ngữ + list theo category (brand quan tâm), khử trùng.
-  const lists = [...new Set([
-    ...listIdsForLocale(input.locale),
-    ...listIdsForCategories(input.categories ?? []),
-  ])];
+  // Phân nhóm newsletter theo NGÔN NGỮ.
+  const lists = listIdsForLocale(input.locale);
 
   const res = await fetch(`${URL_BASE}/api/subscribers`, {
     method: 'POST',

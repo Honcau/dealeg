@@ -325,8 +325,7 @@
     "confirm": "Almost done! Check your email to confirm your subscription.",
     "frequencyLabel": "Frequency",
     "freqWeekly": "Weekly",
-    "freqDaily": "Daily",
-    "categoriesLabel": "Interested in"
+    "freqDaily": "Daily"
   },
   "share": {
     "label": "Share",

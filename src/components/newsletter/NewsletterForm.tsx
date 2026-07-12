@@ -3,36 +3,19 @@
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 
-// Category/brand quan tâm — để sau segment gửi theo nhóm (map sang Listmonk list/attrib).
-const CATEGORY_OPTIONS = [
-  { code: 'hosting',  label: 'Hosting' },
-  { code: 'vpn',      label: 'VPN' },
-  { code: 'domain',   label: 'Domain' },
-  { code: 'security', label: 'Security' },
-  { code: 'email',    label: 'Email' },
-  { code: 'cdn',      label: 'CDN' },
-  { code: 'ssl',      label: 'SSL' },
-];
-
 interface Props {
   source?: string;
   variant?: 'inline' | 'card';
-  /** Hiện chọn category/brand quan tâm — dùng cho card/exit-intent. */
-  showCategories?: boolean;
 }
 
-export function NewsletterForm({ source = 'unknown', variant = 'card', showCategories = false }: Props) {
+export function NewsletterForm({ source = 'unknown', variant = 'card' }: Props) {
   const t = useTranslations('newsletter');
   const locale = useLocale();
   const [email, setEmail] = useState('');
-  // Mặc định quan tâm HẾT các category (user bỏ chọn cái không muốn).
-  const [categories, setCategories] = useState<string[]>(CATEGORY_OPTIONS.map(c => c.code));
-  const toggleCategory = (c: string) =>
-    setCategories(prev => prev.includes(c) ? prev.filter(x => x !== c) : [...prev, c]);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [msg, setMsg] = useState('');
 
-  // Fallback tiếng Anh cho các key mới nếu locale chưa dịch (chỉ en/vi có sẵn).
+  // Fallback tiếng Anh cho key mới nếu locale chưa dịch (chỉ en/vi có sẵn).
   const tx = (key: string, fallback: string) => (t.has(key) ? t(key) : fallback);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -43,7 +26,7 @@ export function NewsletterForm({ source = 'unknown', variant = 'card', showCateg
       const res = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, locale, source, categories }),
+        body: JSON.stringify({ email, locale, source }),
       });
       if (res.ok) {
         const data = await res.json().catch(() => ({}));
@@ -74,26 +57,6 @@ export function NewsletterForm({ source = 'unknown', variant = 'card', showCateg
   const inputCls = 'flex-1 px-4 py-2.5 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500';
   const btnCls = 'bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white font-semibold px-5 py-2.5 rounded-lg text-sm whitespace-nowrap transition-colors';
 
-  const categoryChips = showCategories && (
-    <div className="mt-3">
-      <span className="text-sm text-gray-500">{tx('categoriesLabel', 'Interested in')}:</span>
-      <div className="flex flex-wrap gap-1.5 mt-1.5">
-        {CATEGORY_OPTIONS.map(c => {
-          const on = categories.includes(c.code);
-          return (
-            <button type="button" key={c.code} onClick={() => toggleCategory(c.code)}
-              className={`px-2.5 py-1 rounded-full text-xs font-medium border transition-colors ${
-                on ? 'bg-indigo-600 border-indigo-600 text-white'
-                   : 'bg-white border-gray-300 text-gray-600 hover:border-indigo-400'
-              }`}>
-              {c.label}
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
-
   if (variant === 'inline') {
     return (
       <form onSubmit={handleSubmit} className="w-full">
@@ -121,7 +84,6 @@ export function NewsletterForm({ source = 'unknown', variant = 'card', showCateg
             {status === 'loading' ? '...' : t('subscribe')}
           </button>
         </div>
-        {categoryChips}
         {msg && status === 'error' && <p className="text-xs text-red-500 mt-2">{msg}</p>}
         <p className="text-xs text-gray-400 mt-2">{t('privacy')}</p>
       </form>

@@ -8,7 +8,6 @@ const SubscribeSchema = z.object({
   locale:     z.string().default('vi'),
   source:     z.string().optional(),
   frequency:  z.enum(['weekly', 'daily']).default('weekly'),
-  categories: z.array(z.string()).max(12).optional().default([]),
 });
 
 /**
@@ -25,14 +24,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: parsed.error.flatten().fieldErrors }, { status: 422 });
   }
 
-  const { email, locale, source, frequency, categories } = parsed.data;
+  const { email, locale, source, frequency } = parsed.data;
 
   // Bản ghi cục bộ (log/analytics + fallback).
   const saveLocal = () =>
     prisma.subscriber.upsert({
       where:  { email },
-      create: { email, locale, source, frequency, categories, isActive: true },
-      update: { isActive: true, locale, frequency, categories },
+      create: { email, locale, source, frequency, isActive: true },
+      update: { isActive: true, locale, frequency },
     });
 
   try {
@@ -40,8 +39,7 @@ export async function POST(req: NextRequest) {
       const r = await subscribeToListmonk({
         email,
         locale,
-        categories,
-        attribs: { source, frequency, categories },
+        attribs: { source, frequency },
       });
       await saveLocal().catch(() => {}); // mirror, không chặn
       // pending=true → cần xác nhận email (double opt-in) cho subscriber mới.
