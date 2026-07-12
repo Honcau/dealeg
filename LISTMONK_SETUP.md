@@ -1,6 +1,6 @@
-# Listmonk Setup — Phase 0 Email Infrastructure
+# Listmonk Setup (v3.0.0) — Phase 0 Email Infrastructure
 
-Hướng dẫn dựng **Listmonk** (email list manager) cho dealeg theo bản nghiên cứu
+Hướng dẫn dựng **Listmonk v3.0.0** (email list manager) cho dealeg theo bản nghiên cứu
 growth. dealeg chỉ là proxy: form đăng ký → `/api/newsletter` → Listmonk API.
 Listmonk lo **double opt-in, welcome email, preference center, gửi campaign**.
 
@@ -26,17 +26,20 @@ Bước 2: `listen_addresses='*'` + dòng `pg_hba.conf` cho dải Docker `172.16
 
 ## 2. Cấu hình `deploy/listmonk/config.toml`
 
-Sửa các giá trị `CHANGE_ME`:
-- `[app] admin_password` — mật khẩu admin đăng nhập lần đầu.
-- `[db] password` — đúng mật khẩu user `listmonk` ở bước 1.
+v3 chỉ cần `[db]` (super admin không còn đặt trong config nữa — xem bước 3):
+- Sửa `[db] password` = đúng mật khẩu user `listmonk` ở bước 1.
 
-## 3. Chạy Listmonk
+## 3. Chạy Listmonk lần đầu (tạo super admin)
+
+v3 tạo super admin qua **biến môi trường, chỉ ở lần chạy đầu tiên**:
 
 ```bash
-docker compose up -d listmonk
-docker compose logs -f listmonk    # chờ "server started on 0.0.0.0:9000"
+LISTMONK_ADMIN_USER=admin LISTMONK_ADMIN_PASSWORD='DAT_MAT_KHAU_ADMIN_MANH' \
+  docker compose up -d listmonk
+docker compose logs -f listmonk    # chờ "HTTP server started on 0.0.0.0:9000"
 ```
-Service tự chạy `--install --idempotent` (tạo schema) rồi khởi động.
+Service tự `--install --idempotent` (tạo schema) rồi chạy. **Các lần sau** chỉ cần
+`docker compose up -d listmonk` — Listmonk bỏ qua 2 biến admin khi đã có user.
 
 ## 4. Reverse proxy + truy cập Admin
 
@@ -56,7 +59,7 @@ server {
 Rồi `certbot --nginx -d mail.dealeg.com`. (Hoặc tạm truy cập qua SSH tunnel:
 `ssh -L 9000:127.0.0.1:9000 user@vps` → mở http://localhost:9000.)
 
-Đăng nhập bằng `admin` + mật khẩu ở config.toml. Đổi mật khẩu ngay.
+Đăng nhập bằng user + mật khẩu admin đã đặt ở bước 3 (`LISTMONK_ADMIN_USER` / `LISTMONK_ADMIN_PASSWORD`).
 
 ## 5. Cấu hình SMTP (Brevo) — deliverability
 
@@ -96,11 +99,14 @@ Xác thực domain trong Brevo (Senders → Domains) trước khi gửi thật.
 
 Chỉnh **welcome/opt-in email template** (Campaigns → Templates) theo brand dealeg.
 
-## 8. Tạo API user cho dealeg
+## 8. Tạo API user cho dealeg (v3 dùng RBAC)
 
-**Settings → Users → New** (hoặc **API users**):
-- Tạo user kiểu API, cấp quyền `subscribers:manage`.
-- Copy **username** + **token**.
+v3 có phân quyền (roles). Tạo user API kèm role có quyền quản lý subscribers/lists:
+
+1. **Admin → User roles → New**: tạo role cấp quyền `subscribers` (manage) và
+   `lists` (manage/subscription) — hoặc dùng role Admin có sẵn cho nhanh.
+2. **Admin → Users → New user**: chọn **Type: API**, gán role ở bước 1.
+3. Copy **username** + **token** (token chỉ hiện 1 lần — lưu ngay).
 
 ## 9. Nối vào dealeg (.env.production)
 
@@ -126,7 +132,7 @@ Restart dealeg: `docker compose up -d app`.
 
 - **Chưa cấu hình env** → dealeg tự fallback lưu vào bảng `Subscriber` (single opt-in
   tạm thời) nên form không bao giờ chết trước khi Listmonk lên.
-- Auth API dùng scheme `Authorization: token user:token` (Listmonk ≥ v3). Nếu dùng
-  bản cũ hơn, đổi sang Basic auth trong `src/lib/listmonk.ts`.
+- Auth API dùng header `Authorization: token <user>:<token>` (chuẩn v3) — đã cài
+  sẵn trong `src/lib/listmonk.ts`. BasicAuth (`curl -u user:token`) cũng chấp nhận.
 - Compliance EU (Đức/Pháp): **double opt-in bắt buộc** — đã bật ở bước 7; giữ log
   consent (Listmonk tự lưu timestamp + IP xác nhận).

@@ -49,6 +49,12 @@ services:
       - "127.0.0.1:9000:9000"
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    environment:
+      # Super admin (v3) — chỉ tạo ở lần --install ĐẦU TIÊN. Truyền qua shell:
+      #   LISTMONK_ADMIN_USER=admin LISTMONK_ADMIN_PASSWORD=xxx docker compose up -d listmonk
+      # Các lần sau chạy bình thường, Listmonk bỏ qua 2 biến này.
+      - LISTMONK_ADMIN_USER
+      - LISTMONK_ADMIN_PASSWORD
     volumes:
       - ./deploy/listmonk/config.toml:/listmonk/config.toml:ro
     # Tự cài schema lần đầu (idempotent) + upgrade, rồi chạy.
