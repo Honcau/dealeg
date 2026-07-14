@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 const CATEGORIES = ['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL','AITOOL','OTHER'] as const;
@@ -39,7 +39,16 @@ export function VoucherForm({ initial, voucherId }: Props) {
   const [form,    setForm]    = useState<VoucherFormData>({ ...EMPTY, ...initial });
   const [loading, setLoading] = useState(false);
   const [error,   setError]   = useState('');
+  const [providers, setProviders] = useState<{ name: string }[]>([]);
   const router = useRouter();
+
+  // Nạp danh sách provider để chọn (thay vì gõ tay)
+  useEffect(() => {
+    fetch('/api/admin/providers')
+      .then(r => (r.ok ? r.json() : []))
+      .then((rows: { name: string }[]) => setProviders(rows))
+      .catch(() => {});
+  }, []);
 
   function set(field: keyof VoucherFormData, value: string | boolean | number) {
     setForm(prev => ({ ...prev, [field]: value }));
@@ -106,8 +115,18 @@ export function VoucherForm({ initial, voucherId }: Props) {
 
           <div>
             <label className={labelCls}>Nhà cung cấp *</label>
-            <input value={form.provider} onChange={e => set('provider', e.target.value)}
-              placeholder="VD: Namecheap" className={inputCls} />
+            <select value={form.provider} onChange={e => set('provider', e.target.value)} className={inputCls}>
+              <option value="">— chọn provider —</option>
+              {/* Giữ giá trị cũ khi sửa voucher nếu provider chưa có trong danh sách */}
+              {form.provider && !providers.some(p => p.name === form.provider) && (
+                <option value={form.provider}>{form.provider}</option>
+              )}
+              {providers.map(p => <option key={p.name} value={p.name}>{p.name}</option>)}
+            </select>
+            <a href="/admin/providers" target="_blank" rel="noopener noreferrer"
+              className="text-xs text-indigo-600 hover:underline mt-1 inline-block">
+              + Tạo provider mới
+            </a>
           </div>
 
           <div>
