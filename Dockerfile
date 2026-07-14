@@ -18,8 +18,10 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Prisma generate với binary target cho Alpine (linux-musl-openssl)
-RUN npx prisma generate
+# Prisma generate với binary target cho Alpine (linux-musl-openssl).
+# Pin @5.22.0: nếu npx không thấy prisma local sẽ KHÔNG tự tải Prisma 7
+# (v7 bỏ cú pháp `url = env(...)` trong schema → lỗi P1012 lúc build).
+RUN npx prisma@5.22.0 generate
 
 # NEXT_PUBLIC_* phải có mặt LÚC BUILD (được nhúng vào bundle JS).
 # Nhận từ build arg → set thành ENV để `npm run build` thấy được.
