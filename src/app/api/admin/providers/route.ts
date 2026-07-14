@@ -14,6 +14,7 @@ const ProviderSchema = z.object({
   website:     z.string().optional(),
   category:    z.enum(['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL','AITOOL','OTHER']),
   affiliateId: z.string().optional(),
+  description: z.string().optional(),
   logo:        z.string().optional(),
   isActive:    z.boolean().default(true),
 });
@@ -31,7 +32,7 @@ export async function GET(req: NextRequest) {
     orderBy: { name: 'asc' },
     select: {
       id: true, name: true, slug: true, website: true,
-      category: true, affiliateId: true, isActive: true,
+      category: true, affiliateId: true, description: true, isActive: true,
     },
   });
   return NextResponse.json(providers);
@@ -46,7 +47,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 422 });
   }
 
-  const { name, website, category, affiliateId, logo, isActive } = parsed.data;
+  const { name, website, category, affiliateId, description, logo, isActive } = parsed.data;
   const slug = slugify(name);
 
   // name & slug đều @unique → chặn trùng
@@ -64,6 +65,7 @@ export async function POST(req: NextRequest) {
       slug,
       website:         website || '',
       logo:            logo || null,
+      description:     description || null,
       category,
       affiliateId:     affiliateId || null,
       hasAffiliateApi: !!affiliateId,

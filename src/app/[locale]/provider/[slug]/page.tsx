@@ -48,8 +48,6 @@ export default async function ProviderPage({ params }: Props) {
     orderBy: { discountValue: 'desc' },
   });
 
-  if (dbVouchers.length === 0) notFound();
-
   const vouchers: Voucher[] = dbVouchers.map((v: (typeof dbVouchers)[number]) => ({
     id:            v.id,
     provider:      v.provider,
@@ -74,24 +72,31 @@ export default async function ProviderPage({ params }: Props) {
       <section>
         <h1 className="text-3xl font-extrabold text-gray-900 mb-2">{provider.name}</h1>
         <p className="text-gray-500">
-          {vouchers.length} voucher · <a href={provider.website} target="_blank" className="text-indigo-600 hover:underline">Visit site →</a>
+          {vouchers.length} voucher{provider.website && <> · <a href={provider.website} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">Visit site →</a></>}
         </p>
+        {provider.description && (
+          <p className="text-gray-600 leading-relaxed max-w-2xl mt-4">{provider.description}</p>
+        )}
       </section>
 
       <section>
         <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-4">
           Active Deals
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {vouchers.map(v => (
-            <div key={v.id} className="space-y-2">
-              <VoucherCard voucher={v} />
-              <div className="border-t border-gray-200 pt-2">
-                <VoucherComments voucherId={v.id} />
+        {vouchers.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {vouchers.map(v => (
+              <div key={v.id} className="space-y-2">
+                <VoucherCard voucher={v} />
+                <div className="border-t border-gray-200 pt-2">
+                  <VoucherComments voucherId={v.id} />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-gray-400 text-sm">Chưa có mã giảm giá nào cho {provider.name}.</p>
+        )}
       </section>
 
       <div className="pt-6 border-t border-gray-100">

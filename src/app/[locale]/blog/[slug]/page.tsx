@@ -55,6 +55,44 @@ function markdownToHtml(md: string): string {
     .replace(/^(.+)$(?!<\/?(h[123]|li|blockquote))/gm, (m) => m.startsWith('<') ? m : m);
 }
 
+function escapeReg(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/**
+ * Tự động biến tên provider trong nội dung bài viết thành hyperlink về /[locale]/provider/[slug].
+ * - Chỉ link LẦN XUẤT HIỆN ĐẦU TIÊN của mỗi provider (tránh spam link).
+ * - Match nguyên từ (không dính chữ khác), không phân biệt hoa thường.
+ * - Bỏ qua text nằm trong thẻ HTML và trong <a> có sẵn (không link chồng link).
+ */
+function linkProviders(html: string, providers: { name: string; slug: string }[], locale: string): string {
+  if (providers.length === 0) return html;
+  const sorted = [...providers].sort((a, b) => b.name.length - a.name.length); // tên dài match trước
+  const linked = new Set<string>();
+  const parts = html.split(/(<[^>]+>)/g); // index lẻ = thẻ, index chẵn = text
+  let anchorDepth = 0;
+
+  return parts.map((part, i) => {
+    if (i % 2 === 1) {
+      if (/^<a\b/i.test(part))      anchorDepth++;
+      else if (/^<\/a>/i.test(part)) anchorDepth = Math.max(0, anchorDepth - 1);
+      return part;
+    }
+    if (anchorDepth > 0 || !part) return part;
+    let text = part;
+    for (const p of sorted) {
+      if (linked.has(p.slug)) continue;
+      const re = new RegExp(`(^|[^\\w])(${escapeReg(p.name)})(?![\\w])`, 'i');
+      if (re.test(text)) {
+        text = text.replace(re, (_m, pre, name) =>
+          `${pre}<a href="/${locale}/provider/${p.slug}" class="text-indigo-600 font-medium hover:underline">${name}</a>`);
+        linked.add(p.slug);
+      }
+    }
+    return text;
+  }).join('');
+}
+
 export default async function ArticlePage({ params }: Props) {
   const { locale, slug } = await params;
   const t = await getTranslations('blog');
@@ -68,7 +106,12 @@ export default async function ArticlePage({ params }: Props) {
   const { translation, isFallback } = await getArticleTranslation(article.id, locale);
   if (!translation) notFound();
 
-  const html = markdownToHtml(translation.content);
+  // Tự động hyperlink tên provider trong bài → trang provider (chỉ provider đang active)
+  const linkableProviders = await prisma.provider.findMany({
+    where: { isActive: true },
+    select: { name: true, slug: true },
+  });
+  const html = linkProviders(markdownToHtml(translation.content), linkableProviders, locale);
 
   // ── Liên quan (thay box newsletter cuối bài): voucher phổ biến + blog khác ──
   const relatedVouchers = await prisma.voucher.findMany({
