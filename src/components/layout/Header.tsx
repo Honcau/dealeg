@@ -10,7 +10,8 @@ export async function Header() {
   const tc = await getTranslations('common');
 
   const navLinks = [
-    { href: '/category/domain',  label: t('domain')  },
+    { href: '/category/aitool',  label: t('aitool')  },
+    { href: '/category/vps',     label: t('vps')     },
     { href: '/category/hosting', label: t('hosting') },
     { href: '/category/vpn',     label: t('vpn')     },
     { href: '/tools',            label: t('tools')   },

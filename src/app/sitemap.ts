@@ -77,7 +77,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // 3. Coupon index + category pages
-  const categories = ['domain', 'hosting', 'vpn', 'security', 'email', 'cdn', 'ssl', 'other'];
+  const categories = ['domain', 'hosting', 'vps', 'vpn', 'security', 'email', 'cdn', 'ssl', 'aitool', 'other'];
   for (const locale of routing.locales) {
     entries.push({
       url: `${BASE}/${locale}/coupon`,

@@ -7,7 +7,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-const CATEGORIES = ['DOMAIN','HOSTING','VPN','SECURITY','EMAIL','CDN','SSL','OTHER'];
+const CATEGORIES = ['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL','AITOOL','OTHER'];
 
 export default function SubmitPage() {
   const t = useTranslations('submit');

@@ -15,7 +15,7 @@ import { ShareButtons } from '@/components/share/ShareButtons';
 export const dynamic = 'force-dynamic';
 
 // Slug URL → giá trị enum trong DB (string để tránh import lỗi)
-const VALID_CATEGORIES = ['domain','hosting','vpn','security','email','cdn','ssl','other'] as const;
+const VALID_CATEGORIES = ['domain','hosting','vps','vpn','security','email','cdn','ssl','aitool','other'] as const;
 type CategorySlug = typeof VALID_CATEGORIES[number];
 
 type Props = {

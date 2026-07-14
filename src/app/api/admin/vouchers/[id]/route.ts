@@ -12,7 +12,7 @@ function checkAuth(req: NextRequest): boolean {
 const UpdateSchema = z.object({
   code:          z.string().min(1).transform(v => v.trim().toUpperCase()),
   provider:      z.string().min(1).transform(v => v.trim()),
-  category:      z.enum(['DOMAIN','HOSTING','VPN','SECURITY','EMAIL','CDN','SSL','OTHER']),
+  category:      z.enum(['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL','AITOOL','OTHER']),
   discount:      z.string().optional(),   // derive từ discountValue (không nhập tay nữa)
   discountValue: z.number().min(0).max(100),
   affiliateUrl:  z.string().url().optional().or(z.literal('')),

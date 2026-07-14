@@ -31,11 +31,13 @@ export default async function NotFound() {
         <div className="mt-10 pt-6 border-t border-gray-100">
           <p className="text-xs text-gray-400 mb-3">{t('popularPages')}</p>
           <div className="flex flex-wrap gap-2 justify-center">
+            <Link href="/category/aitool" className="text-xs text-indigo-600 hover:underline">AI Tools</Link>
+            <span className="text-gray-300">·</span>
+            <Link href="/category/vps" className="text-xs text-indigo-600 hover:underline">VPS</Link>
+            <span className="text-gray-300">·</span>
             <Link href="/category/hosting" className="text-xs text-indigo-600 hover:underline">Hosting</Link>
             <span className="text-gray-300">·</span>
             <Link href="/category/vpn" className="text-xs text-indigo-600 hover:underline">VPN</Link>
-            <span className="text-gray-300">·</span>
-            <Link href="/category/domain" className="text-xs text-indigo-600 hover:underline">Domain</Link>
             <span className="text-gray-300">·</span>
             <Link href="/blog" className="text-xs text-indigo-600 hover:underline">Blog</Link>
           </div>

@@ -9,6 +9,8 @@ import { SaveButton } from './SaveButton';
 const CATEGORY_COLORS: Record<string, string> = {
   domain:   'bg-violet-50 text-violet-700',
   hosting:  'bg-blue-50 text-blue-700',
+  vps:      'bg-cyan-50 text-cyan-700',
+  aitool:   'bg-fuchsia-50 text-fuchsia-700',
   vpn:      'bg-emerald-50 text-emerald-700',
   security: 'bg-orange-50 text-orange-700',
   software: 'bg-pink-50 text-pink-700',

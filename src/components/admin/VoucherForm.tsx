@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-const CATEGORIES = ['DOMAIN','HOSTING','VPN','SECURITY','EMAIL','CDN','SSL','OTHER'] as const;
+const CATEGORIES = ['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL','AITOOL','OTHER'] as const;
 
 export interface VoucherFormData {
   code:          string;

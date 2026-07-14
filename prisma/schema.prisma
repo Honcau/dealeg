@@ -12,11 +12,13 @@ datasource db {
 enum Category {
   DOMAIN
   HOSTING
+  VPS
   VPN
   SECURITY
   EMAIL
   CDN
   SSL
+  AITOOL
   OTHER
 }
 
