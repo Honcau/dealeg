@@ -2,11 +2,13 @@
 export type VoucherCategory =
   | 'domain'
   | 'hosting'
+  | 'vps'
   | 'vpn'
   | 'security'
   | 'email'
   | 'cdn'
   | 'ssl'
+  | 'aitool'
   | 'other';
 
 export type DiscountType = 'percentage' | 'fixed' | 'free';

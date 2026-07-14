@@ -11,10 +11,12 @@ function checkAuth(req: NextRequest): boolean {
 }
 
 // Tất cả field optional → PUT dùng cho cả "sửa" (gửi full form) lẫn "ẩn/hiện" (chỉ gửi isActive)
+const CATEGORY_ENUM = z.enum(['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL','AITOOL','OTHER']);
+
 const UpdateSchema = z.object({
   name:        z.string().min(1).transform(v => v.trim()).optional(),
   website:     z.string().optional(),
-  category:    z.enum(['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL','AITOOL','OTHER']).optional(),
+  categories:  z.array(CATEGORY_ENUM).optional(),
   affiliateId: z.string().optional(),
   description: z.string().optional(),
   logo:        z.string().optional(),
@@ -40,7 +42,10 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   const d = parsed.data;
   const data: Prisma.ProviderUpdateInput = {};
   if (d.website     !== undefined) data.website     = d.website;
-  if (d.category    !== undefined) data.category    = d.category;
+  if (d.categories  !== undefined) {
+    data.categories = d.categories;
+    data.category   = d.categories[0] ?? null;   // danh mục chính = cái đầu tiên
+  }
   if (d.description !== undefined) data.description = d.description || null;
   if (d.logo        !== undefined) data.logo        = d.logo || null;
   if (d.isActive    !== undefined) data.isActive    = d.isActive;

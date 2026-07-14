@@ -89,7 +89,8 @@ model Provider {
   website         String
   logo            String?
   description     String?
-  category        Category
+  category        Category?          // danh mục chính (giữ lại tương thích; không bắt buộc)
+  categories      Category[]  @default([])  // 1 provider có thể thuộc nhiều danh mục
   hasAffiliateApi Boolean     @default(false)
   affiliateId     String?
   isActive        Boolean     @default(true)

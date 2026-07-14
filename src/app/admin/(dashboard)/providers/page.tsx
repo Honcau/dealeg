@@ -9,13 +9,19 @@ interface Provider {
   name: string;
   slug: string;
   website: string;
-  category: string;
+  category: string | null;      // danh mục chính (tương thích cũ)
+  categories: string[];         // nhiều danh mục
   affiliateId: string | null;
   description: string | null;
   isActive: boolean;
 }
 
-const EMPTY = { name: '', website: '', category: 'HOSTING', affiliateId: '', description: '', isActive: true };
+const EMPTY = { name: '', website: '', categories: [] as string[], affiliateId: '', description: '', isActive: true };
+
+/** categories mới, fallback về category cũ nếu provider chưa có mảng */
+function catsOf(p: Provider): string[] {
+  return p.categories?.length ? p.categories : (p.category ? [p.category] : []);
+}
 
 export default function ProvidersPage() {
   const [providers, setProviders] = useState<Provider[]>([]);
@@ -35,13 +41,22 @@ export default function ProvidersPage() {
     setForm(prev => ({ ...prev, [field]: value }));
   }
 
+  function toggleCategory(c: string) {
+    setForm(prev => ({
+      ...prev,
+      categories: prev.categories.includes(c)
+        ? prev.categories.filter(x => x !== c)
+        : [...prev.categories, c],
+    }));
+  }
+
   function resetForm() { setForm({ ...EMPTY }); setEditingId(null); setError(''); }
 
   function startEdit(p: Provider) {
     setForm({
       name:        p.name,
       website:     p.website || '',
-      category:    p.category,
+      categories:  catsOf(p),
       affiliateId: p.affiliateId || '',
       description: p.description || '',
       isActive:    p.isActive,
@@ -107,11 +122,23 @@ export default function ProvidersPage() {
             <input value={form.name} onChange={e => set('name', e.target.value)}
               placeholder="VD: Namecheap" className={inputCls} />
           </div>
-          <div>
-            <label className={labelCls}>Danh mục *</label>
-            <select value={form.category} onChange={e => set('category', e.target.value)} className={inputCls}>
-              {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
-            </select>
+          <div className="md:col-span-2">
+            <label className={labelCls}>
+              Danh mục <span className="text-gray-400">(chọn 1 hoặc nhiều — 1 provider có thể nhiều danh mục; có thể để trống)</span>
+            </label>
+            <div className="flex flex-wrap gap-2 mt-1">
+              {CATEGORIES.map(c => {
+                const on = form.categories.includes(c);
+                return (
+                  <button type="button" key={c} onClick={() => toggleCategory(c)}
+                    className={`px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors ${on
+                      ? 'bg-indigo-600 border-indigo-600 text-white'
+                      : 'bg-white border-gray-300 text-gray-600 hover:border-indigo-400'}`}>
+                    {c}
+                  </button>
+                );
+              })}
+            </div>
           </div>
           <div>
             <label className={labelCls}>Website</label>
@@ -171,7 +198,7 @@ export default function ProvidersPage() {
             {providers.map(p => (
               <tr key={p.id} className={editingId === p.id ? 'bg-indigo-50/50' : 'hover:bg-gray-50'}>
                 <td className="px-4 py-2.5 font-medium text-gray-800">{p.name}</td>
-                <td className="px-4 py-2.5 text-gray-500">{p.category}</td>
+                <td className="px-4 py-2.5 text-gray-500">{catsOf(p).join(', ') || '—'}</td>
                 <td className="px-4 py-2.5 text-gray-500 truncate max-w-[200px]">{p.website || '—'}</td>
                 <td className="px-4 py-2.5 text-gray-500">{p.affiliateId || '—'}</td>
                 <td className="px-4 py-2.5">

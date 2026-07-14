@@ -26,7 +26,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, category } = await params;
   const t = await getTranslations({ locale, namespace: 'nav' });
-  const label = (t as (key: string) => string)(category) ?? category;
+  const label = t.has(category) ? t(category) : category;
   return { title: `${label} Vouchers | Dealeg` };
 }
 

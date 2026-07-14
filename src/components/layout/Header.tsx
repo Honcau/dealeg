@@ -13,9 +13,10 @@ export async function Header() {
     { href: '/category/aitool',  label: t('aitool')  },
     { href: '/category/vps',     label: t('vps')     },
     { href: '/category/hosting', label: t('hosting') },
-    { href: '/category/vpn',     label: t('vpn')     },
-    { href: '/tools',            label: t('tools')   },
-    { href: '/blog',             label: t('blog')    },
+    { href: '/category/vpn',     label: t('vpn')       },
+    { href: '/category/other',   label: t('other')     },
+    { href: '/tools',            label: t('tools')     },
+    { href: '/blog',             label: t('blog')      },
   ];
 
   return (

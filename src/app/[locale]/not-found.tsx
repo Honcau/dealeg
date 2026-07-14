@@ -31,7 +31,7 @@ export default async function NotFound() {
         <div className="mt-10 pt-6 border-t border-gray-100">
           <p className="text-xs text-gray-400 mb-3">{t('popularPages')}</p>
           <div className="flex flex-wrap gap-2 justify-center">
-            <Link href="/category/aitool" className="text-xs text-indigo-600 hover:underline">AI Tools</Link>
+            <Link href="/category/aitool" className="text-xs text-indigo-600 hover:underline">AI</Link>
             <span className="text-gray-300">·</span>
             <Link href="/category/vps" className="text-xs text-indigo-600 hover:underline">VPS</Link>
             <span className="text-gray-300">·</span>

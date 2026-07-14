@@ -9,10 +9,13 @@ function checkAuth(req: NextRequest): boolean {
   catch { return false; }
 }
 
+const CATEGORY_ENUM = z.enum(['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL','AITOOL','OTHER']);
+
 const ProviderSchema = z.object({
   name:        z.string().min(1).transform(v => v.trim()),
   website:     z.string().optional(),
-  category:    z.enum(['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL','AITOOL','OTHER']),
+  // 1 provider có thể thuộc nhiều danh mục — không bắt buộc chọn
+  categories:  z.array(CATEGORY_ENUM).default([]),
   affiliateId: z.string().optional(),
   description: z.string().optional(),
   logo:        z.string().optional(),
@@ -32,7 +35,7 @@ export async function GET(req: NextRequest) {
     orderBy: { name: 'asc' },
     select: {
       id: true, name: true, slug: true, website: true,
-      category: true, affiliateId: true, description: true, isActive: true,
+      category: true, categories: true, affiliateId: true, description: true, isActive: true,
     },
   });
   return NextResponse.json(providers);
@@ -47,7 +50,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 422 });
   }
 
-  const { name, website, category, affiliateId, description, logo, isActive } = parsed.data;
+  const { name, website, categories, affiliateId, description, logo, isActive } = parsed.data;
   const slug = slugify(name);
 
   // name & slug đều @unique → chặn trùng
@@ -66,7 +69,8 @@ export async function POST(req: NextRequest) {
       website:         website || '',
       logo:            logo || null,
       description:     description || null,
-      category,
+      categories,
+      category:        categories[0] ?? null,   // danh mục chính = cái đầu tiên (tương thích cũ)
       affiliateId:     affiliateId || null,
       hasAffiliateApi: !!affiliateId,
       isActive,
