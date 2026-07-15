@@ -285,7 +285,17 @@
     "createAccount": "Create account",
     "authenticating": "Authenticating...",
     "signInFailed": "Sign in failed, try again",
-    "signUpFailed": "Sign up failed, try again"
+    "signUpFailed": "Sign up failed, try again",
+    "tagline": "Best tech vouchers",
+    "withGoogle": "Continue with Google",
+    "withFacebook": "Continue with Facebook",
+    "withGithub": "Continue with GitHub",
+    "orEmail": "or use email",
+    "confirmPassword": "Confirm password",
+    "passwordMin": "Password (min 6 characters)",
+    "wrongCredentials": "Wrong email or password",
+    "passwordMismatch": "Passwords do not match",
+    "language": "Language"
   },
   "submit": {
     "title": "Submit a new deal",

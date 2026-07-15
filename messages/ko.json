@@ -285,7 +285,17 @@
     "createAccount": "계정 만들기",
     "authenticating": "인증 중...",
     "signInFailed": "로그인 실패, 다시 시도하세요",
-    "signUpFailed": "회원가입 실패, 다시 시도하세요"
+    "signUpFailed": "회원가입 실패, 다시 시도하세요",
+    "tagline": "최고의 테크 쿠폰",
+    "withGoogle": "Google로 계속하기",
+    "withFacebook": "Facebook으로 계속하기",
+    "withGithub": "GitHub로 계속하기",
+    "orEmail": "또는 이메일 사용",
+    "confirmPassword": "비밀번호 확인",
+    "passwordMin": "비밀번호 (최소 6자)",
+    "wrongCredentials": "이메일 또는 비밀번호가 올바르지 않습니다",
+    "passwordMismatch": "비밀번호가 일치하지 않습니다",
+    "language": "언어"
   },
   "submit": {
     "title": "새 딜 제출",

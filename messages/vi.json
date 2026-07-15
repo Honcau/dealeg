@@ -285,7 +285,17 @@
     "createAccount": "Tạo tài khoản",
     "authenticating": "Đang xác thực...",
     "signInFailed": "Đăng nhập thất bại, thử lại",
-    "signUpFailed": "Đăng ký thất bại, thử lại"
+    "signUpFailed": "Đăng ký thất bại, thử lại",
+    "tagline": "Voucher công nghệ tốt nhất",
+    "withGoogle": "Tiếp tục với Google",
+    "withFacebook": "Tiếp tục với Facebook",
+    "withGithub": "Tiếp tục với GitHub",
+    "orEmail": "hoặc dùng email",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "passwordMin": "Mật khẩu (tối thiểu 6 ký tự)",
+    "wrongCredentials": "Email hoặc mật khẩu không đúng",
+    "passwordMismatch": "Mật khẩu xác nhận không khớp",
+    "language": "Ngôn ngữ"
   },
   "submit": {
     "title": "Gửi deal mới",

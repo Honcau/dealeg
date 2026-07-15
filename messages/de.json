@@ -285,7 +285,17 @@
     "createAccount": "Konto erstellen",
     "authenticating": "Authentifizierung...",
     "signInFailed": "Anmeldung fehlgeschlagen, erneut versuchen",
-    "signUpFailed": "Registrierung fehlgeschlagen, erneut versuchen"
+    "signUpFailed": "Registrierung fehlgeschlagen, erneut versuchen",
+    "tagline": "Die besten Tech-Gutscheine",
+    "withGoogle": "Mit Google fortfahren",
+    "withFacebook": "Mit Facebook fortfahren",
+    "withGithub": "Mit GitHub fortfahren",
+    "orEmail": "oder E-Mail verwenden",
+    "confirmPassword": "Passwort bestätigen",
+    "passwordMin": "Passwort (mind. 6 Zeichen)",
+    "wrongCredentials": "Falsche E-Mail oder Passwort",
+    "passwordMismatch": "Passwörter stimmen nicht überein",
+    "language": "Sprache"
   },
   "submit": {
     "title": "Angebot einreichen",

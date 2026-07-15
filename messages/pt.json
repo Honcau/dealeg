@@ -285,7 +285,17 @@
     "createAccount": "Criar conta",
     "authenticating": "Autenticando...",
     "signInFailed": "Falha ao entrar, tente novamente",
-    "signUpFailed": "Falha ao registrar, tente novamente"
+    "signUpFailed": "Falha ao registrar, tente novamente",
+    "tagline": "Os melhores cupons de tecnologia",
+    "withGoogle": "Continuar com o Google",
+    "withFacebook": "Continuar com o Facebook",
+    "withGithub": "Continuar com o GitHub",
+    "orEmail": "ou use o email",
+    "confirmPassword": "Confirmar senha",
+    "passwordMin": "Senha (mín. 6 caracteres)",
+    "wrongCredentials": "Email ou senha incorretos",
+    "passwordMismatch": "As senhas não coincidem",
+    "language": "Idioma"
   },
   "submit": {
     "title": "Enviar nova oferta",

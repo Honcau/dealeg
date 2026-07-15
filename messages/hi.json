@@ -285,7 +285,17 @@
     "createAccount": "खाता बनाएं",
     "authenticating": "प्रमाणित हो रहा है...",
     "signInFailed": "साइन इन विफल, पुनः प्रयास करें",
-    "signUpFailed": "साइन अप विफल, पुनः प्रयास करें"
+    "signUpFailed": "साइन अप विफल, पुनः प्रयास करें",
+    "tagline": "सर्वश्रेष्ठ टेक वाउचर",
+    "withGoogle": "Google के साथ जारी रखें",
+    "withFacebook": "Facebook के साथ जारी रखें",
+    "withGithub": "GitHub के साथ जारी रखें",
+    "orEmail": "या ईमेल का उपयोग करें",
+    "confirmPassword": "पासवर्ड की पुष्टि करें",
+    "passwordMin": "पासवर्ड (कम से कम 6 अक्षर)",
+    "wrongCredentials": "गलत ईमेल या पासवर्ड",
+    "passwordMismatch": "पासवर्ड मेल नहीं खाते",
+    "language": "भाषा"
   },
   "submit": {
     "title": "नया डील सबमिट करें",

@@ -285,7 +285,17 @@
     "createAccount": "إنشاء حساب",
     "authenticating": "جارٍ التحقق...",
     "signInFailed": "فشل تسجيل الدخول، حاول مرة أخرى",
-    "signUpFailed": "فشل إنشاء الحساب، حاول مرة أخرى"
+    "signUpFailed": "فشل إنشاء الحساب، حاول مرة أخرى",
+    "tagline": "أفضل قسائم التقنية",
+    "withGoogle": "المتابعة عبر Google",
+    "withFacebook": "المتابعة عبر Facebook",
+    "withGithub": "المتابعة عبر GitHub",
+    "orEmail": "أو استخدم البريد الإلكتروني",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "passwordMin": "كلمة المرور (6 أحرف على الأقل)",
+    "wrongCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+    "passwordMismatch": "كلمتا المرور غير متطابقتين",
+    "language": "اللغة"
   },
   "submit": {
     "title": "إرسال عرض جديد",

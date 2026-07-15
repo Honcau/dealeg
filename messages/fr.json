@@ -285,7 +285,17 @@
     "createAccount": "Créer un compte",
     "authenticating": "Authentification...",
     "signInFailed": "Échec de connexion, réessayez",
-    "signUpFailed": "Échec d'inscription, réessayez"
+    "signUpFailed": "Échec d'inscription, réessayez",
+    "tagline": "Les meilleurs bons plans tech",
+    "withGoogle": "Continuer avec Google",
+    "withFacebook": "Continuer avec Facebook",
+    "withGithub": "Continuer avec GitHub",
+    "orEmail": "ou utilisez l'e-mail",
+    "confirmPassword": "Confirmer le mot de passe",
+    "passwordMin": "Mot de passe (min. 6 caractères)",
+    "wrongCredentials": "E-mail ou mot de passe incorrect",
+    "passwordMismatch": "Les mots de passe ne correspondent pas",
+    "language": "Langue"
   },
   "submit": {
     "title": "Soumettre une offre",

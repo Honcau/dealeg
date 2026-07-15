@@ -285,7 +285,17 @@
     "createAccount": "创建账户",
     "authenticating": "验证中...",
     "signInFailed": "登录失败，请重试",
-    "signUpFailed": "注册失败，请重试"
+    "signUpFailed": "注册失败，请重试",
+    "tagline": "最优质的科技优惠券",
+    "withGoogle": "使用 Google 继续",
+    "withFacebook": "使用 Facebook 继续",
+    "withGithub": "使用 GitHub 继续",
+    "orEmail": "或使用邮箱",
+    "confirmPassword": "确认密码",
+    "passwordMin": "密码（至少 6 个字符）",
+    "wrongCredentials": "邮箱或密码错误",
+    "passwordMismatch": "两次密码不一致",
+    "language": "语言"
   },
   "submit": {
     "title": "提交新优惠",

@@ -285,7 +285,17 @@
     "createAccount": "Создать аккаунт",
     "authenticating": "Аутентификация...",
     "signInFailed": "Ошибка входа, попробуйте снова",
-    "signUpFailed": "Ошибка регистрации, попробуйте снова"
+    "signUpFailed": "Ошибка регистрации, попробуйте снова",
+    "tagline": "Лучшие тех-купоны",
+    "withGoogle": "Продолжить с Google",
+    "withFacebook": "Продолжить с Facebook",
+    "withGithub": "Продолжить с GitHub",
+    "orEmail": "или через email",
+    "confirmPassword": "Подтвердите пароль",
+    "passwordMin": "Пароль (минимум 6 символов)",
+    "wrongCredentials": "Неверный email или пароль",
+    "passwordMismatch": "Пароли не совпадают",
+    "language": "Язык"
   },
   "submit": {
     "title": "Отправить акцию",

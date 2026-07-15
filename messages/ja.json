@@ -285,7 +285,17 @@
     "createAccount": "アカウント作成",
     "authenticating": "認証中...",
     "signInFailed": "ログイン失敗、再試行してください",
-    "signUpFailed": "登録失敗、再試行してください"
+    "signUpFailed": "登録失敗、再試行してください",
+    "tagline": "最高のテッククーポン",
+    "withGoogle": "Google で続行",
+    "withFacebook": "Facebook で続行",
+    "withGithub": "GitHub で続行",
+    "orEmail": "またはメールを使用",
+    "confirmPassword": "パスワードの確認",
+    "passwordMin": "パスワード（6文字以上）",
+    "wrongCredentials": "メールアドレスまたはパスワードが違います",
+    "passwordMismatch": "パスワードが一致しません",
+    "language": "言語"
   },
   "submit": {
     "title": "新しいお得情報を投稿",
