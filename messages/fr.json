@@ -33,6 +33,7 @@
     "usedCount": "{count} personnes ont utilisé",
     "getDiscount": "Obtenir l'offre",
     "getCode": "Obtenir le code",
+    "codeCopied": "Code copié",
     "copiedHint": "Code copié ! Collez-le au paiement.",
     "details": "Détails",
     "sortDiscount": "Plus grande réduction",

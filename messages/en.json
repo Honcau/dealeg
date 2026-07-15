@@ -33,6 +33,7 @@
     "usedCount": "{count} people used",
     "getDiscount": "Get deal",
     "getCode": "Get Code",
+    "codeCopied": "Code Copied",
     "copiedHint": "Code copied! Paste it at checkout.",
     "details": "Details",
     "sortDiscount": "Biggest discount",

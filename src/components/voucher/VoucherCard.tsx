@@ -5,7 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import type { Voucher } from '@/types/voucher';
 import { SaveButton } from './SaveButton';
-import { isExpired, formatDate, formatCount } from '@/lib/utils';
+import { isExpired, formatDate, formatCount, maskVoucherCode } from '@/lib/utils';
 
 interface VoucherCardProps {
   voucher: Voucher;
@@ -27,37 +27,38 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
   const tShare = useTranslations('share');
   const locale = useLocale();
   const [copied, setCopied] = useState(false);
+  const [revealed, setRevealed] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
   const expired = isExpired(voucher.expiresAt);
 
+  // Link đích: ưu tiên affiliate, fallback link gốc provider
+  const targetUrl =
+    voucher.affiliateUrl && voucher.affiliateUrl !== '#'
+      ? voucher.affiliateUrl
+      : voucher.sourceUrl;
+
+  // Mã hiển thị: nếu deal ẩn mã và chưa lộ → hiện dạng che một phần
+  const displayCode = voucher.hideCode && !revealed ? maskVoucherCode(voucher.code) : voucher.code;
+  // Mã dùng trong text chia sẻ mạng xã hội: deal ẩn mã thì không phát tán mã đầy đủ
+  const shareCode = voucher.hideCode ? maskVoucherCode(voucher.code) : voucher.code;
+
   /**
-   * Bấm "Nhận mã": copy code vào clipboard + mở link affiliate ở tab mới.
-   * Đây là mô hình chuẩn của site coupon — user copy code rồi được đưa
-   * thẳng sang trang provider (qua link affiliate của mình) để dùng ngay.
+   * Bấm "Nhận mã": lộ mã đầy đủ + copy clipboard + (nếu có) mở link affiliate.
+   *
+   * QUAN TRỌNG — chống popup blocker/extension: KHÔNG dùng window.open (dễ bị chặn,
+   * nhất là khi gọi sau await). Thay vào đó nút là thẻ <a target="_blank"> gốc → trình
+   * duyệt coi đây là điều hướng do người dùng bấm nên KHÔNG chặn. Handler này chỉ chạy
+   * đồng bộ trong cùng cú click (copy + reveal), không preventDefault để tab vẫn tự mở.
    */
-  const handleGetCode = async () => {
+  const handleGetCode = () => {
     if (expired) return;
-
-    // 1. Copy code
-    try {
-      await navigator.clipboard.writeText(voucher.code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 3000);
-    } catch {
-      // clipboard fail không chặn việc mở link
-    }
-
-    // 2. Mở link ở tab mới — ưu tiên link affiliate, fallback link gốc provider
-    const targetUrl =
-      voucher.affiliateUrl && voucher.affiliateUrl !== '#'
-        ? voucher.affiliateUrl
-        : voucher.sourceUrl;
-
-    if (targetUrl) {
-      // Ghi nhận click (tăng useCount) — fire-and-forget
-      fetch(`/api/vouchers/${voucher.id}/click`, { method: 'POST' }).catch(() => {});
-      window.open(targetUrl, '_blank', 'noopener,noreferrer');
-    }
+    setRevealed(true);
+    // copy đồng bộ trong user-gesture (không await) → giữ quyền clipboard
+    navigator.clipboard?.writeText(voucher.code).catch(() => {});
+    setCopied(true);
+    setTimeout(() => setCopied(false), 3000);
+    // Ghi nhận click (tăng useCount) — fire-and-forget
+    fetch(`/api/vouchers/${voucher.id}/click`, { method: 'POST' }).catch(() => {});
   };
 
   // URL trang chi tiết voucher (cho share)
@@ -72,6 +73,24 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
     (voucher.discountType === 'free' ? 'FREE'
       : voucher.discountValue ? `-${voucher.discountValue}%`
       : '');
+
+  // Ruột nút vé (dùng chung cho <a> và <button>): trái = mã, phải = getCode/Code Copied
+  const ticketInner = (
+    <>
+      <span className="flex-1 min-w-0 flex items-center justify-center font-mono font-bold text-sm tracking-widest text-gray-900 bg-gray-50 px-4 py-3 group-hover:bg-indigo-50 transition-colors">
+        <span className={`truncate max-w-full ${copied ? 'text-green-600' : ''}`}>{displayCode}</span>
+      </span>
+      <span className="relative shrink-0 flex items-center justify-center bg-indigo-600 group-hover:bg-indigo-700 text-white text-sm font-semibold px-5 transition-colors whitespace-nowrap border-l-2 border-dashed border-white/50">
+        <span aria-hidden className="absolute -left-[7px] -top-[7px] w-3.5 h-3.5 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
+        <span aria-hidden className="absolute -left-[7px] -bottom-[7px] w-3.5 h-3.5 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
+        {copied
+          ? <>{t.has('codeCopied') ? t('codeCopied') : 'Code Copied'} ✓</>
+          : <>{t('getCode')} →</>}
+      </span>
+    </>
+  );
+
+  const ticketCls = 'group relative flex items-stretch w-full rounded-lg overflow-hidden border border-gray-200 hover:border-indigo-500 transition-colors cursor-pointer';
 
   return (
     <article
@@ -122,32 +141,23 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
         </div>
       </div>
 
-      {/* Code + affiliate — GỘP: bấm là copy code VÀ mở link affiliate */}
+      {/* Code + affiliate — bấm là copy code VÀ mở link affiliate ở tab mới.
+          Dùng <a target="_blank"> (khi có link) để trình duyệt không chặn tab như window.open. */}
       {!expired ? (
-        <button
-          type="button"
-          onClick={handleGetCode}
-          className="group relative flex items-stretch w-full rounded-lg overflow-hidden border border-gray-200 hover:border-indigo-500 transition-colors cursor-pointer"
-        >
-          {/* Bên trái: code (phần cuống vé) */}
-          <span className="flex-1 min-w-0 flex items-center justify-center font-mono font-bold text-sm tracking-widest text-gray-900 bg-gray-50 px-4 py-3 group-hover:bg-indigo-50 transition-colors">
-            {copied ? (
-              <span className="text-green-600">{t('copied')}</span>
-            ) : (
-              <span className="truncate max-w-full">{voucher.code}</span>
-            )}
-          </span>
-          {/* Bên phải: nút hành động — khía vé + đường đứt như vé xé. shrink-0 để mã dài không đè lên */}
-          <span className="relative shrink-0 flex items-center justify-center bg-indigo-600 group-hover:bg-indigo-700 text-white text-sm font-semibold px-5 transition-colors whitespace-nowrap border-l-2 border-dashed border-white/50">
-            <span aria-hidden className="absolute -left-[7px] -top-[7px] w-3.5 h-3.5 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
-            <span aria-hidden className="absolute -left-[7px] -bottom-[7px] w-3.5 h-3.5 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
-            {t('getCode')} →
-          </span>
-        </button>
+        targetUrl ? (
+          <a href={targetUrl} target="_blank" rel="noopener noreferrer sponsored"
+            onClick={handleGetCode} className={ticketCls}>
+            {ticketInner}
+          </a>
+        ) : (
+          <button type="button" onClick={handleGetCode} className={ticketCls}>
+            {ticketInner}
+          </button>
+        )
       ) : (
         <div className="w-full px-4 py-3 rounded-xl border-2 border-dashed border-gray-100 text-center">
           <span className="font-mono font-bold text-sm tracking-widest text-gray-400 line-through">
-            {voucher.code}
+            {displayCode}
           </span>
         </div>
       )}
@@ -182,7 +192,7 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
             </svg>
           </a>
           <a
-            href={`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(voucher.provider + ' ' + voucher.code)}`}
+            href={`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(voucher.provider + ' ' + shareCode)}`}
             target="_blank" rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
             title="Telegram"
@@ -193,7 +203,7 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
             </svg>
           </a>
           <a
-            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(voucher.provider + ' ' + voucher.code)}`}
+            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(voucher.provider + ' ' + shareCode)}`}
             target="_blank" rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
             title="X"

@@ -29,6 +29,7 @@ export default function EditVoucherPage() {
           expiresAt:     v.expiresAt ? new Date(v.expiresAt).toISOString().slice(0, 10) : '',
           isVerified:    v.isVerified,
           isActive:      v.isActive,
+          hideCode:      v.hideCode ?? false,
           titleVi:       viTrans?.title       ?? '',
           descVi:        viTrans?.description ?? '',
           titleEn:       enTrans?.title       ?? '',

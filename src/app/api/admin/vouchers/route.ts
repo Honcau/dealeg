@@ -21,6 +21,7 @@ const VoucherSchema = z.object({
   expiresAt:     z.string().optional().nullable(),   // ISO date string
   isVerified:    z.boolean().default(false),
   isActive:      z.boolean().default(true),
+  hideCode:      z.boolean().default(false),
   titleVi:       z.string().optional(),
   descVi:        z.string().optional(),
   titleEn:       z.string().optional(),

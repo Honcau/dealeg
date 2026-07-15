@@ -16,6 +16,7 @@ export interface VoucherFormData {
   expiresAt:     string;
   isVerified:    boolean;
   isActive:      boolean;
+  hideCode:      boolean;
   titleVi:       string;
   descVi:        string;
   titleEn:       string;
@@ -24,7 +25,7 @@ export interface VoucherFormData {
 
 const EMPTY: VoucherFormData = {
   code: '', provider: '', category: 'DOMAIN', discount: '', discountValue: 0,
-  affiliateUrl: '', sourceUrl: '', expiresAt: '', isVerified: false, isActive: true,
+  affiliateUrl: '', sourceUrl: '', expiresAt: '', isVerified: false, isActive: true, hideCode: false,
   titleVi: '', descVi: '', titleEn: '', descEn: '',
 };
 
@@ -185,6 +186,12 @@ export function VoucherForm({ initial, voucherId }: Props) {
                 onChange={e => set('isActive', e.target.checked)}
                 className="w-4 h-4 accent-indigo-600" />
               <span className="text-sm text-gray-700">Đang active</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer select-none">
+              <input type="checkbox" checked={form.hideCode}
+                onChange={e => set('hideCode', e.target.checked)}
+                className="w-4 h-4 accent-indigo-600" />
+              <span className="text-sm text-gray-700">Ẩn mã <span className="text-gray-400">(deal độc quyền — lộ mã khi bấm Nhận mã)</span></span>
             </label>
           </div>
         </div>

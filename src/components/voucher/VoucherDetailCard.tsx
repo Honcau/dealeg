@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import type { Voucher } from '@/types/voucher';
-import { isExpired, formatDate, formatCount } from '@/lib/utils';
+import { isExpired, formatDate, formatCount, maskVoucherCode } from '@/lib/utils';
 import { SaveButton } from './SaveButton';
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -22,25 +22,25 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
   const t = useTranslations('voucher');
   const locale = useLocale();
   const [copied, setCopied] = useState(false);
+  const [revealed, setRevealed] = useState(false);
   const expired = isExpired(voucher.expiresAt);
 
-  const handleGetCode = async () => {
+  const targetUrl =
+    voucher.affiliateUrl && voucher.affiliateUrl !== '#'
+      ? voucher.affiliateUrl
+      : voucher.sourceUrl;
+
+  const displayCode = voucher.hideCode && !revealed ? maskVoucherCode(voucher.code) : voucher.code;
+
+  // Chống popup blocker: dùng <a target="_blank"> gốc (xem chú thích ở VoucherCard),
+  // handler chỉ copy + lộ mã đồng bộ, không window.open, không preventDefault.
+  const handleGetCode = () => {
     if (expired) return;
-    try {
-      await navigator.clipboard.writeText(voucher.code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 3000);
-    } catch {}
-
-    const targetUrl =
-      voucher.affiliateUrl && voucher.affiliateUrl !== '#'
-        ? voucher.affiliateUrl
-        : voucher.sourceUrl;
-
-    if (targetUrl) {
-      fetch(`/api/vouchers/${voucher.id}/click`, { method: 'POST' }).catch(() => {});
-      window.open(targetUrl, '_blank', 'noopener,noreferrer');
-    }
+    setRevealed(true);
+    navigator.clipboard?.writeText(voucher.code).catch(() => {});
+    setCopied(true);
+    setTimeout(() => setCopied(false), 3000);
+    fetch(`/api/vouchers/${voucher.id}/click`, { method: 'POST' }).catch(() => {});
   };
 
   // Nhãn giảm giá: ưu tiên chuỗi `discount` do admin nhập (VD "Miễn phí 3 tháng").
@@ -90,25 +90,34 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
         )}
       </div>
 
-      {/* Nút nhận mã lớn */}
+      {/* Nút nhận mã lớn — <a target="_blank"> để không bị chặn tab */}
       {!expired ? (
-        <button
-          onClick={handleGetCode}
-          className="group relative w-full flex items-stretch rounded-lg overflow-hidden border border-gray-200 hover:border-indigo-500 transition-colors"
-        >
-          <span className="flex-1 min-w-0 flex items-center justify-center font-mono font-bold text-lg tracking-widest text-gray-900 bg-gray-50 px-4 py-4 group-hover:bg-indigo-50 transition-colors">
-            {copied ? <span className="text-green-600">{t('copied')}</span> : <span className="truncate max-w-full">{voucher.code}</span>}
-          </span>
-          <span className="relative shrink-0 flex items-center justify-center bg-indigo-600 group-hover:bg-indigo-700 text-white text-base font-semibold px-8 transition-colors whitespace-nowrap border-l-2 border-dashed border-white/50">
-            <span aria-hidden className="absolute -left-[8px] -top-[8px] w-4 h-4 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
-            <span aria-hidden className="absolute -left-[8px] -bottom-[8px] w-4 h-4 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
-            {t('getCode')} →
-          </span>
-        </button>
+        (() => {
+          const inner = (
+            <>
+              <span className="flex-1 min-w-0 flex items-center justify-center font-mono font-bold text-lg tracking-widest text-gray-900 bg-gray-50 px-4 py-4 group-hover:bg-indigo-50 transition-colors">
+                <span className={`truncate max-w-full ${copied ? 'text-green-600' : ''}`}>{displayCode}</span>
+              </span>
+              <span className="relative shrink-0 flex items-center justify-center bg-indigo-600 group-hover:bg-indigo-700 text-white text-base font-semibold px-8 transition-colors whitespace-nowrap border-l-2 border-dashed border-white/50">
+                <span aria-hidden className="absolute -left-[8px] -top-[8px] w-4 h-4 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
+                <span aria-hidden className="absolute -left-[8px] -bottom-[8px] w-4 h-4 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
+                {copied
+                  ? <>{t.has('codeCopied') ? t('codeCopied') : 'Code Copied'} ✓</>
+                  : <>{t('getCode')} →</>}
+              </span>
+            </>
+          );
+          const cls = 'group relative w-full flex items-stretch rounded-lg overflow-hidden border border-gray-200 hover:border-indigo-500 transition-colors cursor-pointer';
+          return targetUrl ? (
+            <a href={targetUrl} target="_blank" rel="noopener noreferrer sponsored" onClick={handleGetCode} className={cls}>{inner}</a>
+          ) : (
+            <button type="button" onClick={handleGetCode} className={cls}>{inner}</button>
+          );
+        })()
       ) : (
         <div className="w-full px-4 py-4 rounded-xl border-2 border-dashed border-gray-200 text-center">
           <span className="font-mono font-bold text-lg tracking-widest text-gray-400 line-through">
-            {voucher.code}
+            {displayCode}
           </span>
         </div>
       )}

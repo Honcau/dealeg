@@ -41,6 +41,7 @@ model Voucher {
   expiresAt     DateTime?
   isActive      Boolean   @default(true)
   isVerified    Boolean   @default(false)
+  hideCode      Boolean   @default(false)   // deal độc quyền: ẩn 1 phần mã, lộ đủ khi bấm "Nhận mã"
   successRate   Float     @default(0)
   useCount      Int       @default(0)
   sourceUrl     String?

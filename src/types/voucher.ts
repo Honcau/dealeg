@@ -27,6 +27,7 @@ export interface Voucher {
   currency?:     string;
   expiresAt?:    Date;
   isVerified:    boolean;
+  hideCode?:     boolean;   // deal độc quyền: ẩn 1 phần mã cho tới khi bấm "Nhận mã"
   usedCount:     number;
   affiliateUrl:  string;
   sourceUrl?:    string;

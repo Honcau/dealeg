@@ -33,6 +33,7 @@
     "usedCount": "استخدمها {count} شخص",
     "getDiscount": "احصل على العرض",
     "getCode": "احصل على الكود",
+    "codeCopied": "تم نسخ الكود",
     "copiedHint": "تم نسخ الكود! الصقه عند الدفع.",
     "details": "التفاصيل",
     "sortDiscount": "أكبر خصم",

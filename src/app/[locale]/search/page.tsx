@@ -80,6 +80,7 @@ export default async function SearchPage({ params, searchParams }: Props) {
         id: v.id, provider: v.provider,
         category: v.category.toLowerCase() as 'domain',
         code: v.code,
+        hideCode:      v.hideCode,
         title: tr?.title || '',
         description: tr?.description || v.discount,
         discount: v.discount,

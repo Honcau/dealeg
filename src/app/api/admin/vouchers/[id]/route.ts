@@ -20,6 +20,7 @@ const UpdateSchema = z.object({
   expiresAt:     z.string().optional().nullable(),
   isVerified:    z.boolean(),
   isActive:      z.boolean(),
+  hideCode:      z.boolean().default(false),
   titleVi:       z.string().optional(),
   descVi:        z.string().optional(),
   titleEn:       z.string().optional(),

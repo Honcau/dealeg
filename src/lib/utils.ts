@@ -27,6 +27,17 @@ export function formatCount(n: number): string {
   return n.toString();
 }
 
+/**
+ * Ẩn 1 phần mã voucher (deal độc quyền): hiện ~40% ký tự đầu, phần còn lại thay bằng chấm.
+ * Chỉ để nhử người dùng bấm "Nhận mã" — mã đầy đủ sẽ lộ sau khi bấm.
+ */
+export function maskVoucherCode(code: string): string {
+  if (!code) return '';
+  if (code.length <= 3) return '••••';
+  const keep = Math.max(2, Math.round(code.length * 0.4));
+  return code.slice(0, keep) + '••••';
+}
+
 // ─── Affiliate URL builder ────────────────────────────────────────────────────
 export function buildAffiliateUrl(base: string, locale: string): string {
   const url = new URL(base);

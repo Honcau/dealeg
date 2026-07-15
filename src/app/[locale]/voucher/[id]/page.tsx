@@ -14,6 +14,7 @@ import { Link } from '@/i18n/navigation';
 import { VoucherDetailCard } from '@/components/voucher/VoucherDetailCard';
 import { VoucherComments } from '@/components/voucher/VoucherComments';
 import { ShareButtons } from '@/components/share/ShareButtons';
+import { maskVoucherCode } from '@/lib/utils';
 import type { Voucher } from '@/types/voucher';
 
 export const revalidate = 300; // ISR: cache & tự làm mới mỗi 5 phút
@@ -30,8 +31,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const tr = v.translations.find(t => t.locale === locale) ?? v.translations.find(t => t.locale === 'en');
   const discountLabel = v.discountValue ? `${v.discountValue}% off` : v.discount;
-  const title = `${v.provider} ${discountLabel} - ${v.code} | Dealeg`;
-  const description = tr?.description || `Get ${discountLabel} at ${v.provider} with code ${v.code}. Verified and updated on Dealeg.`;
+  // Deal ẩn mã: không lộ mã đầy đủ ra title/description (SEO, tab trình duyệt)
+  const codeLabel = v.hideCode ? maskVoucherCode(v.code) : v.code;
+  const title = `${v.provider} ${discountLabel} - ${codeLabel} | Dealeg`;
+  const description = tr?.description || `Get ${discountLabel} at ${v.provider} with code ${codeLabel}. Verified and updated on Dealeg.`;
 
   return {
     title,
@@ -57,6 +60,7 @@ export default async function VoucherDetailPage({ params }: Props) {
     provider:      v.provider,
     category:      v.category.toLowerCase() as 'domain',
     code:          v.code,
+    hideCode:      v.hideCode,
     title:         tr?.title || '',
     description:   tr?.description || v.discount,
     discount:      v.discount,
@@ -83,6 +87,8 @@ export default async function VoucherDetailPage({ params }: Props) {
   });
 
   const providerSlug = v.provider.toLowerCase().replace(/\s+/g, '-');
+  // Mã hiển thị ngoài card (breadcrumb, share): che nếu là deal ẩn mã
+  const codeLabel = v.hideCode ? maskVoucherCode(v.code) : v.code;
 
   // JSON-LD Offer schema
   const jsonLd = {
@@ -105,7 +111,7 @@ export default async function VoucherDetailPage({ params }: Props) {
           {' / '}
           <Link href={`/coupon/${providerSlug}`} className="hover:text-gray-600">{v.provider}</Link>
           {' / '}
-          <span className="text-gray-600">{v.code}</span>
+          <span className="text-gray-600">{codeLabel}</span>
         </nav>
 
         {/* Card chi tiết chính */}
@@ -113,7 +119,7 @@ export default async function VoucherDetailPage({ params }: Props) {
 
         {/* Chia sẻ */}
         <div className="bg-white rounded-xl border border-gray-200 p-5">
-          <ShareButtons title={`${v.provider} ${v.discount} - code ${v.code}`} />
+          <ShareButtons title={`${v.provider} ${v.discount} - code ${codeLabel}`} />
         </div>
 
         {/* Bình luận + vote */}
@@ -135,7 +141,7 @@ export default async function VoucherDetailPage({ params }: Props) {
                   className="flex items-center justify-between bg-white rounded-xl border border-gray-200 p-4 hover:border-indigo-300 transition-colors"
                 >
                   <div>
-                    <span className="font-mono font-bold text-sm text-gray-800">{r.code}</span>
+                    <span className="font-mono font-bold text-sm text-gray-800">{r.hideCode ? maskVoucherCode(r.code) : r.code}</span>
                     <p className="text-xs text-gray-400 mt-0.5">{r.discount}</p>
                   </div>
                   <span className="text-indigo-600 font-bold text-sm">

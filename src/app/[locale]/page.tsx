@@ -38,6 +38,7 @@ export default async function HomePage({ params }: Props) {
     provider:      v.provider,
     category:      v.category.toLowerCase() as 'domain',
     code:          v.code,
+    hideCode:      v.hideCode,
     title:         (v.translations.find((tr: {locale:string}) => tr.locale === locale) ?? v.translations.find((tr: {locale:string}) => tr.locale === 'en'))?.title || '',
     description:   (v.translations.find((tr: {locale:string}) => tr.locale === locale) ?? v.translations.find((tr: {locale:string}) => tr.locale === 'en'))?.description || v.discount,
     discount:      v.discount,
