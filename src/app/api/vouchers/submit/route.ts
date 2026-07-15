@@ -3,11 +3,12 @@ import { z }                         from 'zod';
 import { prisma }                    from '@/lib/db';
 
 const Schema = z.object({
-  code:     z.string().min(2).max(50).transform(v => v.trim().toUpperCase()),
-  provider: z.string().min(2).max(100).transform(v => v.trim()),
-  discount: z.string().max(50).optional(),
-  url:      z.string().url().optional().or(z.literal('')),
-  email:    z.string().email().optional().or(z.literal('')),
+  code:        z.string().min(2).max(50).transform(v => v.trim().toUpperCase()),
+  provider:    z.string().min(2).max(100).transform(v => v.trim()),
+  discount:    z.string().max(50).optional(),
+  description: z.string().max(2000).optional(),
+  url:         z.string().url().optional().or(z.literal('')),
+  email:       z.string().email().optional().or(z.literal('')),
 });
 
 export async function POST(req: NextRequest) {
@@ -17,7 +18,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Dữ liệu không hợp lệ', details: parsed.error.flatten() }, { status: 422 });
     }
 
-    const { code, provider, discount, url, email } = parsed.data;
+    const { code, provider, discount, description, url, email } = parsed.data;
 
     const duplicate = await prisma.voucherSubmission.findFirst({ where: { code, provider, status: 'PENDING' } });
     if (duplicate) {
@@ -31,7 +32,7 @@ export async function POST(req: NextRequest) {
     }
 
     const submission = await prisma.voucherSubmission.create({
-      data: { code, provider, discount, url, userId, status: 'PENDING' }
+      data: { code, provider, discount, description, url, userId, status: 'PENDING' }
     });
 
     return NextResponse.json({ success: true, id: submission.id, message: 'Cảm ơn! Deal đang chờ kiểm duyệt.' });

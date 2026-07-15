@@ -297,6 +297,8 @@
     "providerPlaceholder": "z.B. Namecheap, Hostinger...",
     "discount": "Rabatt",
     "discountPlaceholder": "z.B. 30% oder $5 off",
+    "description": "Ausführliche Beschreibung",
+    "descriptionPlaceholder": "Bedingungen, Verwendung, was enthalten ist...",
     "url": "Landingpage-URL",
     "yourEmail": "Ihre E-Mail",
     "emailOptional": "(optional — Benachrichtigung bei Freigabe)",

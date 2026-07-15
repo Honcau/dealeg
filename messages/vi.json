@@ -297,6 +297,8 @@
     "providerPlaceholder": "Ví dụ: Namecheap, Hostinger...",
     "discount": "Mức giảm giá",
     "discountPlaceholder": "Ví dụ: 30% hoặc $5 off",
+    "description": "Miêu tả chi tiết",
+    "descriptionPlaceholder": "Điều kiện, cách dùng, ưu đãi gồm những gì...",
     "url": "Link trang áp dụng",
     "yourEmail": "Email của bạn",
     "emailOptional": "(tuỳ chọn — để nhận thông báo khi được duyệt)",

@@ -297,6 +297,8 @@
     "providerPlaceholder": "예: Namecheap, Hostinger...",
     "discount": "할인",
     "discountPlaceholder": "예: 30% 또는 $5",
+    "description": "상세 설명",
+    "descriptionPlaceholder": "조건, 사용 방법, 포함 내용...",
     "url": "페이지 URL",
     "yourEmail": "이메일",
     "emailOptional": "(선택 — 승인 시 알림)",

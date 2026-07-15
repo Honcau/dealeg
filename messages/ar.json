@@ -297,6 +297,8 @@
     "providerPlaceholder": "مثل Namecheap، Hostinger...",
     "discount": "الخصم",
     "discountPlaceholder": "مثل 30% أو $5",
+    "description": "وصف تفصيلي",
+    "descriptionPlaceholder": "الشروط، كيفية الاستخدام، ما الذي يشمله...",
     "url": "رابط الصفحة",
     "yourEmail": "بريدك",
     "emailOptional": "(اختياري — لإعلامك عند الموافقة)",

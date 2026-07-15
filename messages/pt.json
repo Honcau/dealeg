@@ -297,6 +297,8 @@
     "providerPlaceholder": "ex. Namecheap, Hostinger...",
     "discount": "Desconto",
     "discountPlaceholder": "ex. 30% ou $5 off",
+    "description": "Descrição detalhada",
+    "descriptionPlaceholder": "Condições, como usar, o que inclui...",
     "url": "URL da página",
     "yourEmail": "Seu e-mail",
     "emailOptional": "(opcional — para avisar quando aprovado)",

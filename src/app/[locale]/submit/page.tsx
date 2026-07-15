@@ -12,12 +12,12 @@ const CATEGORIES = ['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL
 export default function SubmitPage() {
   const t = useTranslations('submit');
   const [form, setForm] = useState({
-    code: '', provider: '', discount: '', url: '', email: ''
+    code: '', provider: '', discount: '', description: '', url: '', email: ''
   });
   const [status, setStatus] = useState<'idle'|'loading'|'success'|'error'>('idle');
   const [message, setMessage] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -39,7 +39,7 @@ export default function SubmitPage() {
       if (res.ok) {
         setStatus('success');
         setMessage(data.message);
-        setForm({ code: '', provider: '', discount: '', url: '', email: '' });
+        setForm({ code: '', provider: '', discount: '', description: '', url: '', email: '' });
       } else {
         setStatus('error');
         setMessage(data.error ?? t('errGeneric'));
@@ -92,6 +92,19 @@ export default function SubmitPage() {
             name="discount" value={form.discount} onChange={handleChange}
             placeholder={t('discountPlaceholder')}
             className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+
+        {/* Miêu tả chi tiết (tuỳ chọn) */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            {t.has('description') ? t('description') : 'Miêu tả chi tiết'}
+          </label>
+          <textarea
+            name="description" value={form.description} onChange={handleChange}
+            rows={4}
+            placeholder={t.has('descriptionPlaceholder') ? t('descriptionPlaceholder') : 'Điều kiện, cách dùng, ưu đãi gồm những gì...'}
+            className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
 

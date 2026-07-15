@@ -297,6 +297,8 @@
     "providerPlaceholder": "例如 Namecheap、Hostinger...",
     "discount": "折扣",
     "discountPlaceholder": "例如 30% 或 $5 off",
+    "description": "详细说明",
+    "descriptionPlaceholder": "适用条件、使用方法、包含内容……",
     "url": "落地页链接",
     "yourEmail": "您的邮箱",
     "emailOptional": "（可选 — 批准时通知您）",

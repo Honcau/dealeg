@@ -192,11 +192,12 @@ model SavedVoucher {
 }
 
 model VoucherSubmission {
-  id        String           @id @default(cuid())
-  code      String
-  provider  String
-  discount  String?
-  url       String?
+  id          String         @id @default(cuid())
+  code        String
+  provider    String
+  discount    String?
+  description String?
+  url         String?
   status    SubmissionStatus @default(PENDING)
   userId    String?
   user      User?            @relation(fields: [userId], references: [id])

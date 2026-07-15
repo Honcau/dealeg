@@ -297,6 +297,8 @@
     "providerPlaceholder": "напр. Namecheap, Hostinger...",
     "discount": "Скидка",
     "discountPlaceholder": "напр. 30% или $5",
+    "description": "Подробное описание",
+    "descriptionPlaceholder": "Условия, как использовать, что включено...",
     "url": "URL страницы",
     "yourEmail": "Ваш email",
     "emailOptional": "(необязательно — уведомим при одобрении)",
