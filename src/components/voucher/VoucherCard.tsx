@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import type { Voucher } from '@/types/voucher';
 import { SaveButton } from './SaveButton';
+import { CopiedToast } from './CopiedToast';
 import { isExpired, formatDate, formatCount, maskVoucherCode } from '@/lib/utils';
 
 interface VoucherCardProps {
@@ -26,8 +27,7 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
   const t = useTranslations('voucher');
   const tShare = useTranslations('share');
   const locale = useLocale();
-  const [copied, setCopied] = useState(false);        // dấu tick ở phần mã (cả 2 hành động)
-  const [ctaCopied, setCtaCopied] = useState(false);  // nhãn nút "Nhận mã" — CHỈ khi bấm chính nó
+  const [copied, setCopied] = useState(false);      // hiện toast "đã copy"
   const [revealed, setRevealed] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
   const expired = isExpired(voucher.expiresAt);
@@ -57,24 +57,9 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
     // copy đồng bộ trong user-gesture (không await) → giữ quyền clipboard
     navigator.clipboard?.writeText(voucher.code).catch(() => {});
     setCopied(true);
-    setCtaCopied(true);
-    setTimeout(() => { setCopied(false); setCtaCopied(false); }, 3000);
+    setTimeout(() => setCopied(false), 6000);   // toast ở lại đủ lâu để còn thấy khi quay về tab
     // Ghi nhận click (tăng useCount) — fire-and-forget
     fetch(`/api/vouchers/${voucher.id}/click`, { method: 'POST' }).catch(() => {});
-  };
-
-  /**
-   * Bấm vào phần MÃ = chỉ copy lại, KHÔNG mở tab affiliate và không tính click.
-   * Nhờ vậy user copy lại bao nhiêu lần cũng được mà không bị đẻ thêm tab.
-   * Deal ẩn mã thì chỉ cho copy sau khi đã lộ mã (phải bấm "Nhận mã" trước).
-   */
-  const canCopyDirect = !voucher.hideCode || revealed;
-
-  const handleCopyOnly = () => {
-    if (expired || !canCopyDirect) return;
-    navigator.clipboard?.writeText(voucher.code).catch(() => {});
-    setCopied(true);
-    setTimeout(() => setCopied(false), 3000);
   };
 
   // URL trang chi tiết voucher (cho share)
@@ -90,36 +75,22 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
       : voucher.discountValue ? `-${voucher.discountValue}%`
       : '');
 
-  // Phần MÃ (bên trái cuống vé) — nút copy độc lập, không mở tab
-  const codePart = (
-    <button type="button" onClick={handleCopyOnly} disabled={!canCopyDirect}
-      title={canCopyDirect ? t('copy') : undefined}
-      className={`flex-1 min-w-0 flex items-center justify-center gap-2 font-mono font-bold text-sm tracking-widest text-gray-900 bg-gray-50 px-4 py-3 transition-colors ${
-        canCopyDirect ? 'hover:bg-indigo-50 cursor-pointer' : 'cursor-default'}`}>
-      <span className={`truncate ${copied ? 'text-green-600' : ''}`}>{displayCode}</span>
-      {canCopyDirect && (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-          className={`w-3.5 h-3.5 shrink-0 ${copied ? 'text-green-600' : 'text-gray-400'}`}>
-          {copied
-            ? <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
-            : <><rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" /></>}
-        </svg>
-      )}
-    </button>
-  );
-
-  // Phần "Nhận mã" (bên phải) — <a target="_blank"> gốc để không bị chặn tab
-  const ctaInner = (
+  // Cả cuống vé là MỘT nút: trái = mã, phải = "Nhận mã". Nhãn nút không đổi —
+  // phản hồi "đã copy" nằm ở toast bên dưới nên chữ "Nhận mã" luôn còn.
+  const ticketInner = (
     <>
-      <span aria-hidden className="absolute -left-[7px] -top-[7px] w-3.5 h-3.5 rounded-full bg-white border border-gray-200" />
-      <span aria-hidden className="absolute -left-[7px] -bottom-[7px] w-3.5 h-3.5 rounded-full bg-white border border-gray-200" />
-      {ctaCopied
-        ? <>{t.has('codeCopied') ? t('codeCopied') : 'Code Copied'} ✓</>
-        : <>{t('getCode')} →</>}
+      <span className="flex-1 min-w-0 flex items-center justify-center font-mono font-bold text-sm tracking-widest text-gray-900 bg-gray-50 px-4 py-3 group-hover:bg-indigo-50 transition-colors">
+        <span className="truncate max-w-full">{displayCode}</span>
+      </span>
+      <span className="relative shrink-0 flex items-center justify-center bg-indigo-600 group-hover:bg-indigo-700 text-white text-sm font-semibold px-5 transition-colors whitespace-nowrap border-l-2 border-dashed border-white/50">
+        <span aria-hidden className="absolute -left-[7px] -top-[7px] w-3.5 h-3.5 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
+        <span aria-hidden className="absolute -left-[7px] -bottom-[7px] w-3.5 h-3.5 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
+        {t('getCode')} →
+      </span>
     </>
   );
-  const ctaCls = 'relative shrink-0 flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold px-5 transition-colors whitespace-nowrap border-l-2 border-dashed border-white/50 cursor-pointer';
-  const ticketCls = 'flex items-stretch w-full rounded-lg overflow-hidden border border-gray-200 hover:border-indigo-500 transition-colors';
+
+  const ticketCls = 'group relative flex items-stretch w-full rounded-lg overflow-hidden border border-gray-200 hover:border-indigo-500 transition-colors cursor-pointer';
 
   return (
     <article
@@ -173,19 +144,16 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
       {/* Code + affiliate — bấm là copy code VÀ mở link affiliate ở tab mới.
           Dùng <a target="_blank"> (khi có link) để trình duyệt không chặn tab như window.open. */}
       {!expired ? (
-        <div className={ticketCls}>
-          {codePart}
-          {targetUrl ? (
-            <a href={targetUrl} target="_blank" rel="noopener noreferrer sponsored"
-              onClick={handleGetCode} className={ctaCls}>
-              {ctaInner}
-            </a>
-          ) : (
-            <button type="button" onClick={handleGetCode} className={ctaCls}>
-              {ctaInner}
-            </button>
-          )}
-        </div>
+        targetUrl ? (
+          <a href={targetUrl} target="_blank" rel="noopener noreferrer sponsored"
+            onClick={handleGetCode} className={ticketCls}>
+            {ticketInner}
+          </a>
+        ) : (
+          <button type="button" onClick={handleGetCode} className={ticketCls}>
+            {ticketInner}
+          </button>
+        )
       ) : (
         <div className="w-full px-4 py-3 rounded-xl border-2 border-dashed border-gray-100 text-center">
           <span className="font-mono font-bold text-sm tracking-widest text-gray-400 line-through">
@@ -194,12 +162,8 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
         </div>
       )}
 
-      {/* Ghi chú nhỏ: mã đã được copy */}
-      {copied && (
-        <p className="text-xs text-center text-green-600 -mt-2">
-          {t('copiedHint')}
-        </p>
-      )}
+      {/* Thông báo mỗi lần bấm "Nhận mã". Fixed nên vẫn thấy sau khi quay lại tab dealeg. */}
+      {copied && <CopiedToast message={t('copiedHint')} />}
 
       {/* Hàng dưới: link chi tiết + share nhanh */}
       <div className="flex items-center justify-between pt-1">
