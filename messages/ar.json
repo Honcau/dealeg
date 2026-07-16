@@ -35,6 +35,7 @@
     "getCode": "احصل على الكود",
     "codeCopied": "تم نسخ الكود",
     "copiedHint": "تم نسخ الكود! الصقه عند الدفع.",
+    "copyFailed": "اضغط مطولاً على الكود لنسخه.",
     "details": "التفاصيل",
     "sortDiscount": "أكبر خصم",
     "sortNewest": "الأحدث",

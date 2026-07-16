@@ -35,6 +35,7 @@
     "getCode": "Obtener código",
     "codeCopied": "Código copiado",
     "copiedHint": "¡Código copiado! Pégalo al pagar.",
+    "copyFailed": "Mantén pulsado el código para copiarlo.",
     "details": "Detalles",
     "sortDiscount": "Mayor descuento",
     "sortNewest": "Más recientes",

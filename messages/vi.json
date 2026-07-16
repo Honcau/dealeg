@@ -35,6 +35,7 @@
     "getCode": "Nhận mã",
     "codeCopied": "Đã copy mã",
     "copiedHint": "Đã copy mã! Dán vào ô giảm giá khi thanh toán.",
+    "copyFailed": "Chạm giữ vào mã để copy thủ công.",
     "details": "Chi tiết",
     "sortDiscount": "Giảm nhiều nhất",
     "sortNewest": "Mới nhất",

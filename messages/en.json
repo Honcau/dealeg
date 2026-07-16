@@ -35,6 +35,7 @@
     "getCode": "Get Code",
     "codeCopied": "Code Copied",
     "copiedHint": "Code copied! Paste it at checkout.",
+    "copyFailed": "Tap and hold the code to copy it.",
     "details": "Details",
     "sortDiscount": "Biggest discount",
     "sortNewest": "Newest",

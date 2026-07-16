@@ -35,6 +35,7 @@
     "getCode": "コードを取得",
     "codeCopied": "コピー完了",
     "copiedHint": "コードをコピーしました！購入時に貼り付けてください。",
+    "copyFailed": "コードを長押ししてコピーしてください。",
     "details": "詳細",
     "sortDiscount": "割引率順",
     "sortNewest": "最新",

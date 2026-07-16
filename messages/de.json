@@ -35,6 +35,7 @@
     "getCode": "Code holen",
     "codeCopied": "Code kopiert",
     "copiedHint": "Code kopiert! Beim Checkout einfügen.",
+    "copyFailed": "Code gedrückt halten, um ihn zu kopieren.",
     "details": "Details",
     "sortDiscount": "Größter Rabatt",
     "sortNewest": "Neueste",

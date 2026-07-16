@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import type { Voucher } from '@/types/voucher';
-import { isExpired, formatDate, formatCount, maskVoucherCode, trackVoucherClick } from '@/lib/utils';
+import { isExpired, formatDate, formatCount, maskVoucherCode, trackVoucherClick, copyToClipboard, isInAppBrowser } from '@/lib/utils';
 import { SaveButton } from './SaveButton';
 import { CopiedToast } from './CopiedToast';
 
@@ -22,7 +22,8 @@ const CATEGORY_COLORS: Record<string, string> = {
 export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
   const t = useTranslations('voucher');
   const locale = useLocale();
-  const [copied, setCopied] = useState(false);      // hiện toast "đã copy"
+  const [copied, setCopied] = useState(false);      // hiện toast
+  const [copyOk, setCopyOk] = useState(true);       // copy thật sự thành công hay không
   const [revealed, setRevealed] = useState(false);
   const expired = isExpired(voucher.expiresAt);
 
@@ -35,13 +36,27 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
 
   // Chống popup blocker: dùng <a target="_blank"> gốc (xem chú thích ở VoucherCard),
   // handler chỉ copy + lộ mã đồng bộ, không window.open, không preventDefault.
-  const handleGetCode = () => {
+  const handleGetCode = (e?: React.MouseEvent) => {
     if (expired) return;
     setRevealed(true);
-    navigator.clipboard?.writeText(voucher.code).catch(() => {});
+
+    // Copy đồng bộ ngay trong user-gesture. copyToClipboard có fallback execCommand
+    // nên chạy được cả trong in-app browser (Clipboard API ở đó thường bị chặn).
+    const ok = copyToClipboard(voucher.code);
+    setCopyOk(ok);
     setCopied(true);
     setTimeout(() => setCopied(false), 6000);   // toast ở lại đủ lâu để còn thấy khi quay về tab
+
+    // Ghi nhận click (tăng useCount) — sendBeacon để không mất khi tab bị nền
     trackVoucherClick(voucher.id);
+
+    // IN-APP BROWSER (mở link từ bot Telegram/Facebook...): webview không có tab nên
+    // target="_blank" thường không mở được gì → tap vào là chết lặng. Tự điều hướng
+    // ngay trong webview, chờ 1 nhịp cho toast kịp hiện rồi mới đi.
+    if (targetUrl && e && isInAppBrowser()) {
+      e.preventDefault();
+      setTimeout(() => { window.location.href = targetUrl; }, 600);
+    }
   };
 
   /** Chuột giữa chỉ bắn 'auxclick' — xem chú thích ở VoucherCard. */
@@ -127,7 +142,12 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
       )}
 
       {/* Thông báo mỗi lần bấm "Nhận mã" */}
-      {copied && <CopiedToast message={t('copiedHint')} />}
+      {copied && (
+        <CopiedToast ok={copyOk}
+          message={copyOk
+            ? t('copiedHint')
+            : (t.has('copyFailed') ? t('copyFailed') : 'Tap and hold the code to copy it.')} />
+      )}
     </article>
   );
 }

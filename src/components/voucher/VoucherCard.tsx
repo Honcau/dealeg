@@ -6,7 +6,7 @@ import { Link } from '@/i18n/navigation';
 import type { Voucher } from '@/types/voucher';
 import { SaveButton } from './SaveButton';
 import { CopiedToast } from './CopiedToast';
-import { isExpired, formatDate, formatCount, maskVoucherCode, trackVoucherClick } from '@/lib/utils';
+import { isExpired, formatDate, formatCount, maskVoucherCode, trackVoucherClick, copyToClipboard, isInAppBrowser } from '@/lib/utils';
 
 interface VoucherCardProps {
   voucher: Voucher;
@@ -27,7 +27,8 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
   const t = useTranslations('voucher');
   const tShare = useTranslations('share');
   const locale = useLocale();
-  const [copied, setCopied] = useState(false);      // hiện toast "đã copy"
+  const [copied, setCopied] = useState(false);      // hiện toast
+  const [copyOk, setCopyOk] = useState(true);       // copy thật sự thành công hay không
   const [revealed, setRevealed] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
   const expired = isExpired(voucher.expiresAt);
@@ -44,22 +45,38 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
   const shareCode = voucher.hideCode ? maskVoucherCode(voucher.code) : voucher.code;
 
   /**
-   * Bấm "Nhận mã": lộ mã đầy đủ + copy clipboard + (nếu có) mở link affiliate.
+   * Bấm "Nhận mã": lộ mã đầy đủ + copy clipboard + mở link affiliate.
    *
-   * QUAN TRỌNG — chống popup blocker/extension: KHÔNG dùng window.open (dễ bị chặn,
-   * nhất là khi gọi sau await). Thay vào đó nút là thẻ <a target="_blank"> gốc → trình
-   * duyệt coi đây là điều hướng do người dùng bấm nên KHÔNG chặn. Handler này chỉ chạy
-   * đồng bộ trong cùng cú click (copy + reveal), không preventDefault để tab vẫn tự mở.
+   * Cách mở link khác nhau theo môi trường:
+   * - Trình duyệt thường: để nguyên hành vi mặc định của <a target="_blank"> (KHÔNG
+   *   preventDefault). Dùng anchor gốc thay window.open vì trình duyệt coi đây là điều
+   *   hướng do người dùng bấm nên popup blocker/extension không chặn.
+   * - In-app browser (webview của bot Telegram/Facebook...): không có tab, target="_blank"
+   *   thường không mở được gì → phải preventDefault rồi tự điều hướng, xem bên dưới.
+   *
+   * Mọi thứ chạy đồng bộ trong cùng cú click để không mất user-gesture (clipboard cần nó).
    */
-  const handleGetCode = () => {
+  const handleGetCode = (e?: React.MouseEvent) => {
     if (expired) return;
     setRevealed(true);
-    // copy đồng bộ trong user-gesture (không await) → giữ quyền clipboard
-    navigator.clipboard?.writeText(voucher.code).catch(() => {});
+
+    // Copy đồng bộ ngay trong user-gesture. copyToClipboard có fallback execCommand
+    // nên chạy được cả trong in-app browser (Clipboard API ở đó thường bị chặn).
+    const ok = copyToClipboard(voucher.code);
+    setCopyOk(ok);
     setCopied(true);
     setTimeout(() => setCopied(false), 6000);   // toast ở lại đủ lâu để còn thấy khi quay về tab
+
     // Ghi nhận click (tăng useCount) — sendBeacon để không mất khi tab bị nền
     trackVoucherClick(voucher.id);
+
+    // IN-APP BROWSER (mở link từ bot Telegram/Facebook...): webview không có tab nên
+    // target="_blank" thường không mở được gì → tap vào là chết lặng. Tự điều hướng
+    // ngay trong webview, chờ 1 nhịp cho toast kịp hiện rồi mới đi.
+    if (targetUrl && e && isInAppBrowser()) {
+      e.preventDefault();
+      setTimeout(() => { window.location.href = targetUrl; }, 600);
+    }
   };
 
   /**
@@ -172,7 +189,12 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
       )}
 
       {/* Thông báo mỗi lần bấm "Nhận mã". Fixed nên vẫn thấy sau khi quay lại tab dealeg. */}
-      {copied && <CopiedToast message={t('copiedHint')} />}
+      {copied && (
+        <CopiedToast ok={copyOk}
+          message={copyOk
+            ? t('copiedHint')
+            : (t.has('copyFailed') ? t('copyFailed') : 'Tap and hold the code to copy it.')} />
+      )}
 
       {/* Hàng dưới: link chi tiết + share nhanh */}
       <div className="flex items-center justify-between pt-1">

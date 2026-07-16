@@ -35,6 +35,7 @@
     "getCode": "获取代码",
     "codeCopied": "已复制",
     "copiedHint": "代码已复制！结账时粘贴。",
+    "copyFailed": "请长按优惠码手动复制。",
     "details": "详情",
     "sortDiscount": "最大折扣",
     "sortNewest": "最新",
