@@ -12,11 +12,12 @@ interface Provider {
   category: string | null;      // danh mục chính (tương thích cũ)
   categories: string[];         // nhiều danh mục
   affiliateId: string | null;
+  affiliateUrl: string | null;
   description: string | null;
   isActive: boolean;
 }
 
-const EMPTY = { name: '', website: '', categories: [] as string[], affiliateId: '', description: '', isActive: true };
+const EMPTY = { name: '', website: '', categories: [] as string[], affiliateId: '', affiliateUrl: '', description: '', isActive: true };
 
 /** categories mới, fallback về category cũ nếu provider chưa có mảng */
 function catsOf(p: Provider): string[] {
@@ -58,6 +59,7 @@ export default function ProvidersPage() {
       website:     p.website || '',
       categories:  catsOf(p),
       affiliateId: p.affiliateId || '',
+      affiliateUrl: p.affiliateUrl || '',
       description: p.description || '',
       isActive:    p.isActive,
     });
@@ -149,6 +151,13 @@ export default function ProvidersPage() {
             <label className={labelCls}>Affiliate ID <span className="text-gray-400">(tùy chọn)</span></label>
             <input value={form.affiliateId} onChange={e => set('affiliateId', e.target.value)}
               placeholder="mã affiliate" className={inputCls} />
+          </div>
+          <div className="md:col-span-2">
+            <label className={labelCls}>
+              Link affiliate mặc định <span className="text-gray-400">(tự điền vào voucher khi chọn provider này)</span>
+            </label>
+            <input value={form.affiliateUrl} onChange={e => set('affiliateUrl', e.target.value)}
+              placeholder="https://provider.com/?ref=dealeg" className={inputCls} />
           </div>
           <div className="md:col-span-2">
             <label className={labelCls}>

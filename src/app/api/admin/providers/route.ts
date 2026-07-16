@@ -17,6 +17,7 @@ const ProviderSchema = z.object({
   // 1 provider có thể thuộc nhiều danh mục — không bắt buộc chọn
   categories:  z.array(CATEGORY_ENUM).default([]),
   affiliateId: z.string().optional(),
+  affiliateUrl: z.string().optional(),   // link affiliate mặc định của provider
   description: z.string().optional(),
   logo:        z.string().optional(),
   isActive:    z.boolean().default(true),
@@ -35,7 +36,7 @@ export async function GET(req: NextRequest) {
     orderBy: { name: 'asc' },
     select: {
       id: true, name: true, slug: true, website: true,
-      category: true, categories: true, affiliateId: true, description: true, isActive: true,
+      category: true, categories: true, affiliateId: true, affiliateUrl: true, description: true, isActive: true,
     },
   });
   return NextResponse.json(providers);
@@ -50,7 +51,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 422 });
   }
 
-  const { name, website, categories, affiliateId, description, logo, isActive } = parsed.data;
+  const { name, website, categories, affiliateId, affiliateUrl, description, logo, isActive } = parsed.data;
   const slug = slugify(name);
 
   // name & slug đều @unique → chặn trùng
@@ -72,6 +73,7 @@ export async function POST(req: NextRequest) {
       categories,
       category:        categories[0] ?? null,   // danh mục chính = cái đầu tiên (tương thích cũ)
       affiliateId:     affiliateId || null,
+      affiliateUrl:    affiliateUrl || null,
       hasAffiliateApi: !!affiliateId,
       isActive,
     },

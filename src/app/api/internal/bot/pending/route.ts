@@ -69,7 +69,9 @@ export async function GET(req: NextRequest) {
     for (const v of vouchers) {
       if (perUser >= MAX_PER_USER || out.length >= limit) break;
       if (v.createdAt <= u.optInAt) continue;                                   // deal cũ hơn lúc opt-in
-      if (u.categories.length && !u.categories.includes(v.category.toLowerCase())) continue;
+      // voucher có thể thuộc nhiều danh mục → khớp nếu user quan tâm BẤT KỲ cái nào
+      const vCats = (v.categories.length ? v.categories : [v.category]).map(c => c.toLowerCase());
+      if (u.categories.length && !vCats.some(c => u.categories.includes(c))) continue;
       if (sentSet.has(`${u.id}:${v.id}`)) continue;                             // đã gửi rồi
 
       out.push({ botUserId: u.id, chatId: u.chatId, locale: u.locale, deal: toDealCard(v, u.locale) });

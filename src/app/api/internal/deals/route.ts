@@ -31,9 +31,18 @@ export async function GET(req: NextRequest) {
   const vouchers = await prisma.voucher.findMany({
     where: {
       isActive: true,
-      OR: [{ expiresAt: null }, { expiresAt: { gt: new Date() } }],
       ...(sinceDate ? { createdAt: { gt: sinceDate } } : {}),
-      ...(categories.length ? { category: { in: categories as never[] } } : {}),
+      // Gộp trong AND: hai điều kiện đều dùng OR nên không thể để chung 1 object
+      // (key `OR` thứ hai sẽ ghi đè key đầu → mất filter hết hạn).
+      AND: [
+        { OR: [{ expiresAt: null }, { expiresAt: { gt: new Date() } }] },
+        ...(categories.length
+          ? [{ OR: [
+              { category: { in: categories as never[] } },
+              { categories: { hasSome: categories as never[] } },
+            ] }]
+          : []),
+      ],
     },
     include: { translations: { where: { locale: { in: [locale, 'en'] } } } },
     orderBy: { createdAt: 'desc' },

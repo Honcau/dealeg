@@ -21,7 +21,8 @@ const CATEGORY_COLORS: Record<string, string> = {
 export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
   const t = useTranslations('voucher');
   const locale = useLocale();
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(false);        // dấu tick ở phần mã (cả 2 hành động)
+  const [ctaCopied, setCtaCopied] = useState(false);  // nhãn nút "Nhận mã" — CHỈ khi bấm chính nó
   const [revealed, setRevealed] = useState(false);
   const expired = isExpired(voucher.expiresAt);
 
@@ -39,8 +40,19 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
     setRevealed(true);
     navigator.clipboard?.writeText(voucher.code).catch(() => {});
     setCopied(true);
-    setTimeout(() => setCopied(false), 3000);
+    setCtaCopied(true);
+    setTimeout(() => { setCopied(false); setCtaCopied(false); }, 3000);
     fetch(`/api/vouchers/${voucher.id}/click`, { method: 'POST' }).catch(() => {});
+  };
+
+  // Bấm vào phần mã = chỉ copy lại, không mở tab (xem chú thích ở VoucherCard)
+  const canCopyDirect = !voucher.hideCode || revealed;
+
+  const handleCopyOnly = () => {
+    if (expired || !canCopyDirect) return;
+    navigator.clipboard?.writeText(voucher.code).catch(() => {});
+    setCopied(true);
+    setTimeout(() => setCopied(false), 3000);
   };
 
   // Nhãn giảm giá: ưu tiên chuỗi `discount` do admin nhập (VD "Miễn phí 3 tháng").
@@ -93,25 +105,40 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
       {/* Nút nhận mã lớn — <a target="_blank"> để không bị chặn tab */}
       {!expired ? (
         (() => {
-          const inner = (
+          const ctaInner = (
             <>
-              <span className="flex-1 min-w-0 flex items-center justify-center font-mono font-bold text-lg tracking-widest text-gray-900 bg-gray-50 px-4 py-4 group-hover:bg-indigo-50 transition-colors">
-                <span className={`truncate max-w-full ${copied ? 'text-green-600' : ''}`}>{displayCode}</span>
-              </span>
-              <span className="relative shrink-0 flex items-center justify-center bg-indigo-600 group-hover:bg-indigo-700 text-white text-base font-semibold px-8 transition-colors whitespace-nowrap border-l-2 border-dashed border-white/50">
-                <span aria-hidden className="absolute -left-[8px] -top-[8px] w-4 h-4 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
-                <span aria-hidden className="absolute -left-[8px] -bottom-[8px] w-4 h-4 rounded-full bg-white border border-gray-200 group-hover:border-indigo-500 transition-colors" />
-                {copied
-                  ? <>{t.has('codeCopied') ? t('codeCopied') : 'Code Copied'} ✓</>
-                  : <>{t('getCode')} →</>}
-              </span>
+              <span aria-hidden className="absolute -left-[8px] -top-[8px] w-4 h-4 rounded-full bg-white border border-gray-200" />
+              <span aria-hidden className="absolute -left-[8px] -bottom-[8px] w-4 h-4 rounded-full bg-white border border-gray-200" />
+              {ctaCopied
+                ? <>{t.has('codeCopied') ? t('codeCopied') : 'Code Copied'} ✓</>
+                : <>{t('getCode')} →</>}
             </>
           );
-          const cls = 'group relative w-full flex items-stretch rounded-lg overflow-hidden border border-gray-200 hover:border-indigo-500 transition-colors cursor-pointer';
-          return targetUrl ? (
-            <a href={targetUrl} target="_blank" rel="noopener noreferrer sponsored" onClick={handleGetCode} className={cls}>{inner}</a>
-          ) : (
-            <button type="button" onClick={handleGetCode} className={cls}>{inner}</button>
+          const ctaCls = 'relative shrink-0 flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white text-base font-semibold px-8 transition-colors whitespace-nowrap border-l-2 border-dashed border-white/50 cursor-pointer';
+          return (
+            <div className="w-full flex items-stretch rounded-lg overflow-hidden border border-gray-200 hover:border-indigo-500 transition-colors">
+              {/* Trái: mã — bấm để copy lại, không mở tab */}
+              <button type="button" onClick={handleCopyOnly} disabled={!canCopyDirect}
+                title={canCopyDirect ? t('copy') : undefined}
+                className={`flex-1 min-w-0 flex items-center justify-center gap-2 font-mono font-bold text-lg tracking-widest text-gray-900 bg-gray-50 px-4 py-4 transition-colors ${
+                  canCopyDirect ? 'hover:bg-indigo-50 cursor-pointer' : 'cursor-default'}`}>
+                <span className={`truncate ${copied ? 'text-green-600' : ''}`}>{displayCode}</span>
+                {canCopyDirect && (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                    className={`w-4 h-4 shrink-0 ${copied ? 'text-green-600' : 'text-gray-400'}`}>
+                    {copied
+                      ? <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
+                      : <><rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" /></>}
+                  </svg>
+                )}
+              </button>
+              {/* Phải: nhận mã — anchor mở affiliate */}
+              {targetUrl ? (
+                <a href={targetUrl} target="_blank" rel="noopener noreferrer sponsored" onClick={handleGetCode} className={ctaCls}>{ctaInner}</a>
+              ) : (
+                <button type="button" onClick={handleGetCode} className={ctaCls}>{ctaInner}</button>
+              )}
+            </div>
           );
         })()
       ) : (

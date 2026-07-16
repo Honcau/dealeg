@@ -10,10 +10,13 @@ function checkAuth(req: NextRequest): boolean {
   catch { return false; }
 }
 
+const CATEGORY_ENUM = z.enum(['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL','AITOOL','OTHER']);
+
 const VoucherSchema = z.object({
   code:          z.string().min(1).transform(v => v.trim().toUpperCase()),
   provider:      z.string().min(1).transform(v => v.trim()),
-  category:      z.enum(['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL','AITOOL','OTHER']),
+  // 1 voucher có thể thuộc nhiều danh mục; category (số ít) = categories[0], suy ra ở dưới
+  categories:    z.array(CATEGORY_ENUM).min(1, 'Chọn ít nhất 1 danh mục'),
   discount:      z.string().optional(),   // derive từ discountValue (không nhập tay nữa)
   discountValue: z.number().min(0).max(100),
   affiliateUrl:  z.string().url().optional().or(z.literal('')),
@@ -54,6 +57,7 @@ export async function POST(req: NextRequest) {
   const voucher = await prisma.voucher.create({
     data: {
       ...data,
+      category:     data.categories[0],   // danh mục chính — giữ cho các query cũ
       discount:     data.discountValue > 0 ? `-${data.discountValue}%` : '',
       affiliateUrl: data.affiliateUrl || null,
       sourceUrl:    data.sourceUrl || null,

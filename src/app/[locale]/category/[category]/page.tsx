@@ -44,7 +44,8 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const [dbVouchers, providerRows] = await Promise.all([
     prisma.voucher.findMany({
       where: {
-        category: dbCategory,
+        // voucher cũ chỉ có `category`; voucher mới có `categories[]` → khớp cả hai
+        OR: [{ category: dbCategory }, { categories: { has: dbCategory } }],
         isActive: true,
         ...(provider ? { provider } : {}),
       },
@@ -56,7 +57,10 @@ export default async function CategoryPage({ params, searchParams }: Props) {
       take: 48,
     }),
     prisma.voucher.findMany({
-      where: { category: dbCategory, isActive: true },
+      where: {
+        OR: [{ category: dbCategory }, { categories: { has: dbCategory } }],
+        isActive: true,
+      },
       select: { provider: true },
       distinct: ['provider'],
     }),

@@ -8,7 +8,7 @@ const CATEGORIES = ['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL
 export interface VoucherFormData {
   code:          string;
   provider:      string;
-  category:      string;
+  categories:    string[];
   discount:      string;
   discountValue: number;
   affiliateUrl:  string;
@@ -24,7 +24,7 @@ export interface VoucherFormData {
 }
 
 const EMPTY: VoucherFormData = {
-  code: '', provider: '', category: 'DOMAIN', discount: '', discountValue: 0,
+  code: '', provider: '', categories: [], discount: '', discountValue: 0,
   affiliateUrl: '', sourceUrl: '', expiresAt: '', isVerified: false, isActive: true, hideCode: false,
   titleVi: '', descVi: '', titleEn: '', descEn: '',
 };
@@ -40,24 +40,46 @@ export function VoucherForm({ initial, voucherId }: Props) {
   const [form,    setForm]    = useState<VoucherFormData>({ ...EMPTY, ...initial });
   const [loading, setLoading] = useState(false);
   const [error,   setError]   = useState('');
-  const [providers, setProviders] = useState<{ name: string }[]>([]);
+  const [providers, setProviders] = useState<{ name: string; affiliateUrl: string | null }[]>([]);
   const router = useRouter();
 
   // Nạp danh sách provider để chọn (thay vì gõ tay)
   useEffect(() => {
     fetch('/api/admin/providers')
       .then(r => (r.ok ? r.json() : []))
-      .then((rows: { name: string }[]) => setProviders(rows))
+      .then((rows: { name: string; affiliateUrl: string | null }[]) => setProviders(rows))
       .catch(() => {});
   }, []);
 
-  function set(field: keyof VoucherFormData, value: string | boolean | number) {
+  function set(field: keyof VoucherFormData, value: string | boolean | number | string[]) {
     setForm(prev => ({ ...prev, [field]: value }));
   }
 
+  function toggleCategory(c: string) {
+    setForm(prev => ({
+      ...prev,
+      categories: prev.categories.includes(c)
+        ? prev.categories.filter(x => x !== c)
+        : [...prev.categories, c],
+    }));
+  }
+
+  /**
+   * Chọn provider → tự điền link affiliate mặc định của provider đó.
+   * Chỉ điền khi ô đang TRỐNG để không đè link admin đã nhập tay (kể cả lúc sửa voucher).
+   */
+  function pickProvider(name: string) {
+    const p = providers.find(x => x.name === name);
+    setForm(prev => ({
+      ...prev,
+      provider: name,
+      affiliateUrl: prev.affiliateUrl.trim() ? prev.affiliateUrl : (p?.affiliateUrl ?? ''),
+    }));
+  }
+
   async function handleSave() {
-    if (!form.code || !form.provider) {
-      setError('Vui lòng điền các trường bắt buộc (*)');
+    if (!form.code || !form.provider || form.categories.length === 0) {
+      setError('Vui lòng điền các trường bắt buộc (*) — gồm ít nhất 1 danh mục');
       return;
     }
     setLoading(true);
@@ -116,7 +138,7 @@ export function VoucherForm({ initial, voucherId }: Props) {
 
           <div>
             <label className={labelCls}>Nhà cung cấp *</label>
-            <select value={form.provider} onChange={e => set('provider', e.target.value)} className={inputCls}>
+            <select value={form.provider} onChange={e => pickProvider(e.target.value)} className={inputCls}>
               <option value="">— chọn provider —</option>
               {/* Giữ giá trị cũ khi sửa voucher nếu provider chưa có trong danh sách */}
               {form.provider && !providers.some(p => p.name === form.provider) && (
@@ -130,12 +152,23 @@ export function VoucherForm({ initial, voucherId }: Props) {
             </a>
           </div>
 
-          <div>
-            <label className={labelCls}>Danh mục *</label>
-            <select value={form.category} onChange={e => set('category', e.target.value)}
-              className={inputCls}>
-              {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
-            </select>
+          <div className="md:col-span-2">
+            <label className={labelCls}>
+              Danh mục * <span className="text-gray-400">(tích nhiều được — voucher sẽ hiện ở tất cả danh mục đã tích)</span>
+            </label>
+            <div className="flex flex-wrap gap-2 mt-1">
+              {CATEGORIES.map(c => {
+                const on = form.categories.includes(c);
+                return (
+                  <button type="button" key={c} onClick={() => toggleCategory(c)}
+                    className={`px-3 py-1.5 rounded-lg border text-xs font-medium transition-colors ${on
+                      ? 'bg-indigo-600 border-indigo-600 text-white'
+                      : 'bg-white border-gray-300 text-gray-600 hover:border-indigo-400'}`}>
+                    {c}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           <div>

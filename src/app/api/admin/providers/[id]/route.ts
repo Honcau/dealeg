@@ -18,6 +18,7 @@ const UpdateSchema = z.object({
   website:     z.string().optional(),
   categories:  z.array(CATEGORY_ENUM).optional(),
   affiliateId: z.string().optional(),
+  affiliateUrl: z.string().optional(),
   description: z.string().optional(),
   logo:        z.string().optional(),
   isActive:    z.boolean().optional(),
@@ -46,6 +47,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     data.categories = d.categories;
     data.category   = d.categories[0] ?? null;   // danh mục chính = cái đầu tiên
   }
+  if (d.affiliateUrl !== undefined) data.affiliateUrl = d.affiliateUrl || null;
   if (d.description !== undefined) data.description = d.description || null;
   if (d.logo        !== undefined) data.logo        = d.logo || null;
   if (d.isActive    !== undefined) data.isActive    = d.isActive;

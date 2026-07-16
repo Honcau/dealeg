@@ -21,7 +21,8 @@ export default function EditVoucherPage() {
         setData({
           code:          v.code,
           provider:      v.provider,
-          category:      v.category,
+          // voucher cũ chưa có mảng → fallback về category đơn để không mất dữ liệu
+          categories:    v.categories?.length ? v.categories : (v.category ? [v.category] : []),
           discount:      v.discount,
           discountValue: v.discountValue ?? 0,
           affiliateUrl:  v.affiliateUrl ?? '',

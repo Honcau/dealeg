@@ -31,11 +31,12 @@ enum SubmissionStatus {
 // ── Voucher ───────────────────────────────────────────────────────────────────
 
 model Voucher {
-  id            String    @id @default(cuid())
+  id            String     @id @default(cuid())
   code          String
   discount      String
   discountValue Float?
-  category      Category
+  category      Category                  // danh mục chính = categories[0] (giữ cho query cũ)
+  categories    Category[] @default([])   // 1 voucher có thể thuộc nhiều danh mục
   provider      String
   affiliateUrl  String?
   expiresAt     DateTime?
@@ -94,6 +95,7 @@ model Provider {
   categories      Category[]  @default([])  // 1 provider có thể thuộc nhiều danh mục
   hasAffiliateApi Boolean     @default(false)
   affiliateId     String?
+  affiliateUrl    String?     // link affiliate mặc định → tự điền vào voucher khi chọn provider
   isActive        Boolean     @default(true)
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt

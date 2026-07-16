@@ -9,10 +9,12 @@ function checkAuth(req: NextRequest): boolean {
   catch { return false; }
 }
 
+const CATEGORY_ENUM = z.enum(['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL','AITOOL','OTHER']);
+
 const UpdateSchema = z.object({
   code:          z.string().min(1).transform(v => v.trim().toUpperCase()),
   provider:      z.string().min(1).transform(v => v.trim()),
-  category:      z.enum(['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL','AITOOL','OTHER']),
+  categories:    z.array(CATEGORY_ENUM).min(1, 'Chọn ít nhất 1 danh mục'),
   discount:      z.string().optional(),   // derive từ discountValue (không nhập tay nữa)
   discountValue: z.number().min(0).max(100),
   affiliateUrl:  z.string().url().optional().or(z.literal('')),
@@ -62,6 +64,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
     where: { id },
     data: {
       ...data,
+      category:     data.categories[0],   // danh mục chính — giữ cho các query cũ
       discount:     data.discountValue > 0 ? `-${data.discountValue}%` : '',
       affiliateUrl: data.affiliateUrl || null,
       sourceUrl:    data.sourceUrl || null,
