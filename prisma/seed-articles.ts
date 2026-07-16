@@ -394,6 +394,161 @@ const ARTICLES = [
     title:    'How to Start an Email Newsletter from Scratch',
     excerpt:  'Build the one marketing asset you actually own. A step-by-step guide \u2014 choosing a tool, signup forms, welcome emails, sustainable sending \u2014 and what actually grows a list.',
   },
+
+  // \u2500\u2500 Batch 4: Stage 2 \u2014 recurring-commission clusters \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  // Kinsta (hosting), PureVPN/Ivacy (VPN), Webflow (builder), n8n/Make
+  // (automation), GetResponse/AWeber (email). Each brand gets a bottom-funnel
+  // review + comparisons + a cluster hub/how-to.
+
+  // Kinsta
+  {
+    slug:     'kinsta-review-2026',
+    category: 'hosting',
+    file:     'kinsta-review-2026.md',
+    title:    'Kinsta Review 2026: Is Premium Managed WordPress Worth It?',
+    excerpt:  'An honest review of the premium managed WordPress host \u2014 the Google Cloud platform, the best dashboard in the category, and the three real weaknesses: price, metered overages, and no email.',
+  },
+  {
+    slug:     'kinsta-vs-siteground-2026',
+    category: 'hosting',
+    file:     'kinsta-vs-siteground-2026.md',
+    title:    'Kinsta vs SiteGround 2026: Premium vs Mainstream WordPress Hosting',
+    excerpt:  'These two aren\u2019t competing for the same customer. Compare the real price gap, renewal traps, performance headroom, and email \u2014 and find which tier your site is actually at.',
+  },
+  {
+    slug:     'kinsta-pricing-explained-2026',
+    category: 'hosting',
+    file:     'kinsta-pricing-explained-2026.md',
+    title:    'Kinsta Pricing Explained (2026): What You Actually Pay',
+    excerpt:  'Kinsta\u2019s pricing is transparent but structured oddly. The visit and storage meters, the overage rates, the email cost nobody mentions, and three legitimate ways to cut the bill.',
+  },
+
+  // PureVPN / Ivacy
+  {
+    slug:     'purevpn-review-2026',
+    category: 'vpn',
+    file:     'purevpn-review-2026.md',
+    title:    'PureVPN Review 2026: Cheap, Audited, and Carrying a Past',
+    excerpt:  'The full picture including the 2017 logging incident and the audits since. Where PureVPN is genuinely good value, where it falls short, and whose threat model it does not suit.',
+  },
+  {
+    slug:     'ivacy-review-2026',
+    category: 'vpn',
+    file:     'ivacy-review-2026.md',
+    title:    'Ivacy VPN Review 2026: Cheap, but Who Is It For?',
+    excerpt:  'An honest look at one of the cheapest credible VPNs \u2014 including the corporate connection to PureVPN that most reviews leave out, and what the low price actually costs you.',
+  },
+  {
+    slug:     'purevpn-vs-ivacy-2026',
+    category: 'vpn',
+    file:     'purevpn-vs-ivacy-2026.md',
+    title:    'PureVPN vs Ivacy 2026: Two Budget VPNs, One Family',
+    excerpt:  'These two brands are widely reported to share corporate roots \u2014 which changes the comparison entirely. What actually differs, what they share, and whether either is the right buy.',
+  },
+  {
+    slug:     'best-budget-vpn-2026',
+    category: 'vpn',
+    file:     'best-budget-vpn-2026.md',
+    title:    'Best Budget VPNs in 2026: Cheap Without Being Nasty',
+    excerpt:  'A budget VPN isn\u2019t a bad VPN \u2014 but the tier contains genuinely bad options. Surfshark, PureVPN, Ivacy, and Mullvad compared, with the renewal trap that costs more than the VPN.',
+  },
+  {
+    slug:     'vpn-lifetime-deals-explained-2026',
+    category: 'vpn',
+    file:     'vpn-lifetime-deals-explained-2026.md',
+    title:    'Are Lifetime VPN Deals Worth It? The Honest Maths',
+    excerpt:  'A $39 one-off payment for a service with recurring costs forever. Why the spreadsheet never works, what actually happens to lifetime buyers, and what to buy instead.',
+  },
+
+  // Webflow
+  {
+    slug:     'webflow-review-2026',
+    category: 'website-builder',
+    file:     'webflow-review-2026.md',
+    title:    'Webflow Review 2026: Design Freedom With a Real Learning Curve',
+    excerpt:  'Webflow is a visual front-end tool wearing a website builder\u2019s marketing. Why designers love it, why small business owners bounce off it, and which group you\u2019re in.',
+  },
+  {
+    slug:     'webflow-vs-wordpress-2026',
+    category: 'website-builder',
+    file:     'webflow-vs-wordpress-2026.md',
+    title:    'Webflow vs WordPress 2026: Which Should You Build On?',
+    excerpt:  'Not old versus new \u2014 two correct answers to different questions. Flexibility and ownership versus design quality and zero maintenance, plus the hybrid nobody tells you is allowed.',
+  },
+  {
+    slug:     'how-to-build-website-webflow',
+    category: 'website-builder',
+    file:     'how-to-build-website-webflow.md',
+    title:    'How to Build a Website with Webflow (Step by Step)',
+    excerpt:  'Most Webflow tutorials skip the one concept that makes it click. Start with the box model, then build structure, responsive layouts, a CMS collection, and publish properly.',
+  },
+  {
+    slug:     'webflow-pricing-explained-2026',
+    category: 'website-builder',
+    file:     'webflow-pricing-explained-2026.md',
+    title:    'Webflow Pricing Explained (2026): Site Plans vs Workspace',
+    excerpt:  'Two separate plan types that do different things \u2014 and you often need both. The real CMS ceilings, the staging trap that makes people overpay, and how to cut the bill legitimately.',
+  },
+
+  // n8n / Make
+  {
+    slug:     'n8n-vs-make-2026',
+    category: 'software',
+    file:     'n8n-vs-make-2026.md',
+    title:    'n8n vs Make 2026: Which Automation Platform Fits You?',
+    excerpt:  'Software you can run versus a service you rent. Why the billing model \u2014 operations versus executions versus unlimited self-hosted \u2014 matters more than the sticker price.',
+  },
+  {
+    slug:     'make-vs-zapier-2026',
+    category: 'software',
+    file:     'make-vs-zapier-2026.md',
+    title:    'Make vs Zapier 2026: Power vs Polish',
+    excerpt:  'Zapier sells simplicity and a 7,000-app library; Make sells real branching for a fraction of the cost. The billing models compared, and the migration effort nobody budgets for.',
+  },
+  {
+    slug:     'best-automation-tools-2026',
+    category: 'software',
+    file:     'best-automation-tools-2026.md',
+    title:    'Best Automation Tools in 2026: Zapier, Make, n8n',
+    excerpt:  'The tool you pick decides what automation you can afford to build. An honest map of the three-way split \u2014 easy, powerful, or self-hosted \u2014 matched to who you actually are.',
+  },
+  {
+    slug:     'automation-ideas-that-save-hours',
+    category: 'software',
+    file:     'automation-ideas-that-save-hours.md',
+    title:    '10 Automations Worth Building First',
+    excerpt:  'Most people automate the wrong things and conclude automation is overrated. Ten boring, frequent, rule-based workflows that actually return hours \u2014 and the three rules for choosing.',
+  },
+
+  // GetResponse / AWeber
+  {
+    slug:     'getresponse-review-2026',
+    category: 'software',
+    file:     'getresponse-review-2026.md',
+    title:    'GetResponse Review 2026: All-in-One, Honestly Assessed',
+    excerpt:  'A solid email platform with the best automation builder in its price class and webinars nobody else bundles \u2014 or a suite of rooms you\u2019ll never use. Which depends entirely on you.',
+  },
+  {
+    slug:     'aweber-review-2026',
+    category: 'software',
+    file:     'aweber-review-2026.md',
+    title:    'AWeber Review 2026: The Veteran Still Worth Considering?',
+    excerpt:  'Twenty-plus years of deliverability reputation, phone support at every tier, and an honest free plan \u2014 against automation that stopped competing. Who that trade actually suits.',
+  },
+  {
+    slug:     'aweber-vs-getresponse-2026',
+    category: 'software',
+    file:     'aweber-vs-getresponse-2026.md',
+    title:    'AWeber vs GetResponse 2026: Which Email Platform Wins?',
+    excerpt:  'Both launched in 1998 and aged in opposite directions \u2014 one stayed simple, one became a suite. The automation gap is decisive, but not for everyone. Plus the migration angle nobody mentions.',
+  },
+  {
+    slug:     'best-email-autoresponders-2026',
+    category: 'software',
+    file:     'best-email-autoresponders-2026.md',
+    title:    'Best Email Autoresponders in 2026',
+    excerpt:  'The least glamorous marketing tool and the one that quietly earns most. GetResponse, AWeber, MailerLite, ConvertKit, ActiveCampaign, and Klaviyo \u2014 compared on what actually matters.',
+  },
 ];
 
 async function main() {
