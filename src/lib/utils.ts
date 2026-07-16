@@ -38,6 +38,22 @@ export function maskVoucherCode(code: string): string {
   return code.slice(0, keep) + '••••';
 }
 
+/**
+ * Ghi nhận 1 lượt click "Nhận mã" (tăng useCount). Chỉ gọi từ client component.
+ *
+ * Dùng sendBeacon thay vì fetch: trình duyệt CAM KẾT gửi request kể cả khi tab
+ * vừa bị đẩy xuống nền hoặc đóng ngay sau đó — fetch thường có thể bị huỷ giữa
+ * chừng khi điều hướng (hay gặp trên mobile). Fallback fetch keepalive cho
+ * trình duyệt cũ không có sendBeacon.
+ */
+export function trackVoucherClick(voucherId: string): void {
+  const url = `/api/vouchers/${voucherId}/click`;
+  try {
+    if (navigator.sendBeacon?.(url)) return;
+  } catch { /* sendBeacon lỗi → rơi xuống fetch */ }
+  fetch(url, { method: 'POST', keepalive: true }).catch(() => {});
+}
+
 // ─── Affiliate URL builder ────────────────────────────────────────────────────
 export function buildAffiliateUrl(base: string, locale: string): string {
   const url = new URL(base);

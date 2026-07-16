@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import type { Voucher } from '@/types/voucher';
-import { isExpired, formatDate, formatCount, maskVoucherCode } from '@/lib/utils';
+import { isExpired, formatDate, formatCount, maskVoucherCode, trackVoucherClick } from '@/lib/utils';
 import { SaveButton } from './SaveButton';
 import { CopiedToast } from './CopiedToast';
 
@@ -41,7 +41,12 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
     navigator.clipboard?.writeText(voucher.code).catch(() => {});
     setCopied(true);
     setTimeout(() => setCopied(false), 6000);   // toast ở lại đủ lâu để còn thấy khi quay về tab
-    fetch(`/api/vouchers/${voucher.id}/click`, { method: 'POST' }).catch(() => {});
+    trackVoucherClick(voucher.id);
+  };
+
+  /** Chuột giữa chỉ bắn 'auxclick' — xem chú thích ở VoucherCard. */
+  const handleAuxClick = (e: React.MouseEvent) => {
+    if (e.button === 1) handleGetCode();
   };
 
   // Nhãn giảm giá: ưu tiên chuỗi `discount` do admin nhập (VD "Miễn phí 3 tháng").
@@ -108,9 +113,9 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
           );
           const cls = 'group relative w-full flex items-stretch rounded-lg overflow-hidden border border-gray-200 hover:border-indigo-500 transition-colors cursor-pointer';
           return targetUrl ? (
-            <a href={targetUrl} target="_blank" rel="noopener noreferrer sponsored" onClick={handleGetCode} className={cls}>{inner}</a>
+            <a href={targetUrl} target="_blank" rel="noopener noreferrer sponsored" onClick={handleGetCode} onAuxClick={handleAuxClick} className={cls}>{inner}</a>
           ) : (
-            <button type="button" onClick={handleGetCode} className={cls}>{inner}</button>
+            <button type="button" onClick={handleGetCode} onAuxClick={handleAuxClick} className={cls}>{inner}</button>
           );
         })()
       ) : (

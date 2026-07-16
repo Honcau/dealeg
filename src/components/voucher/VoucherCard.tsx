@@ -6,7 +6,7 @@ import { Link } from '@/i18n/navigation';
 import type { Voucher } from '@/types/voucher';
 import { SaveButton } from './SaveButton';
 import { CopiedToast } from './CopiedToast';
-import { isExpired, formatDate, formatCount, maskVoucherCode } from '@/lib/utils';
+import { isExpired, formatDate, formatCount, maskVoucherCode, trackVoucherClick } from '@/lib/utils';
 
 interface VoucherCardProps {
   voucher: Voucher;
@@ -58,8 +58,17 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
     navigator.clipboard?.writeText(voucher.code).catch(() => {});
     setCopied(true);
     setTimeout(() => setCopied(false), 6000);   // toast ở lại đủ lâu để còn thấy khi quay về tab
-    // Ghi nhận click (tăng useCount) — fire-and-forget
-    fetch(`/api/vouchers/${voucher.id}/click`, { method: 'POST' }).catch(() => {});
+    // Ghi nhận click (tăng useCount) — sendBeacon để không mất khi tab bị nền
+    trackVoucherClick(voucher.id);
+  };
+
+  /**
+   * Chuột giữa (mở tab nền) KHÔNG bắn 'click' — trình duyệt chỉ bắn 'auxclick'.
+   * Không bắt ở đây thì lượt click đó biến mất khỏi thống kê và mã cũng không được copy.
+   * Chỉ nhận button===1: chuột phải cũng bắn auxclick nhưng chưa chắc dẫn tới lượt truy cập.
+   */
+  const handleAuxClick = (e: React.MouseEvent) => {
+    if (e.button === 1) handleGetCode();
   };
 
   // URL trang chi tiết voucher (cho share)
@@ -146,11 +155,11 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
       {!expired ? (
         targetUrl ? (
           <a href={targetUrl} target="_blank" rel="noopener noreferrer sponsored"
-            onClick={handleGetCode} className={ticketCls}>
+            onClick={handleGetCode} onAuxClick={handleAuxClick} className={ticketCls}>
             {ticketInner}
           </a>
         ) : (
-          <button type="button" onClick={handleGetCode} className={ticketCls}>
+          <button type="button" onClick={handleGetCode} onAuxClick={handleAuxClick} className={ticketCls}>
             {ticketInner}
           </button>
         )
