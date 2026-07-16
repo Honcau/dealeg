@@ -20,11 +20,31 @@ Telegram ──webhook──► Nginx (bot.dealeg.com) ──► container bot �
 
 ## 2. DNS + SSL cho webhook
 
+Thứ tự quan trọng — làm đúng thứ tự này:
+
 ```bash
-# DNS: thêm A record  bot.dealeg.com → IP VPS  (Cloudflare proxy bật được)
+# 1) DNS: thêm A record  bot.dealeg.com → IP VPS  (Cloudflare proxy bật được).
+#    Đợi phân giải xong rồi mới xin cert:
+dig +short bot.dealeg.com
+
+# 2) Nạp config (deploy/nginx.conf có sẵn block bot.dealeg.com, chỉ mở /telegram/ và /health)
+sudo cp deploy/nginx.conf /etc/nginx/sites-available/dealeg
+sudo ln -sf /etc/nginx/sites-available/dealeg /etc/nginx/sites-enabled/dealeg
+sudo nginx -t && sudo systemctl reload nginx
+
+# 3) Xin cert — certbot TỰ thêm block 443 + redirect vào server block đó
 sudo certbot --nginx -d bot.dealeg.com
 ```
-Nginx đã có sẵn server block `bot.dealeg.com` trong `deploy/nginx.conf` (chỉ mở `/telegram/` và `/health`).
+
+> Block `bot.dealeg.com` trong repo **cố ý chỉ có HTTP (:80)**. Nếu khai báo `ssl_certificate`
+> trước khi có cert thì `nginx -t` fail, mà certbot cần `nginx -t` pass → không xin được cert.
+> Certbot sẽ tự viết phần SSL sau khi lấy cert xong.
+
+**Nếu `certbot --nginx` báo `open() "/etc/nginx/nginx.conf" failed`:** nginx có binary nhưng
+mất config chính (thường do gói `nginx-common` bị gỡ). Khôi phục bằng
+`sudo apt install --reinstall nginx-common nginx` rồi nạp lại config ở bước 2.
+Nếu nginx đang chạy và site vẫn sống, **đừng reload/restart trước khi khôi phục** —
+tiến trình đang chạy bằng config cũ trong RAM, reload sẽ làm site sập.
 
 ## 3. Biến môi trường (`.env.production`)
 
