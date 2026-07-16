@@ -12,7 +12,7 @@ const CATEGORIES = ['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL
 export default function SubmitPage() {
   const t = useTranslations('submit');
   const [form, setForm] = useState({
-    code: '', provider: '', discount: '', description: '', url: '', email: ''
+    code: '', provider: '', description: '', url: '', email: ''
   });
   const [status, setStatus] = useState<'idle'|'loading'|'success'|'error'>('idle');
   const [message, setMessage] = useState('');
@@ -39,7 +39,7 @@ export default function SubmitPage() {
       if (res.ok) {
         setStatus('success');
         setMessage(data.message);
-        setForm({ code: '', provider: '', discount: '', description: '', url: '', email: '' });
+        setForm({ code: '', provider: '', description: '', url: '', email: '' });
       } else {
         setStatus('error');
         setMessage(data.error ?? t('errGeneric'));
@@ -83,18 +83,6 @@ export default function SubmitPage() {
           />
         </div>
 
-        {/* Mức giảm */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            {t('discount')}
-          </label>
-          <input
-            name="discount" value={form.discount} onChange={handleChange}
-            placeholder={t('discountPlaceholder')}
-            className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
-        </div>
-
         {/* Miêu tả chi tiết (tuỳ chọn) */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -108,10 +96,13 @@ export default function SubmitPage() {
           />
         </div>
 
-        {/* Link */}
+        {/* Link (tuỳ chọn) */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            {t('url')}
+            {t('url')}{' '}
+            <span className="text-gray-400 font-normal">
+              {t.has('optional') ? t('optional') : '(optional)'}
+            </span>
           </label>
           <input
             name="url" value={form.url} onChange={handleChange}
