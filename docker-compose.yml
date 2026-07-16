@@ -38,6 +38,33 @@ services:
       - redis-data:/data
     command: redis-server --appendonly yes
 
+  # ─── Telegram deal-alert bot (grammY) ────────────────────────────────────────
+  # Gọi internal API của app qua mạng nội bộ compose (http://app:3000) bằng
+  # INTERNAL_API_TOKEN — không cần credential DB. Webhook chỉ mở 127.0.0.1,
+  # Nginx proxy https://bot.dealeg.com/telegram/... vào đây. Xem TELEGRAM_BOT_SETUP.md.
+  bot:
+    # Profile "bot": chỉ chạy khi đã cấu hình BOT_TOKEN (deploy.sh tự bật khi thấy token).
+    # Nhờ vậy deploy hiện tại không bị bot crash-loop vì thiếu token.
+    profiles: ["bot"]
+    build:
+      context: ./bot
+      dockerfile: Dockerfile
+    image: dealeg-bot
+    container_name: dealeg-bot
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "127.0.0.1:8080:8080"
+    env_file:
+      - .env.production
+    environment:
+      - INTERNAL_API_BASE=http://app:3000
+      - PORT=8080
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+
   # ─── Listmonk — email list manager (Phase 0) ─────────────────────────────────
   # Backed by PostgreSQL trên host (DB riêng "listmonk"). SMTP (Brevo) cấu hình
   # trong Admin UI. Xem LISTMONK_SETUP.md. Admin/API chỉ mở 127.0.0.1 → Nginx proxy.

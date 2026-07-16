@@ -20,13 +20,20 @@ PROD_DB=$(grep -m1 '^DATABASE_URL=' .env.production | cut -d= -f2- | tr -d '"' |
 DATABASE_URL="$PROD_DB" npx --yes prisma@5.22.0 db push --skip-generate
 
 # 3. Build Docker image
+# Bot chỉ được bật khi .env.production đã có BOT_TOKEN thật (xem TELEGRAM_BOT_SETUP.md).
+BOT_PROFILE=""
+if grep -qE '^BOT_TOKEN=.*[A-Za-z0-9]' .env.production 2>/dev/null; then
+  BOT_PROFILE="--profile bot"
+  echo "🤖 Thấy BOT_TOKEN → bật service bot"
+fi
+
 echo "🔨 Build Docker image..."
-docker compose build
+docker compose $BOT_PROFILE build
 
 # 4. Restart container
 echo "♻️  Restart app..."
-docker compose down
-docker compose up -d
+docker compose $BOT_PROFILE down
+docker compose $BOT_PROFILE up -d
 
 # 5. Chờ app khởi động
 echo "⏳ Chờ app khởi động..."

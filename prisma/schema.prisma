@@ -273,3 +273,39 @@ model ArticleTranslation {
   @@index([locale])
   @@index([articleId, locale])
 }
+
+// ─── Bot deal-alerts (Telegram) ───────────────────────────────────────────────
+// 1 bot đa ngôn ngữ: mỗi user lưu locale riêng → gửi đúng tiếng của họ.
+// GDPR: chatId là dữ liệu cá nhân → /stop tắt, xoá row là xoá sạch (cascade).
+model BotUser {
+  id         Int        @id @default(autoincrement())
+  platform   String     @default("telegram")  // sau này: "line", "kakao"
+  chatId     String                            // Telegram chat/user id
+  locale     String     @default("en")
+  categories String[]   @default([])           // Phase 2: lọc theo danh mục
+  frequency  String     @default("instant")    // Phase 2: instant | daily
+  quietStart Int?                              // Phase 2: giờ 0-23
+  quietEnd   Int?
+  source     String?                           // payload deep-link (attribution)
+  optInAt    DateTime   @default(now())
+  isActive   Boolean    @default(true)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  sentDeals  SentDeal[]
+
+  @@unique([platform, chatId])
+  @@index([isActive, locale])
+}
+
+// Chống gửi trùng 1 deal cho 1 user (kể cả giữa bot và email sau này).
+model SentDeal {
+  id        Int      @id @default(autoincrement())
+  botUserId Int
+  botUser   BotUser  @relation(fields: [botUserId], references: [id], onDelete: Cascade)
+  dealId    String                             // Voucher.id (cuid) — không phải Int
+  channel   String   @default("bot")           // bot | email | channel
+  sentAt    DateTime @default(now())
+
+  @@unique([botUserId, dealId, channel])
+  @@index([dealId])
+}

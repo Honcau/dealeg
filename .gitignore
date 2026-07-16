@@ -26,3 +26,6 @@ prisma/migrations/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# bot (build output)
+bot/dist/
