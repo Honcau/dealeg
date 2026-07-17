@@ -448,5 +448,54 @@
     "visitSite": "Zur Website",
     "voucherCount": "{count} Gutscheine",
     "noDeals": "Noch keine Gutscheincodes für {name}."
+  },
+  "contact": {
+    "title": "Kontakt & Über uns",
+    "subtitle": "Nimm Kontakt auf oder erfahre mehr über Dealeg",
+    "aboutTitle": "Über Dealeg",
+    "aboutP1": "Dealeg ist eine Plattform, die Menschen dabei hilft, die besten Deals, Gutscheincodes und Rabatte für Technikprodukte und -dienste zu finden – von Webhosting und Domains bis zu VPNs, Software und Online-Tools.",
+    "aboutP2": "Wir kombinieren geprüfte Gutscheincodes mit ehrlichen, fundierten Ratgebern und Vergleichen, damit du gut informiert entscheidest und Geld sparst. Unsere Inhalte gibt es in mehreren Sprachen für Nutzer weltweit.",
+    "whatTitle": "Was wir tun",
+    "what1": "Gutscheincodes und Deals für Technikprodukte sammeln und prüfen",
+    "what2": "Eigene, ehrliche Vergleiche und Anleitungen schreiben",
+    "what3": "Die Community per Abstimmung und Kommentaren prüfen lassen, welche Codes funktionieren",
+    "what4": "Inhalte in 12 Sprachen für ein weltweites Publikum bereitstellen",
+    "touchTitle": "Kontakt aufnehmen",
+    "touchP": "Wir freuen uns, von dir zu hören. Ob Frage, Feedback, Partnerschaftsanfrage oder Hinweis auf einen abgelaufenen Gutschein – melde dich:",
+    "emailLabel": "E-Mail",
+    "replyTime": "Wir antworten in der Regel innerhalb weniger Werktage.",
+    "bizTitle": "Für Unternehmen",
+    "bizP": "Wenn du ein Produkt oder einen Dienst anbietest und deine Deals auf Dealeg listen oder über eine Partnerschaft sprechen möchtest, schreib uns. Wir freuen uns immer über weitere gute Angebote für unsere Nutzer.",
+    "reportTitle": "Problem melden",
+    "reportP": "Ein Gutschein funktioniert nicht mehr oder dir ist etwas aufgefallen? Sag uns Bescheid, damit unsere Infos für alle korrekt bleiben. Du kannst auch die Abstimmung bei jedem Gutschein nutzen und so der Community helfen."
+  },
+  "legal": {
+    "englishOnly": "Diese Seite ist nur auf Englisch verfügbar."
+  },
+  "coupon": {
+    "title": "Alle Gutscheincodes nach Marke",
+    "subtitle": "Durchstöbere funktionierende Gutscheincodes und Deals aller Marken, die wir verfolgen. Klicke auf eine Marke, um geprüfte Codes zu sehen – täglich von unserer Community aktualisiert.",
+    "metaTitle": "Alle Gutscheincodes & Deals nach Marke",
+    "metaDescription": "Durchstöbere geprüfte Gutscheincodes und Deals aller Marken – Domains, Hosting, VPN, Website-Baukästen und Entwickler-Tools. Täglich aktualisiert.",
+    "codesAvailable": "{count, plural, one {# Code verfügbar} other {# Codes verfügbar}}"
+  },
+  "couponBrand": {
+    "metaTitleWorking": "{name} Gutscheincodes & Deals ({count} gültig) - {year}",
+    "metaTitle": "{name} Gutscheincodes & Angebote - {year}",
+    "metaDescription": "Geprüfte {name} Gutscheincodes und Angebote für {year}. Spare bei {name} mit funktionierenden Rabattcodes – täglich von unserer Community aktualisiert.",
+    "h1": "{name} Gutscheincodes & Deals ({year})",
+    "intro": "Spare bei {name} mit {count} funktionierenden Gutscheincodes, davon {verified} von der Community geprüft. Unser bester {name}-Rabatt beträgt bis zu <b>{best}%</b>. Alle Codes werden täglich aktualisiert und von echten Nutzern geprüft – kopiere unten einen Code und füge ihn beim Bezahlen ein.",
+    "verifiedCodes": "{count, plural, one {# geprüfter Code} other {# geprüfte Codes}}",
+    "totalOffers": "{count, plural, one {# Angebot insgesamt} other {# Angebote insgesamt}}",
+    "updated": "Aktualisiert am {date}",
+    "faqTitle": "{name} Gutschein-FAQ",
+    "q1": "Funktionieren diese {name} Gutscheincodes?",
+    "a1": "Ja. Wir haben {verified} geprüfte {name} Gutscheincodes, die unsere Community als funktionierend bestätigt hat. Bei jedem Code steht, wann er zuletzt geprüft wurde, und Nutzer stimmen darüber ab, ob er noch gilt.",
+    "q2": "Wie viel kann ich mit {name} Gutscheinen sparen?",
+    "a2": "Unser bester {name} Gutschein bietet derzeit bis zu {best}% Rabatt. Die Rabatte variieren je nach Produkt und Aktion – schau in die vollständige Liste oben, um das passende Angebot zu finden.",
+    "q3": "Wie löse ich einen {name} Gutscheincode ein?",
+    "a3": "Kopiere den Code aus der Liste oben, gehe zu {name} und füge den Code beim Bezahlen im Gutscheinfeld ein. Der Rabatt greift, bevor du die Zahlung abschließt.",
+    "q4": "Wie oft werden {name} Gutscheine aktualisiert?",
+    "a4": "Wir aktualisieren {name} Gutscheine täglich durch automatische Prüfungen und Einsendungen der Community. Abgelaufene Codes werden entfernt, neue Angebote kommen dazu, sobald sie verfügbar sind."
   }
 }

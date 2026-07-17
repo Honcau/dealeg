@@ -4,6 +4,7 @@
  * Title động + JSON-LD FAQPage + FAQ section + trust signals
  */
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import { VoucherCard } from '@/components/voucher/VoucherCard';
@@ -29,11 +30,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     where: { provider: { equals: name, mode: 'insensitive' }, isActive: true },
   });
 
+  const tm = await getTranslations({ locale, namespace: 'couponBrand' });
   const title = count > 0
-    ? `${name} Coupon Codes & Deals (${count} Working) - ${year}`
-    : `${name} Coupon Codes & Promo Deals - ${year}`;
+    ? tm('metaTitleWorking', { name, count, year })
+    : tm('metaTitle', { name, year });
 
-  const description = `Verified ${name} coupon codes and promo deals for ${year}. Save on ${name} with working discount codes, updated daily by our community.`;
+  const description = tm('metaDescription', { name, year });
 
   return {
     title,
@@ -54,6 +56,7 @@ export default async function CouponPage({ params }: Props) {
   const { locale, brand } = await params;
   const name = prettyName(brand);
   const year = new Date().getFullYear();
+  const t = await getTranslations({ locale, namespace: 'couponBrand' });
 
   const dbVouchers = await prisma.voucher.findMany({
     where: { provider: { equals: name, mode: 'insensitive' }, isActive: true },
@@ -87,22 +90,10 @@ export default async function CouponPage({ params }: Props) {
   const bestDiscount  = Math.max(...vouchers.map(v => v.discountValue));
 
   const faqs = [
-    {
-      q: `Are these ${name} coupon codes working?`,
-      a: `Yes. We have ${verifiedCount} verified ${name} coupon codes confirmed working by our community. Each code shows when it was last verified, and users vote on whether codes still work.`,
-    },
-    {
-      q: `How much can I save with ${name} coupons?`,
-      a: `Our best ${name} coupon currently offers up to ${bestDiscount}% off. Discounts vary by product and promotion, so check the full list above for the offer that fits your purchase.`,
-    },
-    {
-      q: `How do I use a ${name} coupon code?`,
-      a: `Copy the code from the list above, click through to ${name}, and paste the code at checkout in the promo code or coupon field. The discount applies before you complete payment.`,
-    },
-    {
-      q: `How often are ${name} coupons updated?`,
-      a: `We update ${name} coupons daily through automated checks and community submissions. Expired codes are removed and new offers are added as they become available.`,
-    },
+    { q: t('q1', { name }), a: t('a1', { name, verified: verifiedCount }) },
+    { q: t('q2', { name }), a: t('a2', { name, best: bestDiscount }) },
+    { q: t('q3', { name }), a: t('a3', { name }) },
+    { q: t('q4', { name }), a: t('a4', { name }) },
   ];
 
   const jsonLd = {
@@ -110,8 +101,8 @@ export default async function CouponPage({ params }: Props) {
     '@graph': [
       {
         '@type': 'WebPage',
-        name: `${name} Coupon Codes ${year}`,
-        description: `Verified ${name} coupons and deals`,
+        name: t('h1', { name, year }),
+        description: t('metaDescription', { name, year }),
       },
       {
         '@type': 'FAQPage',
@@ -134,25 +125,25 @@ export default async function CouponPage({ params }: Props) {
       <div className="max-w-3xl mx-auto space-y-8">
         <header>
           <h1 className="text-3xl font-extrabold text-gray-900 mb-3">
-            {name} Coupon Codes & Deals ({year})
+            {t('h1', { name, year })}
           </h1>
           <p className="text-gray-600 leading-relaxed">
-            Save on {name} with {vouchers.length} working coupon codes, including{' '}
-            {verifiedCount} community-verified offers. Our best {name} discount is up to{' '}
-            <strong>{bestDiscount}% off</strong>. All codes are updated daily and verified
-            by real users — copy a code below and paste it at checkout.
+            {t.rich('intro', {
+              name, count: vouchers.length, verified: verifiedCount, best: bestDiscount,
+              b: (chunks) => <strong>{chunks}</strong>,
+            })}
           </p>
         </header>
 
         <div className="flex flex-wrap gap-4 text-sm">
-          <div className="flex items-center gap-1.5 text-green-600">
-            <span className="font-semibold">{verifiedCount}</span> verified codes
+          <div className="flex items-center gap-1.5 text-green-600 font-semibold">
+            {t('verifiedCodes', { count: verifiedCount })}
+          </div>
+          <div className="flex items-center gap-1.5 text-gray-500 font-semibold">
+            {t('totalOffers', { count: vouchers.length })}
           </div>
           <div className="flex items-center gap-1.5 text-gray-500">
-            <span className="font-semibold">{vouchers.length}</span> total offers
-          </div>
-          <div className="flex items-center gap-1.5 text-gray-500">
-            Updated {new Date().toLocaleDateString(locale, { month: 'long', day: 'numeric', year: 'numeric' })}
+            {t('updated', { date: new Date().toLocaleDateString(locale, { month: 'long', day: 'numeric', year: 'numeric' }) })}
           </div>
         </div>
 
@@ -168,7 +159,7 @@ export default async function CouponPage({ params }: Props) {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-gray-900">{name} Coupon FAQ</h2>
+          <h2 className="text-xl font-bold text-gray-900">{t('faqTitle', { name })}</h2>
           <div className="space-y-4">
             {faqs.map((f, i) => (
               <details key={i} className="bg-white rounded-xl border border-gray-200 p-4">

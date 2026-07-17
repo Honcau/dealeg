@@ -448,5 +448,54 @@
     "visitSite": "Vào trang",
     "voucherCount": "{count} voucher",
     "noDeals": "Chưa có mã giảm giá nào cho {name}."
+  },
+  "contact": {
+    "title": "Liên hệ & Giới thiệu",
+    "subtitle": "Liên hệ với chúng tôi hoặc tìm hiểu thêm về Dealeg",
+    "aboutTitle": "Về Dealeg",
+    "aboutP1": "Dealeg là nền tảng giúp mọi người tìm được deal, mã giảm giá và ưu đãi tốt nhất cho các sản phẩm, dịch vụ công nghệ — từ hosting, tên miền đến VPN, phần mềm và công cụ trực tuyến.",
+    "aboutP2": "Chúng tôi kết hợp mã giảm giá đã kiểm chứng với các bài hướng dẫn, so sánh trung thực và chuyên sâu để bạn quyết định đúng và tiết kiệm tiền. Nội dung có sẵn ở nhiều ngôn ngữ để phục vụ người dùng khắp thế giới.",
+    "whatTitle": "Chúng tôi làm gì",
+    "what1": "Tổng hợp và kiểm chứng mã giảm giá, deal cho sản phẩm công nghệ",
+    "what2": "Viết bài so sánh, hướng dẫn gốc và trung thực",
+    "what3": "Để cộng đồng xác nhận mã nào còn dùng được qua vote và bình luận",
+    "what4": "Phục vụ nội dung bằng 12 ngôn ngữ cho người dùng toàn cầu",
+    "touchTitle": "Liên hệ",
+    "touchP": "Chúng tôi rất mong nhận được phản hồi từ bạn. Dù là câu hỏi, góp ý, đề nghị hợp tác hay báo mã đã hết hạn, cứ liên hệ:",
+    "emailLabel": "Email",
+    "replyTime": "Chúng tôi cố gắng phản hồi trong vài ngày làm việc.",
+    "bizTitle": "Dành cho doanh nghiệp",
+    "bizP": "Nếu bạn có sản phẩm hoặc dịch vụ và muốn đăng deal lên Dealeg hoặc bàn về hợp tác, hãy email cho chúng tôi. Chúng tôi luôn muốn mang thêm deal tốt tới người dùng.",
+    "reportTitle": "Báo lỗi",
+    "reportP": "Thấy mã không còn dùng được, hay phát hiện điều gì sai? Hãy cho chúng tôi biết để giữ thông tin chính xác cho mọi người. Bạn cũng có thể dùng nút vote trên từng mã để giúp cộng đồng."
+  },
+  "legal": {
+    "englishOnly": "Trang này chỉ có bản tiếng Anh."
+  },
+  "coupon": {
+    "title": "Tất cả mã giảm giá theo thương hiệu",
+    "subtitle": "Duyệt mã giảm giá và deal còn dùng được của mọi thương hiệu chúng tôi theo dõi. Bấm vào thương hiệu bất kỳ để xem mã đã kiểm chứng, cập nhật mỗi ngày bởi cộng đồng.",
+    "metaTitle": "Tất cả mã giảm giá & deal theo thương hiệu",
+    "metaDescription": "Duyệt mã giảm giá và deal đã kiểm chứng cho mọi thương hiệu — tên miền, hosting, VPN, công cụ tạo web và công cụ lập trình. Cập nhật mỗi ngày.",
+    "codesAvailable": "{count, plural, other {# mã}} khả dụng"
+  },
+  "couponBrand": {
+    "metaTitleWorking": "Mã giảm giá & deal {name} ({count} mã còn dùng) - {year}",
+    "metaTitle": "Mã giảm giá & khuyến mãi {name} - {year}",
+    "metaDescription": "Mã giảm giá và khuyến mãi {name} đã kiểm chứng cho {year}. Tiết kiệm với {name} bằng mã còn dùng được, cập nhật mỗi ngày bởi cộng đồng.",
+    "h1": "Mã giảm giá & deal {name} ({year})",
+    "intro": "Tiết kiệm với {name} qua {count} mã giảm giá còn dùng được, trong đó {verified} mã đã được cộng đồng kiểm chứng. Mã tốt nhất hiện giảm tới <b>{best}%</b>. Mọi mã đều cập nhật hằng ngày và được người dùng thật xác nhận — copy mã bên dưới rồi dán lúc thanh toán.",
+    "verifiedCodes": "{count, plural, other {# mã đã kiểm chứng}}",
+    "totalOffers": "{count, plural, other {# ưu đãi}}",
+    "updated": "Cập nhật {date}",
+    "faqTitle": "Hỏi đáp về mã giảm giá {name}",
+    "q1": "Mã giảm giá {name} này còn dùng được không?",
+    "a1": "Còn. Chúng tôi có {verified} mã {name} đã được cộng đồng xác nhận hoạt động. Mỗi mã đều hiện lần kiểm chứng gần nhất, và người dùng vote xem mã còn dùng được không.",
+    "q2": "Dùng mã {name} tiết kiệm được bao nhiêu?",
+    "a2": "Mã {name} tốt nhất hiện giảm tới {best}%. Mức giảm khác nhau tùy sản phẩm và chương trình, hãy xem danh sách đầy đủ ở trên để chọn ưu đãi phù hợp.",
+    "q3": "Dùng mã giảm giá {name} thế nào?",
+    "a3": "Copy mã ở danh sách trên, bấm sang {name}, rồi dán mã vào ô mã khuyến mãi lúc thanh toán. Giảm giá sẽ áp dụng trước khi bạn hoàn tất thanh toán.",
+    "q4": "Mã {name} được cập nhật thường xuyên không?",
+    "a4": "Chúng tôi cập nhật mã {name} hằng ngày qua kiểm tra tự động và bài gửi từ cộng đồng. Mã hết hạn bị gỡ, ưu đãi mới được thêm ngay khi có."
   }
 }

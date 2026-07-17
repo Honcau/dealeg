@@ -3,6 +3,7 @@
  * URL: /en/coupon
  */
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { prisma } from '@/lib/db';
 import { ShareButtons } from '@/components/share/ShareButtons';
@@ -12,13 +13,16 @@ export const revalidate = 300;
 
 type Props = { params: Promise<{ locale: string }> };
 
-export const metadata: Metadata = {
-  title: 'All Coupon Codes & Deals by Brand',
-  description: 'Browse verified coupon codes and deals for all brands — domains, hosting, VPN, website builders, and developer tools. Updated daily.',
-};
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'coupon' });
+  return { title: t('metaTitle'), description: t('metaDescription') };
+}
 
 export default async function CouponIndexPage({ params }: Props) {
-  await params;
+  const { locale } = await params;
+  const t    = await getTranslations({ locale, namespace: 'coupon' });
+  const tNav = await getTranslations({ locale, namespace: 'nav' });
 
   const grouped = await prisma.voucher.groupBy({
     by: ['provider', 'category'],
@@ -42,33 +46,19 @@ export default async function CouponIndexPage({ params }: Props) {
     {}
   );
 
-  const CATEGORY_LABELS: Record<string, string> = {
-    DOMAIN:   'Domain Registrars',
-    HOSTING:  'Web Hosting',
-    VPN:      'VPN Services',
-    CDN:      'CDN & Cloud',
-    SECURITY: 'Security',
-    EMAIL:    'Email',
-    SSL:      'SSL',
-    OTHER:    'Tools & Software',
-  };
-
   return (
     <div className="max-w-4xl mx-auto space-y-10">
       <header>
         <h1 className="text-3xl font-extrabold text-gray-900 mb-3">
-          All Coupon Codes by Brand
+          {t('title')}
         </h1>
-        <p className="text-gray-600">
-          Browse working coupon codes and deals for every brand we track. Click any brand
-          to see verified codes, updated daily by our community.
-        </p>
+        <p className="text-gray-600">{t('subtitle')}</p>
       </header>
 
       {Object.entries(byCategory).map(([category, brands]) => (
         <section key={category}>
           <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">
-            {CATEGORY_LABELS[category] ?? category}
+            {tNav.has(category.toLowerCase()) ? tNav(category.toLowerCase()) : category}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {brands.sort((a, b) => b.maxDiscount - a.maxDiscount).map(brand => (
@@ -88,7 +78,7 @@ export default async function CouponIndexPage({ params }: Props) {
                   )}
                 </div>
                 <p className="text-xs text-gray-400 mt-1">
-                  {brand.count} {brand.count === 1 ? 'code' : 'codes'} available
+                  {t('codesAvailable', { count: brand.count })}
                 </p>
               </Link>
             ))}

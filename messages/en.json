@@ -448,5 +448,54 @@
     "visitSite": "Visit site",
     "voucherCount": "{count} vouchers",
     "noDeals": "No coupon codes for {name} yet."
+  },
+  "contact": {
+    "title": "Contact & About",
+    "subtitle": "Get in touch or learn more about Dealeg",
+    "aboutTitle": "About Dealeg",
+    "aboutP1": "Dealeg is a platform dedicated to helping people find the best deals, coupon codes, and discounts on technology products and services — from web hosting and domains to VPNs, software, and online tools.",
+    "aboutP2": "We combine verified coupon codes with honest, in-depth guides and comparisons to help you make informed decisions and save money. Our content is available in multiple languages to serve users around the world.",
+    "whatTitle": "What We Do",
+    "what1": "Aggregate and verify coupon codes and deals for tech products",
+    "what2": "Write original, honest comparison guides and how-to articles",
+    "what3": "Let our community verify which codes are working through votes and comments",
+    "what4": "Serve content in 12 languages for a global audience",
+    "touchTitle": "Get in Touch",
+    "touchP": "We’d love to hear from you. Whether you have a question, feedback, a partnership inquiry, or want to report an expired coupon, reach out:",
+    "emailLabel": "Email",
+    "replyTime": "We aim to respond within a few business days.",
+    "bizTitle": "For Businesses",
+    "bizP": "If you run a product or service and would like to list your deals on Dealeg or discuss a partnership, please email us. We’re always interested in bringing more great deals to our users.",
+    "reportTitle": "Report an Issue",
+    "reportP": "Found a coupon that no longer works, or noticed something wrong? Let us know so we can keep our information accurate for everyone. You can also use the voting feature on each coupon to help the community."
+  },
+  "legal": {
+    "englishOnly": "This page is only available in English."
+  },
+  "coupon": {
+    "title": "All Coupon Codes by Brand",
+    "subtitle": "Browse working coupon codes and deals for every brand we track. Click any brand to see verified codes, updated daily by our community.",
+    "metaTitle": "All Coupon Codes & Deals by Brand",
+    "metaDescription": "Browse verified coupon codes and deals for all brands — domains, hosting, VPN, website builders, and developer tools. Updated daily.",
+    "codesAvailable": "{count, plural, one {# code} other {# codes}} available"
+  },
+  "couponBrand": {
+    "metaTitleWorking": "{name} Coupon Codes & Deals ({count} Working) - {year}",
+    "metaTitle": "{name} Coupon Codes & Promo Deals - {year}",
+    "metaDescription": "Verified {name} coupon codes and promo deals for {year}. Save on {name} with working discount codes, updated daily by our community.",
+    "h1": "{name} Coupon Codes & Deals ({year})",
+    "intro": "Save on {name} with {count} working coupon codes, including {verified} community-verified offers. Our best {name} discount is up to <b>{best}% off</b>. All codes are updated daily and verified by real users — copy a code below and paste it at checkout.",
+    "verifiedCodes": "{count, plural, one {# verified code} other {# verified codes}}",
+    "totalOffers": "{count, plural, one {# total offer} other {# total offers}}",
+    "updated": "Updated {date}",
+    "faqTitle": "{name} Coupon FAQ",
+    "q1": "Are these {name} coupon codes working?",
+    "a1": "Yes. We have {verified} verified {name} coupon codes confirmed working by our community. Each code shows when it was last verified, and users vote on whether codes still work.",
+    "q2": "How much can I save with {name} coupons?",
+    "a2": "Our best {name} coupon currently offers up to {best}% off. Discounts vary by product and promotion, so check the full list above for the offer that fits your purchase.",
+    "q3": "How do I use a {name} coupon code?",
+    "a3": "Copy the code from the list above, click through to {name}, and paste the code at checkout in the promo code or coupon field. The discount applies before you complete payment.",
+    "q4": "How often are {name} coupons updated?",
+    "a4": "We update {name} coupons daily through automated checks and community submissions. Expired codes are removed and new offers are added as they become available."
   }
 }

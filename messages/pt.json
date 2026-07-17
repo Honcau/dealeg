@@ -448,5 +448,54 @@
     "visitSite": "Visitar site",
     "voucherCount": "{count} cupons",
     "noDeals": "Ainda não há cupons para {name}."
+  },
+  "contact": {
+    "title": "Contato e Sobre",
+    "subtitle": "Fale conosco ou saiba mais sobre o Dealeg",
+    "aboutTitle": "Sobre o Dealeg",
+    "aboutP1": "O Dealeg é uma plataforma dedicada a ajudar as pessoas a encontrar as melhores ofertas, cupons e descontos em produtos e serviços de tecnologia — de hospedagem e domínios a VPNs, softwares e ferramentas online.",
+    "aboutP2": "Combinamos cupons verificados com guias e comparativos honestos e aprofundados para você decidir bem e economizar. Nosso conteúdo está disponível em vários idiomas para atender usuários no mundo todo.",
+    "whatTitle": "O que fazemos",
+    "what1": "Reunir e verificar cupons e ofertas de produtos de tecnologia",
+    "what2": "Escrever guias comparativos e tutoriais originais e honestos",
+    "what3": "Deixar a comunidade verificar quais cupons funcionam por votos e comentários",
+    "what4": "Oferecer conteúdo em 12 idiomas para um público global",
+    "touchTitle": "Fale conosco",
+    "touchP": "Adoraríamos ouvir você. Seja uma dúvida, um feedback, uma proposta de parceria ou o aviso de um cupom expirado, escreva:",
+    "emailLabel": "Email",
+    "replyTime": "Procuramos responder em alguns dias úteis.",
+    "bizTitle": "Para empresas",
+    "bizP": "Se você tem um produto ou serviço e quer divulgar suas ofertas no Dealeg ou conversar sobre parceria, mande um email. Temos sempre interesse em trazer mais boas ofertas aos nossos usuários.",
+    "reportTitle": "Relatar um problema",
+    "reportP": "Achou um cupom que não funciona mais ou notou algo errado? Avise-nos para mantermos as informações precisas para todos. Você também pode usar a votação em cada cupom para ajudar a comunidade."
+  },
+  "legal": {
+    "englishOnly": "Esta página está disponível apenas em inglês."
+  },
+  "coupon": {
+    "title": "Todos os cupons por marca",
+    "subtitle": "Veja cupons e ofertas que funcionam de todas as marcas que acompanhamos. Clique em qualquer marca para ver cupons verificados, atualizados diariamente pela nossa comunidade.",
+    "metaTitle": "Todos os cupons e ofertas por marca",
+    "metaDescription": "Veja cupons e ofertas verificados de todas as marcas — domínios, hospedagem, VPN, criadores de sites e ferramentas para desenvolvedores. Atualizado diariamente.",
+    "codesAvailable": "{count, plural, one {# cupom disponível} other {# cupons disponíveis}}"
+  },
+  "couponBrand": {
+    "metaTitleWorking": "Cupons e ofertas {name} ({count} funcionando) - {year}",
+    "metaTitle": "Cupons e promoções {name} - {year}",
+    "metaDescription": "Cupons e promoções {name} verificados para {year}. Economize na {name} com cupons que funcionam, atualizados diariamente pela nossa comunidade.",
+    "h1": "Cupons e ofertas {name} ({year})",
+    "intro": "Economize na {name} com {count} cupons que funcionam, incluindo {verified} verificados pela comunidade. Nosso melhor desconto {name} chega a <b>{best}%</b>. Todos os cupons são atualizados diariamente e verificados por usuários reais — copie um cupom abaixo e cole na finalização da compra.",
+    "verifiedCodes": "{count, plural, one {# cupom verificado} other {# cupons verificados}}",
+    "totalOffers": "{count, plural, one {# oferta no total} other {# ofertas no total}}",
+    "updated": "Atualizado em {date}",
+    "faqTitle": "Perguntas frequentes sobre cupons {name}",
+    "q1": "Estes cupons {name} estão funcionando?",
+    "a1": "Sim. Temos {verified} cupons {name} verificados e confirmados pela nossa comunidade. Cada cupom mostra quando foi verificado pela última vez, e os usuários votam se ainda funcionam.",
+    "q2": "Quanto posso economizar com cupons {name}?",
+    "a2": "Nosso melhor cupom {name} oferece atualmente até {best}% de desconto. Os descontos variam por produto e promoção, então confira a lista completa acima para achar a oferta ideal para sua compra.",
+    "q3": "Como uso um cupom {name}?",
+    "a3": "Copie o cupom da lista acima, acesse a {name} e cole o código na finalização da compra, no campo de cupom ou código promocional. O desconto é aplicado antes de você concluir o pagamento.",
+    "q4": "Com que frequência os cupons {name} são atualizados?",
+    "a4": "Atualizamos os cupons {name} diariamente por meio de verificações automáticas e envios da comunidade. Cupons expirados são removidos e novas ofertas são adicionadas assim que ficam disponíveis."
   }
 }

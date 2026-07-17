@@ -1,17 +1,21 @@
 import type { Metadata } from 'next';
+import { EnglishOnlyNotice } from '@/components/layout/EnglishOnlyNotice';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Dealeg',
   description: 'How Dealeg collects, uses, and protects your information.',
 };
 
-export default function PrivacyPage() {
+export default async function PrivacyPage() {
   const updated = 'July 2026';
 
   return (
     <div className="max-w-3xl mx-auto prose prose-gray">
       <h1 className="text-3xl font-extrabold text-gray-900 mb-2">Privacy Policy</h1>
-      <p className="text-sm text-gray-400 mb-8">Last updated: {updated}</p>
+      <p className="text-sm text-gray-400 mb-2">Last updated: {updated}</p>
+
+      {/* Trang pháp lý cố ý chỉ có tiếng Anh — nói thẳng bằng ngôn ngữ của user */}
+      <EnglishOnlyNotice />
 
       <div className="space-y-6 text-gray-700 leading-relaxed">
         <section>

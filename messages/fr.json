@@ -448,5 +448,54 @@
     "visitSite": "Visiter le site",
     "voucherCount": "{count} codes promo",
     "noDeals": "Pas encore de code promo pour {name}."
+  },
+  "contact": {
+    "title": "Contact et À propos",
+    "subtitle": "Contactez-nous ou apprenez-en plus sur Dealeg",
+    "aboutTitle": "À propos de Dealeg",
+    "aboutP1": "Dealeg est une plateforme dédiée à aider chacun à trouver les meilleures offres, codes promo et réductions sur les produits et services technologiques — de l’hébergement web et des noms de domaine aux VPN, logiciels et outils en ligne.",
+    "aboutP2": "Nous associons des codes promo vérifiés à des guides et comparatifs honnêtes et approfondis pour vous aider à décider en connaissance de cause et à économiser. Nos contenus sont disponibles en plusieurs langues pour les utilisateurs du monde entier.",
+    "whatTitle": "Ce que nous faisons",
+    "what1": "Rassembler et vérifier les codes promo et offres sur les produits tech",
+    "what2": "Rédiger des guides comparatifs et tutoriels originaux et honnêtes",
+    "what3": "Laisser la communauté vérifier quels codes fonctionnent via les votes et commentaires",
+    "what4": "Proposer du contenu en 12 langues pour un public mondial",
+    "touchTitle": "Contactez-nous",
+    "touchP": "Nous serions ravis de vous lire. Question, retour, demande de partenariat ou signalement d’un code expiré — écrivez-nous :",
+    "emailLabel": "E-mail",
+    "replyTime": "Nous nous efforçons de répondre sous quelques jours ouvrés.",
+    "bizTitle": "Pour les entreprises",
+    "bizP": "Si vous proposez un produit ou service et souhaitez référencer vos offres sur Dealeg ou discuter d’un partenariat, écrivez-nous. Nous sommes toujours intéressés par de nouvelles bonnes offres pour nos utilisateurs.",
+    "reportTitle": "Signaler un problème",
+    "reportP": "Un code ne fonctionne plus, ou quelque chose cloche ? Dites-le-nous pour garder nos informations exactes pour tout le monde. Vous pouvez aussi utiliser le vote sur chaque code pour aider la communauté."
+  },
+  "legal": {
+    "englishOnly": "Cette page n’est disponible qu’en anglais."
+  },
+  "coupon": {
+    "title": "Tous les codes promo par marque",
+    "subtitle": "Parcourez les codes promo et offres valides de toutes les marques que nous suivons. Cliquez sur une marque pour voir les codes vérifiés, mis à jour chaque jour par notre communauté.",
+    "metaTitle": "Tous les codes promo et offres par marque",
+    "metaDescription": "Parcourez les codes promo et offres vérifiés de toutes les marques — noms de domaine, hébergement, VPN, créateurs de sites et outils de développement. Mis à jour quotidiennement.",
+    "codesAvailable": "{count, plural, one {# code disponible} other {# codes disponibles}}"
+  },
+  "couponBrand": {
+    "metaTitleWorking": "Codes promo et offres {name} ({count} valides) - {year}",
+    "metaTitle": "Codes promo et offres {name} - {year}",
+    "metaDescription": "Codes promo et offres {name} vérifiés pour {year}. Économisez sur {name} avec des codes de réduction valides, mis à jour chaque jour par notre communauté.",
+    "h1": "Codes promo et offres {name} ({year})",
+    "intro": "Économisez sur {name} avec {count} codes promo valides, dont {verified} vérifiés par la communauté. Notre meilleure réduction {name} atteint <b>{best}%</b>. Tous les codes sont mis à jour quotidiennement et vérifiés par de vrais utilisateurs — copiez un code ci-dessous et collez-le au moment du paiement.",
+    "verifiedCodes": "{count, plural, one {# code vérifié} other {# codes vérifiés}}",
+    "totalOffers": "{count, plural, one {# offre au total} other {# offres au total}}",
+    "updated": "Mis à jour le {date}",
+    "faqTitle": "FAQ codes promo {name}",
+    "q1": "Ces codes promo {name} fonctionnent-ils ?",
+    "a1": "Oui. Nous avons {verified} codes promo {name} vérifiés et confirmés par notre communauté. Chaque code indique sa dernière vérification, et les utilisateurs votent pour dire s’ils fonctionnent encore.",
+    "q2": "Combien puis-je économiser avec les codes {name} ?",
+    "a2": "Notre meilleur code {name} offre actuellement jusqu’à {best}% de réduction. Les remises varient selon le produit et la promotion : consultez la liste complète ci-dessus pour trouver l’offre adaptée à votre achat.",
+    "q3": "Comment utiliser un code promo {name} ?",
+    "a3": "Copiez le code dans la liste ci-dessus, rendez-vous sur {name}, puis collez le code au paiement dans le champ code promo. La réduction s’applique avant la validation du paiement.",
+    "q4": "À quelle fréquence les codes {name} sont-ils mis à jour ?",
+    "a4": "Nous mettons à jour les codes {name} chaque jour grâce à des vérifications automatiques et aux contributions de la communauté. Les codes expirés sont retirés et les nouvelles offres ajoutées dès leur disponibilité."
   }
 }

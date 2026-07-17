@@ -1,17 +1,21 @@
 import type { Metadata } from 'next';
+import { EnglishOnlyNotice } from '@/components/layout/EnglishOnlyNotice';
 
 export const metadata: Metadata = {
   title: 'Affiliate Disclosure | Dealeg',
   description: 'How Dealeg earns from affiliate links and our commitment to honest recommendations.',
 };
 
-export default function DisclaimerPage() {
+export default async function DisclaimerPage() {
   const updated = 'July 2026';
 
   return (
     <div className="max-w-3xl mx-auto prose prose-gray">
       <h1 className="text-3xl font-extrabold text-gray-900 mb-2">Affiliate Disclosure</h1>
-      <p className="text-sm text-gray-400 mb-8">Last updated: {updated}</p>
+      <p className="text-sm text-gray-400 mb-2">Last updated: {updated}</p>
+
+      {/* Trang pháp lý cố ý chỉ có tiếng Anh — nói thẳng bằng ngôn ngữ của user */}
+      <EnglishOnlyNotice />
 
       <div className="space-y-6 text-gray-700 leading-relaxed">
         <section>
