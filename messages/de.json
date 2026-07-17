@@ -12,7 +12,11 @@
     "blog": "Blog",
     "aitool": "AI",
     "other": "Andere Deals",
-    "vps": "VPS"
+    "vps": "VPS",
+    "security": "Sicherheit",
+    "email": "E-Mail",
+    "cdn": "CDN",
+    "ssl": "SSL"
   },
   "home": {
     "hero": {
@@ -20,20 +24,15 @@
       "subtitle": "Domains, Hosting, VPN und legale kostenlose Tools — täglich aktualisiert",
       "cta": "Deals heute ansehen"
     },
-    "featured": "Empfohlen",
-    "newest": "Neueste"
+    "featured": "Empfohlen"
   },
   "voucher": {
-    "copy": "Kopieren",
-    "copied": "Kopiert!",
     "expires": "Läuft ab",
     "verified": "Verifiziert",
     "expired": "Abgelaufen",
     "noExpiry": "Kein Ablaufdatum",
     "usedCount": "{count} Personen verwendet",
-    "getDiscount": "Deal erhalten",
     "getCode": "Code holen",
-    "codeCopied": "Code kopiert",
     "copiedHint": "Code kopiert! Beim Checkout einfügen.",
     "copyFailed": "Code gedrückt halten, um ihn zu kopieren.",
     "details": "Details",
@@ -42,7 +41,10 @@
     "sortPopular": "Beliebteste",
     "all": "Alle",
     "save": "Speichern",
-    "saved": "Gespeichert"
+    "saved": "Gespeichert",
+    "home": "Startseite",
+    "moreDeals": "Weitere {provider}-Deals",
+    "vouchers": "Gutscheine"
   },
   "tools": {
     "title": "Kostenlose Tools",
@@ -106,15 +108,11 @@
       "name": "Währungsrechner",
       "desc": "Zwischen 20 gängigen Währungen umrechnen, täglich aktualisiert",
       "amount": "Betrag",
-      "from": "Von",
-      "to": "Nach",
       "swap": "Tauschen",
       "rateNote": "Referenzkurse, täglich aktualisiert. Tatsächliche Bankkurse können abweichen.",
       "loading": "Kurse werden geladen...",
       "error": "Kurse konnten nicht geladen werden"
     },
-    "sectionVn": "Für Vietnam",
-    "sectionGlobal": "Allgemeine Tools",
     "common": {
       "input": "Eingabe",
       "output": "Ausgabe",
@@ -273,7 +271,8 @@
     "contact": "Kontakt",
     "privacy": "Datenschutz",
     "terms": "AGB",
-    "disclaimer": "Affiliate-Offenlegung"
+    "disclaimer": "Affiliate-Offenlegung",
+    "faq": "FAQ"
   },
   "auth": {
     "signIn": "Anmelden",
@@ -285,7 +284,6 @@
     "name": "Name",
     "createAccount": "Konto erstellen",
     "authenticating": "Authentifizierung...",
-    "signInFailed": "Anmeldung fehlgeschlagen, erneut versuchen",
     "signUpFailed": "Registrierung fehlgeschlagen, erneut versuchen",
     "tagline": "Die besten Tech-Gutscheine",
     "withGoogle": "Mit Google fortfahren",
@@ -296,7 +294,12 @@
     "passwordMin": "Passwort (mind. 6 Zeichen)",
     "wrongCredentials": "Falsche E-Mail oder Passwort",
     "passwordMismatch": "Passwörter stimmen nicht überein",
-    "language": "Sprache"
+    "language": "Sprache",
+    "errEmailTaken": "Diese E-Mail ist bereits registriert.",
+    "errEmailInvalid": "Bitte gib eine gültige E-Mail-Adresse ein.",
+    "errPasswordMin": "Das Passwort muss mindestens 6 Zeichen lang sein.",
+    "errNameMin": "Der Name muss mindestens 2 Zeichen lang sein.",
+    "errNameMax": "Der Name darf höchstens 50 Zeichen lang sein."
   },
   "submit": {
     "title": "Angebot einreichen",
@@ -316,11 +319,10 @@
     "errRequired": "Bitte Code und Anbieter ausfüllen",
     "errGeneric": "Etwas ist schiefgelaufen",
     "errConnect": "Keine Verbindung zum Server",
-    "success": "Danke! Ihr Angebot wurde eingereicht und wird geprüft."
+    "success": "Danke! Ihr Angebot wurde eingereicht und wird geprüft.",
+    "errDuplicate": "Dieser Gutschein wartet bereits auf Prüfung."
   },
   "comments": {
-    "myComments": "Meine Kommentare",
-    "title": "Kommentare",
     "post": "Senden",
     "posting": "Senden...",
     "communityTitle": "Community-Verifizierung",
@@ -337,7 +339,8 @@
     "subscribe": "Abonnieren",
     "success": "Abonniert! Danke.",
     "error": "Etwas ist schiefgelaufen, versuchen Sie es erneut",
-    "privacy": "Kein Spam. Jederzeit abbestellbar."
+    "privacy": "Kein Spam. Jederzeit abbestellbar.",
+    "confirm": "Fast geschafft! Bitte bestätige dein Abo über die E-Mail, die wir dir geschickt haben."
   },
   "share": {
     "label": "Teilen",
@@ -351,27 +354,27 @@
     "decline": "Ablehnen"
   },
   "faq": {
-    "title": "Frequently Asked Questions",
-    "subtitle": "Everything you need to know about using Dealeg",
-    "q1": "Are the coupon codes on Dealeg free to use?",
-    "a1": "Yes, completely free. Dealeg is free for everyone. You simply find a coupon code, copy it, and use it at checkout on the merchant's site. We earn a small commission from merchants when you make a purchase through our links, at no extra cost to you.",
-    "q2": "How do I use a coupon code?",
-    "a2": "Click the \"Get Code\" button on any coupon. This copies the code to your clipboard and opens the merchant's website. Paste the code in the promo or coupon field at checkout to apply your discount.",
-    "q3": "Do all coupon codes work?",
-    "a3": "We make every effort to list only working codes, and our community votes on whether codes are still valid. However, merchants control their offers, so codes can expire or change. Each code shows verification status and votes to help you find working ones.",
-    "q4": "How often are new deals added?",
-    "a4": "We update deals regularly. New coupons and offers are added as they become available, and expired ones are removed. Subscribe to our newsletter to get the latest deals delivered to your inbox.",
-    "q5": "Is Dealeg available in my language?",
-    "a5": "Dealeg is available in 12 languages: Vietnamese, English, Chinese, Hindi, Spanish, Portuguese, French, German, Arabic, Russian, Japanese, and Korean. Use the language switcher at the top of the page to change languages.",
-    "q6": "Do I need an account to use Dealeg?",
-    "a6": "No account is needed to browse and use coupon codes. However, creating a free account lets you comment, vote on whether codes work, and save your favorite deals. You can sign in with Google, Facebook, GitHub, or email.",
-    "q7": "How does Dealeg make money?",
-    "a7": "When you click a link and make a purchase, we may earn a commission from the merchant. This never costs you more — the price is the same. These commissions keep Dealeg free to use. We recommend products honestly regardless of commission. See our Affiliate Disclosure for details.",
-    "q8": "Can I submit a coupon or report an expired one?",
-    "a8": "Yes! Use the \"Submit\" page to share a coupon you found, or vote on existing coupons to tell the community whether they still work. This helps keep our information accurate for everyone.",
-    "moreTitle": "Still have questions?",
-    "moreText": "Can't find the answer you're looking for?",
-    "contactUs": "Contact us"
+    "title": "Häufige Fragen",
+    "subtitle": "Alles Wissenswerte zur Nutzung von Dealeg",
+    "q1": "Sind die Gutscheincodes auf Dealeg kostenlos?",
+    "a1": "Ja, völlig kostenlos. Dealeg ist für alle gratis. Du suchst dir einfach einen Gutscheincode, kopierst ihn und löst ihn beim Bezahlen im Shop ein. Wenn du über unsere Links kaufst, erhalten wir eine kleine Provision vom Shop – für dich entstehen dabei keine Mehrkosten.",
+    "q2": "Wie löse ich einen Gutscheincode ein?",
+    "a2": "Klicke bei einem Gutschein auf „Code holen“. Der Code wird in deine Zwischenablage kopiert und die Website des Shops öffnet sich. Füge den Code beim Bezahlen im Gutscheinfeld ein, um den Rabatt zu erhalten.",
+    "q3": "Funktionieren alle Gutscheincodes?",
+    "a3": "Wir bemühen uns, nur funktionierende Codes zu listen, und unsere Community stimmt darüber ab, ob Codes noch gültig sind. Die Angebote liegen jedoch in der Hand der Shops, daher können Codes ablaufen oder sich ändern. Bei jedem Code siehst du den Prüfstatus und die Stimmen – so findest du die funktionierenden.",
+    "q4": "Wie oft kommen neue Deals dazu?",
+    "a4": "Wir aktualisieren die Deals regelmäßig. Neue Gutscheine und Angebote kommen dazu, sobald sie verfügbar sind, abgelaufene werden entfernt. Abonniere unseren Newsletter, um die neuesten Deals per E-Mail zu bekommen.",
+    "q5": "Gibt es Dealeg in meiner Sprache?",
+    "a5": "Dealeg ist in 12 Sprachen verfügbar: Vietnamesisch, Englisch, Chinesisch, Hindi, Spanisch, Portugiesisch, Französisch, Deutsch, Arabisch, Russisch, Japanisch und Koreanisch. Nutze die Sprachauswahl oben auf der Seite, um zu wechseln.",
+    "q6": "Brauche ich ein Konto für Dealeg?",
+    "a6": "Zum Stöbern und Einlösen von Gutscheincodes brauchst du kein Konto. Mit einem kostenlosen Konto kannst du jedoch kommentieren, abstimmen, ob Codes funktionieren, und deine Lieblingsdeals speichern. Du kannst dich mit Google, Facebook, GitHub oder per E-Mail anmelden.",
+    "q7": "Womit verdient Dealeg Geld?",
+    "a7": "Wenn du auf einen Link klickst und etwas kaufst, erhalten wir möglicherweise eine Provision vom Shop. Für dich wird es dadurch nie teurer – der Preis bleibt derselbe. Diese Provisionen halten Dealeg kostenlos. Wir empfehlen Produkte ehrlich, unabhängig von der Provision. Details findest du in unserer Affiliate-Offenlegung.",
+    "q8": "Kann ich einen Gutschein einreichen oder einen abgelaufenen melden?",
+    "a8": "Ja! Teile über die Seite „Deal einreichen“ einen Gutschein, den du gefunden hast, oder stimme bei vorhandenen Gutscheinen ab, um der Community mitzuteilen, ob sie noch funktionieren. So bleiben unsere Informationen für alle korrekt.",
+    "moreTitle": "Noch Fragen?",
+    "moreText": "Nicht die Antwort gefunden, die du suchst?",
+    "contactUs": "Kontaktiere uns"
   },
   "profile": {
     "title": "Ihr Profil",
@@ -401,7 +404,11 @@
     "deleteHint": "Löschen Sie Ihr Konto und alle Daten dauerhaft",
     "deleteConfirm": "Dies kann nicht rückgängig gemacht werden. Geben Sie Ihre E-Mail {email} ein:",
     "deleteForever": "Endgültig löschen",
-    "deleteError": "Konnte nicht gelöscht werden"
+    "deleteError": "Konnte nicht gelöscht werden",
+    "language": "Sprache",
+    "languageHint": "Nach dem Ändern und Speichern wechselt die Sprache der Website.",
+    "pwdWrongCurrent": "Das aktuelle Passwort ist falsch.",
+    "deleteEmailMismatch": "Die eingegebene E-Mail stimmt nicht mit der deines Kontos überein."
   },
   "search": {
     "placeholder": "Gutscheine, Artikel suchen...",
@@ -426,6 +433,20 @@
     "popularPages": "Beliebte Seiten"
   },
   "blog": {
-    "publishedOn": "Veröffentlicht am"
+    "publishedOn": "Veröffentlicht am",
+    "relatedPosts": "Ähnliche Beiträge",
+    "relatedVouchers": "Ähnliche Gutscheine",
+    "fallbackNotice": "Dieser Artikel ist noch nicht auf {lang} verfügbar. Es wird die englische Version angezeigt.",
+    "noPosts": "Noch keine Artikel.",
+    "title": "Blog"
+  },
+  "provider": {
+    "notFound": "Nicht gefunden",
+    "metaTitle": "{name} Gutscheine | Dealeg",
+    "metaDescription": "Die neuesten Gutscheine für {name}",
+    "activeDeals": "Aktuelle Deals",
+    "visitSite": "Zur Website",
+    "voucherCount": "{count} Gutscheine",
+    "noDeals": "Noch keine Gutscheincodes für {name}."
   }
 }

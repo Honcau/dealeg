@@ -12,7 +12,11 @@
     "blog": "Blog",
     "aitool": "AI",
     "other": "Outras ofertas",
-    "vps": "VPS"
+    "vps": "VPS",
+    "security": "Segurança",
+    "email": "Email",
+    "cdn": "CDN",
+    "ssl": "SSL"
   },
   "home": {
     "hero": {
@@ -20,20 +24,15 @@
       "subtitle": "Domínios, hospedagem, VPN e ferramentas gratuitas legais — atualizado todos os dias",
       "cta": "Ver ofertas de hoje"
     },
-    "featured": "Em destaque",
-    "newest": "Mais recentes"
+    "featured": "Em destaque"
   },
   "voucher": {
-    "copy": "Copiar",
-    "copied": "Copiado!",
     "expires": "Expira em",
     "verified": "Verificado",
     "expired": "Expirado",
     "noExpiry": "Sem validade",
     "usedCount": "{count} pessoas usaram",
-    "getDiscount": "Obter oferta",
     "getCode": "Obter código",
-    "codeCopied": "Código copiado",
     "copiedHint": "Código copiado! Cole no checkout.",
     "copyFailed": "Toque e segure no cupom para copiar.",
     "details": "Detalhes",
@@ -42,7 +41,10 @@
     "sortPopular": "Mais populares",
     "all": "Todos",
     "save": "Salvar",
-    "saved": "Salvo"
+    "saved": "Salvo",
+    "home": "Início",
+    "moreDeals": "Mais ofertas de {provider}",
+    "vouchers": "Cupons"
   },
   "tools": {
     "title": "Ferramentas grátis",
@@ -106,15 +108,11 @@
       "name": "Conversor de moedas",
       "desc": "Converta entre 20 moedas populares, atualizado diariamente",
       "amount": "Valor",
-      "from": "De",
-      "to": "Para",
       "swap": "Inverter",
       "rateNote": "Taxas de referência, atualizadas diariamente. Taxas bancárias reais podem variar.",
       "loading": "Carregando taxas...",
       "error": "Não foi possível carregar as taxas"
     },
-    "sectionVn": "Para o Vietnã",
-    "sectionGlobal": "Ferramentas gerais",
     "common": {
       "input": "Entrada",
       "output": "Saída",
@@ -273,7 +271,8 @@
     "contact": "Contato",
     "privacy": "Privacidade",
     "terms": "Termos",
-    "disclaimer": "Divulgação de Afiliados"
+    "disclaimer": "Divulgação de Afiliados",
+    "faq": "Perguntas frequentes"
   },
   "auth": {
     "signIn": "Entrar",
@@ -285,7 +284,6 @@
     "name": "Nome",
     "createAccount": "Criar conta",
     "authenticating": "Autenticando...",
-    "signInFailed": "Falha ao entrar, tente novamente",
     "signUpFailed": "Falha ao registrar, tente novamente",
     "tagline": "Os melhores cupons de tecnologia",
     "withGoogle": "Continuar com o Google",
@@ -296,7 +294,12 @@
     "passwordMin": "Senha (mín. 6 caracteres)",
     "wrongCredentials": "Email ou senha incorretos",
     "passwordMismatch": "As senhas não coincidem",
-    "language": "Idioma"
+    "language": "Idioma",
+    "errEmailTaken": "Este email já está cadastrado.",
+    "errEmailInvalid": "Digite um endereço de email válido.",
+    "errPasswordMin": "A senha deve ter pelo menos 6 caracteres.",
+    "errNameMin": "O nome deve ter pelo menos 2 caracteres.",
+    "errNameMax": "O nome não pode ter mais de 50 caracteres."
   },
   "submit": {
     "title": "Enviar nova oferta",
@@ -316,11 +319,10 @@
     "errRequired": "Preencha Código e Fornecedor",
     "errGeneric": "Algo deu errado",
     "errConnect": "Não foi possível conectar ao servidor",
-    "success": "Obrigado! Sua oferta foi enviada e está em análise."
+    "success": "Obrigado! Sua oferta foi enviada e está em análise.",
+    "errDuplicate": "Este cupom já está aguardando revisão."
   },
   "comments": {
-    "myComments": "Meus comentários",
-    "title": "Comentários",
     "post": "Publicar",
     "posting": "Publicando...",
     "communityTitle": "Verificação da comunidade",
@@ -337,7 +339,8 @@
     "subscribe": "Assinar",
     "success": "Inscrito! Obrigado.",
     "error": "Algo deu errado, tente novamente",
-    "privacy": "Sem spam. Cancele quando quiser."
+    "privacy": "Sem spam. Cancele quando quiser.",
+    "confirm": "Quase lá! Verifique seu email para confirmar a inscrição."
   },
   "share": {
     "label": "Compartilhar",
@@ -351,27 +354,27 @@
     "decline": "Recusar"
   },
   "faq": {
-    "title": "Frequently Asked Questions",
-    "subtitle": "Everything you need to know about using Dealeg",
-    "q1": "Are the coupon codes on Dealeg free to use?",
-    "a1": "Yes, completely free. Dealeg is free for everyone. You simply find a coupon code, copy it, and use it at checkout on the merchant's site. We earn a small commission from merchants when you make a purchase through our links, at no extra cost to you.",
-    "q2": "How do I use a coupon code?",
-    "a2": "Click the \"Get Code\" button on any coupon. This copies the code to your clipboard and opens the merchant's website. Paste the code in the promo or coupon field at checkout to apply your discount.",
-    "q3": "Do all coupon codes work?",
-    "a3": "We make every effort to list only working codes, and our community votes on whether codes are still valid. However, merchants control their offers, so codes can expire or change. Each code shows verification status and votes to help you find working ones.",
-    "q4": "How often are new deals added?",
-    "a4": "We update deals regularly. New coupons and offers are added as they become available, and expired ones are removed. Subscribe to our newsletter to get the latest deals delivered to your inbox.",
-    "q5": "Is Dealeg available in my language?",
-    "a5": "Dealeg is available in 12 languages: Vietnamese, English, Chinese, Hindi, Spanish, Portuguese, French, German, Arabic, Russian, Japanese, and Korean. Use the language switcher at the top of the page to change languages.",
-    "q6": "Do I need an account to use Dealeg?",
-    "a6": "No account is needed to browse and use coupon codes. However, creating a free account lets you comment, vote on whether codes work, and save your favorite deals. You can sign in with Google, Facebook, GitHub, or email.",
-    "q7": "How does Dealeg make money?",
-    "a7": "When you click a link and make a purchase, we may earn a commission from the merchant. This never costs you more — the price is the same. These commissions keep Dealeg free to use. We recommend products honestly regardless of commission. See our Affiliate Disclosure for details.",
-    "q8": "Can I submit a coupon or report an expired one?",
-    "a8": "Yes! Use the \"Submit\" page to share a coupon you found, or vote on existing coupons to tell the community whether they still work. This helps keep our information accurate for everyone.",
-    "moreTitle": "Still have questions?",
-    "moreText": "Can't find the answer you're looking for?",
-    "contactUs": "Contact us"
+    "title": "Perguntas frequentes",
+    "subtitle": "Tudo o que você precisa saber sobre o Dealeg",
+    "q1": "Os cupons do Dealeg são gratuitos?",
+    "a1": "Sim, totalmente gratuitos. O Dealeg é gratuito para todos. Basta encontrar um cupom, copiá-lo e usá-lo na finalização da compra no site da loja. Recebemos uma pequena comissão das lojas quando você compra pelos nossos links, sem nenhum custo extra para você.",
+    "q2": "Como uso um cupom?",
+    "a2": "Clique no botão «Obter código» em qualquer cupom. O código é copiado para a área de transferência e o site da loja é aberto. Cole o código no campo de cupom na finalização da compra para aplicar o desconto.",
+    "q3": "Todos os cupons funcionam?",
+    "a3": "Fazemos o possível para listar apenas cupons válidos, e nossa comunidade vota se eles ainda funcionam. Porém, as lojas controlam suas ofertas, então os cupons podem expirar ou mudar. Cada cupom mostra o status de verificação e os votos para ajudar você a encontrar os que funcionam.",
+    "q4": "Com que frequência novas ofertas são adicionadas?",
+    "a4": "Atualizamos as ofertas regularmente. Novos cupons e promoções são adicionados assim que ficam disponíveis, e os expirados são removidos. Assine nossa newsletter para receber as ofertas mais recentes por email.",
+    "q5": "O Dealeg está disponível no meu idioma?",
+    "a5": "O Dealeg está disponível em 12 idiomas: vietnamita, inglês, chinês, hindi, espanhol, português, francês, alemão, árabe, russo, japonês e coreano. Use o seletor de idioma no topo da página para mudar.",
+    "q6": "Preciso de uma conta para usar o Dealeg?",
+    "a6": "Não é preciso conta para navegar e usar os cupons. Mas criar uma conta gratuita permite comentar, votar se os cupons funcionam e salvar suas ofertas favoritas. Você pode entrar com Google, Facebook, GitHub ou email.",
+    "q7": "Como o Dealeg ganha dinheiro?",
+    "a7": "Quando você clica em um link e faz uma compra, podemos receber uma comissão da loja. Isso nunca custa mais para você — o preço é o mesmo. Essas comissões mantêm o Dealeg gratuito. Recomendamos produtos com honestidade, independentemente da comissão. Veja nossa Divulgação de Afiliados para mais detalhes.",
+    "q8": "Posso enviar um cupom ou relatar um expirado?",
+    "a8": "Sim! Use a página «Enviar oferta» para compartilhar um cupom que você encontrou, ou vote nos cupons existentes para dizer à comunidade se ainda funcionam. Isso ajuda a manter nossas informações precisas para todos.",
+    "moreTitle": "Ainda tem dúvidas?",
+    "moreText": "Não encontrou a resposta que procura?",
+    "contactUs": "Fale conosco"
   },
   "profile": {
     "title": "Seu perfil",
@@ -401,7 +404,11 @@
     "deleteHint": "Exclua permanentemente sua conta e todos os dados",
     "deleteConfirm": "Isso não pode ser desfeito. Digite seu e-mail {email} para confirmar:",
     "deleteForever": "Excluir para sempre",
-    "deleteError": "Não foi possível excluir, tente novamente"
+    "deleteError": "Não foi possível excluir, tente novamente",
+    "language": "Idioma",
+    "languageHint": "Ao alterar e clicar em Salvar, o idioma do site muda.",
+    "pwdWrongCurrent": "A senha atual está incorreta.",
+    "deleteEmailMismatch": "O email digitado não corresponde ao email da sua conta."
   },
   "search": {
     "placeholder": "Buscar cupons, artigos...",
@@ -426,6 +433,20 @@
     "popularPages": "Páginas populares"
   },
   "blog": {
-    "publishedOn": "Publicado em"
+    "publishedOn": "Publicado em",
+    "relatedPosts": "Artigos relacionados",
+    "relatedVouchers": "Cupons relacionados",
+    "fallbackNotice": "Este artigo ainda não está disponível em {lang}. Exibindo a versão em inglês.",
+    "noPosts": "Ainda não há artigos.",
+    "title": "Blog"
+  },
+  "provider": {
+    "notFound": "Não encontrado",
+    "metaTitle": "Cupons {name} | Dealeg",
+    "metaDescription": "Os cupons mais recentes de {name}",
+    "activeDeals": "Ofertas ativas",
+    "visitSite": "Visitar site",
+    "voucherCount": "{count} cupons",
+    "noDeals": "Ainda não há cupons para {name}."
   }
 }

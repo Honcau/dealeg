@@ -32,7 +32,7 @@ export async function Footer() {
             <Link href="/category/vpn"     className="hover:text-gray-600 transition-colors">{tn('vpn')}</Link>
             <Link href="/category/other"   className="hover:text-gray-600 transition-colors">{tn('other')}</Link>
             <Link href="/tools"   className="hover:text-gray-600 transition-colors">{tn('tools')}</Link>
-            <Link href="/blog"    className="hover:text-gray-600 transition-colors">Blog</Link>
+            <Link href="/blog"    className="hover:text-gray-600 transition-colors">{tn('blog')}</Link>
             <Link href="/submit"  className="hover:text-gray-600 transition-colors">{tn('submit')}</Link>
           </nav>
         </div>
@@ -42,7 +42,7 @@ export async function Footer() {
           <nav className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-gray-400">
             <Link href="/about"      className="hover:text-gray-600 transition-colors">{t('about')}</Link>
             <Link href="/contact"    className="hover:text-gray-600 transition-colors">{t('contact')}</Link>
-            <Link href="/faq"        className="hover:text-gray-600 transition-colors">FAQ</Link>
+            <Link href="/faq"        className="hover:text-gray-600 transition-colors">{t('faq')}</Link>
             <Link href="/privacy"    className="hover:text-gray-600 transition-colors">{t('privacy')}</Link>
             <Link href="/terms"      className="hover:text-gray-600 transition-colors">{t('terms')}</Link>
             <Link href="/disclaimer" className="hover:text-gray-600 transition-colors">{t('disclaimer')}</Link>

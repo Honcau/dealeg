@@ -12,7 +12,11 @@
     "blog": "博客",
     "aitool": "AI",
     "other": "其他优惠",
-    "vps": "VPS"
+    "vps": "VPS",
+    "security": "安全",
+    "email": "邮箱",
+    "cdn": "CDN",
+    "ssl": "SSL"
   },
   "home": {
     "hero": {
@@ -20,20 +24,15 @@
       "subtitle": "域名、主机、VPN和免费合法工具——每天更新",
       "cta": "查看今日优惠"
     },
-    "featured": "精选",
-    "newest": "最新"
+    "featured": "精选"
   },
   "voucher": {
-    "copy": "复制",
-    "copied": "已复制！",
     "expires": "到期",
     "verified": "已验证",
     "expired": "已过期",
     "noExpiry": "永久有效",
     "usedCount": "{count}人使用",
-    "getDiscount": "获取优惠",
     "getCode": "获取代码",
-    "codeCopied": "已复制",
     "copiedHint": "代码已复制！结账时粘贴。",
     "copyFailed": "请长按优惠码手动复制。",
     "details": "详情",
@@ -42,7 +41,10 @@
     "sortPopular": "最热门",
     "all": "全部",
     "save": "保存",
-    "saved": "已保存"
+    "saved": "已保存",
+    "home": "首页",
+    "moreDeals": "更多 {provider} 优惠",
+    "vouchers": "优惠码"
   },
   "tools": {
     "title": "免费工具",
@@ -106,15 +108,11 @@
       "name": "货币换算",
       "desc": "20 种常用货币换算，每日更新",
       "amount": "金额",
-      "from": "从",
-      "to": "到",
       "swap": "互换",
       "rateNote": "参考汇率，每日更新。实际银行汇率可能不同。",
       "loading": "加载汇率中...",
       "error": "无法加载汇率，请稍后重试"
     },
-    "sectionVn": "越南专用",
-    "sectionGlobal": "通用工具",
     "common": {
       "input": "输入",
       "output": "输出",
@@ -273,7 +271,8 @@
     "contact": "联系",
     "privacy": "隐私",
     "terms": "条款",
-    "disclaimer": "联盟披露"
+    "disclaimer": "联盟披露",
+    "faq": "常见问题"
   },
   "auth": {
     "signIn": "登录",
@@ -285,7 +284,6 @@
     "name": "姓名",
     "createAccount": "创建账户",
     "authenticating": "验证中...",
-    "signInFailed": "登录失败，请重试",
     "signUpFailed": "注册失败，请重试",
     "tagline": "最优质的科技优惠券",
     "withGoogle": "使用 Google 继续",
@@ -296,7 +294,12 @@
     "passwordMin": "密码（至少 6 个字符）",
     "wrongCredentials": "邮箱或密码错误",
     "passwordMismatch": "两次密码不一致",
-    "language": "语言"
+    "language": "语言",
+    "errEmailTaken": "该邮箱已注册。",
+    "errEmailInvalid": "请输入有效的邮箱地址。",
+    "errPasswordMin": "密码至少 6 个字符。",
+    "errNameMin": "姓名至少 2 个字符。",
+    "errNameMax": "姓名不能超过 50 个字符。"
   },
   "submit": {
     "title": "提交新优惠",
@@ -316,11 +319,10 @@
     "errRequired": "请填写优惠码和提供商",
     "errGeneric": "出错了",
     "errConnect": "无法连接服务器",
-    "success": "谢谢！您的优惠已提交，等待审核。"
+    "success": "谢谢！您的优惠已提交，等待审核。",
+    "errDuplicate": "该优惠码已在等待审核。"
   },
   "comments": {
-    "myComments": "我的评论",
-    "title": "评论",
     "post": "发布",
     "posting": "发布中...",
     "communityTitle": "社区验证",
@@ -337,7 +339,8 @@
     "subscribe": "订阅",
     "success": "订阅成功！谢谢。",
     "error": "出错了，请重试",
-    "privacy": "无垃圾邮件。随时取消订阅。"
+    "privacy": "无垃圾邮件。随时取消订阅。",
+    "confirm": "就快好了！请查收邮件以确认订阅。"
   },
   "share": {
     "label": "分享",
@@ -351,27 +354,27 @@
     "decline": "拒绝"
   },
   "faq": {
-    "title": "Frequently Asked Questions",
-    "subtitle": "Everything you need to know about using Dealeg",
-    "q1": "Are the coupon codes on Dealeg free to use?",
-    "a1": "Yes, completely free. Dealeg is free for everyone. You simply find a coupon code, copy it, and use it at checkout on the merchant's site. We earn a small commission from merchants when you make a purchase through our links, at no extra cost to you.",
-    "q2": "How do I use a coupon code?",
-    "a2": "Click the \"Get Code\" button on any coupon. This copies the code to your clipboard and opens the merchant's website. Paste the code in the promo or coupon field at checkout to apply your discount.",
-    "q3": "Do all coupon codes work?",
-    "a3": "We make every effort to list only working codes, and our community votes on whether codes are still valid. However, merchants control their offers, so codes can expire or change. Each code shows verification status and votes to help you find working ones.",
-    "q4": "How often are new deals added?",
-    "a4": "We update deals regularly. New coupons and offers are added as they become available, and expired ones are removed. Subscribe to our newsletter to get the latest deals delivered to your inbox.",
-    "q5": "Is Dealeg available in my language?",
-    "a5": "Dealeg is available in 12 languages: Vietnamese, English, Chinese, Hindi, Spanish, Portuguese, French, German, Arabic, Russian, Japanese, and Korean. Use the language switcher at the top of the page to change languages.",
-    "q6": "Do I need an account to use Dealeg?",
-    "a6": "No account is needed to browse and use coupon codes. However, creating a free account lets you comment, vote on whether codes work, and save your favorite deals. You can sign in with Google, Facebook, GitHub, or email.",
-    "q7": "How does Dealeg make money?",
-    "a7": "When you click a link and make a purchase, we may earn a commission from the merchant. This never costs you more — the price is the same. These commissions keep Dealeg free to use. We recommend products honestly regardless of commission. See our Affiliate Disclosure for details.",
-    "q8": "Can I submit a coupon or report an expired one?",
-    "a8": "Yes! Use the \"Submit\" page to share a coupon you found, or vote on existing coupons to tell the community whether they still work. This helps keep our information accurate for everyone.",
-    "moreTitle": "Still have questions?",
-    "moreText": "Can't find the answer you're looking for?",
-    "contactUs": "Contact us"
+    "title": "常见问题",
+    "subtitle": "使用 Dealeg 需要了解的一切",
+    "q1": "Dealeg 上的优惠码可以免费使用吗？",
+    "a1": "是的，完全免费。Dealeg 对所有人免费。您只需找到优惠码、复制它，然后在商家网站结账时使用。当您通过我们的链接购买时，我们会从商家获得少量佣金，您无需支付任何额外费用。",
+    "q2": "如何使用优惠码？",
+    "a2": "点击任意优惠上的「获取代码」按钮。这会把代码复制到剪贴板并打开商家网站。在结账时把代码粘贴到优惠码栏即可享受折扣。",
+    "q3": "所有优惠码都有效吗？",
+    "a3": "我们尽力只收录有效的代码，社区也会投票反映代码是否仍然可用。不过优惠由商家掌控，代码可能过期或变更。每个代码都会显示验证状态和投票，帮助您找到可用的那些。",
+    "q4": "多久会添加新优惠？",
+    "a4": "我们会定期更新优惠。新的优惠码一上线就会添加，过期的会被移除。订阅我们的邮件，最新优惠会直接送到您的收件箱。",
+    "q5": "Dealeg 有我的语言版本吗？",
+    "a5": "Dealeg 提供 12 种语言：越南语、英语、中文、印地语、西班牙语、葡萄牙语、法语、德语、阿拉伯语、俄语、日语和韩语。使用页面顶部的语言切换器即可更换。",
+    "q6": "使用 Dealeg 需要注册账户吗？",
+    "a6": "浏览和使用优惠码无需账户。不过注册免费账户后，您可以发表评论、投票反映代码是否可用，并收藏喜欢的优惠。您可以用 Google、Facebook、GitHub 或邮箱登录。",
+    "q7": "Dealeg 如何盈利？",
+    "a7": "当您点击链接并完成购买时，我们可能会从商家获得佣金。这绝不会让您多花钱——价格完全相同。这些佣金让 Dealeg 保持免费。无论佣金多少，我们都会诚实推荐。详情请见我们的《联盟披露声明》。",
+    "q8": "我可以提交优惠码或举报已过期的吗？",
+    "a8": "当然可以！使用「提交优惠」页面分享您找到的优惠码，或为现有优惠码投票，告诉社区它们是否仍然可用。这有助于让信息对所有人保持准确。",
+    "moreTitle": "还有疑问？",
+    "moreText": "没有找到您想要的答案？",
+    "contactUs": "联系我们"
   },
   "profile": {
     "title": "您的资料",
@@ -401,7 +404,11 @@
     "deleteHint": "永久删除您的账户和所有数据",
     "deleteConfirm": "此操作无法撤销。输入您的邮箱 {email} 确认：",
     "deleteForever": "永久删除",
-    "deleteError": "无法删除，请重试"
+    "deleteError": "无法删除，请重试",
+    "language": "语言",
+    "languageHint": "更改后按「保存」，网站语言会随之切换。",
+    "pwdWrongCurrent": "当前密码不正确。",
+    "deleteEmailMismatch": "输入的邮箱与账户邮箱不一致。"
   },
   "search": {
     "placeholder": "搜索优惠券、文章...",
@@ -426,6 +433,20 @@
     "popularPages": "热门页面"
   },
   "blog": {
-    "publishedOn": "发布于"
+    "publishedOn": "发布于",
+    "relatedPosts": "相关文章",
+    "relatedVouchers": "相关优惠码",
+    "fallbackNotice": "本文暂无{lang}版本，正在显示英文版。",
+    "noPosts": "暂无文章。",
+    "title": "博客"
+  },
+  "provider": {
+    "notFound": "未找到",
+    "metaTitle": "{name} 优惠码 | Dealeg",
+    "metaDescription": "{name} 的最新优惠码",
+    "activeDeals": "有效优惠",
+    "visitSite": "访问网站",
+    "voucherCount": "{count} 个优惠码",
+    "noDeals": "{name} 暂无优惠码。"
   }
 }

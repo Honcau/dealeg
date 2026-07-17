@@ -149,10 +149,11 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <article className="max-w-2xl mx-auto">
-      {/* Fallback banner */}
+      {/* Banner báo chưa có bản dịch — CHỈ hiện cho người không có bản dịch, nên phải
+          viết bằng chính ngôn ngữ của họ (trước đây là tiếng Việt: vô nghĩa với họ). */}
       {isFallback && (
         <div className="bg-blue-50 border border-blue-200 text-blue-700 rounded-xl px-4 py-3 mb-6 text-sm">
-          Bài viết này chưa có bản dịch {localeNames[locale] ?? locale}. Đang hiển thị bằng tiếng Anh.
+          {t('fallbackNotice', { lang: localeNames[locale] ?? locale })}
         </div>
       )}
 
@@ -202,7 +203,7 @@ export default async function ArticlePage({ params }: Props) {
           {relatedVouchers.length > 0 && (
             <div>
               <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">
-                {t.has('relatedVouchers') ? t('relatedVouchers') : 'Related vouchers'}
+                {t('relatedVouchers')}
               </h2>
               <div className="space-y-2">
                 {relatedVouchers.map(v => (
@@ -221,7 +222,7 @@ export default async function ArticlePage({ params }: Props) {
           {relatedPosts.length > 0 && (
             <div>
               <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">
-                {t.has('relatedPosts') ? t('relatedPosts') : 'Related posts'}
+                {t('relatedPosts')}
               </h2>
               <div className="space-y-2">
                 {relatedPosts.map(p => (

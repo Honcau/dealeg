@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
+import { formatDate } from '@/lib/utils';
 
 import { useSession, signOut }   from 'next-auth/react';
 import { useRouter }    from 'next/navigation';
@@ -31,7 +32,6 @@ interface SavedVoucher {
 
 export default function ProfilePage() {
   const t = useTranslations('profile');
-  const tx = (k: string, f: string) => (t.has(k) ? t(k) : f);
   const locale = useLocale();
   const { data: session, status, update } = useSession();
   const router = useRouter();
@@ -49,6 +49,7 @@ export default function ProfilePage() {
   const [curPwd,      setCurPwd]      = useState('');
   const [newPwd,      setNewPwd]      = useState('');
   const [pwdMsg,      setPwdMsg]      = useState('');
+  const [pwdOk,       setPwdOk]       = useState(false);
   const [pwdSaving,   setPwdSaving]   = useState(false);
 
   // Xóa tài khoản
@@ -93,13 +94,21 @@ export default function ProfilePage() {
       });
       const data = await res.json();
       if (res.ok) {
+        setPwdOk(true);
         setPwdMsg(t('pwdChanged'));
         setCurPwd(''); setNewPwd('');
         setTimeout(() => { setShowPwd(false); setPwdMsg(''); }, 2000);
       } else {
-        setPwdMsg(data.error ?? t('pwdError'));
+        // Server chỉ trả CODE — chuỗi hiển thị lấy từ i18n của client theo locale.
+        setPwdOk(false);
+        setPwdMsg(
+          data.code === 'WRONG_CURRENT' ? t('pwdWrongCurrent')
+          : data.code === 'TOO_SHORT'   ? t('pwdTooShort')
+          : t('pwdError'),
+        );
       }
     } catch {
+      setPwdOk(false);
       setPwdMsg(t('pwdError'));
     }
     setPwdSaving(false);
@@ -118,7 +127,7 @@ export default function ProfilePage() {
         // Xóa xong → đăng xuất + về trang chủ
         await signOut({ callbackUrl: '/' });
       } else {
-        setDeleteMsg(data.error ?? t('deleteError'));
+        setDeleteMsg(data.code === 'EMAIL_MISMATCH' ? t('deleteEmailMismatch') : t('deleteError'));
         setDeleting(false);
       }
     } catch {
@@ -230,7 +239,7 @@ export default function ProfilePage() {
         {/* Ngôn ngữ */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            {tx('language', 'Language')}
+            {t('language')}
           </label>
           <select
             value={language}
@@ -240,7 +249,7 @@ export default function ProfilePage() {
             {LOCALE_OPTIONS.map(o => <option key={o.code} value={o.code}>{o.label}</option>)}
           </select>
           <p className="text-xs text-gray-400 mt-1">
-            {tx('languageHint', 'Changing this switches the site language after you press Save.')}
+            {t('languageHint')}
           </p>
         </div>
       </div>
@@ -285,7 +294,7 @@ export default function ProfilePage() {
                       {c.voucher.provider} · {c.voucher.code}
                     </a>
                     <span className="text-xs text-gray-400">
-                      {new Date(c.createdAt).toLocaleDateString('vi')}
+                      {formatDate(new Date(c.createdAt), locale)}
                     </span>
                   </div>
                   <p className="text-sm text-gray-700">{c.text}</p>
@@ -351,7 +360,7 @@ export default function ProfilePage() {
                 className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white text-sm font-medium rounded-lg transition-colors">
                 {pwdSaving ? '...' : t('updatePassword')}
               </button>
-              {pwdMsg && <span className={`text-sm ${pwdMsg === t('pwdChanged') ? 'text-green-600' : 'text-red-500'}`}>{pwdMsg}</span>}
+              {pwdMsg && <span className={`text-sm ${pwdOk ? 'text-green-600' : 'text-red-500'}`}>{pwdMsg}</span>}
             </div>
             <p className="text-xs text-gray-400">{t('pwdOAuthHint')}</p>
           </div>

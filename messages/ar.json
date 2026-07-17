@@ -12,7 +12,11 @@
     "blog": "مدونة",
     "aitool": "AI",
     "other": "عروض أخرى",
-    "vps": "VPS"
+    "vps": "VPS",
+    "security": "الأمان",
+    "email": "البريد الإلكتروني",
+    "cdn": "CDN",
+    "ssl": "SSL"
   },
   "home": {
     "hero": {
@@ -20,20 +24,15 @@
       "subtitle": "نطاقات، استضافة، VPN وأدوات مجانية قانونية — تُحدَّث يوميًا",
       "cta": "عرض صفقات اليوم"
     },
-    "featured": "مميز",
-    "newest": "الأحدث"
+    "featured": "مميز"
   },
   "voucher": {
-    "copy": "نسخ",
-    "copied": "تم النسخ!",
     "expires": "تنتهي في",
     "verified": "موثّق",
     "expired": "منتهي الصلاحية",
     "noExpiry": "بدون انتهاء",
     "usedCount": "استخدمها {count} شخص",
-    "getDiscount": "احصل على العرض",
     "getCode": "احصل على الكود",
-    "codeCopied": "تم نسخ الكود",
     "copiedHint": "تم نسخ الكود! الصقه عند الدفع.",
     "copyFailed": "اضغط مطولاً على الكود لنسخه.",
     "details": "التفاصيل",
@@ -42,7 +41,10 @@
     "sortPopular": "الأكثر شعبية",
     "all": "الكل",
     "save": "حفظ",
-    "saved": "محفوظ"
+    "saved": "محفوظ",
+    "home": "الرئيسية",
+    "moreDeals": "المزيد من عروض {provider}",
+    "vouchers": "قسائم"
   },
   "tools": {
     "title": "أدوات مجانية",
@@ -106,15 +108,11 @@
       "name": "محول العملات",
       "desc": "حوّل بين 20 عملة شائعة، يُحدّث يومياً",
       "amount": "المبلغ",
-      "from": "من",
-      "to": "إلى",
       "swap": "عكس",
       "rateNote": "أسعار مرجعية تُحدّث يومياً. قد تختلف أسعار البنوك الفعلية.",
       "loading": "جارٍ تحميل الأسعار...",
       "error": "تعذر تحميل الأسعار"
     },
-    "sectionVn": "لفيتنام",
-    "sectionGlobal": "أدوات عامة",
     "common": {
       "input": "إدخال",
       "output": "إخراج",
@@ -273,7 +271,8 @@
     "contact": "اتصل",
     "privacy": "الخصوصية",
     "terms": "الشروط",
-    "disclaimer": "إفصاح الإحالة"
+    "disclaimer": "إفصاح الإحالة",
+    "faq": "الأسئلة الشائعة"
   },
   "auth": {
     "signIn": "تسجيل الدخول",
@@ -285,7 +284,6 @@
     "name": "الاسم",
     "createAccount": "إنشاء حساب",
     "authenticating": "جارٍ التحقق...",
-    "signInFailed": "فشل تسجيل الدخول، حاول مرة أخرى",
     "signUpFailed": "فشل إنشاء الحساب، حاول مرة أخرى",
     "tagline": "أفضل قسائم التقنية",
     "withGoogle": "المتابعة عبر Google",
@@ -296,7 +294,12 @@
     "passwordMin": "كلمة المرور (6 أحرف على الأقل)",
     "wrongCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
     "passwordMismatch": "كلمتا المرور غير متطابقتين",
-    "language": "اللغة"
+    "language": "اللغة",
+    "errEmailTaken": "هذا البريد الإلكتروني مسجّل بالفعل.",
+    "errEmailInvalid": "يرجى إدخال بريد إلكتروني صالح.",
+    "errPasswordMin": "يجب ألا تقل كلمة المرور عن 6 أحرف.",
+    "errNameMin": "يجب ألا يقل الاسم عن حرفين.",
+    "errNameMax": "يجب ألا يزيد الاسم عن 50 حرفًا."
   },
   "submit": {
     "title": "إرسال عرض جديد",
@@ -316,11 +319,10 @@
     "errRequired": "يرجى ملء الكود والمزود",
     "errGeneric": "حدث خطأ",
     "errConnect": "تعذر الاتصال بالخادم",
-    "success": "شكراً! تم إرسال عرضك وهو قيد المراجعة."
+    "success": "شكراً! تم إرسال عرضك وهو قيد المراجعة.",
+    "errDuplicate": "هذه القسيمة قيد المراجعة بالفعل."
   },
   "comments": {
-    "myComments": "تعليقاتي",
-    "title": "التعليقات",
     "post": "نشر",
     "posting": "جارٍ النشر...",
     "communityTitle": "تحقق المجتمع",
@@ -337,7 +339,8 @@
     "subscribe": "اشترك",
     "success": "تم الاشتراك! شكراً لك.",
     "error": "حدث خطأ، حاول مرة أخرى",
-    "privacy": "لا رسائل مزعجة. ألغِ الاشتراك في أي وقت."
+    "privacy": "لا رسائل مزعجة. ألغِ الاشتراك في أي وقت.",
+    "confirm": "أوشكت على الانتهاء! تحقّق من بريدك الإلكتروني لتأكيد الاشتراك."
   },
   "share": {
     "label": "شارك",
@@ -351,27 +354,27 @@
     "decline": "رفض"
   },
   "faq": {
-    "title": "Frequently Asked Questions",
-    "subtitle": "Everything you need to know about using Dealeg",
-    "q1": "Are the coupon codes on Dealeg free to use?",
-    "a1": "Yes, completely free. Dealeg is free for everyone. You simply find a coupon code, copy it, and use it at checkout on the merchant's site. We earn a small commission from merchants when you make a purchase through our links, at no extra cost to you.",
-    "q2": "How do I use a coupon code?",
-    "a2": "Click the \"Get Code\" button on any coupon. This copies the code to your clipboard and opens the merchant's website. Paste the code in the promo or coupon field at checkout to apply your discount.",
-    "q3": "Do all coupon codes work?",
-    "a3": "We make every effort to list only working codes, and our community votes on whether codes are still valid. However, merchants control their offers, so codes can expire or change. Each code shows verification status and votes to help you find working ones.",
-    "q4": "How often are new deals added?",
-    "a4": "We update deals regularly. New coupons and offers are added as they become available, and expired ones are removed. Subscribe to our newsletter to get the latest deals delivered to your inbox.",
-    "q5": "Is Dealeg available in my language?",
-    "a5": "Dealeg is available in 12 languages: Vietnamese, English, Chinese, Hindi, Spanish, Portuguese, French, German, Arabic, Russian, Japanese, and Korean. Use the language switcher at the top of the page to change languages.",
-    "q6": "Do I need an account to use Dealeg?",
-    "a6": "No account is needed to browse and use coupon codes. However, creating a free account lets you comment, vote on whether codes work, and save your favorite deals. You can sign in with Google, Facebook, GitHub, or email.",
-    "q7": "How does Dealeg make money?",
-    "a7": "When you click a link and make a purchase, we may earn a commission from the merchant. This never costs you more — the price is the same. These commissions keep Dealeg free to use. We recommend products honestly regardless of commission. See our Affiliate Disclosure for details.",
-    "q8": "Can I submit a coupon or report an expired one?",
-    "a8": "Yes! Use the \"Submit\" page to share a coupon you found, or vote on existing coupons to tell the community whether they still work. This helps keep our information accurate for everyone.",
-    "moreTitle": "Still have questions?",
-    "moreText": "Can't find the answer you're looking for?",
-    "contactUs": "Contact us"
+    "title": "الأسئلة الشائعة",
+    "subtitle": "كل ما تحتاج معرفته عن استخدام Dealeg",
+    "q1": "هل أكواد الخصم على Dealeg مجانية الاستخدام؟",
+    "a1": "نعم، مجانية تمامًا. Dealeg مجاني للجميع. ما عليك سوى العثور على كود الخصم ونسخه واستخدامه عند إتمام الشراء على موقع المتجر. نحصل على عمولة صغيرة من المتاجر عند الشراء عبر روابطنا، دون أي تكلفة إضافية عليك.",
+    "q2": "كيف أستخدم كود الخصم؟",
+    "a2": "اضغط على زر «احصل على الكود» في أي قسيمة. سيُنسخ الكود إلى الحافظة ويُفتح موقع المتجر. الصق الكود في خانة كود الخصم عند إتمام الشراء لتطبيق الخصم.",
+    "q3": "هل تعمل جميع أكواد الخصم؟",
+    "a3": "نبذل كل جهد لإدراج الأكواد الفعّالة فقط، ويصوّت مجتمعنا على ما إذا كانت الأكواد ما زالت صالحة. لكن المتاجر هي من تتحكم بعروضها، لذا قد تنتهي صلاحية الأكواد أو تتغيّر. يعرض كل كود حالة التحقق والتصويتات لمساعدتك في إيجاد الأكواد العاملة.",
+    "q4": "كم مرة تُضاف عروض جديدة؟",
+    "a4": "نحدّث العروض بانتظام. تُضاف الأكواد والعروض الجديدة فور توفرها، وتُزال المنتهية. اشترك في نشرتنا البريدية لتصلك أحدث العروض إلى بريدك.",
+    "q5": "هل Dealeg متاح بلغتي؟",
+    "a5": "Dealeg متاح بـ 12 لغة: الفيتنامية، الإنجليزية، الصينية، الهندية، الإسبانية، البرتغالية، الفرنسية، الألمانية، العربية، الروسية، اليابانية، والكورية. استخدم مبدّل اللغة أعلى الصفحة لتغيير اللغة.",
+    "q6": "هل أحتاج إلى حساب لاستخدام Dealeg؟",
+    "a6": "لا حاجة لحساب لتصفّح الأكواد واستخدامها. لكن إنشاء حساب مجاني يتيح لك التعليق والتصويت على صلاحية الأكواد وحفظ عروضك المفضّلة. يمكنك تسجيل الدخول عبر Google أو Facebook أو GitHub أو البريد الإلكتروني.",
+    "q7": "كيف يحقّق Dealeg أرباحه؟",
+    "a7": "عند الضغط على رابط وإتمام عملية شراء، قد نحصل على عمولة من المتجر. هذا لا يكلّفك أكثر أبدًا — السعر هو نفسه. هذه العمولات تُبقي Dealeg مجانيًا. نوصي بالمنتجات بصدق بغض النظر عن العمولة. راجع إفصاح الشراكة لمزيد من التفاصيل.",
+    "q8": "هل يمكنني إرسال قسيمة أو الإبلاغ عن قسيمة منتهية؟",
+    "a8": "بالتأكيد! استخدم صفحة «إرسال عرض» لمشاركة قسيمة وجدتها، أو صوّت على القسائم الحالية لتخبر المجتمع بما إذا كانت ما زالت تعمل. هذا يساعد في إبقاء معلوماتنا دقيقة للجميع.",
+    "moreTitle": "ما زالت لديك أسئلة؟",
+    "moreText": "لم تجد الإجابة التي تبحث عنها؟",
+    "contactUs": "تواصل معنا"
   },
   "profile": {
     "title": "ملفك الشخصي",
@@ -401,7 +404,11 @@
     "deleteHint": "احذف حسابك وكل البيانات نهائياً",
     "deleteConfirm": "لا يمكن التراجع. اكتب بريدك {email} للتأكيد:",
     "deleteForever": "حذف نهائي",
-    "deleteError": "تعذّر الحذف، حاول مجدداً"
+    "deleteError": "تعذّر الحذف، حاول مجدداً",
+    "language": "اللغة",
+    "languageHint": "بعد التغيير والضغط على حفظ، ستتغيّر لغة الموقع.",
+    "pwdWrongCurrent": "كلمة المرور الحالية غير صحيحة.",
+    "deleteEmailMismatch": "البريد الإلكتروني الذي أدخلته لا يطابق بريد حسابك."
   },
   "search": {
     "placeholder": "ابحث عن قسائم، مقالات...",
@@ -426,6 +433,20 @@
     "popularPages": "صفحات شائعة"
   },
   "blog": {
-    "publishedOn": "نُشر في"
+    "publishedOn": "نُشر في",
+    "relatedPosts": "مقالات ذات صلة",
+    "relatedVouchers": "قسائم ذات صلة",
+    "fallbackNotice": "هذه المقالة غير متوفّرة بـ{lang} بعد. يتم عرض النسخة الإنجليزية.",
+    "noPosts": "لا توجد مقالات بعد.",
+    "title": "المدونة"
+  },
+  "provider": {
+    "notFound": "غير موجود",
+    "metaTitle": "قسائم {name} | Dealeg",
+    "metaDescription": "أحدث القسائم لـ {name}",
+    "activeDeals": "العروض المتاحة",
+    "visitSite": "زيارة الموقع",
+    "voucherCount": "{count} قسيمة",
+    "noDeals": "لا توجد أكواد خصم لـ {name} بعد."
   }
 }

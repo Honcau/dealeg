@@ -1,6 +1,7 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import { formatDate } from '@/lib/utils';
 
 import { useSession, signIn } from 'next-auth/react';
 import { useState, useEffect } from 'react';
@@ -20,6 +21,7 @@ interface Props {
 export function VoucherComments({ voucherId }: Props) {
   const { data: session } = useSession();
   const t = useTranslations('comments');
+  const locale = useLocale();
   const tAuth = useTranslations('auth');
   const [comments, setComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState('');
@@ -121,7 +123,7 @@ export function VoucherComments({ voucherId }: Props) {
               <div className="flex items-center justify-between">
                 <span className="font-medium text-gray-900">{comment.user.name}</span>
                 <span className="text-gray-400 text-xs">
-                  {new Date(comment.createdAt).toLocaleDateString('vi')}
+                  {formatDate(new Date(comment.createdAt), locale)}
                 </span>
               </div>
               <p className="text-gray-700">{comment.text}</p>

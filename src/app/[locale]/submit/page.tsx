@@ -38,11 +38,12 @@ export default function SubmitPage() {
       const data = await res.json();
       if (res.ok) {
         setStatus('success');
-        setMessage(data.message);
+        setMessage(t('success'));
         setForm({ code: '', provider: '', description: '', url: '', email: '' });
       } else {
         setStatus('error');
-        setMessage(data.error ?? t('errGeneric'));
+        // Server chỉ trả CODE — chuỗi hiển thị luôn lấy từ i18n của client theo locale.
+        setMessage(data.code === 'DUPLICATE' ? t('errDuplicate') : t('errGeneric'));
       }
     } catch {
       setStatus('error');
@@ -86,12 +87,12 @@ export default function SubmitPage() {
         {/* Miêu tả chi tiết (tuỳ chọn) */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            {t.has('description') ? t('description') : 'Miêu tả chi tiết'}
+            {t('description')}
           </label>
           <textarea
             name="description" value={form.description} onChange={handleChange}
             rows={4}
-            placeholder={t.has('descriptionPlaceholder') ? t('descriptionPlaceholder') : 'Điều kiện, cách dùng, ưu đãi gồm những gì...'}
+            placeholder={t('descriptionPlaceholder')}
             className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
@@ -101,7 +102,7 @@ export default function SubmitPage() {
           <label className="block text-sm font-medium text-gray-700 mb-1">
             {t('url')}{' '}
             <span className="text-gray-400 font-normal">
-              {t.has('optional') ? t('optional') : '(optional)'}
+              {t('optional')}
             </span>
           </label>
           <input

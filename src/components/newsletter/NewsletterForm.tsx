@@ -15,8 +15,6 @@ export function NewsletterForm({ source = 'unknown', variant = 'card' }: Props) 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [msg, setMsg] = useState('');
 
-  // Fallback tiếng Anh cho key mới nếu locale chưa dịch (chỉ en/vi có sẵn).
-  const tx = (key: string, fallback: string) => (t.has(key) ? t(key) : fallback);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -33,7 +31,7 @@ export function NewsletterForm({ source = 'unknown', variant = 'card' }: Props) 
         setStatus('success');
         // Double opt-in (Listmonk) → yêu cầu xác nhận email; ngược lại "đã đăng ký".
         setMsg(data?.pending
-          ? tx('confirm', 'Almost done! Check your email to confirm your subscription.')
+          ? t('confirm')
           : t('success'));
         setEmail('');
       } else {

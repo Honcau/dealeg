@@ -41,6 +41,18 @@ function SignInForm() {
   const [errors,   setErrors]   = useState<Record<string, string>>({});
   const [loading,  setLoading]  = useState<string | null>(null);
 
+  /** Code lỗi từ /api/auth/register → key i18n. Code lạ thì về thông báo chung. */
+  function trErr(code: string): string {
+    const key = ({
+      EMAIL_TAKEN:   'errEmailTaken',
+      EMAIL_INVALID: 'errEmailInvalid',
+      PASSWORD_MIN:  'errPasswordMin',
+      NAME_MIN:      'errNameMin',
+      NAME_MAX:      'errNameMax',
+    } as Record<string, string>)[code];
+    return key && t.has(key) ? t(key) : t('signUpFailed');
+  }
+
   async function handleSocial(provider: string) {
     setLoading(provider);
     await signIn(provider, { callbackUrl });
@@ -74,10 +86,11 @@ function SignInForm() {
     });
     const data = await res.json();
     if (!res.ok) {
+      // Server chỉ trả CODE theo từng field — chuỗi hiển thị lấy từ i18n của client.
       const errs: Record<string, string> = {};
-      if (data.error?.email)    errs.email    = data.error.email[0];
-      if (data.error?.password) errs.password = data.error.password[0];
-      if (data.error?.name)     errs.name     = data.error.name[0];
+      if (data.error?.email)    errs.email    = trErr(data.error.email[0]);
+      if (data.error?.password) errs.password = trErr(data.error.password[0]);
+      if (data.error?.name)     errs.name     = trErr(data.error.name[0]);
       if (!Object.keys(errs).length) errs.form = t('signUpFailed');
       setErrors(errs);
       setLoading(null);

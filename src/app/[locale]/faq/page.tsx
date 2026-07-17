@@ -1,16 +1,17 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'FAQ - Frequently Asked Questions | Dealeg',
-  description: 'Answers to common questions about using Dealeg, coupon codes, and how our platform works.',
-};
-
 type Props = { params: Promise<{ locale: string }> };
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'faq' });
+  return { title: `${t('title')} | Dealeg`, description: t('subtitle') };
+}
+
 export default async function FAQPage({ params }: Props) {
-  await params;
-  const t = await getTranslations('faq');
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'faq' });
 
   // 8 câu hỏi thường gặp
   const faqs = [

@@ -9,10 +9,15 @@ export const revalidate = 300;
 
 type Props = { params: Promise<{ locale: string }> };
 
-export const metadata: Metadata = { title: 'Blog | Dealeg' };
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'blog' });
+  return { title: `${t('title')} | Dealeg` };
+}
 
 export default async function BlogPage({ params }: Props) {
   const { locale } = await params;
+  const tb = await getTranslations({ locale, namespace: 'blog' });
 
   const articles = await prisma.article.findMany({
     where: { status: 'PUBLISHED' },
@@ -27,7 +32,7 @@ export default async function BlogPage({ params }: Props) {
 
   return (
     <div className="space-y-8">
-      <h1 className="text-3xl font-extrabold text-gray-900">Blog</h1>
+      <h1 className="text-3xl font-extrabold text-gray-900">{tb('title')}</h1>
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((article: typeof articles[number]) => {
@@ -70,7 +75,7 @@ export default async function BlogPage({ params }: Props) {
       </div>
 
       {articles.length === 0 && (
-        <p className="text-center text-gray-400 py-16">Chưa có bài viết nào.</p>
+        <p className="text-center text-gray-400 py-16">{tb('noPosts')}</p>
       )}
     </div>
   );

@@ -12,7 +12,11 @@
     "blog": "Blog",
     "aitool": "AI",
     "other": "Other Deals",
-    "vps": "VPS"
+    "vps": "VPS",
+    "security": "Security",
+    "email": "Email",
+    "cdn": "CDN",
+    "ssl": "SSL"
   },
   "home": {
     "hero": {
@@ -20,20 +24,15 @@
       "subtitle": "Domains, hosting, VPN and legal free tools — curated daily",
       "cta": "See today's deals"
     },
-    "featured": "Featured",
-    "newest": "Newest"
+    "featured": "Featured"
   },
   "voucher": {
-    "copy": "Copy",
-    "copied": "Copied!",
     "expires": "Expires",
     "verified": "Verified",
     "expired": "Expired",
     "noExpiry": "No expiry",
     "usedCount": "{count} people used",
-    "getDiscount": "Get deal",
     "getCode": "Get Code",
-    "codeCopied": "Code Copied",
     "copiedHint": "Code copied! Paste it at checkout.",
     "copyFailed": "Tap and hold the code to copy it.",
     "details": "Details",
@@ -42,7 +41,10 @@
     "sortPopular": "Most popular",
     "all": "All",
     "save": "Save",
-    "saved": "Saved"
+    "saved": "Saved",
+    "home": "Home",
+    "moreDeals": "More {provider} deals",
+    "vouchers": "Vouchers"
   },
   "tools": {
     "title": "Free Tools",
@@ -106,15 +108,11 @@
       "name": "Currency Converter",
       "desc": "Convert between 20 popular currencies, updated daily",
       "amount": "Amount",
-      "from": "From",
-      "to": "To",
       "swap": "Swap",
       "rateNote": "Reference rates, updated daily (source: open.er-api.com). Actual bank rates may differ.",
       "loading": "Loading rates...",
       "error": "Could not load rates, try again later"
     },
-    "sectionVn": "For Vietnam",
-    "sectionGlobal": "General tools",
     "common": {
       "input": "Input",
       "output": "Output",
@@ -273,7 +271,8 @@
     "contact": "Contact",
     "privacy": "Privacy",
     "terms": "Terms",
-    "disclaimer": "Affiliate Disclosure"
+    "disclaimer": "Affiliate Disclosure",
+    "faq": "FAQ"
   },
   "auth": {
     "signIn": "Sign in",
@@ -285,7 +284,6 @@
     "name": "Name",
     "createAccount": "Create account",
     "authenticating": "Authenticating...",
-    "signInFailed": "Sign in failed, try again",
     "signUpFailed": "Sign up failed, try again",
     "tagline": "Best tech vouchers",
     "withGoogle": "Continue with Google",
@@ -296,7 +294,12 @@
     "passwordMin": "Password (min 6 characters)",
     "wrongCredentials": "Wrong email or password",
     "passwordMismatch": "Passwords do not match",
-    "language": "Language"
+    "language": "Language",
+    "errEmailTaken": "This email is already registered.",
+    "errEmailInvalid": "Please enter a valid email address.",
+    "errPasswordMin": "Password must be at least 6 characters.",
+    "errNameMin": "Name must be at least 2 characters.",
+    "errNameMax": "Name must be 50 characters or fewer."
   },
   "submit": {
     "title": "Submit a new deal",
@@ -316,11 +319,10 @@
     "errRequired": "Please fill in Voucher code and Provider",
     "errGeneric": "Something went wrong",
     "errConnect": "Cannot connect to server",
-    "success": "Thank you! Your deal has been submitted and is pending review."
+    "success": "Thank you! Your deal has been submitted and is pending review.",
+    "errDuplicate": "This voucher is already pending review."
   },
   "comments": {
-    "myComments": "My comments",
-    "title": "Comments",
     "post": "Post",
     "posting": "Posting...",
     "communityTitle": "Community verification",
@@ -338,10 +340,7 @@
     "success": "Subscribed! Thank you.",
     "error": "Something went wrong, try again",
     "privacy": "No spam. Unsubscribe anytime.",
-    "confirm": "Almost done! Check your email to confirm your subscription.",
-    "frequencyLabel": "Frequency",
-    "freqWeekly": "Weekly",
-    "freqDaily": "Daily"
+    "confirm": "Almost done! Check your email to confirm your subscription."
   },
   "share": {
     "label": "Share",
@@ -407,7 +406,9 @@
     "deleteHint": "Permanently delete your account and all data",
     "deleteConfirm": "This cannot be undone. Type your email {email} to confirm:",
     "deleteForever": "Delete forever",
-    "deleteError": "Could not delete, try again"
+    "deleteError": "Could not delete, try again",
+    "pwdWrongCurrent": "Current password is incorrect.",
+    "deleteEmailMismatch": "The email you typed doesn't match your account email."
   },
   "search": {
     "placeholder": "Search vouchers, articles...",
@@ -434,6 +435,18 @@
   "blog": {
     "publishedOn": "Published",
     "relatedVouchers": "Related vouchers",
-    "relatedPosts": "Related posts"
+    "relatedPosts": "Related posts",
+    "fallbackNotice": "This article isn’t available in {lang} yet. Showing the English version.",
+    "noPosts": "No articles yet.",
+    "title": "Blog"
+  },
+  "provider": {
+    "notFound": "Not found",
+    "metaTitle": "{name} Vouchers | Dealeg",
+    "metaDescription": "The latest vouchers for {name}",
+    "activeDeals": "Active Deals",
+    "visitSite": "Visit site",
+    "voucherCount": "{count} vouchers",
+    "noDeals": "No coupon codes for {name} yet."
   }
 }

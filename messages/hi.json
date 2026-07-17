@@ -12,7 +12,11 @@
     "blog": "ब्लॉग",
     "aitool": "AI",
     "other": "अन्य डील",
-    "vps": "VPS"
+    "vps": "VPS",
+    "security": "सुरक्षा",
+    "email": "ईमेल",
+    "cdn": "CDN",
+    "ssl": "SSL"
   },
   "home": {
     "hero": {
@@ -20,20 +24,15 @@
       "subtitle": "डोमेन, होस्टिंग, वीपीएन और मुफ़्त कानूनी टूल्स — हर दिन अपडेट",
       "cta": "आज की डील देखें"
     },
-    "featured": "फ़ीचर्ड",
-    "newest": "नवीनतम"
+    "featured": "फ़ीचर्ड"
   },
   "voucher": {
-    "copy": "कॉपी करें",
-    "copied": "कॉपी हो गया!",
     "expires": "समाप्ति",
     "verified": "सत्यापित",
     "expired": "समाप्त",
     "noExpiry": "कोई समय सीमा नहीं",
     "usedCount": "{count} लोगों ने उपयोग किया",
-    "getDiscount": "डील पाएं",
     "getCode": "कोड पाएं",
-    "codeCopied": "कोड कॉपी हो गया",
     "copiedHint": "कोड कॉपी हो गया! चेकआउट पर पेस्ट करें।",
     "copyFailed": "कोड कॉपी करने के लिए उसे दबाकर रखें।",
     "details": "विवरण",
@@ -42,7 +41,10 @@
     "sortPopular": "सबसे लोकप्रिय",
     "all": "सभी",
     "save": "सहेजें",
-    "saved": "सहेजा गया"
+    "saved": "सहेजा गया",
+    "home": "होम",
+    "moreDeals": "{provider} की और डील",
+    "vouchers": "वाउचर"
   },
   "tools": {
     "title": "मुफ्त टूल",
@@ -106,15 +108,11 @@
       "name": "मुद्रा परिवर्तक",
       "desc": "20 लोकप्रिय मुद्राओं में रूपांतरण, दैनिक अपडेट",
       "amount": "राशि",
-      "from": "से",
-      "to": "में",
       "swap": "बदलें",
       "rateNote": "संदर्भ दरें, दैनिक अपडेट। बैंक दरें भिन्न हो सकती हैं।",
       "loading": "दरें लोड हो रही हैं...",
       "error": "दरें लोड नहीं हुईं, बाद में प्रयास करें"
     },
-    "sectionVn": "वियतनाम के लिए",
-    "sectionGlobal": "सामान्य टूल",
     "common": {
       "input": "इनपुट",
       "output": "आउटपुट",
@@ -273,7 +271,8 @@
     "contact": "संपर्क",
     "privacy": "गोपनीयता",
     "terms": "शर्तें",
-    "disclaimer": "एफिलिएट प्रकटीकरण"
+    "disclaimer": "एफिलिएट प्रकटीकरण",
+    "faq": "सामान्य प्रश्न"
   },
   "auth": {
     "signIn": "साइन इन",
@@ -285,7 +284,6 @@
     "name": "नाम",
     "createAccount": "खाता बनाएं",
     "authenticating": "प्रमाणित हो रहा है...",
-    "signInFailed": "साइन इन विफल, पुनः प्रयास करें",
     "signUpFailed": "साइन अप विफल, पुनः प्रयास करें",
     "tagline": "सर्वश्रेष्ठ टेक वाउचर",
     "withGoogle": "Google के साथ जारी रखें",
@@ -296,7 +294,12 @@
     "passwordMin": "पासवर्ड (कम से कम 6 अक्षर)",
     "wrongCredentials": "गलत ईमेल या पासवर्ड",
     "passwordMismatch": "पासवर्ड मेल नहीं खाते",
-    "language": "भाषा"
+    "language": "भाषा",
+    "errEmailTaken": "यह ईमेल पहले से पंजीकृत है।",
+    "errEmailInvalid": "कृपया मान्य ईमेल पता दर्ज करें।",
+    "errPasswordMin": "पासवर्ड कम से कम 6 अक्षर का होना चाहिए।",
+    "errNameMin": "नाम कम से कम 2 अक्षर का होना चाहिए।",
+    "errNameMax": "नाम 50 अक्षरों से अधिक नहीं हो सकता।"
   },
   "submit": {
     "title": "नया डील सबमिट करें",
@@ -316,11 +319,10 @@
     "errRequired": "कृपया वाउचर कोड और प्रदाता भरें",
     "errGeneric": "कुछ गलत हुआ",
     "errConnect": "सर्वर से कनेक्ट नहीं हो सका",
-    "success": "धन्यवाद! आपका डील सबमिट हो गया।"
+    "success": "धन्यवाद! आपका डील सबमिट हो गया।",
+    "errDuplicate": "यह वाउचर पहले से समीक्षा के लिए लंबित है।"
   },
   "comments": {
-    "myComments": "मेरी टिप्पणियां",
-    "title": "टिप्पणियां",
     "post": "पोस्ट",
     "posting": "पोस्ट हो रहा है...",
     "communityTitle": "समुदाय सत्यापन",
@@ -337,7 +339,8 @@
     "subscribe": "सब्सक्राइब",
     "success": "सब्सक्राइब हो गया! धन्यवाद।",
     "error": "कुछ गलत हुआ, पुनः प्रयास करें",
-    "privacy": "कोई स्पैम नहीं। कभी भी अनसब्सक्राइब करें।"
+    "privacy": "कोई स्पैम नहीं। कभी भी अनसब्सक्राइब करें।",
+    "confirm": "लगभग हो गया! सब्सक्रिप्शन की पुष्टि के लिए अपना ईमेल देखें।"
   },
   "share": {
     "label": "शेयर करें",
@@ -351,27 +354,27 @@
     "decline": "अस्वीकार करें"
   },
   "faq": {
-    "title": "Frequently Asked Questions",
-    "subtitle": "Everything you need to know about using Dealeg",
-    "q1": "Are the coupon codes on Dealeg free to use?",
-    "a1": "Yes, completely free. Dealeg is free for everyone. You simply find a coupon code, copy it, and use it at checkout on the merchant's site. We earn a small commission from merchants when you make a purchase through our links, at no extra cost to you.",
-    "q2": "How do I use a coupon code?",
-    "a2": "Click the \"Get Code\" button on any coupon. This copies the code to your clipboard and opens the merchant's website. Paste the code in the promo or coupon field at checkout to apply your discount.",
-    "q3": "Do all coupon codes work?",
-    "a3": "We make every effort to list only working codes, and our community votes on whether codes are still valid. However, merchants control their offers, so codes can expire or change. Each code shows verification status and votes to help you find working ones.",
-    "q4": "How often are new deals added?",
-    "a4": "We update deals regularly. New coupons and offers are added as they become available, and expired ones are removed. Subscribe to our newsletter to get the latest deals delivered to your inbox.",
-    "q5": "Is Dealeg available in my language?",
-    "a5": "Dealeg is available in 12 languages: Vietnamese, English, Chinese, Hindi, Spanish, Portuguese, French, German, Arabic, Russian, Japanese, and Korean. Use the language switcher at the top of the page to change languages.",
-    "q6": "Do I need an account to use Dealeg?",
-    "a6": "No account is needed to browse and use coupon codes. However, creating a free account lets you comment, vote on whether codes work, and save your favorite deals. You can sign in with Google, Facebook, GitHub, or email.",
-    "q7": "How does Dealeg make money?",
-    "a7": "When you click a link and make a purchase, we may earn a commission from the merchant. This never costs you more — the price is the same. These commissions keep Dealeg free to use. We recommend products honestly regardless of commission. See our Affiliate Disclosure for details.",
-    "q8": "Can I submit a coupon or report an expired one?",
-    "a8": "Yes! Use the \"Submit\" page to share a coupon you found, or vote on existing coupons to tell the community whether they still work. This helps keep our information accurate for everyone.",
-    "moreTitle": "Still have questions?",
-    "moreText": "Can't find the answer you're looking for?",
-    "contactUs": "Contact us"
+    "title": "अक्सर पूछे जाने वाले प्रश्न",
+    "subtitle": "Dealeg के उपयोग के बारे में वह सब जो आपको जानना चाहिए",
+    "q1": "क्या Dealeg पर कूपन कोड मुफ़्त हैं?",
+    "a1": "हाँ, पूरी तरह मुफ़्त। Dealeg सभी के लिए निःशुल्क है। आपको बस एक कूपन कोड ढूँढना है, उसे कॉपी करना है और दुकान की साइट पर चेकआउट के समय उपयोग करना है। जब आप हमारे लिंक से खरीदते हैं तो हमें दुकान से एक छोटा कमीशन मिलता है, जिसके लिए आपको कुछ अतिरिक्त नहीं देना पड़ता।",
+    "q2": "कूपन कोड कैसे इस्तेमाल करें?",
+    "a2": "किसी भी कूपन पर «कोड पाएं» बटन दबाएँ। इससे कोड आपके क्लिपबोर्ड में कॉपी हो जाएगा और दुकान की वेबसाइट खुल जाएगी। छूट पाने के लिए चेकआउट पर कूपन वाले खाने में कोड पेस्ट करें।",
+    "q3": "क्या सभी कूपन कोड काम करते हैं?",
+    "a3": "हम केवल काम करने वाले कोड ही सूचीबद्ध करने की पूरी कोशिश करते हैं, और हमारा समुदाय वोट देकर बताता है कि कोड अब भी मान्य हैं या नहीं। लेकिन ऑफ़र दुकानों के नियंत्रण में होते हैं, इसलिए कोड समाप्त या बदल सकते हैं। हर कोड पर सत्यापन स्थिति और वोट दिखते हैं ताकि आप काम करने वाले कोड ढूँढ सकें।",
+    "q4": "नई डील कितनी बार जोड़ी जाती हैं?",
+    "a4": "हम डील नियमित रूप से अपडेट करते हैं। नए कूपन और ऑफ़र उपलब्ध होते ही जोड़ दिए जाते हैं और समाप्त हो चुके हटा दिए जाते हैं। नवीनतम डील अपने इनबॉक्स में पाने के लिए हमारा न्यूज़लेटर सब्सक्राइब करें।",
+    "q5": "क्या Dealeg मेरी भाषा में उपलब्ध है?",
+    "a5": "Dealeg 12 भाषाओं में उपलब्ध है: वियतनामी, अंग्रेज़ी, चीनी, हिन्दी, स्पेनिश, पुर्तगाली, फ़्रेंच, जर्मन, अरबी, रूसी, जापानी और कोरियाई। भाषा बदलने के लिए पेज के ऊपर दिए भाषा स्विचर का उपयोग करें।",
+    "q6": "क्या Dealeg इस्तेमाल करने के लिए खाता ज़रूरी है?",
+    "a6": "कूपन कोड देखने और उपयोग करने के लिए किसी खाते की ज़रूरत नहीं। लेकिन मुफ़्त खाता बनाने पर आप टिप्पणी कर सकते हैं, वोट दे सकते हैं कि कोड काम करते हैं या नहीं, और अपनी पसंदीदा डील सहेज सकते हैं। आप Google, Facebook, GitHub या ईमेल से साइन इन कर सकते हैं।",
+    "q7": "Dealeg कमाई कैसे करता है?",
+    "a7": "जब आप किसी लिंक पर क्लिक करके खरीदारी करते हैं, तो हमें दुकान से कमीशन मिल सकता है। इससे आपको कभी ज़्यादा नहीं देना पड़ता — कीमत वही रहती है। इन्हीं कमीशन से Dealeg मुफ़्त बना रहता है। कमीशन चाहे जो हो, हम ईमानदारी से सिफ़ारिश करते हैं। विवरण के लिए हमारा एफ़िलिएट डिस्क्लोज़र देखें।",
+    "q8": "क्या मैं कूपन भेज सकता हूँ या समाप्त कूपन की सूचना दे सकता हूँ?",
+    "a8": "बिल्कुल! अपना पाया हुआ कूपन साझा करने के लिए «डील सबमिट करें» पेज का उपयोग करें, या मौजूदा कूपनों पर वोट देकर समुदाय को बताएँ कि वे अब भी काम करते हैं या नहीं। इससे सभी के लिए हमारी जानकारी सही बनी रहती है।",
+    "moreTitle": "अब भी सवाल हैं?",
+    "moreText": "जो उत्तर आप ढूँढ रहे हैं वह नहीं मिला?",
+    "contactUs": "हमसे संपर्क करें"
   },
   "profile": {
     "title": "आपकी प्रोफ़ाइल",
@@ -401,7 +404,11 @@
     "deleteHint": "अपना खाता और सभी डेटा स्थायी रूप से हटाएं",
     "deleteConfirm": "यह पूर्ववत नहीं किया जा सकता। पुष्टि के लिए अपना ईमेल {email} टाइप करें:",
     "deleteForever": "हमेशा के लिए हटाएं",
-    "deleteError": "हटा नहीं सके, पुनः प्रयास करें"
+    "deleteError": "हटा नहीं सके, पुनः प्रयास करें",
+    "language": "भाषा",
+    "languageHint": "इसे बदलकर सेव दबाने पर साइट की भाषा बदल जाएगी।",
+    "pwdWrongCurrent": "वर्तमान पासवर्ड गलत है।",
+    "deleteEmailMismatch": "आपने जो ईमेल लिखा वह आपके खाते के ईमेल से मेल नहीं खाता।"
   },
   "search": {
     "placeholder": "वाउचर, लेख खोजें...",
@@ -426,6 +433,20 @@
     "popularPages": "लोकप्रिय पृष्ठ"
   },
   "blog": {
-    "publishedOn": "प्रकाशित"
+    "publishedOn": "प्रकाशित",
+    "relatedPosts": "संबंधित लेख",
+    "relatedVouchers": "संबंधित वाउचर",
+    "fallbackNotice": "यह लेख अभी {lang} में उपलब्ध नहीं है। अंग्रेज़ी संस्करण दिखाया जा रहा है।",
+    "noPosts": "अभी कोई लेख नहीं है।",
+    "title": "ब्लॉग"
+  },
+  "provider": {
+    "notFound": "नहीं मिला",
+    "metaTitle": "{name} वाउचर | Dealeg",
+    "metaDescription": "{name} के नवीनतम वाउचर",
+    "activeDeals": "चालू डील",
+    "visitSite": "साइट देखें",
+    "voucherCount": "{count} वाउचर",
+    "noDeals": "{name} के लिए अभी कोई कूपन कोड नहीं है।"
   }
 }

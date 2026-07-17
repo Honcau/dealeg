@@ -8,6 +8,7 @@
  * - Link tới các deal khác cùng provider
  */
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import { Link } from '@/i18n/navigation';
@@ -27,7 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     where: { id },
     include: { translations: { where: { locale: { in: [locale, 'en'] } } } },
   });
-  if (!v) return { title: 'Voucher not found' };
+  const tMeta = await getTranslations({ locale, namespace: 'provider' });
+  if (!v) return { title: tMeta('notFound') };
 
   const tr = v.translations.find(t => t.locale === locale) ?? v.translations.find(t => t.locale === 'en');
   const discountLabel = v.discountValue ? `${v.discountValue}% off` : v.discount;
@@ -53,6 +55,7 @@ export default async function VoucherDetailPage({ params }: Props) {
   });
   if (!v) notFound();
 
+  const tv = await getTranslations({ locale, namespace: 'voucher' });
   const tr = v.translations.find(t => t.locale === locale) ?? v.translations.find(t => t.locale === 'en');
 
   const voucher: Voucher = {
@@ -107,7 +110,7 @@ export default async function VoucherDetailPage({ params }: Props) {
       <div className="max-w-2xl mx-auto space-y-6">
         {/* Breadcrumb */}
         <nav className="text-sm text-gray-400">
-          <Link href="/" className="hover:text-gray-600">Home</Link>
+          <Link href="/" className="hover:text-gray-600">{tv('home')}</Link>
           {' / '}
           <Link href={`/coupon/${providerSlug}`} className="hover:text-gray-600">{v.provider}</Link>
           {' / '}
@@ -131,7 +134,7 @@ export default async function VoucherDetailPage({ params }: Props) {
         {related.length > 0 && (
           <section>
             <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">
-              More {v.provider} deals
+              {tv('moreDeals', { provider: v.provider })}
             </h2>
             <div className="space-y-2">
               {related.map(r => (

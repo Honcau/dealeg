@@ -21,6 +21,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 /** Card chi tiết voucher — phiên bản lớn cho trang /voucher/[id] */
 export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
   const t = useTranslations('voucher');
+  const tNav = useTranslations('nav');
   const locale = useLocale();
   const [copied, setCopied] = useState(false);      // hiện toast
   const [copyOk, setCopyOk] = useState(true);       // copy thật sự thành công hay không
@@ -79,7 +80,7 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
         <h1 className="text-2xl font-extrabold text-gray-900">{voucher.provider}</h1>
         <div className="flex items-center gap-3">
           <span className={`text-xs font-medium px-3 py-1 rounded-full ${CATEGORY_COLORS[voucher.category] ?? 'bg-gray-100 text-gray-600'}`}>
-            {voucher.category}
+            {tNav.has(voucher.category) ? tNav(voucher.category) : voucher.category}
           </span>
           <SaveButton voucherId={voucher.id} size="lg" />
         </div>
@@ -146,7 +147,7 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
         <CopiedToast ok={copyOk}
           message={copyOk
             ? t('copiedHint')
-            : (t.has('copyFailed') ? t('copyFailed') : 'Tap and hold the code to copy it.')} />
+            : t('copyFailed')} />
       )}
     </article>
   );

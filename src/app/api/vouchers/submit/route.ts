@@ -10,18 +10,25 @@ const Schema = z.object({
   email:       z.string().email().optional().or(z.literal('')),
 });
 
+/**
+ * Trả CODE máy đọc, KHÔNG trả câu chữ cho người.
+ *
+ * Route này không biết locale của user (không có locale trong URL, không đọc NEXT_LOCALE),
+ * nên mọi prose viết ở đây đều sai với 11/12 ngôn ngữ. Client tự map code → t() theo
+ * locale của nó. Xem src/app/[locale]/submit/page.tsx.
+ */
 export async function POST(req: NextRequest) {
   try {
     const parsed = Schema.safeParse(await req.json());
     if (!parsed.success) {
-      return NextResponse.json({ error: 'Dữ liệu không hợp lệ', details: parsed.error.flatten() }, { status: 422 });
+      return NextResponse.json({ code: 'INVALID', details: parsed.error.flatten() }, { status: 422 });
     }
 
     const { code, provider, description, url, email } = parsed.data;
 
     const duplicate = await prisma.voucherSubmission.findFirst({ where: { code, provider, status: 'PENDING' } });
     if (duplicate) {
-      return NextResponse.json({ error: 'Voucher này đã đang chờ duyệt' }, { status: 409 });
+      return NextResponse.json({ code: 'DUPLICATE' }, { status: 409 });
     }
 
     let userId: string | undefined;
@@ -34,8 +41,8 @@ export async function POST(req: NextRequest) {
       data: { code, provider, description, url, userId, status: 'PENDING' }
     });
 
-    return NextResponse.json({ success: true, id: submission.id, message: 'Cảm ơn! Deal đang chờ kiểm duyệt.' });
+    return NextResponse.json({ success: true, id: submission.id });
   } catch (err) {
-    return NextResponse.json({ error: 'Lỗi server' }, { status: 500 });
+    return NextResponse.json({ code: 'SERVER' }, { status: 500 });
   }
 }

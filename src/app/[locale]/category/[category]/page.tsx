@@ -25,9 +25,11 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, category } = await params;
-  const t = await getTranslations({ locale, namespace: 'nav' });
+  const t  = await getTranslations({ locale, namespace: 'nav' });
+  const tv = await getTranslations({ locale, namespace: 'voucher' });
+  // nav giờ đủ 10 slug của VALID_CATEGORIES → không còn rơi về slug thô ("ssl Vouchers")
   const label = t.has(category) ? t(category) : category;
-  return { title: `${label} Vouchers | Dealeg` };
+  return { title: `${label} ${tv('vouchers')} | Dealeg` };
 }
 
 export default async function CategoryPage({ params, searchParams }: Props) {

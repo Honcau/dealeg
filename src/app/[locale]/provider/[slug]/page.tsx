@@ -7,6 +7,7 @@
  * bằng cách match tên provider, không dùng Prisma relation.
  */
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/db';
 import { VoucherCard } from '@/components/voucher/VoucherCard';
@@ -22,17 +23,20 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const provider = await prisma.provider.findUnique({ where: { slug } });
-  if (!provider) return { title: 'Không tìm thấy' };
+  const t = await getTranslations({ locale, namespace: 'provider' });
+  if (!provider) return { title: t('notFound') };
   return {
-    title: `${provider.name} Vouchers | Dealeg`,
-    description: `Các voucher mới nhất cho ${provider.name}`,
+    title: t('metaTitle', { name: provider.name }),
+    description: t('metaDescription', { name: provider.name }),
   };
 }
 
 export default async function ProviderPage({ params }: Props) {
   const { locale, slug } = await params;
+
+  const t = await getTranslations({ locale, namespace: 'provider' });
 
   // Tìm provider theo slug
   const provider = await prisma.provider.findUnique({ where: { slug } });
@@ -73,7 +77,8 @@ export default async function ProviderPage({ params }: Props) {
       <section>
         <h1 className="text-3xl font-extrabold text-gray-900 mb-2">{provider.name}</h1>
         <p className="text-gray-500">
-          {vouchers.length} voucher{provider.website && <> · <a href={provider.website} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">Visit site →</a></>}
+          {t('voucherCount', { count: vouchers.length })}
+          {provider.website && <> · <a href={provider.website} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">{t('visitSite')} →</a></>}
         </p>
         {provider.description && (
           <p className="text-gray-600 leading-relaxed max-w-2xl mt-4">{provider.description}</p>
@@ -82,7 +87,7 @@ export default async function ProviderPage({ params }: Props) {
 
       <section>
         <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-4">
-          Active Deals
+          {t('activeDeals')}
         </h2>
         {vouchers.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -96,7 +101,7 @@ export default async function ProviderPage({ params }: Props) {
             ))}
           </div>
         ) : (
-          <p className="text-gray-400 text-sm">Chưa có mã giảm giá nào cho {provider.name}.</p>
+          <p className="text-gray-400 text-sm">{t('noDeals', { name: provider.name })}</p>
         )}
       </section>
 

@@ -12,7 +12,11 @@
     "blog": "ブログ",
     "aitool": "AI",
     "other": "その他のお得情報",
-    "vps": "VPS"
+    "vps": "VPS",
+    "security": "セキュリティ",
+    "email": "メール",
+    "cdn": "CDN",
+    "ssl": "SSL"
   },
   "home": {
     "hero": {
@@ -20,20 +24,15 @@
       "subtitle": "ドメイン、ホスティング、VPN、無料ツール — 毎日更新",
       "cta": "今日のお得情報を見る"
     },
-    "featured": "注目",
-    "newest": "最新"
+    "featured": "注目"
   },
   "voucher": {
-    "copy": "コピー",
-    "copied": "コピーしました！",
     "expires": "有効期限",
     "verified": "確認済み",
     "expired": "期限切れ",
     "noExpiry": "期限なし",
     "usedCount": "{count}人が使用",
-    "getDiscount": "割引を取得",
     "getCode": "コードを取得",
-    "codeCopied": "コピー完了",
     "copiedHint": "コードをコピーしました！購入時に貼り付けてください。",
     "copyFailed": "コードを長押ししてコピーしてください。",
     "details": "詳細",
@@ -42,7 +41,10 @@
     "sortPopular": "人気順",
     "all": "すべて",
     "save": "保存",
-    "saved": "保存済み"
+    "saved": "保存済み",
+    "home": "ホーム",
+    "moreDeals": "{provider} のその他のお得情報",
+    "vouchers": "クーポン"
   },
   "tools": {
     "title": "無料ツール",
@@ -106,15 +108,11 @@
       "name": "通貨換算",
       "desc": "人気20通貨を換算、毎日更新",
       "amount": "金額",
-      "from": "から",
-      "to": "へ",
       "swap": "入替",
       "rateNote": "参考レート（毎日更新）。実際の銀行レートとは異なる場合があります。",
       "loading": "レート読み込み中...",
       "error": "レートを読み込めませんでした"
     },
-    "sectionVn": "ベトナム向け",
-    "sectionGlobal": "汎用ツール",
     "common": {
       "input": "入力",
       "output": "出力",
@@ -273,7 +271,8 @@
     "contact": "お問い合わせ",
     "privacy": "プライバシー",
     "terms": "利用規約",
-    "disclaimer": "アフィリエイト開示"
+    "disclaimer": "アフィリエイト開示",
+    "faq": "よくある質問"
   },
   "auth": {
     "signIn": "ログイン",
@@ -285,7 +284,6 @@
     "name": "名前",
     "createAccount": "アカウント作成",
     "authenticating": "認証中...",
-    "signInFailed": "ログイン失敗、再試行してください",
     "signUpFailed": "登録失敗、再試行してください",
     "tagline": "最高のテッククーポン",
     "withGoogle": "Google で続行",
@@ -296,7 +294,12 @@
     "passwordMin": "パスワード（6文字以上）",
     "wrongCredentials": "メールアドレスまたはパスワードが違います",
     "passwordMismatch": "パスワードが一致しません",
-    "language": "言語"
+    "language": "言語",
+    "errEmailTaken": "このメールアドレスはすでに登録されています。",
+    "errEmailInvalid": "有効なメールアドレスを入力してください。",
+    "errPasswordMin": "パスワードは6文字以上で入力してください。",
+    "errNameMin": "名前は2文字以上で入力してください。",
+    "errNameMax": "名前は50文字以内で入力してください。"
   },
   "submit": {
     "title": "新しいお得情報を投稿",
@@ -316,11 +319,10 @@
     "errRequired": "コードとプロバイダーを入力してください",
     "errGeneric": "エラーが発生しました",
     "errConnect": "サーバーに接続できません",
-    "success": "ありがとうございます！投稿は審査待ちです。"
+    "success": "ありがとうございます！投稿は審査待ちです。",
+    "errDuplicate": "このクーポンはすでに審査待ちです。"
   },
   "comments": {
-    "myComments": "マイコメント",
-    "title": "コメント",
     "post": "投稿",
     "posting": "投稿中...",
     "communityTitle": "コミュニティ確認",
@@ -337,7 +339,8 @@
     "subscribe": "登録",
     "success": "登録完了！ありがとうございます。",
     "error": "エラーが発生しました。再試行してください",
-    "privacy": "スパムなし。いつでも解除可能。"
+    "privacy": "スパムなし。いつでも解除可能。",
+    "confirm": "あと少しです！メールを確認して購読を確定してください。"
   },
   "share": {
     "label": "シェア",
@@ -351,27 +354,27 @@
     "decline": "拒否"
   },
   "faq": {
-    "title": "Frequently Asked Questions",
-    "subtitle": "Everything you need to know about using Dealeg",
-    "q1": "Are the coupon codes on Dealeg free to use?",
-    "a1": "Yes, completely free. Dealeg is free for everyone. You simply find a coupon code, copy it, and use it at checkout on the merchant's site. We earn a small commission from merchants when you make a purchase through our links, at no extra cost to you.",
-    "q2": "How do I use a coupon code?",
-    "a2": "Click the \"Get Code\" button on any coupon. This copies the code to your clipboard and opens the merchant's website. Paste the code in the promo or coupon field at checkout to apply your discount.",
-    "q3": "Do all coupon codes work?",
-    "a3": "We make every effort to list only working codes, and our community votes on whether codes are still valid. However, merchants control their offers, so codes can expire or change. Each code shows verification status and votes to help you find working ones.",
-    "q4": "How often are new deals added?",
-    "a4": "We update deals regularly. New coupons and offers are added as they become available, and expired ones are removed. Subscribe to our newsletter to get the latest deals delivered to your inbox.",
-    "q5": "Is Dealeg available in my language?",
-    "a5": "Dealeg is available in 12 languages: Vietnamese, English, Chinese, Hindi, Spanish, Portuguese, French, German, Arabic, Russian, Japanese, and Korean. Use the language switcher at the top of the page to change languages.",
-    "q6": "Do I need an account to use Dealeg?",
-    "a6": "No account is needed to browse and use coupon codes. However, creating a free account lets you comment, vote on whether codes work, and save your favorite deals. You can sign in with Google, Facebook, GitHub, or email.",
-    "q7": "How does Dealeg make money?",
-    "a7": "When you click a link and make a purchase, we may earn a commission from the merchant. This never costs you more — the price is the same. These commissions keep Dealeg free to use. We recommend products honestly regardless of commission. See our Affiliate Disclosure for details.",
-    "q8": "Can I submit a coupon or report an expired one?",
-    "a8": "Yes! Use the \"Submit\" page to share a coupon you found, or vote on existing coupons to tell the community whether they still work. This helps keep our information accurate for everyone.",
-    "moreTitle": "Still have questions?",
-    "moreText": "Can't find the answer you're looking for?",
-    "contactUs": "Contact us"
+    "title": "よくある質問",
+    "subtitle": "Dealeg を使う前に知っておきたいこと",
+    "q1": "Dealeg のクーポンコードは無料で使えますか？",
+    "a1": "はい、完全に無料です。Dealeg はどなたでも無料でご利用いただけます。クーポンコードを見つけてコピーし、販売店のサイトの購入手続きで入力するだけです。当サイトのリンク経由でご購入いただくと販売店から少額の手数料を受け取りますが、お客様の負担が増えることはありません。",
+    "q2": "クーポンコードはどう使いますか？",
+    "a2": "各クーポンの「コードを取得」ボタンを押してください。コードがクリップボードにコピーされ、販売店のサイトが開きます。購入手続きのクーポン欄に貼り付けると割引が適用されます。",
+    "q3": "すべてのクーポンコードは使えますか？",
+    "a3": "有効なコードのみを掲載するよう努めており、コミュニティの投票でも使えるかどうかを共有しています。ただし特典を管理しているのは販売店なので、コードが期限切れになったり変更されたりすることがあります。各コードには確認状況と投票が表示され、使えるものを見つける手がかりになります。",
+    "q4": "新しいお得情報はどのくらいの頻度で追加されますか？",
+    "a4": "定期的に更新しています。新しいクーポンや特典は公開され次第追加し、期限切れのものは削除します。ニュースレターに登録すると、最新のお得情報がメールで届きます。",
+    "q5": "Dealeg は私の言語に対応していますか？",
+    "a5": "Dealeg は12言語に対応しています：ベトナム語、英語、中国語、ヒンディー語、スペイン語、ポルトガル語、フランス語、ドイツ語、アラビア語、ロシア語、日本語、韓国語。ページ上部の言語切り替えからご変更ください。",
+    "q6": "Dealeg を使うにはアカウントが必要ですか？",
+    "a6": "クーポンの閲覧や利用にアカウントは不要です。ただし無料アカウントを作成すると、コメントの投稿、コードが使えるかの投票、お気に入りの保存ができます。Google、Facebook、GitHub、メールでログインできます。",
+    "q7": "Dealeg はどうやって収益を得ていますか？",
+    "a7": "リンクをクリックしてご購入いただくと、販売店から手数料を受け取る場合があります。お客様の支払いが増えることは決してありません——価格は同じです。この手数料により Dealeg を無料で提供できています。手数料の有無にかかわらず、正直におすすめしています。詳しくはアフィリエイト開示をご覧ください。",
+    "q8": "クーポンを投稿したり、期限切れを報告したりできますか？",
+    "a8": "もちろんです！「クーポンを投稿」ページで見つけたクーポンを共有したり、既存のクーポンに投票して使えるかどうかをコミュニティに伝えたりできます。これが全員のために情報の正確さを保つ助けになります。",
+    "moreTitle": "まだ疑問がありますか？",
+    "moreText": "お探しの答えが見つかりませんか？",
+    "contactUs": "お問い合わせ"
   },
   "profile": {
     "title": "プロフィール",
@@ -401,7 +404,11 @@
     "deleteHint": "アカウントと全データを完全に削除",
     "deleteConfirm": "元に戻せません。確認のためメール {email} を入力：",
     "deleteForever": "完全に削除",
-    "deleteError": "削除できませんでした"
+    "deleteError": "削除できませんでした",
+    "language": "言語",
+    "languageHint": "変更して保存すると、サイトの表示言語が切り替わります。",
+    "pwdWrongCurrent": "現在のパスワードが正しくありません。",
+    "deleteEmailMismatch": "入力されたメールアドレスがアカウントのものと一致しません。"
   },
   "search": {
     "placeholder": "クーポン、記事を検索...",
@@ -426,6 +433,20 @@
     "popularPages": "人気ページ"
   },
   "blog": {
-    "publishedOn": "公開日"
+    "publishedOn": "公開日",
+    "relatedPosts": "関連記事",
+    "relatedVouchers": "関連クーポン",
+    "fallbackNotice": "この記事はまだ{lang}版がありません。英語版を表示しています。",
+    "noPosts": "記事はまだありません。",
+    "title": "ブログ"
+  },
+  "provider": {
+    "notFound": "見つかりません",
+    "metaTitle": "{name} のクーポン | Dealeg",
+    "metaDescription": "{name} の最新クーポン",
+    "activeDeals": "有効なお得情報",
+    "visitSite": "サイトを見る",
+    "voucherCount": "クーポン {count} 件",
+    "noDeals": "{name} のクーポンはまだありません。"
   }
 }

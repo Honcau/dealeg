@@ -12,7 +12,11 @@
     "blog": "Blog",
     "aitool": "AI",
     "other": "Deal khác",
-    "vps": "VPS"
+    "vps": "VPS",
+    "security": "Bảo mật",
+    "email": "Email",
+    "cdn": "CDN",
+    "ssl": "SSL"
   },
   "home": {
     "hero": {
@@ -20,20 +24,15 @@
       "subtitle": "Domain, hosting, VPN và công cụ phần mềm hợp pháp — tổng hợp mỗi ngày",
       "cta": "Xem deal hôm nay"
     },
-    "featured": "Đang nổi bật",
-    "newest": "Mới nhất"
+    "featured": "Đang nổi bật"
   },
   "voucher": {
-    "copy": "Sao chép",
-    "copied": "Đã sao chép!",
     "expires": "Hết hạn",
     "verified": "Đã xác minh",
     "expired": "Đã hết hạn",
     "noExpiry": "Không giới hạn",
     "usedCount": "{count} người đã dùng",
-    "getDiscount": "Nhận ưu đãi",
     "getCode": "Nhận mã",
-    "codeCopied": "Đã copy mã",
     "copiedHint": "Đã copy mã! Dán vào ô giảm giá khi thanh toán.",
     "copyFailed": "Chạm giữ vào mã để copy thủ công.",
     "details": "Chi tiết",
@@ -42,7 +41,10 @@
     "sortPopular": "Phổ biến nhất",
     "all": "Tất cả",
     "save": "Lưu deal",
-    "saved": "Đã lưu"
+    "saved": "Đã lưu",
+    "home": "Trang chủ",
+    "moreDeals": "Thêm deal {provider}",
+    "vouchers": "Voucher"
   },
   "tools": {
     "title": "Công cụ miễn phí",
@@ -106,15 +108,11 @@
       "name": "Đổi tiền tệ",
       "desc": "Chuyển đổi tỷ giá 20 loại tiền tệ phổ biến, cập nhật hàng ngày",
       "amount": "Số tiền",
-      "from": "Từ",
-      "to": "Sang",
       "swap": "Đảo chiều",
       "rateNote": "Tỷ giá tham khảo, cập nhật hàng ngày (nguồn: open.er-api.com). Tỷ giá thực tế tại ngân hàng có thể khác.",
       "loading": "Đang tải tỷ giá...",
       "error": "Không tải được tỷ giá, thử lại sau"
     },
-    "sectionVn": "Cho Việt Nam",
-    "sectionGlobal": "Công cụ chung",
     "common": {
       "input": "Đầu vào",
       "output": "Kết quả",
@@ -273,7 +271,8 @@
     "contact": "Liên hệ",
     "privacy": "Bảo mật",
     "terms": "Điều khoản",
-    "disclaimer": "Tiết lộ Affiliate"
+    "disclaimer": "Tiết lộ Affiliate",
+    "faq": "Câu hỏi thường gặp"
   },
   "auth": {
     "signIn": "Đăng nhập",
@@ -285,7 +284,6 @@
     "name": "Tên",
     "createAccount": "Tạo tài khoản",
     "authenticating": "Đang xác thực...",
-    "signInFailed": "Đăng nhập thất bại, thử lại",
     "signUpFailed": "Đăng ký thất bại, thử lại",
     "tagline": "Voucher công nghệ tốt nhất",
     "withGoogle": "Tiếp tục với Google",
@@ -296,7 +294,12 @@
     "passwordMin": "Mật khẩu (tối thiểu 6 ký tự)",
     "wrongCredentials": "Email hoặc mật khẩu không đúng",
     "passwordMismatch": "Mật khẩu xác nhận không khớp",
-    "language": "Ngôn ngữ"
+    "language": "Ngôn ngữ",
+    "errEmailTaken": "Email này đã được đăng ký.",
+    "errEmailInvalid": "Vui lòng nhập email hợp lệ.",
+    "errPasswordMin": "Mật khẩu tối thiểu 6 ký tự.",
+    "errNameMin": "Tên tối thiểu 2 ký tự.",
+    "errNameMax": "Tên tối đa 50 ký tự."
   },
   "submit": {
     "title": "Gửi deal mới",
@@ -316,11 +319,10 @@
     "errRequired": "Vui lòng điền Mã voucher và Nhà cung cấp",
     "errGeneric": "Có lỗi xảy ra",
     "errConnect": "Không thể kết nối server",
-    "success": "Cảm ơn! Deal của bạn đã được gửi và đang chờ duyệt."
+    "success": "Cảm ơn! Deal của bạn đã được gửi và đang chờ duyệt.",
+    "errDuplicate": "Voucher này đã đang chờ duyệt."
   },
   "comments": {
-    "myComments": "Bình luận của tôi",
-    "title": "Bình luận",
     "post": "Gửi",
     "posting": "Đang gửi...",
     "communityTitle": "Xác nhận từ cộng đồng",
@@ -338,10 +340,7 @@
     "success": "Đăng ký thành công! Cảm ơn bạn.",
     "error": "Có lỗi, vui lòng thử lại",
     "privacy": "Chúng tôi không spam. Hủy đăng ký bất cứ lúc nào.",
-    "confirm": "Sắp xong! Kiểm tra email để xác nhận đăng ký của bạn.",
-    "frequencyLabel": "Tần suất",
-    "freqWeekly": "Hàng tuần",
-    "freqDaily": "Hàng ngày"
+    "confirm": "Sắp xong! Kiểm tra email để xác nhận đăng ký của bạn."
   },
   "share": {
     "label": "Chia sẻ",
@@ -375,8 +374,7 @@
     "a8": "Có! Dùng trang \"Gửi deal\" để chia sẻ mã bạn tìm được, hoặc bình chọn các mã hiện có để báo cộng đồng chúng còn dùng được không. Điều này giúp thông tin luôn chính xác cho mọi người.",
     "moreTitle": "Vẫn còn thắc mắc?",
     "moreText": "Không tìm thấy câu trả lời?",
-    "contactUs": "Liên hệ với chúng tôi",
-    "contactUs2": ""
+    "contactUs": "Liên hệ với chúng tôi"
   },
   "profile": {
     "title": "Hồ sơ của bạn",
@@ -408,7 +406,9 @@
     "deleteHint": "Xóa vĩnh viễn tài khoản và toàn bộ dữ liệu",
     "deleteConfirm": "Hành động này không thể hoàn tác. Gõ email {email} để xác nhận:",
     "deleteForever": "Xóa vĩnh viễn",
-    "deleteError": "Không thể xóa, thử lại"
+    "deleteError": "Không thể xóa, thử lại",
+    "pwdWrongCurrent": "Mật khẩu hiện tại không đúng.",
+    "deleteEmailMismatch": "Email bạn nhập không khớp với email tài khoản."
   },
   "search": {
     "placeholder": "Tìm voucher, bài viết...",
@@ -435,6 +435,18 @@
   "blog": {
     "publishedOn": "Đăng ngày",
     "relatedVouchers": "Voucher liên quan",
-    "relatedPosts": "Bài viết liên quan"
+    "relatedPosts": "Bài viết liên quan",
+    "fallbackNotice": "Bài viết này chưa có bản dịch {lang}. Đang hiển thị bằng tiếng Anh.",
+    "noPosts": "Chưa có bài viết nào.",
+    "title": "Blog"
+  },
+  "provider": {
+    "notFound": "Không tìm thấy",
+    "metaTitle": "Voucher {name} | Dealeg",
+    "metaDescription": "Các voucher mới nhất cho {name}",
+    "activeDeals": "Deal đang có",
+    "visitSite": "Vào trang",
+    "voucherCount": "{count} voucher",
+    "noDeals": "Chưa có mã giảm giá nào cho {name}."
   }
 }
