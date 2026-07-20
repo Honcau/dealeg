@@ -33,6 +33,11 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
       ? voucher.affiliateUrl
       : voucher.sourceUrl;
 
+  // href KHÔNG trỏ thẳng affiliate: filter adblock (EasyList) ẩn cả element theo href,
+  // VD ##[href^="https://www.cloudways.com/en/?id"] → nút "Nhận mã" biến mất với user
+  // bật adblock. Trỏ /api/go/<id> (domain mình), server 302 sang affiliate.
+  const goUrl = targetUrl ? `/api/go/${voucher.id}` : undefined;
+
   const displayCode = voucher.hideCode && !revealed ? maskVoucherCode(voucher.code) : voucher.code;
 
   // Chống popup blocker: dùng <a target="_blank"> gốc (xem chú thích ở VoucherCard),
@@ -54,9 +59,9 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
     // IN-APP BROWSER (mở link từ bot Telegram/Facebook...): webview không có tab nên
     // target="_blank" thường không mở được gì → tap vào là chết lặng. Tự điều hướng
     // ngay trong webview, chờ 1 nhịp cho toast kịp hiện rồi mới đi.
-    if (targetUrl && e && isInAppBrowser()) {
+    if (goUrl && e && isInAppBrowser()) {
       e.preventDefault();
-      setTimeout(() => { window.location.href = targetUrl; }, 600);
+      setTimeout(() => { window.location.href = goUrl; }, 600);
     }
   };
 
@@ -128,8 +133,8 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
             </>
           );
           const cls = 'group relative w-full flex items-stretch rounded-lg overflow-hidden border border-gray-200 hover:border-indigo-500 transition-colors cursor-pointer';
-          return targetUrl ? (
-            <a href={targetUrl} target="_blank" rel="noopener noreferrer sponsored" onClick={handleGetCode} onAuxClick={handleAuxClick} className={cls}>{inner}</a>
+          return goUrl ? (
+            <a href={goUrl} target="_blank" rel="noopener noreferrer sponsored" onClick={handleGetCode} onAuxClick={handleAuxClick} className={cls}>{inner}</a>
           ) : (
             <button type="button" onClick={handleGetCode} onAuxClick={handleAuxClick} className={cls}>{inner}</button>
           );

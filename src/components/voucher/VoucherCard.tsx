@@ -40,6 +40,11 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
       ? voucher.affiliateUrl
       : voucher.sourceUrl;
 
+  // href KHÔNG trỏ thẳng affiliate: filter adblock (EasyList) ẩn cả element theo href,
+  // VD ##[href^="https://www.cloudways.com/en/?id"] → nút "Nhận mã" biến mất với user
+  // bật adblock. Trỏ /api/go/<id> (domain mình), server 302 sang affiliate.
+  const goUrl = targetUrl ? `/api/go/${voucher.id}` : undefined;
+
   // Mã hiển thị: nếu deal ẩn mã và chưa lộ → hiện dạng che một phần
   const displayCode = voucher.hideCode && !revealed ? maskVoucherCode(voucher.code) : voucher.code;
   // Mã dùng trong text chia sẻ mạng xã hội: deal ẩn mã thì không phát tán mã đầy đủ
@@ -74,9 +79,9 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
     // IN-APP BROWSER (mở link từ bot Telegram/Facebook...): webview không có tab nên
     // target="_blank" thường không mở được gì → tap vào là chết lặng. Tự điều hướng
     // ngay trong webview, chờ 1 nhịp cho toast kịp hiện rồi mới đi.
-    if (targetUrl && e && isInAppBrowser()) {
+    if (goUrl && e && isInAppBrowser()) {
       e.preventDefault();
-      setTimeout(() => { window.location.href = targetUrl; }, 600);
+      setTimeout(() => { window.location.href = goUrl; }, 600);
     }
   };
 
@@ -171,8 +176,8 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
       {/* Code + affiliate — bấm là copy code VÀ mở link affiliate ở tab mới.
           Dùng <a target="_blank"> (khi có link) để trình duyệt không chặn tab như window.open. */}
       {!expired ? (
-        targetUrl ? (
-          <a href={targetUrl} target="_blank" rel="noopener noreferrer sponsored"
+        goUrl ? (
+          <a href={goUrl} target="_blank" rel="noopener noreferrer sponsored"
             onClick={handleGetCode} onAuxClick={handleAuxClick} className={ticketCls}>
             {ticketInner}
           </a>
