@@ -71,7 +71,10 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
     const ok = copyToClipboard(voucher.code);
     setCopyOk(ok);
     setCopied(true);
-    setTimeout(() => setCopied(false), 6000);   // toast ở lại đủ lâu để còn thấy khi quay về tab
+    // Toast ở lại đủ lâu để còn thấy khi quay về tab. Đồng thời che lại mã (deal ẩn):
+    // lộ đầy đủ trong lúc toast báo "đã copy" cho user kịp xác nhận, rồi cùng ẩn — giữ
+    // vẻ độc quyền cho lượt xem sau (mã vẫn nằm trong clipboard).
+    setTimeout(() => { setCopied(false); setRevealed(false); }, 6000);
 
     // Ghi nhận click (tăng useCount) — sendBeacon để không mất khi tab bị nền
     trackVoucherClick(voucher.id);
