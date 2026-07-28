@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
+import { dodgeBlockedAffiliateHost } from '@/lib/affiliate';
 
 /**
  * GET /api/go/[id] — redirect sang link affiliate của voucher.
@@ -34,7 +35,8 @@ export async function GET(
   if (target) {
     try {
       const u = new URL(target);
-      if (u.protocol === 'https:' || u.protocol === 'http:') dest = u;
+      // Đổi host CJ bị adblock chặn sạch sang host tương đương an toàn (chỉ link PID-AID)
+      if (u.protocol === 'https:' || u.protocol === 'http:') dest = dodgeBlockedAffiliateHost(u);
     } catch { /* URL hỏng → dest = null */ }
   }
 
