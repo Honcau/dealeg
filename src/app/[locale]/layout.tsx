@@ -1,9 +1,11 @@
 import type { Metadata }             from 'next';
+import { headers }                   from 'next/headers';
 import { SessionProvider }           from 'next-auth/react';
 import { NextIntlClientProvider }    from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound }                  from 'next/navigation';
 import { routing }                   from '@/i18n/routing';
+import { buildAlternates, stripLocale } from '@/lib/seo';
 import { HtmlAttributeSetter }       from '@/components/HtmlAttributeSetter';
 import { Header }                    from '@/components/layout/Header';
 import { Footer }                    from '@/components/layout/Footer';
@@ -22,6 +24,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'common' });
+
+  // Path hiện tại (middleware nhét vào) → canonical tự trỏ + hreflang ĐÚNG trang.
+  // Fallback về trang chủ locale nếu vắng header (không để canonical sai trang con).
+  const pathname = (await headers()).get('x-pathname') ?? `/${locale}`;
+
   return {
     title: {
       template: `%s | ${t('appName')}`,
@@ -29,11 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     description: t('tagline'),
     metadataBase: new URL('https://dealeg.com'),
-    alternates: {
-      languages: Object.fromEntries(
-        routing.locales.map((loc) => [loc, `https://dealeg.com/${loc}`])
-      ),
-    },
+    alternates: buildAlternates(locale, stripLocale(pathname)),
   };
 }
 

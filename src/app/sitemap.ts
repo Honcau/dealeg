@@ -2,6 +2,8 @@ import type { MetadataRoute } from 'next';
 import { prisma } from '@/lib/db';
 import { routing } from '@/i18n/routing';
 
+// Render lúc request (không prerender lúc build — build trong Docker không có DB).
+// Google fetch sitemap không thường xuyên nên query DB mỗi lần là không đáng ngại.
 export const dynamic = 'force-dynamic';
 
 const BASE = 'https://dealeg.com';
@@ -85,8 +87,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'daily',
       priority: 0.8,
     });
-    // Legal + info pages
-    for (const p of ['privacy', 'terms', 'disclaimer', 'contact', 'faq']) {
+    // contact + faq đã dịch đủ locale → liệt kê mọi locale
+    for (const p of ['contact', 'faq']) {
       entries.push({
         url: `${BASE}/${locale}/${p}`,
         lastModified: new Date(),
@@ -105,14 +107,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  // 4. Blog articles (chỉ published)
+  // 3c. Trang pháp lý CHỈ có bản tiếng Anh → chỉ liệt kê 'en' (đừng nhân 12 locale
+  // cho nội dung y hệt).
+  for (const p of ['privacy', 'terms', 'disclaimer']) {
+    entries.push({ url: `${BASE}/en/${p}`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.3 });
+  }
+
+  // 4. Blog: CHỈ liệt kê locale ĐÃ DỊCH THẬT (có row ArticleTranslation). Locale
+  // chưa dịch chỉ hiển thị fallback bản 'en' → không đưa vào sitemap để tránh URL
+  // trùng nội dung (chính là phần lớn "Discovered - not indexed").
   const articles = await prisma.article.findMany({
     where: { status: 'PUBLISHED' },
-    select: { slug: true, updatedAt: true },
+    select: { slug: true, updatedAt: true, translations: { select: { locale: true } } },
   });
-
   for (const article of articles) {
-    for (const locale of routing.locales) {
+    for (const { locale } of article.translations) {
       entries.push({
         url: `${BASE}/${locale}/blog/${article.slug}`,
         lastModified: article.updatedAt,

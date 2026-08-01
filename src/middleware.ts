@@ -41,6 +41,11 @@ export default function middleware(req: NextRequest) {
     }
   }
 
+  // Cho RSC đọc path hiện tại (layout dựng canonical + hreflang đúng trang).
+  // next-intl forward header của request sang lần rewrite nội bộ nên headers()
+  // trong Server Component đọc được.
+  req.headers.set('x-pathname', pathname);
+
   // Mọi trường hợp khác: next-intl xử lý bình thường
   // (bao gồm Accept-Language fallback khi không có cf-ipcountry, ví dụ chạy local)
   return intlMiddleware(req);

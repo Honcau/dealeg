@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `${name} coupon`, `${name} coupon code`, `${name} promo code`,
       `${name} discount`, `${name} deals`, `${name} ${year}`,
     ].join(', '),
-    alternates: { canonical: `https://dealeg.com/${locale}/coupon/${brand}` },
+    // canonical + hreflang do [locale]/layout.tsx lo tập trung (set ở đây = ghi đè, mất hreflang)
     openGraph: {
       title, description, type: 'website',
       url: `https://dealeg.com/${locale}/coupon/${brand}`,

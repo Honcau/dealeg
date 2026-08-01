@@ -6,6 +6,8 @@ import { prisma }          from '@/lib/db';
 import { getArticleTranslation } from '@/lib/translation';
 import { ShareButtons } from '@/components/share/ShareButtons';
 import { Link } from '@/i18n/navigation';
+import { buildAlternates } from '@/lib/seo';
+import { routing } from '@/i18n/routing';
 
 // ISR: cache trang đã render, tự làm mới mỗi 5 phút (nhanh hơn nhiều so với render mỗi request)
 export const revalidate = 300;
@@ -22,9 +24,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ? `https://dealeg.com${article.coverImage}`
     : 'https://dealeg.com/og-image.png';
 
+  // Chỉ những locale ĐÃ DỊCH THẬT (có row ArticleTranslation) mới là trang riêng.
+  // Locale chưa dịch hiển thị fallback bản 'en' → canonical trỏ về 'en' để Google
+  // gộp, khỏi index bản sao. Locale đã dịch → tự trỏ + hreflang trong nhóm đã dịch.
+  const realLocales = (await prisma.articleTranslation.findMany({
+    where: { articleId: article.id },
+    select: { locale: true },
+  })).map((tr) => tr.locale);
+  const alternates = realLocales.includes(locale)
+    ? buildAlternates(locale, `/blog/${slug}`, routing.locales.filter((l) => realLocales.includes(l)))
+    : { canonical: `https://dealeg.com/en/blog/${slug}` };
+
   return {
     title,
     description: translation?.excerpt ?? undefined,
+    alternates,
     openGraph: {
       title,
       description: translation?.excerpt ?? undefined,
