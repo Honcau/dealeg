@@ -3,6 +3,7 @@ import { z }          from 'zod';
 import { prisma }     from '@/lib/db';
 import { getSession } from '@/lib/auth';
 import { normalizeLocale } from '@/lib/locales';
+import { maskVoucherCode } from '@/lib/utils';
 
 // GET — lấy data cho trang profile
 export async function GET() {
@@ -15,7 +16,7 @@ export async function GET() {
     prisma.comment.findMany({
       where: { userId: session.user.id },
       include: {
-        voucher: { select: { id: true, code: true, provider: true } },
+        voucher: { select: { id: true, code: true, provider: true, hideCode: true } },
         votes:   { select: { value: true } },
       },
       orderBy: { createdAt: 'desc' },
@@ -31,7 +32,13 @@ export async function GET() {
     }),
   ]);
 
-  return NextResponse.json({ comments, accounts, language: user?.language ?? 'en' });
+  // Deal ẩn mã: che mã trước khi trả (lịch sử bình luận chỉ hiển thị, không reveal)
+  const safeComments = comments.map(c => ({
+    ...c,
+    voucher: { ...c.voucher, code: c.voucher.hideCode ? maskVoucherCode(c.voucher.code) : c.voucher.code },
+  }));
+
+  return NextResponse.json({ comments: safeComments, accounts, language: user?.language ?? 'en' });
 }
 
 // PATCH — cập nhật tên

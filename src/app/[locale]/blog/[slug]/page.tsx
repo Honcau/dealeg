@@ -8,6 +8,7 @@ import { ShareButtons } from '@/components/share/ShareButtons';
 import { Link } from '@/i18n/navigation';
 import { buildAlternates } from '@/lib/seo';
 import { routing } from '@/i18n/routing';
+import { maskVoucherCode } from '@/lib/utils';
 
 // ISR: cache trang đã render, tự làm mới mỗi 5 phút (nhanh hơn nhiều so với render mỗi request)
 export const revalidate = 300;
@@ -132,7 +133,7 @@ export default async function ArticlePage({ params }: Props) {
     where: { isActive: true },
     orderBy: { useCount: 'desc' },
     take: 5,
-    select: { id: true, code: true, provider: true, discount: true },
+    select: { id: true, code: true, provider: true, discount: true, hideCode: true },
   });
   let relatedRows = await prisma.article.findMany({
     where: { status: 'PUBLISHED', slug: { not: slug }, ...(article.category ? { category: article.category } : {}) },
@@ -224,7 +225,7 @@ export default async function ArticlePage({ params }: Props) {
                   <Link key={v.id} href={`/voucher/${v.id}`}
                     className="flex items-center justify-between gap-2 bg-white rounded-xl border border-gray-200 p-3 hover:border-indigo-300 transition-colors">
                     <span className="min-w-0">
-                      <span className="block font-mono font-bold text-sm text-gray-800 truncate">{v.code}</span>
+                      <span className="block font-mono font-bold text-sm text-gray-800 truncate">{v.hideCode ? maskVoucherCode(v.code) : v.code}</span>
                       <span className="text-xs text-gray-400">{v.provider}</span>
                     </span>
                     <span className="shrink-0 text-indigo-600 font-bold text-sm">{v.discount}</span>

@@ -79,8 +79,10 @@ export async function GET(req: NextRequest) {
 
   const voucherResults = vouchers.map(v => {
     const tr = v.translations.find(t => t.locale === locale) ?? v.translations.find(t => t.locale === 'en');
+    // KHÔNG trả `code`: ô search chỉ hiện provider/title/discount. Trả mã thô ở đây
+    // là lộ mã deal ẩn trong payload dù không hiển thị.
     return {
-      id: v.id, provider: v.provider, code: v.code,
+      id: v.id, provider: v.provider,
       discount: v.discount, discountValue: v.discountValue,
       title: tr?.title || `${v.provider} ${v.discount}`,
     };

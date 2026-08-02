@@ -6,7 +6,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 
 interface ToolHit { href: string; name: string; }
-interface VoucherHit { id: string; provider: string; code: string; discount: string; discountValue: number | null; title: string; }
+interface VoucherHit { id: string; provider: string; discount: string; discountValue: number | null; title: string; }
 interface ArticleHit { slug: string; title: string; excerpt: string; category: string; }
 
 export function SearchBox({ variant = 'desktop' }: { variant?: 'desktop' | 'mobile' }) {

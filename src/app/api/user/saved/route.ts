@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
+import { maskVoucherCode } from '@/lib/utils';
 
 /** GET /api/user/saved — danh sách voucher đã lưu */
 export async function GET() {
@@ -21,7 +22,8 @@ export async function GET() {
     saved: saved.map(s => ({
       id:       s.voucher.id,
       provider: s.voucher.provider,
-      code:     s.voucher.code,
+      // Deal ẩn mã: chỉ trả mã đã che — profile không có nút reveal, không được lộ mã thô
+      code:     s.voucher.hideCode ? maskVoucherCode(s.voucher.code) : s.voucher.code,
       discount: s.voucher.discount,
       discountValue: s.voucher.discountValue,
       savedAt:  s.createdAt,
