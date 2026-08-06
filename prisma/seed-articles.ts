@@ -549,6 +549,43 @@ const ARTICLES = [
     title:    'Best Email Autoresponders in 2026',
     excerpt:  'The least glamorous marketing tool and the one that quietly earns most. GetResponse, AWeber, MailerLite, ConvertKit, ActiveCampaign, and Klaviyo \u2014 compared on what actually matters.',
   },
+
+  // ── WireGuard cluster (nhắm từ khoá "wireguard" đang lên trên Search Console) ──
+  {
+    slug:     'wireguard-vs-openvpn',
+    category: 'vpn',
+    file:     'wireguard-vs-openvpn.md',
+    title:    'WireGuard vs OpenVPN: Which VPN Protocol Wins in 2026?',
+    excerpt:  'Speed, security, battery, and censorship resistance compared. Which of the two leading VPN protocols to use, and when the older one still wins.',
+  },
+  {
+    slug:     'wireguard-vs-ipsec-ikev2',
+    category: 'vpn',
+    file:     'wireguard-vs-ipsec-ikev2.md',
+    title:    'WireGuard vs IPsec/IKEv2: Speed, Security, and Setup Compared',
+    excerpt:  'IKEv2 is built into your phone and laptop; WireGuard is the lean challenger. A clear comparison of the two modern VPN protocols and when to pick each.',
+  },
+  {
+    slug:     'how-to-install-wireguard-ubuntu',
+    category: 'vpn',
+    file:     'how-to-install-wireguard-ubuntu.md',
+    title:    'How to Install and Configure WireGuard on Ubuntu (Step by Step)',
+    excerpt:  'A hands-on manual setup of a WireGuard server on Ubuntu or a VPS: keys, config, NAT, firewall, and adding clients, so you understand every line.',
+  },
+  {
+    slug:     'how-to-set-up-wireguard-windows',
+    category: 'vpn',
+    file:     'how-to-set-up-wireguard-windows.md',
+    title:    'How to Set Up WireGuard on Windows (Client and Server)',
+    excerpt:  'Install the official WireGuard app on Windows 10 and 11, import or build a tunnel, set up split tunneling, and connect to your server in a couple of clicks.',
+  },
+  {
+    slug:     'how-to-set-up-wireguard-android-ios',
+    category: 'vpn',
+    file:     'how-to-set-up-wireguard-android-ios.md',
+    title:    'How to Set Up WireGuard on Android and iPhone',
+    excerpt:  'Get WireGuard running on your phone in under a minute with the QR-code method, plus split tunneling, always-on, and the battery trick behind the mobile default.',
+  },
 ];
 
 async function main() {
