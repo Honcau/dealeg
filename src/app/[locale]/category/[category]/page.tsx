@@ -29,7 +29,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const tv = await getTranslations({ locale, namespace: 'voucher' });
   // nav giờ đủ 10 slug của VALID_CATEGORIES → không còn rơi về slug thô ("ssl Vouchers")
   const label = t.has(category) ? t(category) : category;
-  return { title: `${label} ${tv('vouchers')} | Dealeg` };
+
+  // Category rỗng (0 deal) render trang trống → Google báo Soft 404. Đánh noindex để
+  // thành "loại trừ có chủ đích" thay vì lỗi; tự index lại khi có deal.
+  const dbCategory = category.toUpperCase() as any;
+  const count = await prisma.voucher.count({
+    where: { OR: [{ category: dbCategory }, { categories: { has: dbCategory } }], isActive: true },
+  });
+
+  return {
+    title: `${label} ${tv('vouchers')} | Dealeg`,
+    ...(count === 0 ? { robots: { index: false, follow: true } } : {}),
+  };
 }
 
 export default async function CategoryPage({ params, searchParams }: Props) {

@@ -62,11 +62,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  // 2b. Trang chi tiết từng voucher
+  // 2b. Trang chi tiết từng voucher (+ thu thập category CÓ deal để lọc sitemap)
   const allVouchers = await prisma.voucher.findMany({
     where: { isActive: true },
-    select: { id: true, updatedAt: true },
+    select: { id: true, updatedAt: true, category: true, categories: true },
   });
+  const nonEmptyCategories = new Set<string>();
+  for (const v of allVouchers) {
+    if (v.category) nonEmptyCategories.add(String(v.category).toLowerCase());
+    for (const c of v.categories ?? []) nonEmptyCategories.add(String(c).toLowerCase());
+  }
   for (const v of allVouchers) {
     for (const locale of routing.locales) {
       entries.push({
@@ -78,8 +83,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  // 3. Coupon index + category pages
-  const categories = ['domain', 'hosting', 'vps', 'vpn', 'security', 'email', 'cdn', 'ssl', 'aitool', 'other'];
+  // 3. Coupon index + category pages — CHỈ category CÓ deal (category rỗng render
+  // trang trống → Google báo Soft 404, đừng submit).
+  const categories = ['domain', 'hosting', 'vps', 'vpn', 'security', 'email', 'cdn', 'ssl', 'aitool', 'other']
+    .filter(c => nonEmptyCategories.has(c));
   for (const locale of routing.locales) {
     entries.push({
       url: `${BASE}/${locale}/coupon`,
