@@ -113,7 +113,8 @@ export function VoucherForm({ initial, voucherId }: Props) {
     try {
       const res = await fetch(`/api/admin/vouchers/${voucherId}/translate`, { method: 'POST' });
       const data = await res.json();
-      setTrMsg(data.summary ?? data.error ?? 'Xong');
+      // Kèm lỗi thật nếu có locale fail (VD "DeepL 456: …"), không giấu
+      setTrMsg(data.error ? `${data.summary ?? ''} — lỗi: ${data.error}` : (data.summary ?? 'Xong'));
     } catch {
       setTrMsg('Lỗi khi dịch');
     }

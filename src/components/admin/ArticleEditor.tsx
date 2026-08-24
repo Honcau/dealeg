@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { TARGET_LOCALES } from '@/lib/translation';
+import { TARGET_LOCALES } from '@/lib/deepl-langs';
 
 const LOCALE_NAMES: Record<string, string> = {
   en: 'English', vi: 'Tiếng Việt', zh: '中文', hi: 'हिन्दी', es: 'Español',

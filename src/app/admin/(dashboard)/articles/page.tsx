@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { TARGET_LOCALES } from '@/lib/translation';
+import { TARGET_LOCALES } from '@/lib/deepl-langs';
 
 const TOTAL_LOCALES = TARGET_LOCALES.length + 1; // +1 for EN
 

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { TARGET_LOCALES } from '@/lib/translation';
+import { TARGET_LOCALES } from '@/lib/deepl-langs';
 
 export interface ArticleFormData {
   slug:        string;
