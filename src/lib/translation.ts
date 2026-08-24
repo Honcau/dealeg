@@ -54,7 +54,7 @@ async function deepLTranslateBatch(
 
       // 456 = quota hết → dừng hẳn, không retry
       if (res.status === 456) {
-        throw new QuotaError('DeepL quota exceeded (456)');
+        throw new QuotaError(`DeepL 456: ${(await res.text().catch(() => '')).slice(0, 200)}`);
       }
 
       // 429 = rate limit → đợi lâu hơn rồi thử lại
@@ -102,6 +102,7 @@ export async function translateArticle(articleId: string): Promise<TranslateResu
 
   const results: TranslateResult[] = [];
   let key = await pickDeeplKey();   // key đang dùng; null = không còn key nào có quota
+  let lastError = 'Không có DeepL key nào còn quota';   // thông điệp lỗi THẬT, dùng khi hết key
 
   for (const locale of TARGET_LOCALES) {
     const langCode = DEEPL_LANG[locale];
@@ -120,7 +121,7 @@ export async function translateArticle(articleId: string): Promise<TranslateResu
     let done = false;
     while (!done) {
       if (!key) {
-        results.push({ locale, success: false, error: 'Quota exceeded' });
+        results.push({ locale, success: false, error: lastError });
         break;
       }
       try {
@@ -144,9 +145,10 @@ export async function translateArticle(articleId: string): Promise<TranslateResu
 
       } catch (err) {
         if (err instanceof QuotaError) {
+          lastError = err.message;   // GIỮ thông điệp DeepL thật (status + body) để báo lên UI
           await markKeyExhausted(key);
           key = await pickDeeplKey(key);   // key này hết → lấy key khác, thử lại locale
-          console.warn(`[DeepL] ↻ ${locale}: key hết quota → ${key ? 'chuyển key khác' : 'hết sạch key'}`);
+          console.warn(`[DeepL] ↻ ${locale}: ${err.message} → ${key ? 'chuyển key khác' : 'hết sạch key'}`);
         } else {
           results.push({ locale, success: false, error: String(err) });
           console.error(`[DeepL] ✗ ${locale}: ${err}`);

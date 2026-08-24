@@ -100,7 +100,10 @@ export function ArticleEditor({ articleId }: { articleId: string }) {
     const res = await fetch(`/api/admin/articles/${articleId}/translate`, { method: 'POST' });
     const data = await res.json();
     setTranslating(false);
-    flash(data.summary ?? 'Xong!');
+    // Nếu có locale fail, kèm lỗi THẬT đầu tiên (VD "DeepL 456: …") để chẩn đoán, không giấu
+    const firstErr = (data.results ?? []).find((r: { success: boolean; error?: string }) => !r.success && r.error)?.error;
+    setMsg(firstErr ? `${data.summary ?? ''} — lỗi: ${firstErr}` : (data.summary ?? 'Xong!'));
+    setTimeout(() => setMsg(''), firstErr ? 12000 : 3000);
     await load();
   }
 
