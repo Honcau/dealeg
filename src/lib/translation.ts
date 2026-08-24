@@ -9,6 +9,7 @@
  *  - Bỏ qua ngôn ngữ đã dịch (chạy lại không tốn quota)
  */
 import { prisma } from '@/lib/db';
+import { pickDeeplKey, markKeyExhausted, deeplHost } from '@/lib/deepl';
 
 const DEEPL_LANG: Record<string, string> = {
   vi: 'VI', zh: 'ZH', hi: 'HI', es: 'ES', pt: 'PT-BR',
@@ -29,18 +30,10 @@ class QuotaError extends Error {}
 async function deepLTranslateBatch(
   texts: string[],
   targetLang: string,
+  apiKey: string,
   retries = 3,
 ): Promise<string[]> {
-  const apiKey = process.env.DEEPL_API_KEY;
-
-  if (!apiKey) {
-    console.warn('[DeepL] DEEPL_API_KEY chưa set');
-    return texts.map(t => `[${targetLang}] ${t}`);
-  }
-
-  const endpoint = apiKey.endsWith(':fx')
-    ? 'https://api-free.deepl.com/v2/translate'
-    : 'https://api.deepl.com/v2/translate';
+  const endpoint = `https://${deeplHost(apiKey)}/v2/translate`;
 
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
@@ -108,7 +101,7 @@ export async function translateArticle(articleId: string): Promise<TranslateResu
   if (!source) throw new Error('Cần có bản tiếng Anh trước khi dịch');
 
   const results: TranslateResult[] = [];
-  let quotaHit = false;
+  let key = await pickDeeplKey();   // key đang dùng; null = không còn key nào có quota
 
   for (const locale of TARGET_LOCALES) {
     const langCode = DEEPL_LANG[locale];
@@ -123,39 +116,42 @@ export async function translateArticle(articleId: string): Promise<TranslateResu
       continue;
     }
 
-    // Nếu đã hết quota ở ngôn ngữ trước → không thử tiếp
-    if (quotaHit) {
-      results.push({ locale, success: false, error: 'Quota exceeded' });
-      continue;
-    }
-
-    try {
-      // GỘP 3 field vào 1 request
-      const [title, excerpt, content] = await deepLTranslateBatch(
-        [source.title, source.excerpt ?? '', source.content],
-        langCode,
-      );
-
-      await prisma.articleTranslation.upsert({
-        where:  { articleId_locale: { articleId, locale } },
-        create: { articleId, locale, title, excerpt, content, isAutoTranslated: true, translatedAt: new Date() },
-        update: { title, excerpt, content, isAutoTranslated: true, translatedAt: new Date() },
-      });
-
-      results.push({ locale, success: true });
-      console.log(`[DeepL] ✓ ${locale}`);
-
-      // Delay 1s giữa các ngôn ngữ (giảm tần suất)
-      await sleep(1000);
-
-    } catch (err) {
-      if (err instanceof QuotaError) {
-        quotaHit = true;
+    // Thử locale này; gặp 456 thì XOAY sang key khác và thử lại, tới khi hết key
+    let done = false;
+    while (!done) {
+      if (!key) {
         results.push({ locale, success: false, error: 'Quota exceeded' });
-        console.error(`[DeepL] ✗ ${locale}: QUOTA — dừng các ngôn ngữ còn lại`);
-      } else {
-        results.push({ locale, success: false, error: String(err) });
-        console.error(`[DeepL] ✗ ${locale}: ${err}`);
+        break;
+      }
+      try {
+        // GỘP 3 field vào 1 request
+        const [title, excerpt, content] = await deepLTranslateBatch(
+          [source.title, source.excerpt ?? '', source.content],
+          langCode,
+          key,
+        );
+
+        await prisma.articleTranslation.upsert({
+          where:  { articleId_locale: { articleId, locale } },
+          create: { articleId, locale, title, excerpt, content, isAutoTranslated: true, translatedAt: new Date() },
+          update: { title, excerpt, content, isAutoTranslated: true, translatedAt: new Date() },
+        });
+
+        results.push({ locale, success: true });
+        console.log(`[DeepL] ✓ ${locale}`);
+        await sleep(1000);   // delay 1s giữa các ngôn ngữ
+        done = true;
+
+      } catch (err) {
+        if (err instanceof QuotaError) {
+          await markKeyExhausted(key);
+          key = await pickDeeplKey(key);   // key này hết → lấy key khác, thử lại locale
+          console.warn(`[DeepL] ↻ ${locale}: key hết quota → ${key ? 'chuyển key khác' : 'hết sạch key'}`);
+        } else {
+          results.push({ locale, success: false, error: String(err) });
+          console.error(`[DeepL] ✗ ${locale}: ${err}`);
+          done = true;
+        }
       }
     }
   }

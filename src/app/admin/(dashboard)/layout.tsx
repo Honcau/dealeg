@@ -16,6 +16,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
             <Link href="/admin/providers"    className="hover:text-gray-900">Providers</Link>
             <Link href="/admin/articles"     className="hover:text-gray-900">Bài viết</Link>
             <Link href="/admin/submissions"  className="hover:text-gray-900">Submissions</Link>
+            <Link href="/admin/deepl"        className="hover:text-gray-900">DeepL</Link>
           </nav>
         </div>
         <form action="/api/admin/logout" method="POST">

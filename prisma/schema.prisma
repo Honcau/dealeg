@@ -311,3 +311,18 @@ model SentDeal {
   @@unique([botUserId, dealId, channel])
   @@index([dealId])
 }
+
+// Pool DeepL key — quản lý ở /admin/deepl. Free tier 500k ký tự/tháng nên gộp
+// nhiều key + tự xoay khi 1 key hết quota. charCount/charLimit là cache lần check
+// /v2/usage gần nhất (DeepL reset đầu kỳ → lần check sau tự thấy còn quota).
+model DeeplKey {
+  id             String    @id @default(cuid())
+  label          String                          // tên gợi nhớ, VD "free-1"
+  key            String    @unique               // DeepL auth key (đuôi :fx = free)
+  isActive       Boolean   @default(true)
+  charCount      Int?                            // đã dùng (cache)
+  charLimit      Int?                            // hạn mức (cache)
+  usageCheckedAt DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}

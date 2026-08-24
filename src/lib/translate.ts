@@ -4,6 +4,7 @@
  * - Google: HI AR VI (DeepL không hỗ trợ tốt)
  * - Cache trong DB, không dịch lại nếu đã có
  */
+import { pickDeeplKey, deeplHost } from '@/lib/deepl';
 
 // Ngôn ngữ DeepL hỗ trợ tốt
 const DEEPL_LOCALES = new Set(['en','zh','de','fr','es','pt','ru','ja','ko']);
@@ -23,14 +24,11 @@ const GOOGLE_LANG: Record<string, string> = {
 
 // ── DeepL ─────────────────────────────────────────────────────────────────────
 async function translateDeepL(text: string, targetLang: string): Promise<string> {
-  const apiKey = process.env.DEEPL_API_KEY;
-  if (!apiKey) throw new Error('DEEPL_API_KEY chưa set');
+  // Lấy key còn quota từ pool (/admin/deepl); fallback env nếu pool trống
+  const apiKey = await pickDeeplKey();
+  if (!apiKey) throw new Error('Không có DeepL key nào còn quota');
 
-  // Free API dùng api-free.deepl.com, Pro dùng api.deepl.com
-  const isFree = apiKey.endsWith(':fx');
-  const host   = isFree ? 'api-free.deepl.com' : 'api.deepl.com';
-
-  const res = await fetch(`https://${host}/v2/translate`, {
+  const res = await fetch(`https://${deeplHost(apiKey)}/v2/translate`, {
     method: 'POST',
     headers: {
       'Authorization': `DeepL-Auth-Key ${apiKey}`,
@@ -88,9 +86,13 @@ export async function translateText(
 ): Promise<TranslateResult> {
   if (!text.trim()) return { text, engine: 'deepl' };
 
-  if (DEEPL_LOCALES.has(targetLocale) && process.env.DEEPL_API_KEY) {
-    const translated = await translateDeepL(text, DEEPL_LANG[targetLocale]);
-    return { text: translated, engine: 'deepl' };
+  if (DEEPL_LOCALES.has(targetLocale)) {
+    try {
+      const translated = await translateDeepL(text, DEEPL_LANG[targetLocale]);
+      return { text: translated, engine: 'deepl' };
+    } catch (e) {
+      console.warn('[translate] DeepL lỗi → fallback Google:', String(e));
+    }
   }
 
   // Fallback Google
