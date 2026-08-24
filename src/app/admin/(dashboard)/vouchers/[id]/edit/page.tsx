@@ -10,6 +10,7 @@ export default function EditVoucherPage() {
   const { id }  = useParams<{ id: string }>();
   const [data, setData]       = useState<Partial<VoucherFormData> | null>(null);
   const [loading, setLoading] = useState(true);
+  const [reloadKey, setReloadKey] = useState(0);   // bump sau khi dịch API → phần xem bản dịch nạp lại
 
   useEffect(() => {
     fetch(`/api/admin/vouchers/${id}`)
@@ -47,13 +48,13 @@ export default function EditVoucherPage() {
     <div className="space-y-6">
       <h1 className="text-xl font-bold text-gray-900">Sửa voucher</h1>
       <div className="bg-white rounded-xl border border-gray-200 p-6">
-        <VoucherForm initial={data} voucherId={id} />
+        <VoucherForm initial={data} voucherId={id} onTranslated={() => setReloadKey(k => k + 1)} />
       </div>
 
-      {/* Dịch Paste — miễn phí qua DeepL web */}
+      {/* Xem / sửa / dán bản dịch từng ngôn ngữ */}
       <div className="bg-white rounded-xl border border-gray-200 p-6">
-        <h2 className="font-semibold text-gray-900 mb-4">Dịch Paste (miễn phí)</h2>
-        <VoucherPasteTranslation voucherId={id} />
+        <h2 className="font-semibold text-gray-900 mb-4">Bản dịch (xem / sửa / dán)</h2>
+        <VoucherPasteTranslation voucherId={id} reloadKey={reloadKey} />
       </div>
     </div>
   );

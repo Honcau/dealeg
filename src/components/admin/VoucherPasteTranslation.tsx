@@ -8,9 +8,25 @@ const LOCALE_NAMES: Record<string, string> = {
   fr: 'Français', de: 'Deutsch', ar: 'العربية', ru: 'Русский', ja: '日本語', ko: '한국어',
 };
 
-export function VoucherPasteTranslation({ voucherId }: { voucherId: string }) {
+/** Ghép title + description thành khối có nhãn (để hiện bản đã lưu trong ô soạn). */
+const blockOf = (title: string, description: string) =>
+  `===== TITLE =====\n${title}\n\n===== DESCRIPTION =====\n${description}`;
+
+/** Tách khối có nhãn → { title, description } (client-side, để cập nhật map sau khi lưu). */
+function parseBlockClient(text: string): { title: string; description: string } | null {
+  const lines = text.split('\n');
+  const marks = lines.map((l, i) => (l.includes('=====') ? i : -1)).filter(i => i >= 0);
+  if (marks.length < 2) return null;
+  return {
+    title:       lines.slice(marks[0] + 1, marks[1]).join('\n').trim(),
+    description: lines.slice(marks[1] + 1).join('\n').trim(),
+  };
+}
+
+export function VoucherPasteTranslation({ voucherId, reloadKey = 0 }: { voucherId: string; reloadKey?: number }) {
   const [block, setBlock] = useState('');
   const [existing, setExisting] = useState<string[]>([]);
+  const [translations, setTranslations] = useState<Record<string, { title: string; description: string }>>({});
   const [locale, setLocale] = useState(TARGET_LOCALES[0]);
   const [pasteText, setPasteText] = useState('');
   const [copied, setCopied] = useState(false);
@@ -24,20 +40,24 @@ export function VoucherPasteTranslation({ voucherId }: { voucherId: string }) {
     if (res.ok) {
       setBlock(data.block ?? '');
       setExisting(data.existingLocales ?? []);
+      setTranslations(data.translations ?? {});
       setLoaded(true);
     } else {
       setMsg(data.error ?? 'Chưa có bản tiếng Anh — hãy lưu voucher với mô tả EN trước');
     }
   }, [voucherId]);
 
-  useEffect(() => { load(); }, [load]);
+  // reloadKey đổi (VD sau khi bấm "Dịch API" ở form trên) → nạp lại để thấy bản dịch mới
+  useEffect(() => { load(); }, [load, reloadKey]);
 
-  // Draft tự lưu theo localStorage (khôi phục khi đổi locale)
+  // Nội dung ô soạn khi đổi locale: ưu tiên draft chưa lưu, không thì HIỆN bản đã lưu
+  // (để review/sửa — trước đây ô luôn trống nên tưởng chưa dịch).
   useEffect(() => {
-    const key = `voucher_draft_${voucherId}_${locale}`;
-    const saved = localStorage.getItem(key);
-    setPasteText(saved ?? '');
-  }, [locale, voucherId]);
+    const draft = localStorage.getItem(`voucher_draft_${voucherId}_${locale}`);
+    if (draft) { setPasteText(draft); return; }
+    const saved = translations[locale];
+    setPasteText(saved ? blockOf(saved.title, saved.description) : '');
+  }, [locale, voucherId, translations]);
 
   useEffect(() => {
     const key = `voucher_draft_${voucherId}_${locale}`;
@@ -64,6 +84,8 @@ export function VoucherPasteTranslation({ voucherId }: { voucherId: string }) {
     const data = await res.json();
     setSaving(false);
     if (res.ok) {
+      const parsed = parseBlockClient(pasteText);
+      if (parsed) setTranslations(prev => ({ ...prev, [locale]: parsed }));   // để xem lại thấy bản mới
       localStorage.removeItem(`voucher_draft_${voucherId}_${locale}`);
       setPasteText('');
       setExisting(prev => prev.includes(locale) ? prev : [...prev, locale]);

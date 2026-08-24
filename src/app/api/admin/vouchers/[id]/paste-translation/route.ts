@@ -30,13 +30,17 @@ export async function GET(req: NextRequest, { params }: Params) {
     MARK_DESC, en.description ?? '',
   ].join('\n');
 
-  // Danh sách bản dịch đã có (để hiện ✓)
+  // Bản dịch đã có: trả cả NỘI DUNG (không chỉ tên locale) để admin xem/sửa được
   const existing = await prisma.voucherTranslation.findMany({
     where: { voucherId: id, locale: { not: 'en' } },
-    select: { locale: true },
+    select: { locale: true, title: true, description: true },
   });
 
-  return NextResponse.json({ block, existingLocales: existing.map(e => e.locale) });
+  return NextResponse.json({
+    block,
+    existingLocales: existing.map(e => e.locale),
+    translations: Object.fromEntries(existing.map(e => [e.locale, { title: e.title, description: e.description ?? '' }])),
+  });
 }
 
 /**

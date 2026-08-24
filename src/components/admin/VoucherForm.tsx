@@ -32,9 +32,10 @@ const EMPTY: VoucherFormData = {
 interface Props {
   initial?: Partial<VoucherFormData>;
   voucherId?: string;   // nếu có → chế độ edit (PUT), không có → tạo mới (POST)
+  onTranslated?: () => void;   // báo cho trang cha nạp lại phần xem bản dịch sau khi dịch API
 }
 
-export function VoucherForm({ initial, voucherId }: Props) {
+export function VoucherForm({ initial, voucherId, onTranslated }: Props) {
   const [translating, setTranslating] = useState(false);
   const [trMsg, setTrMsg] = useState('');
   const [form,    setForm]    = useState<VoucherFormData>({ ...EMPTY, ...initial });
@@ -115,6 +116,7 @@ export function VoucherForm({ initial, voucherId }: Props) {
       const data = await res.json();
       // Kèm lỗi thật nếu có locale fail (VD "DeepL 456: …"), không giấu
       setTrMsg(data.error ? `${data.summary ?? ''} — lỗi: ${data.error}` : (data.summary ?? 'Xong'));
+      onTranslated?.();   // để phần "xem bản dịch" bên dưới nạp lại, hiện nội dung vừa dịch
     } catch {
       setTrMsg('Lỗi khi dịch');
     }
