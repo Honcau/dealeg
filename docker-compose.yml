@@ -10,6 +10,11 @@ services:
         # Truyền NEXT_PUBLIC_GA_ID vào lúc build (nhúng vào bundle).
         # Đọc từ shell env hoặc .env.production khi chạy docker compose build.
         NEXT_PUBLIC_GA_ID: ${NEXT_PUBLIC_GA_ID}
+        # Umami: script + website id nhúng lúc build (client-side). deploy.sh export
+        # 2 biến này từ .env.production khi có UMAMI_DATABASE_URL; ":-" tránh cảnh báo
+        # "variable is not set" ở các build không dùng Umami.
+        NEXT_PUBLIC_UMAMI_SRC: ${NEXT_PUBLIC_UMAMI_SRC:-}
+        NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${NEXT_PUBLIC_UMAMI_WEBSITE_ID:-}
     image: dealeg-app
     container_name: dealeg-app
     restart: unless-stopped
@@ -90,6 +95,43 @@ services:
       - ./deploy/listmonk/config.toml:/listmonk/config.toml:ro
     # Tự cài schema lần đầu (idempotent) + upgrade, rồi chạy.
     command: [sh, -c, "./listmonk --install --idempotent --yes --config /listmonk/config.toml && ./listmonk --upgrade --yes --config /listmonk/config.toml && ./listmonk --config /listmonk/config.toml"]
+
+  # ─── Umami — analytics riêng tư, cookieless (chạy SONG SONG với GA) ───────────
+  # Backed by PostgreSQL trên host (DB riêng "umami"). Umami tự chạy migration lúc
+  # khởi động. Chỉ mở 127.0.0.1:3001 → Nginx proxy https://analytics.dealeg.com.
+  # Xem UMAMI_SETUP.md.
+  #
+  # Profile "umami": chỉ chạy khi .env.production đã có UMAMI_DATABASE_URL
+  # (deploy.sh tự bật + export biến). Nhờ vậy khi chưa cấu hình, service KHÔNG
+  # chạy → không crash-loop, tốn 0 RAM.
+  #
+  # KHÔNG dùng env_file: .env.production ở đây — file đó có DATABASE_URL của app,
+  # sẽ ghi đè và trỏ Umami nhầm DB. Chỉ nạp đúng biến qua environment (interpolate
+  # từ UMAMI_* mà deploy.sh export).
+  #
+  # Thu thập beacon phải LUÔN bật → giới hạn RAM/CPU cho gọn VPS (chỉnh ở dưới nếu OOM).
+  umami:
+    profiles: ["umami"]
+    image: ghcr.io/umami-software/umami:postgresql-latest
+    container_name: dealeg-umami
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3001:3000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - DATABASE_TYPE=postgresql
+      - DATABASE_URL=${UMAMI_DATABASE_URL:-}
+      - APP_SECRET=${UMAMI_APP_SECRET:-}
+      - DISABLE_TELEMETRY=1
+      # Trần heap Node để container gọn (Umami là app Next.js)
+      - NODE_OPTIONS=--max-old-space-size=384
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    # Trần tài nguyên — tránh Umami ngốn RAM/CPU của VPS. Nâng nếu bị OOM-kill.
+    mem_limit: 512m
+    cpus: 0.75
 
 volumes:
   redis-data:

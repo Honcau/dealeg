@@ -27,13 +27,26 @@ if grep -qE '^BOT_TOKEN=.*[A-Za-z0-9]' .env.production 2>/dev/null; then
   echo "🤖 Thấy BOT_TOKEN → bật service bot"
 fi
 
+# Umami chỉ bật khi .env.production đã có UMAMI_DATABASE_URL (xem UMAMI_SETUP.md).
+# Export các biến để docker compose interpolate ${...} thấy được: build-arg
+# NEXT_PUBLIC_UMAMI_* (nhúng script) + runtime DATABASE_URL/APP_SECRET của container.
+UMAMI_PROFILE=""
+if grep -qE '^UMAMI_DATABASE_URL=.*[A-Za-z0-9]' .env.production 2>/dev/null; then
+  UMAMI_PROFILE="--profile umami"
+  export UMAMI_DATABASE_URL="$(grep -m1 '^UMAMI_DATABASE_URL=' .env.production | cut -d= -f2- | tr -d '"')"
+  export UMAMI_APP_SECRET="$(grep -m1 '^UMAMI_APP_SECRET=' .env.production | cut -d= -f2- | tr -d '"')"
+  export NEXT_PUBLIC_UMAMI_SRC="$(grep -m1 '^NEXT_PUBLIC_UMAMI_SRC=' .env.production | cut -d= -f2- | tr -d '"')"
+  export NEXT_PUBLIC_UMAMI_WEBSITE_ID="$(grep -m1 '^NEXT_PUBLIC_UMAMI_WEBSITE_ID=' .env.production | cut -d= -f2- | tr -d '"')"
+  echo "📊 Thấy UMAMI_DATABASE_URL → bật service umami + nhúng script"
+fi
+
 echo "🔨 Build Docker image..."
-docker compose $BOT_PROFILE build
+docker compose $BOT_PROFILE $UMAMI_PROFILE build
 
 # 4. Restart container
 echo "♻️  Restart app..."
-docker compose $BOT_PROFILE down
-docker compose $BOT_PROFILE up -d
+docker compose $BOT_PROFILE $UMAMI_PROFILE down
+docker compose $BOT_PROFILE $UMAMI_PROFILE up -d
 
 # 5. Chờ app khởi động
 echo "⏳ Chờ app khởi động..."

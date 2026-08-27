@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
+import { UmamiAnalytics } from '@/components/analytics/UmamiAnalytics';
 import { GoogleTagManager, GoogleTagManagerNoScript } from '@/components/analytics/GoogleTagManager';
 import './globals.css';
 
@@ -85,6 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <GoogleTagManager />
         <GoogleAnalytics />
+        <UmamiAnalytics />
       </body>
     </html>
   );
