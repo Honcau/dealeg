@@ -40,13 +40,24 @@ if grep -qE '^UMAMI_DATABASE_URL=.*[A-Za-z0-9]' .env.production 2>/dev/null; the
   echo "📊 Thấy UMAMI_DATABASE_URL → bật service umami + nhúng script"
 fi
 
+# n8n chỉ bật khi .env.production đã có N8N_ENCRYPTION_KEY (xem N8N_SETUP.md).
+# Export để docker compose interpolate ${N8N_ENCRYPTION_KEY}.
+N8N_PROFILE=""
+if grep -qE '^N8N_ENCRYPTION_KEY=.*[A-Za-z0-9]' .env.production 2>/dev/null; then
+  N8N_PROFILE="--profile n8n"
+  export N8N_ENCRYPTION_KEY="$(grep -m1 '^N8N_ENCRYPTION_KEY=' .env.production | cut -d= -f2- | tr -d '"')"
+  echo "🔄 Thấy N8N_ENCRYPTION_KEY → bật service n8n"
+fi
+
+PROFILES="$BOT_PROFILE $UMAMI_PROFILE $N8N_PROFILE"
+
 echo "🔨 Build Docker image..."
-docker compose $BOT_PROFILE $UMAMI_PROFILE build
+docker compose $PROFILES build
 
 # 4. Restart container
 echo "♻️  Restart app..."
-docker compose $BOT_PROFILE $UMAMI_PROFILE down
-docker compose $BOT_PROFILE $UMAMI_PROFILE up -d
+docker compose $PROFILES down
+docker compose $PROFILES up -d
 
 # 5. Chờ app khởi động
 echo "⏳ Chờ app khởi động..."

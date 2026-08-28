@@ -133,5 +133,45 @@ services:
     mem_limit: 512m
     cpus: 0.75
 
+  # ─── n8n — workflow automation (tự tạo voucher/article NHÁP) ──────────────────
+  # Lõi tự động hoá: dùng node RSS/HTTP/HTML/Schedule sẵn có đọc feed + tự diff, rồi
+  # POST tới http://app:3000/api/internal/ingest/{voucher,article} qua mạng compose
+  # (như bot). Endpoint tạo DRAFT để duyệt ở /admin. Xem N8N_SETUP.md.
+  # RSSHub/changedetection CHƯA dựng — thêm sau chỉ khi một nguồn cần (tiết kiệm RAM).
+  #
+  # Profile "n8n": chỉ chạy khi .env.production có N8N_ENCRYPTION_KEY (deploy.sh tự bật
+  # + export). Chưa cấu hình → không chạy → 0 RAM. SQLite trong volume n8n-data (không
+  # thêm DB). Editor chỉ mở 127.0.0.1 → Nginx proxy n8n.dealeg.com.
+  n8n:
+    profiles: ["n8n"]
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: dealeg-n8n
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5678:5678"
+    environment:
+      - N8N_HOST=n8n.dealeg.com
+      - N8N_PROTOCOL=https
+      - N8N_PORT=5678
+      - WEBHOOK_URL=https://n8n.dealeg.com/
+      - N8N_EDITOR_BASE_URL=https://n8n.dealeg.com/
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY:-}
+      - GENERIC_TIMEZONE=Asia/Ho_Chi_Minh
+      - TZ=Asia/Ho_Chi_Minh
+      - N8N_DIAGNOSTICS_ENABLED=false
+      - N8N_HIRING_BANNER_ENABLED=false
+      - N8N_PERSONALIZATION_ENABLED=false
+      # Trần heap Node cho gọn (n8n là app Node)
+      - NODE_OPTIONS=--max-old-space-size=384
+    volumes:
+      - n8n-data:/home/node/.n8n
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    # Trần tài nguyên — n8n có thể ngốn RAM. Nâng nếu workflow nặng bị OOM.
+    mem_limit: 512m
+    cpus: 0.75
+
 volumes:
   redis-data:
+  n8n-data:
