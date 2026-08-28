@@ -13,6 +13,7 @@
     "db:gen": "prisma generate",
     "seed:articles": "tsx prisma/seed-articles.ts",
     "test:deepl": "tsx scripts/test-deepl.ts",
+    "i18n:fill": "tsx scripts/i18n-fill.ts",
     "db:migrate": "prisma migrate deploy",
     "db:migrate:dev": "prisma migrate dev",
     "docker:build": "docker compose build",
