@@ -497,5 +497,50 @@
     "a3": "Copy the code from the list above, click through to {name}, and paste the code at checkout in the promo code or coupon field. The discount applies before you complete payment.",
     "q4": "How often are {name} coupons updated?",
     "a4": "We update {name} coupons daily through automated checks and community submissions. Expired codes are removed and new offers are added as they become available."
+  },
+  "toolGuide": {
+    "howToTitle": "How to use",
+    "faqTitle": "Frequently asked questions",
+    "tipTitle": "Good to know",
+    "qr": {
+      "intro": "A WiFi QR code stores your network name, password and security type in the standard WIFI: format that phone cameras read natively, so guests connect by pointing a camera instead of typing — or ever seeing — the password. The contact tab does the same for a vCard. Everything is generated in your browser, so the password never leaves your device.",
+      "step1": "Choose the WiFi tab for a network code, or the contact tab for a vCard.",
+      "step2": "For WiFi, type the network name exactly as it appears: SSIDs are case-sensitive and spaces count. Then add the password and pick the security type — WPA/WPA2 for essentially every modern router, WEP only for very old equipment, or none for an open network.",
+      "step3": "Tick “hidden network” only if your router does not broadcast its name; ticking it for a normal network stops the scan from working.",
+      "step4": "The code updates as you type. Scan it with your own phone once to confirm it connects before you print or share it.",
+      "q1": "Is my WiFi password sent to a server?",
+      "a1": "No. The code is built entirely in your browser and nothing is uploaded. You can prove it to yourself: load the page, disconnect from the internet, and the generator still works.",
+      "q2": "Which phones can scan a WiFi QR without installing an app?",
+      "a2": "The built-in camera on iPhone (iOS 11 and later) and on most Android 10 and newer devices recognises WIFI: codes and offers to join the network. Older Android phones may still need a separate QR scanner.",
+      "q3": "The code scans but will not connect — why?",
+      "a3": "Almost always one of three things: the network name has different capitalisation or a stray space, the security type is wrong (WPA2 chosen for a WEP network or the reverse), or the network is hidden and the box was left unticked.",
+      "tip": "For a café, office or guest network, print the code and leave it on the table. Visitors get online without anyone reading a password out loud, and when you change the password you simply regenerate the code."
+    },
+    "password": {
+      "intro": "This generator draws from the browser's cryptographic random source (crypto.getRandomValues) rather than the ordinary Math.random that many web generators use and that can be predicted from earlier output. Passwords are assembled on your device and are never transmitted.",
+      "step1": "Set the length. Sixteen characters is a sensible floor, and longer is genuinely stronger.",
+      "step2": "Choose which character sets to draw from: uppercase, lowercase, digits and symbols.",
+      "step3": "Press Generate, then Copy, and paste the result straight into your password manager instead of retyping it.",
+      "q1": "Is it safe to generate a password on a website?",
+      "a1": "The work here happens in your browser, so nothing is sent anywhere. Even so, the safest habit is to let your password manager generate and store passwords for you; use a page like this when you do not have one to hand.",
+      "q2": "How long should a password actually be?",
+      "a2": "Sixteen random characters drawn from three or more character sets is far beyond the reach of brute force today. Length does more work than complexity: a long password of plain letters beats a short one crammed with symbols.",
+      "q3": "A site rejected my password — what should I do?",
+      "a3": "Some older systems refuse particular symbols or cap the length. Generate a fresh one with symbols switched off or a shorter length rather than editing the password by hand, because manual edits remove the randomness that makes it strong.",
+      "tip": "Never reuse a password across sites, and change one the moment a service reports a breach. Reuse is what turns a single company's leak into a problem on every account you own."
+    },
+    "discount": {
+      "intro": "Two calculations on one page: work out what you actually pay once a percentage comes off, or work backwards from an original and a sale price to find the real discount. The second is the useful one for checking whether an advertised offer is as generous as the sign claims.",
+      "step1": "In the first box, enter the original price and the discount percentage to get the final price and the amount saved.",
+      "step2": "In the second box, enter the original price and the price you are actually being offered to get the true percentage off.",
+      "step3": "Amounts are formatted for your language automatically, so large numbers stay readable at a glance.",
+      "q1": "Two discounts are advertised together — do they add up?",
+      "a1": "No, they multiply. Twenty percent off followed by a further ten percent is 0.8 × 0.9 = 0.72, which is 28 percent off rather than 30. To do it here, take the final price from the first calculation and enter it as the original price for the second.",
+      "q2": "How can I tell whether a discount is genuine?",
+      "a2": "Use the second box with the price you can actually see today. If the percentage it returns is well below the advertised one, the “original” price is doing the marketing. Checking the same item at another retailer is the quickest sanity check.",
+      "q3": "Does the result include tax or VAT?",
+      "a3": "It works on whatever number you type. If the price you enter already includes VAT then the final price does too; if it excludes VAT, so does the result.",
+      "tip": "For subscriptions, apply the discount across the whole period you actually intend to stay, not the headline monthly price. “Half price for the first year” on a service you keep for two years is about twenty-five percent off overall."
+    }
   }
 }
