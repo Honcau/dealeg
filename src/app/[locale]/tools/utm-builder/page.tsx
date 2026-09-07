@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { UtmTool } from '@/components/tools/UtmTool';
 import { DealsCta } from '@/components/tools/DealsCta';
+import { ToolGuide } from '@/components/tools/ToolGuide';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -18,6 +19,7 @@ export default async function Page() {
       <h1 className="font-display text-2xl font-bold text-gray-900 mb-1">{t('name')}</h1>
       <p className="text-sm text-gray-500 mb-8">{t('desc')}</p>
       <UtmTool />
+      <ToolGuide toolKey="utm" />
       <DealsCta />
     </div>
   );
