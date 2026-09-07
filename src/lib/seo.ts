@@ -30,6 +30,25 @@ export function buildAlternates(
   const p = path && !path.startsWith('/') ? '/' + path : path;
   const languages: Record<string, string> = {};
   for (const loc of locales) languages[loc] = `${BASE}/${loc}${p}`;
-  if (locales.includes(X_DEFAULT)) languages['x-default'] = `${BASE}/${X_DEFAULT}${p}`;
+  if (locales.includes(X_DEFAULT)) {
+    // TRANG CHỦ: '/' tự chuyển hướng theo vị trí (middleware) → đúng định nghĩa
+    // x-default của Google. Không khai báo thì Google thấy '/' là URL ngoài bộ
+    // hreflang, trùng nội dung với /vi, rồi TỰ chọn '/' làm canonical — đúng lỗi
+    // "Duplicate, Google chose different canonical than user" của /vi trong GSC.
+    languages['x-default'] = p === '' ? `${BASE}/` : `${BASE}/${X_DEFAULT}${p}`;
+  }
   return { canonical: `${BASE}/${locale}${p}`, languages };
+}
+
+/**
+ * Trang CHỈ có bản tiếng Anh (privacy / terms / disclaimer): nội dung ở 12 locale là
+ * y hệt nhau nên Google gom thành cụm trùng lặp ("Duplicate without user-selected
+ * canonical"). Cho mọi locale trỏ canonical về /en/... để gộp 12 URL thành 1, và chỉ
+ * khai báo hreflang en + x-default (khai đủ 12 thứ tiếng là mâu thuẫn: chúng không
+ * thật sự là bản dịch khác nhau).
+ */
+export function buildEnglishOnlyAlternates(path: string): NonNullable<Metadata['alternates']> {
+  const p = path && !path.startsWith('/') ? '/' + path : path;
+  const url = `${BASE}/${X_DEFAULT}${p}`;
+  return { canonical: url, languages: { [X_DEFAULT]: url, 'x-default': url } };
 }

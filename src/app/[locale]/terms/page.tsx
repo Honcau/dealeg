@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import { EnglishOnlyNotice } from '@/components/layout/EnglishOnlyNotice';
+import { buildEnglishOnlyAlternates } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Terms of Service | Dealeg',
   description: 'The terms governing your use of Dealeg.',
+  // Chỉ có bản tiếng Anh → mọi locale canonical về /en/terms (gộp 12 URL trùng).
+  alternates: buildEnglishOnlyAlternates('/terms'),
 };
 
 export default async function TermsPage() {

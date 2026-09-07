@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import { EnglishOnlyNotice } from '@/components/layout/EnglishOnlyNotice';
+import { buildEnglishOnlyAlternates } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Affiliate Disclosure | Dealeg',
   description: 'How Dealeg earns from affiliate links and our commitment to honest recommendations.',
+  // Chỉ có bản tiếng Anh → mọi locale canonical về /en/disclaimer (gộp 12 URL trùng).
+  alternates: buildEnglishOnlyAlternates('/disclaimer'),
 };
 
 export default async function DisclaimerPage() {

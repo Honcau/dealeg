@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import { EnglishOnlyNotice } from '@/components/layout/EnglishOnlyNotice';
+import { buildEnglishOnlyAlternates } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Dealeg',
   description: 'How Dealeg collects, uses, and protects your information.',
+  // Chỉ có bản tiếng Anh → mọi locale canonical về /en/privacy (gộp 12 URL trùng).
+  alternates: buildEnglishOnlyAlternates('/privacy'),
 };
 
 export default async function PrivacyPage() {
