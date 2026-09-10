@@ -33,16 +33,6 @@ services:
     # Chỉ chạy app. Migration chạy riêng bằng lệnh (xem DEPLOY_CONTABO.md)
     command: node server.js
 
-  redis:
-    image: redis:7-alpine
-    container_name: dealeg-redis
-    restart: unless-stopped
-    ports:
-      - "127.0.0.1:6379:6379"
-    volumes:
-      - redis-data:/data
-    command: redis-server --appendonly yes
-
   # ─── Telegram deal-alert bot (grammY) ────────────────────────────────────────
   # Gọi internal API của app qua mạng nội bộ compose (http://app:3000) bằng
   # INTERNAL_API_TOKEN — không cần credential DB. Webhook chỉ mở 127.0.0.1,
@@ -173,5 +163,4 @@ services:
     cpus: 0.75
 
 volumes:
-  redis-data:
   n8n-data:
