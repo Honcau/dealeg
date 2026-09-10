@@ -50,3 +50,24 @@ export function outboundTarget(
   if (aff && aff !== '#') return aff;
   return v.sourceUrl?.trim() || null;
 }
+
+/** Tình trạng link affiliate của 1 voucher khi so với link sắp áp. */
+export type LinkState =
+  | 'missing'    // chưa có link affiliate → voucher không ra hoa hồng
+  | 'same'       // đã đúng link sắp áp → không cần làm gì
+  | 'different'; // đang dùng link KHÁC — rất có thể là deep-link cố ý, đừng đè mù
+
+/**
+ * So link affiliate hiện tại của voucher với link sắp áp.
+ *
+ * CHỈ xét `affiliateUrl` (không xét `sourceUrl`): màn hình đồng bộ chỉ ghi đè
+ * affiliateUrl, và một voucher chỉ có link gốc thì vẫn coi là CHƯA có link kiếm tiền.
+ */
+export function classifyVoucherLink(
+  v: { affiliateUrl?: string | null },
+  applyUrl: string,
+): LinkState {
+  const cur = v.affiliateUrl?.trim();
+  if (!cur || cur === '#') return 'missing';
+  return cur === applyUrl.trim() ? 'same' : 'different';
+}

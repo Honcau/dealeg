@@ -14,6 +14,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
           <nav className="flex gap-4 text-sm text-gray-500">
             <Link href="/admin/vouchers"     className="hover:text-gray-900">Vouchers</Link>
             <Link href="/admin/providers"    className="hover:text-gray-900">Providers</Link>
+            <Link href="/admin/affiliate-links" className="hover:text-gray-900">Link aff</Link>
             <Link href="/admin/articles"     className="hover:text-gray-900">Bài viết</Link>
             <Link href="/admin/submissions"  className="hover:text-gray-900">Submissions</Link>
             <Link href="/admin/deepl"        className="hover:text-gray-900">DeepL</Link>

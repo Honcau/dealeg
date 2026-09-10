@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 const CATEGORIES = ['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL','AITOOL','OTHER'] as const;
 
@@ -217,6 +218,8 @@ export default function ProvidersPage() {
                 </td>
                 <td className="px-4 py-2.5">
                   <div className="flex gap-3 justify-end">
+                    <Link href={`/admin/affiliate-links?provider=${encodeURIComponent(p.name)}`}
+                      className="text-gray-500 hover:underline hover:text-gray-800 text-xs font-medium">Link aff</Link>
                     <button onClick={() => startEdit(p)}
                       className="text-indigo-600 hover:underline text-xs font-medium">Sửa</button>
                     <button onClick={() => toggleActive(p)}
