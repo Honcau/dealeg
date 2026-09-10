@@ -32,3 +32,21 @@ export function dodgeBlockedAffiliateHost(u: URL): URL {
   }
   return u;
 }
+
+/**
+ * Voucher này có dẫn được người dùng ra ngoài không? Trả link đích, hoặc null.
+ *
+ * DÙNG CHUNG cho 4 nơi phải đồng ý với nhau: thẻ voucher (quyết định render
+ * <a href="/api/go/..."> hay <button> trơ), /api/go, và 2 cảnh báo trong admin.
+ * Trước đây mỗi nơi tự viết lại điều kiện — badge "chưa có link" mà lệch với hành vi
+ * thật thì còn tệ hơn không có badge.
+ *
+ * Thứ tự ưu tiên: affiliateUrl (link kiếm tiền) trước, '#' coi như chưa có; sourceUrl sau.
+ */
+export function outboundTarget(
+  v: { affiliateUrl?: string | null; sourceUrl?: string | null },
+): string | null {
+  const aff = v.affiliateUrl?.trim();
+  if (aff && aff !== '#') return aff;
+  return v.sourceUrl?.trim() || null;
+}

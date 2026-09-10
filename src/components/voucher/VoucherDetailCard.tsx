@@ -6,6 +6,7 @@ import type { Voucher } from '@/types/voucher';
 import { isExpired, formatDate, formatCount, maskVoucherCode, trackVoucherClick, copyToClipboard, isInAppBrowser } from '@/lib/utils';
 import { SaveButton } from './SaveButton';
 import { CopiedToast } from './CopiedToast';
+import { outboundTarget } from '@/lib/affiliate';
 
 const CATEGORY_COLORS: Record<string, string> = {
   domain:   'bg-violet-50 text-violet-700',
@@ -28,10 +29,8 @@ export function VoucherDetailCard({ voucher }: { voucher: Voucher }) {
   const [revealed, setRevealed] = useState(false);
   const expired = isExpired(voucher.expiresAt);
 
-  const targetUrl =
-    voucher.affiliateUrl && voucher.affiliateUrl !== '#'
-      ? voucher.affiliateUrl
-      : voucher.sourceUrl;
+  // Cùng hàm với VoucherCard + /api/go + cảnh báo admin (một nguồn sự thật)
+  const targetUrl = outboundTarget(voucher);
 
   // href KHÔNG trỏ thẳng affiliate: filter adblock (EasyList) ẩn cả element theo href,
   // VD ##[href^="https://www.cloudways.com/en/?id"] → nút "Nhận mã" biến mất với user

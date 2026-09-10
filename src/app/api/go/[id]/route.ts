@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
-import { dodgeBlockedAffiliateHost } from '@/lib/affiliate';
+import { dodgeBlockedAffiliateHost, outboundTarget } from '@/lib/affiliate';
 
 /**
  * GET /api/go/[id] — redirect sang link affiliate của voucher.
@@ -24,11 +24,8 @@ export async function GET(
     select: { affiliateUrl: true, sourceUrl: true },
   }).catch(() => null);
 
-  // Cùng thứ tự ưu tiên với VoucherCard: affiliate trước, link gốc sau
-  const target =
-    voucher?.affiliateUrl && voucher.affiliateUrl !== '#'
-      ? voucher.affiliateUrl
-      : voucher?.sourceUrl;
+  // Cùng điều kiện với VoucherCard + cảnh báo trong admin (một hàm dùng chung)
+  const target = voucher ? outboundTarget(voucher) : null;
 
   // Chỉ redirect http(s) hợp lệ; voucher không tồn tại / URL hỏng → về trang chủ
   let dest: URL | null = null;

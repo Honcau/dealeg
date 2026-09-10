@@ -7,6 +7,7 @@ import type { Voucher } from '@/types/voucher';
 import { SaveButton } from './SaveButton';
 import { CopiedToast } from './CopiedToast';
 import { isExpired, formatDate, formatCount, maskVoucherCode, trackVoucherClick, copyToClipboard, isInAppBrowser } from '@/lib/utils';
+import { outboundTarget } from '@/lib/affiliate';
 
 interface VoucherCardProps {
   voucher: Voucher;
@@ -35,10 +36,8 @@ export function VoucherCard({ voucher }: VoucherCardProps) {
   const expired = isExpired(voucher.expiresAt);
 
   // Link đích: ưu tiên affiliate, fallback link gốc provider
-  const targetUrl =
-    voucher.affiliateUrl && voucher.affiliateUrl !== '#'
-      ? voucher.affiliateUrl
-      : voucher.sourceUrl;
+  // Cùng hàm với /api/go + cảnh báo trong admin → badge "chưa có link" không thể lệch
+  const targetUrl = outboundTarget(voucher);
 
   // href KHÔNG trỏ thẳng affiliate: filter adblock (EasyList) ẩn cả element theo href,
   // VD ##[href^="https://www.cloudways.com/en/?id"] → nút "Nhận mã" biến mất với user

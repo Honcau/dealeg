@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { outboundTarget } from '@/lib/affiliate';
 
 const CAT_COLOR: Record<string,string> = {
   DOMAIN:   'bg-violet-100 text-violet-700',
@@ -19,6 +20,7 @@ interface Voucher {
   id: string; code: string; provider: string; category: string;
   discount: string; discountValue: number; isVerified: boolean;
   isActive: boolean; expiresAt: string | null; useCount: number;
+  affiliateUrl: string | null; sourceUrl: string | null;
 }
 
 export default function AdminVouchersPage() {
@@ -57,6 +59,8 @@ export default function AdminVouchersPage() {
     active:   vouchers.filter(v => v.isActive).length,
     verified: vouchers.filter(v => v.isVerified).length,
     expired:  vouchers.filter(v => v.expiresAt && new Date(v.expiresAt) < new Date()).length,
+    // Voucher không có link nào để dẫn ra ngoài → bấm Nhận mã chỉ copy mã, không ra tiền
+    noLink:   vouchers.filter(v => !outboundTarget(v)).length,
   };
 
   return (
@@ -67,6 +71,9 @@ export default function AdminVouchersPage() {
           <h1 className="text-xl font-bold text-gray-900">Vouchers</h1>
           <p className="text-sm text-gray-500 mt-0.5">
             {stats.total} tổng · {stats.active} active · {stats.verified} đã xác minh · {stats.expired} hết hạn
+            {stats.noLink > 0 && (
+              <span className="text-amber-600 font-semibold"> · {stats.noLink} chưa có link</span>
+            )}
           </p>
         </div>
         <Link href="/admin/vouchers/new"
@@ -120,6 +127,12 @@ export default function AdminVouchersPage() {
                           {v.isActive ? 'Active' : 'Off'}
                         </span>
                         {v.isVerified && <span className="text-xs px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">✓</span>}
+                        {!outboundTarget(v) && (
+                          <span title="Chưa có link affiliate lẫn link gốc — nút Nhận mã chỉ copy mã, không dẫn người dùng ra ngoài"
+                            className="text-xs px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 font-medium whitespace-nowrap">
+                            ⚠ chưa có link
+                          </span>
+                        )}
                       </div>
                     </td>
                     <td className="px-4 py-3 text-gray-500">{v.useCount.toLocaleString()}</td>

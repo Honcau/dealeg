@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { outboundTarget } from '@/lib/affiliate';
 
 const CATEGORIES = ['DOMAIN','HOSTING','VPS','VPN','SECURITY','EMAIL','CDN','SSL','AITOOL','OTHER'] as const;
 
@@ -83,6 +84,15 @@ export function VoucherForm({ initial, voucherId, onTranslated }: Props) {
       setError('Vui lòng điền các trường bắt buộc (*) — gồm ít nhất 1 danh mục');
       return;
     }
+
+    // Không có link affiliate LẪN link gốc → thẻ voucher render <button> trơ: bấm chỉ
+    // copy mã, không dẫn ai ra ngoài (không ra hoa hồng). Vẫn cho lưu, nhưng hỏi lại —
+    // trước đây lưu im lặng nên có voucher sống hàng tuần mà không ai biết là link chết.
+    if (!outboundTarget(form) && !confirm(
+      'Voucher này chưa có link affiliate lẫn link gốc.\n\n' +
+      'Nút "Nhận mã" sẽ chỉ copy mã, KHÔNG mở trang provider → không ghi nhận hoa hồng.\n\n' +
+      'Vẫn lưu?'
+    )) return;
     setLoading(true);
     setError('');
 
