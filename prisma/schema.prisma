@@ -35,24 +35,24 @@ model Voucher {
   code          String
   discount      String
   discountValue Float?
-  category      Category                  // danh mục chính = categories[0] (giữ cho query cũ)
-  categories    Category[] @default([])   // 1 voucher có thể thuộc nhiều danh mục
+  category      Category // danh mục chính = categories[0] (giữ cho query cũ)
+  categories    Category[] @default([]) // 1 voucher có thể thuộc nhiều danh mục
   provider      String
   affiliateUrl  String?
   expiresAt     DateTime?
-  isActive      Boolean   @default(true)
-  isVerified    Boolean   @default(false)
-  hideCode      Boolean   @default(false)   // deal độc quyền: ẩn 1 phần mã, lộ đủ khi bấm "Nhận mã"
-  successRate   Float     @default(0)
-  useCount      Int       @default(0)
+  isActive      Boolean    @default(true)
+  isVerified    Boolean    @default(false)
+  hideCode      Boolean    @default(false) // deal độc quyền: ẩn 1 phần mã, lộ đủ khi bấm "Nhận mã"
+  successRate   Float      @default(0)
+  useCount      Int        @default(0)
   sourceUrl     String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 
-  translations  VoucherTranslation[]
-  priceHistory  PriceHistory[]
-  saved         SavedVoucher[]
-  comments      Comment[]
+  translations VoucherTranslation[]
+  priceHistory PriceHistory[]
+  saved        SavedVoucher[]
+  comments     Comment[]
 
   @@unique([code, provider])
   @@index([category])
@@ -85,32 +85,32 @@ model PriceHistory {
 // ── Provider ──────────────────────────────────────────────────────────────────
 
 model Provider {
-  id              String      @id @default(cuid())
-  name            String      @unique
-  slug            String      @unique
+  id              String     @id @default(cuid())
+  name            String     @unique
+  slug            String     @unique
   website         String
   logo            String?
   description     String?
-  category        Category?          // danh mục chính (giữ lại tương thích; không bắt buộc)
-  categories      Category[]  @default([])  // 1 provider có thể thuộc nhiều danh mục
-  hasAffiliateApi Boolean     @default(false)
+  category        Category? // danh mục chính (giữ lại tương thích; không bắt buộc)
+  categories      Category[] @default([]) // 1 provider có thể thuộc nhiều danh mục
+  hasAffiliateApi Boolean    @default(false)
   affiliateId     String?
-  affiliateUrl    String?     // link affiliate mặc định → tự điền vào voucher khi chọn provider
-  isActive        Boolean     @default(true)
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt
+  affiliateUrl    String? // link affiliate mặc định → tự điền vào voucher khi chọn provider
+  isActive        Boolean    @default(true)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
 }
 
 // ── Auth (NextAuth + Prisma Adapter) ─────────────────────────────────────────
 
 model User {
-  id            String    @id @default(cuid())
+  id            String              @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?             @unique
   emailVerified DateTime?
   image         String?
   password      String?
-  language      String    @default("en")  // ngôn ngữ giao diện ưa thích
+  language      String              @default("en") // ngôn ngữ giao diện ưa thích
   accounts      Account[]
   sessions      Session[]
   comments      Comment[]
@@ -118,7 +118,7 @@ model User {
   saved         SavedVoucher[]
   submissions   VoucherSubmission[]
   alerts        VoucherAlert[]
-  createdAt     DateTime  @default(now())
+  createdAt     DateTime            @default(now())
 }
 
 model Account {
@@ -171,12 +171,12 @@ model Comment {
 }
 
 model Vote {
-  id        String  @id @default(cuid())
+  id        String   @id @default(cuid())
   commentId String
   userId    String
   value     Int
-  comment   Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
-  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comment   Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
 
   @@unique([commentId, userId])
@@ -195,17 +195,17 @@ model SavedVoucher {
 }
 
 model VoucherSubmission {
-  id          String         @id @default(cuid())
+  id          String           @id @default(cuid())
   code        String
   provider    String
   discount    String?
   description String?
   url         String?
-  status    SubmissionStatus @default(PENDING)
-  userId    String?
-  user      User?            @relation(fields: [userId], references: [id])
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @updatedAt
+  status      SubmissionStatus @default(PENDING)
+  userId      String?
+  user        User?            @relation(fields: [userId], references: [id])
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
 
   @@index([status])
 }
@@ -219,18 +219,17 @@ model VoucherAlert {
   @@unique([userId, category])
 }
 
-
 // ── Newsletter ───────────────────────────────────────────────────────────────
 
 model Subscriber {
-  id          String   @id @default(cuid())
-  email       String   @unique
-  locale      String   @default("vi")
-  isActive    Boolean  @default(true)
-  source      String?  // trang nào đăng ký (homepage, blog, coupon...)
-  frequency   String   @default("weekly")  // weekly | daily (preference center)
-  categories  String[] @default([])         // deal categories quan tâm
-  createdAt   DateTime @default(now())
+  id         String   @id @default(cuid())
+  email      String   @unique
+  locale     String   @default("vi")
+  isActive   Boolean  @default(true)
+  source     String? // trang nào đăng ký (homepage, blog, coupon...)
+  frequency  String   @default("weekly") // weekly | daily (preference center)
+  categories String[] @default([]) // deal categories quan tâm
+  createdAt  DateTime @default(now())
 
   @@index([isActive])
 }
@@ -244,15 +243,15 @@ enum ArticleStatus {
 }
 
 model Article {
-  id           String        @id @default(cuid())
-  slug         String        @unique
-  status       ArticleStatus @default(DRAFT)
-  category     String?
-  coverImage   String?
-  authorId     String?
-  publishedAt  DateTime?
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  status      ArticleStatus @default(DRAFT)
+  category    String?
+  coverImage  String?
+  authorId    String?
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 
   translations ArticleTranslation[]
 }
@@ -269,7 +268,7 @@ model ArticleTranslation {
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
 
-  article          Article   @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  article Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
 
   @@unique([articleId, locale])
   @@index([locale])
@@ -281,14 +280,14 @@ model ArticleTranslation {
 // GDPR: chatId là dữ liệu cá nhân → /stop tắt, xoá row là xoá sạch (cascade).
 model BotUser {
   id         Int        @id @default(autoincrement())
-  platform   String     @default("telegram")  // sau này: "line", "kakao"
-  chatId     String                            // Telegram chat/user id
+  platform   String     @default("telegram") // sau này: "line", "kakao"
+  chatId     String // Telegram chat/user id
   locale     String     @default("en")
-  categories String[]   @default([])           // Phase 2: lọc theo danh mục
-  frequency  String     @default("instant")    // Phase 2: instant | daily
-  quietStart Int?                              // Phase 2: giờ 0-23
+  categories String[]   @default([]) // Phase 2: lọc theo danh mục
+  frequency  String     @default("instant") // Phase 2: instant | daily
+  quietStart Int? // Phase 2: giờ 0-23
   quietEnd   Int?
-  source     String?                           // payload deep-link (attribution)
+  source     String? // payload deep-link (attribution)
   optInAt    DateTime   @default(now())
   isActive   Boolean    @default(true)
   createdAt  DateTime   @default(now())
@@ -304,8 +303,8 @@ model SentDeal {
   id        Int      @id @default(autoincrement())
   botUserId Int
   botUser   BotUser  @relation(fields: [botUserId], references: [id], onDelete: Cascade)
-  dealId    String                             // Voucher.id (cuid) — không phải Int
-  channel   String   @default("bot")           // bot | email | channel
+  dealId    String // Voucher.id (cuid) — không phải Int
+  channel   String   @default("bot") // bot | email | channel
   sentAt    DateTime @default(now())
 
   @@unique([botUserId, dealId, channel])
@@ -317,12 +316,45 @@ model SentDeal {
 // /v2/usage gần nhất (DeepL reset đầu kỳ → lần check sau tự thấy còn quota).
 model DeeplKey {
   id             String    @id @default(cuid())
-  label          String                          // tên gợi nhớ, VD "free-1"
-  key            String    @unique               // DeepL auth key (đuôi :fx = free)
+  label          String // tên gợi nhớ, VD "free-1"
+  key            String    @unique // DeepL auth key (đuôi :fx = free)
   isActive       Boolean   @default(true)
-  charCount      Int?                            // đã dùng (cache)
-  charLimit      Int?                            // hạn mức (cache)
+  charCount      Int? // đã dùng (cache)
+  charLimit      Int? // hạn mức (cache)
   usageCheckedAt DateTime?
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
+}
+
+/// Provider đang theo dõi trên diễn đàn (nguồn deal thô).
+/// `source` có sẵn từ đầu để cắm nguồn khác về sau mà không phải sửa model.
+model OfferSource {
+  id         String   @id @default(cuid())
+  source     String   @default("lowendtalk")
+  username   String // = dc:creator trong RSS
+  providerId String? // tùy chọn: nối với Provider đã có
+  note       String?
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+
+  @@unique([source, username])
+}
+
+/// Bài offer kéo về từ diễn đàn — DỮ LIỆU THÔ để người vận hành tự tạo voucher.
+/// postedAt = ngày TẠO thread (pubDate). Feed LET sắp theo hoạt động cuối nên thread
+/// cũ bị comment bump vẫn lọt vào; sắp theo postedAt mới đẩy bài thật sự mới lên đầu.
+model OfferPost {
+  id         String   @id @default(cuid())
+  source     String   @default("lowendtalk")
+  externalId String // guid feed → chống trùng khi chạy lại
+  author     String
+  title      String
+  url        String
+  body       String   @db.Text
+  postedAt   DateTime
+  status     String   @default("NEW") // NEW | DONE | IGNORED
+  fetchedAt  DateTime @default(now())
+
+  @@unique([source, externalId])
+  @@index([status, postedAt])
 }
