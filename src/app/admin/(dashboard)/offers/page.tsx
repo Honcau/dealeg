@@ -3,8 +3,11 @@
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 
-interface Post   { id: string; author: string; title: string; url: string; body: string; postedAt: string; fetchedAt: string; status: string }
-interface Source { id: string; username: string; note: string | null; isActive: boolean }
+interface Post     { id: string; author: string; title: string; url: string; body: string; postedAt: string; fetchedAt: string; status: string }
+interface Source   { id: string; username: string; note: string | null; providerId: string | null; isActive: boolean }
+interface Provider { id: string; name: string }
+
+const EMPTY_FORM = { username: '', note: '', providerId: '' };
 
 const DAY = 86_400_000;
 const STATUSES = [['NEW', 'Chưa xử lý'], ['DONE', 'Đã xử lý'], ['IGNORED', 'Bỏ qua'], ['ALL', 'Tất cả']] as const;
@@ -20,8 +23,11 @@ function ago(iso: string): string {
 export default function AdminOffersPage() {
   const [posts, setPosts]     = useState<Post[]>([]);
   const [sources, setSources] = useState<Source[]>([]);
+  const [counts, setCounts]   = useState<Record<string, number>>({});
+  const [providers, setProviders] = useState<Provider[]>([]);
   const [status, setStatus]   = useState<string>('NEW');
-  const [username, setUsername] = useState('');
+  const [form, setForm]       = useState({ ...EMPTY_FORM });
+  const [editingId, setEditingId] = useState<string | null>(null);
   const [open, setOpen]       = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
   const [busy, setBusy]       = useState(false);
@@ -30,7 +36,10 @@ export default function AdminOffersPage() {
   const load = useCallback(async (st = status) => {
     const r = await fetch(`/api/admin/offers?status=${st}`);
     const d = await r.json();
-    if (r.ok) { setPosts(d.posts ?? []); setSources(d.sources ?? []); }
+    if (r.ok) {
+      setPosts(d.posts ?? []); setSources(d.sources ?? []);
+      setCounts(d.counts ?? {}); setProviders(d.providers ?? []);
+    }
     setLoading(false);
   }, [status]);
 
@@ -47,25 +56,53 @@ export default function AdminOffersPage() {
     if (r.ok) load(status);
   }
 
-  async function addSource() {
-    const u = username.trim();
-    if (!u) return;
+  const setF = (k: keyof typeof EMPTY_FORM, v: string) => setForm(p => ({ ...p, [k]: v }));
+  function resetForm() { setForm({ ...EMPTY_FORM }); setEditingId(null); }
+  function startEdit(s: Source) {
+    setForm({ username: s.username, note: s.note ?? '', providerId: s.providerId ?? '' });
+    setEditingId(s.id);
+    setMsg('');
+  }
+
+  /** Thêm mới (POST) hoặc cập nhật (PATCH) tuỳ đang sửa hay không. */
+  async function saveSource() {
+    const username = form.username.trim();
+    if (!username) return;
     setBusy(true);
+
+    const body = editingId
+      ? { id: editingId, username, note: form.note.trim() || null, providerId: form.providerId || null }
+      : { username, note: form.note.trim() || undefined };
+
     const r = await fetch('/api/admin/offers/sources', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: u }),
+      method: editingId ? 'PATCH' : 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
     });
+    const d = await r.json().catch(() => ({}));
     setBusy(false);
-    if (r.ok) { setUsername(''); setMsg(`✅ Đang theo dõi "${u}"`); load(status); }
-    else setMsg('✗ Không thêm được');
+
+    if (r.ok) { setMsg(editingId ? `✅ Đã cập nhật "${username}"` : `✅ Đang theo dõi "${username}"`); resetForm(); load(status); }
+    else setMsg('✗ ' + (typeof d.error === 'string' ? d.error : 'Không lưu được'));
+  }
+
+  /** Ẩn/hiện: tạm dừng theo dõi mà KHÔNG mất các bài đã kéo về. */
+  async function toggleActive(s: Source) {
+    setBusy(true);
+    await fetch('/api/admin/offers/sources', {
+      method: 'PATCH', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: s.id, isActive: !s.isActive }),
+    });
+    setBusy(false); load(status);
   }
 
   async function removeSource(s: Source) {
-    if (!confirm(`Bỏ theo dõi "${s.username}"?\nCác bài đã kéo về vẫn giữ nguyên.`)) return;
+    if (!confirm(`Xoá nguồn "${s.username}"?\nCác bài đã kéo về vẫn giữ nguyên. Muốn tạm dừng thì dùng "Ẩn".`)) return;
     await fetch('/api/admin/offers/sources', {
       method: 'DELETE', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: s.id }),
     });
+    if (editingId === s.id) resetForm();
     load(status);
   }
 
@@ -91,49 +128,105 @@ export default function AdminOffersPage() {
         </p>
       </div>
 
-      {/* Provider theo dõi + nút kéo feed */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-        <div className="flex items-start justify-between gap-4 flex-wrap">
-          <div className="flex-1 min-w-[280px]">
-            <label className="block text-xs font-medium text-gray-600 mb-1">
-              Theo dõi username trên LowEndTalk
-            </label>
-            <div className="flex gap-2">
-              <input value={username} onChange={e => setUsername(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && addSource()}
-                placeholder="VD: DediRock" 
-                className="flex-1 px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-              <button onClick={addSource} disabled={busy || !username.trim()}
-                className="bg-gray-800 hover:bg-gray-900 disabled:opacity-40 text-white text-sm font-semibold px-4 py-2 rounded-lg">
-                Theo dõi
-              </button>
-            </div>
-            <p className="text-xs text-gray-400 mt-1">
-              Đúng tên tác giả hiện trên bài LET (phân biệt hoa thường không quan trọng).
-            </p>
-          </div>
-          <button onClick={fetchNow} disabled={busy || sources.length === 0}
-            className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 text-white text-sm font-semibold px-5 py-2 rounded-lg mt-5">
-            {busy ? 'Đang kéo...' : '⟳ Lấy bài mới'}
+      {/* Nguồn theo dõi: form thêm/sửa + bảng quản lý */}
+      <div className={`bg-white rounded-xl border p-6 mb-6 ${editingId ? 'border-indigo-300 ring-1 ring-indigo-100' : 'border-gray-200'}`}>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="font-semibold text-gray-900">
+            {editingId ? 'Sửa nguồn theo dõi' : 'Nguồn theo dõi trên LowEndTalk'}
+          </h2>
+          <button onClick={fetchNow} disabled={busy || sources.filter(s => s.isActive).length === 0}
+            className="bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 text-white text-sm font-semibold px-5 py-2 rounded-lg">
+            {busy ? 'Đang xử lý...' : '⟳ Lấy bài mới'}
           </button>
         </div>
 
-        {sources.length > 0 && (
-          <div className="flex gap-2 flex-wrap mt-4">
-            {sources.map(s => (
-              <span key={s.id} className="inline-flex items-center gap-1.5 bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full">
-                {s.username}
-                <button onClick={() => removeSource(s)} className="text-gray-400 hover:text-red-500 font-bold">×</button>
-              </span>
-            ))}
+        <div className="grid md:grid-cols-3 gap-3">
+          <div>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Username trên LET *</label>
+            <input value={form.username} onChange={e => setF('username', e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && saveSource()}
+              placeholder="VD: DediRock"
+              className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-gray-600 mb-1">Ghi chú</label>
+            <input value={form.note} onChange={e => setF('note', e.target.value)}
+              placeholder="VD: VPS Mỹ, hay có coupon"
+              className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-gray-600 mb-1">
+              Provider trong dealeg <span className="text-gray-400">(tùy chọn)</span>
+            </label>
+            <select value={form.providerId} onChange={e => setF('providerId', e.target.value)}
+              className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              <option value="">— chưa nối —</option>
+              {providers.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+            </select>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3 mt-4">
+          <button onClick={saveSource} disabled={busy || !form.username.trim()}
+            className="bg-gray-800 hover:bg-gray-900 disabled:opacity-40 text-white text-sm font-semibold px-4 py-2 rounded-lg">
+            {editingId ? '💾 Cập nhật' : '➕ Theo dõi'}
+          </button>
+          {editingId && (
+            <button onClick={resetForm} className="text-sm text-gray-500 hover:underline">Huỷ</button>
+          )}
+          {msg && <span className="text-sm font-medium text-gray-700">{msg}</span>}
+        </div>
+
+        {sources.length === 0 ? (
+          <p className="text-sm text-amber-600 mt-5">
+            Chưa theo dõi nguồn nào — thêm ít nhất 1 username rồi mới kéo được bài.
+          </p>
+        ) : (
+          <div className="mt-5 overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="text-left text-xs font-semibold text-gray-500 uppercase border-b border-gray-200">
+                <tr>
+                  {['Username', 'Ghi chú', 'Provider', 'Trạng thái', 'Bài đã kéo', ''].map(h => (
+                    <th key={h} className="px-3 py-2">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {sources.map(s => {
+                  const n = counts[s.username.toLowerCase()] ?? 0;
+                  return (
+                    <tr key={s.id} className={`border-b border-gray-100 ${editingId === s.id ? 'bg-indigo-50/50' : 'hover:bg-gray-50'}`}>
+                      <td className="px-3 py-2.5 font-medium text-gray-900">{s.username}</td>
+                      <td className="px-3 py-2.5 text-gray-500">{s.note || <span className="text-gray-300">—</span>}</td>
+                      <td className="px-3 py-2.5 text-gray-600">
+                        {providers.find(p => p.id === s.providerId)?.name ?? <span className="text-gray-300">chưa nối</span>}
+                      </td>
+                      <td className="px-3 py-2.5">
+                        <span className={`text-xs px-1.5 py-0.5 rounded ${s.isActive ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
+                          {s.isActive ? 'Đang theo dõi' : 'Đã ẩn'}
+                        </span>
+                      </td>
+                      <td className="px-3 py-2.5 text-gray-500 tabular-nums">{n}</td>
+                      <td className="px-3 py-2.5">
+                        <div className="flex gap-3 justify-end">
+                          <button onClick={() => startEdit(s)} className="text-xs text-indigo-600 hover:underline font-medium">Sửa</button>
+                          <button onClick={() => toggleActive(s)} className="text-xs text-amber-600 hover:underline font-medium">
+                            {s.isActive ? 'Ẩn' : 'Hiện'}
+                          </button>
+                          <button onClick={() => removeSource(s)} className="text-xs text-red-500 hover:underline font-medium">Xoá</button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <p className="text-xs text-gray-400 mt-2">
+              Đổi username thì các bài đã kéo về vẫn giữ tên tác giả cũ (là lịch sử đúng của feed),
+              nên cột &quot;Bài đã kéo&quot; sẽ về 0 cho tới lần kéo tiếp theo. &quot;Ẩn&quot; để tạm dừng mà không mất bài.
+            </p>
           </div>
         )}
-        {sources.length === 0 && (
-          <p className="text-sm text-amber-600 mt-4">
-            Chưa theo dõi provider nào — thêm ít nhất 1 username rồi mới kéo được bài.
-          </p>
-        )}
-        {msg && <p className="text-sm font-medium text-gray-700 mt-3">{msg}</p>}
       </div>
 
       {/* Bộ lọc trạng thái */}

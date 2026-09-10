@@ -21,16 +21,24 @@ export async function GET(req: NextRequest) {
   if (!checkAuth(req)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const status = req.nextUrl.searchParams.get('status') ?? 'NEW';
-  const [posts, sources] = await Promise.all([
+  const [posts, sources, byAuthor, providers] = await Promise.all([
     prisma.offerPost.findMany({
       where:   status === 'ALL' ? {} : { status },
       orderBy: { postedAt: 'desc' },
       take:    300,
     }),
     prisma.offerSource.findMany({ orderBy: { username: 'asc' } }),
+    // Đếm bài đã kéo về theo tác giả → thấy nguồn nào thật sự ra deal, nguồn nào chỉ gây nhiễu
+    prisma.offerPost.groupBy({ by: ['author'], _count: { _all: true } }),
+    prisma.provider.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
   ]);
 
-  return NextResponse.json({ posts, sources });
+  // Khớp không phân biệt hoa thường: tác giả trong feed không phải lúc nào cũng đúng
+  // hoa thường như lúc người vận hành gõ vào danh sách theo dõi.
+  const counts: Record<string, number> = {};
+  for (const r of byAuthor) counts[r.author.toLowerCase()] = r._count._all;
+
+  return NextResponse.json({ posts, sources, counts, providers });
 }
 
 const Patch = z.object({
