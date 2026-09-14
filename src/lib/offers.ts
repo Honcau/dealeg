@@ -18,6 +18,25 @@ export const LET_OFFERS_FEED = 'https://lowendtalk.com/categories/offers/feed.rs
  * LowEndBox — feed GỘP đúng các mục offer (chính nav của LEB dùng chuỗi slug này).
  * Không lấy /feed/ chung: feed chung có ~60% là Editorial & News, feed này chỉ lọt ~1/20.
  */
+/**
+ * LowEndSpirit — diễn đàn Vanilla y hệt LET (tác giả CHÍNH LÀ provider), category Offers.
+ * Cùng bệnh với LET: feed xếp theo hoạt động cuối nên thread cũ bị bump vẫn lọt vào.
+ */
+export const LES_OFFERS_FEED = 'https://lowendspirit.com/categories/offers/feed.rss';
+
+/**
+ * HostingDiscussion (XenForo) — CHỈ các box offer, không lấy feed toàn forum:
+ * feed toàn forum lẫn ~30% thảo luận chung ("Hello Everyone from the Netherlands!").
+ * Cố ý bỏ reseller-hosting-offers.199 và other-hosting-offers.202: ít hợp tệp dealeg
+ * và hay trùng nội dung 4 box dưới. Mỗi box trả 20 bài.
+ */
+export const HD_OFFER_FEEDS = [
+  'vps-hosting-offers.204',
+  'dedicated-hosting-offers.200',
+  'shared-hosting-offers.203',
+  'cloud-hosting-offers.196',
+].map(f => `https://hostingdiscussion.com/forums/${f}/index.rss`);
+
 export const LEB_OFFERS_FEED =
   'https://lowendbox.com/category/virtual-servers,dedicated-servers,reseller-hosting,' +
   'shared-hosting,special-offers,seedbox-offers,community-offers,vpn/feed/';
@@ -133,15 +152,27 @@ export function makeFollowMatcher(names: string[]) {
   };
 }
 
-/** Kéo 1 feed → lưu bài chưa có. `filterByAuthor` chỉ dùng cho diễn đàn (LET). */
-async function syncFeed(source: string, url: string, filterByAuthor: boolean): Promise<SyncResult> {
-  const res = await fetch(url, {
-    headers: { 'User-Agent': 'dealeg/1.0 (+https://dealeg.com)' },
-    cache: 'no-store',
-  });
-  if (!res.ok) throw new Error(`Feed ${source} trả HTTP ${res.status}`);
-
-  const all = parseOfferFeed(await res.text());
+/**
+ * Kéo 1 nguồn (có thể gồm NHIỀU feed, như HostingDiscussion tách theo box) → lưu bài chưa có.
+ * `filterByAuthor` chỉ bật cho diễn đàn mà tác giả chính là provider (LET, LES).
+ */
+async function syncFeed(source: string, urls: readonly string[], filterByAuthor: boolean): Promise<SyncResult> {
+  const seen = new Set<string>();
+  const all: ParsedOffer[] = [];
+  for (const [n, url] of urls.entries()) {
+    // Nhiều feed cùng một host (HD tách 4 box) → nghỉ giữa các lần gọi cho lịch sự
+    if (n > 0) await new Promise(r => setTimeout(r, 400));
+    const res = await fetch(url, {
+      headers: { 'User-Agent': 'dealeg/1.0 (+https://dealeg.com)' },
+      cache: 'no-store',
+    });
+    if (!res.ok) throw new Error(`Feed ${source} trả HTTP ${res.status}`);
+    // Một bài có thể nằm ở nhiều box → khử trùng ngay trong lần kéo
+    for (const o of parseOfferFeed(await res.text())) {
+      if (seen.has(o.externalId)) continue;
+      seen.add(o.externalId); all.push(o);
+    }
+  }
 
   let keep = all;
   if (filterByAuthor) {
@@ -163,18 +194,23 @@ async function syncFeed(source: string, url: string, filterByAuthor: boolean): P
   return { fetched: all.length, matched: keep.length, created, skipped };
 }
 
-/** LET: diễn đàn → chỉ lấy bài của provider đang theo dõi (tác giả CHÍNH LÀ provider). */
-export const syncLetOffers = () => syncFeed('lowendtalk', LET_OFFERS_FEED, true);
+/**
+ * BẢNG ĐĂNG KÝ NGUỒN — thêm nguồn mới chỉ cần thêm một dòng ở đây.
+ * `label` được API trả cho giao diện, nên thêm nguồn KHÔNG phải sửa trang admin.
+ */
+export const OFFER_SOURCES = [
+  { key: 'lowendtalk',        label: 'LET', urls: [LET_OFFERS_FEED], filterByAuthor: true  },
+  { key: 'lowendspirit',      label: 'LES', urls: [LES_OFFERS_FEED], filterByAuthor: true  },
+  { key: 'lowendbox',         label: 'LEB', urls: [LEB_OFFERS_FEED], filterByAuthor: false },
+  { key: 'hostingdiscussion', label: 'HD',  urls: HD_OFFER_FEEDS,    filterByAuthor: false },
+] as const;
 
-/** LEB: blog đã được biên tập viên chọn lọc → lấy hết, việc đánh dấu để makeFollowMatcher lo. */
-export const syncLebOffers = () => syncFeed('lowendbox', LEB_OFFERS_FEED, false);
-
-/** Kéo cả hai nguồn. Một nguồn lỗi KHÔNG làm hỏng nguồn kia. */
+/** Kéo TẤT CẢ nguồn. Một nguồn lỗi KHÔNG làm hỏng nguồn khác. */
 export async function syncAllOffers(): Promise<Record<string, SyncResult | { error: string }>> {
   const out: Record<string, SyncResult | { error: string }> = {};
-  for (const [key, fn] of [['lowendtalk', syncLetOffers], ['lowendbox', syncLebOffers]] as const) {
-    try { out[key] = await fn(); }
-    catch (e) { out[key] = { error: e instanceof Error ? e.message : String(e) }; }
+  for (const src of OFFER_SOURCES) {
+    try { out[src.key] = await syncFeed(src.key, src.urls, src.filterByAuthor); }
+    catch (e) { out[src.key] = { error: e instanceof Error ? e.message : String(e) }; }
   }
   return out;
 }

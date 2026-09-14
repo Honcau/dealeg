@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z }      from 'zod';
 import { prisma } from '@/lib/db';
-import { makeFollowMatcher } from '@/lib/offers';
+import { makeFollowMatcher, OFFER_SOURCES } from '@/lib/offers';
 import { getAdminToken, COOKIE_NAME } from '@/lib/admin-auth';
 
 function checkAuth(req: NextRequest) {
@@ -54,7 +54,11 @@ export async function GET(req: NextRequest) {
     matched: byName.get(p.author.trim().toLowerCase()) ? p.author : matcher(p.title, p.tags),
   }));
 
-  return NextResponse.json({ posts: withMatch, sources, counts, providers });
+  return NextResponse.json({
+    posts: withMatch, sources, counts, providers,
+    // Giao diện dựng nhãn + bộ lọc nguồn từ đây → thêm nguồn mới không phải sửa trang admin
+    sourceMeta: OFFER_SOURCES.map(s => ({ key: s.key, label: s.label })),
+  });
 }
 
 const Patch = z.object({

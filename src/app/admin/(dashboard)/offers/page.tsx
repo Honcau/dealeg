@@ -10,10 +10,16 @@ interface Provider { id: string; name: string }
 const EMPTY_FORM = { username: '', note: '', providerId: '' };
 
 const DAY = 86_400_000;
-const SOURCE_UI: Record<string, { label: string; cls: string }> = {
-  lowendtalk: { label: 'LET', cls: 'bg-purple-100 text-purple-700' },
-  lowendbox:  { label: 'LEB', cls: 'bg-teal-100 text-teal-700' },
+interface SourceMeta { key: string; label: string }
+
+// Màu theo nguồn; nguồn lạ vẫn hiện được nhờ fallback xám.
+const SOURCE_CLS: Record<string, string> = {
+  lowendtalk:        'bg-purple-100 text-purple-700',
+  lowendspirit:      'bg-sky-100 text-sky-700',
+  lowendbox:         'bg-teal-100 text-teal-700',
+  hostingdiscussion: 'bg-orange-100 text-orange-700',
 };
+const srcCls = (k: string) => SOURCE_CLS[k] ?? 'bg-gray-100 text-gray-600';
 
 const STATUSES = [['NEW', 'Chưa xử lý'], ['DONE', 'Đã xử lý'], ['IGNORED', 'Bỏ qua'], ['ALL', 'Tất cả']] as const;
 
@@ -32,6 +38,8 @@ export default function AdminOffersPage() {
   const [providers, setProviders] = useState<Provider[]>([]);
   const [status, setStatus]   = useState<string>('NEW');
   const [srcFilter, setSrcFilter] = useState<string>('ALL');
+  const [onlyStarred, setOnlyStarred] = useState(false);
+  const [sourceMeta, setSourceMeta] = useState<SourceMeta[]>([]);
   const [form, setForm]       = useState({ ...EMPTY_FORM });
   const [editingId, setEditingId] = useState<string | null>(null);
   const [open, setOpen]       = useState<Set<string>>(new Set());
@@ -45,6 +53,7 @@ export default function AdminOffersPage() {
     if (r.ok) {
       setPosts(d.posts ?? []); setSources(d.sources ?? []);
       setCounts(d.counts ?? {}); setProviders(d.providers ?? []);
+      setSourceMeta(d.sourceMeta ?? []);
     }
     setLoading(false);
   }, [status]);
@@ -60,7 +69,7 @@ export default function AdminOffersPage() {
     if (!r.ok) { setMsg(`✗ ${d.error ?? 'Lỗi kéo feed'}`); return; }
     // Một nguồn hỏng không làm hỏng nguồn kia → báo riêng từng nguồn
     setMsg(Object.entries(d.results ?? {}).map(([src, v]) => {
-      const name = SOURCE_UI[src]?.label ?? src;
+      const name = sourceMeta.find(m => m.key === src)?.label ?? src;
       const x = v as { error?: string; fetched?: number; matched?: number; created?: number; skipped?: number };
       return x.error ? `✗ ${name}: ${x.error}` : `${name}: feed ${x.fetched} · lấy ${x.matched} · mới ${x.created}`;
     }).join('  |  '));
@@ -130,7 +139,9 @@ export default function AdminOffersPage() {
 
   if (loading) return <div className="text-center py-16 text-gray-400">Đang tải...</div>;
 
-  const shown = srcFilter === 'ALL' ? posts : posts.filter(p => p.source === srcFilter);
+  const shown = posts
+    .filter(p => srcFilter === 'ALL' || p.source === srcFilter)
+    .filter(p => !onlyStarred || p.matched);
 
   return (
     <div>
@@ -252,13 +263,18 @@ export default function AdminOffersPage() {
           </button>
         ))}
         <span className="text-gray-300 mx-1">|</span>
-        {[['ALL', 'Mọi nguồn'], ['lowendtalk', 'LET'], ['lowendbox', 'LEB']].map(([v, label]) => (
+        {[{ key: 'ALL', label: 'Mọi nguồn' }, ...sourceMeta].map(({ key: v, label }) => (
           <button key={v} onClick={() => setSrcFilter(v)}
             className={`text-sm px-3 py-1.5 rounded-lg font-medium transition-colors ${
               srcFilter === v ? 'bg-gray-800 text-white' : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'}`}>
             {label}
           </button>
         ))}
+        <label className="flex items-center gap-1.5 text-sm text-gray-600 ml-1 cursor-pointer select-none">
+          <input type="checkbox" checked={onlyStarred} onChange={e => setOnlyStarred(e.target.checked)}
+            className="w-4 h-4 accent-indigo-600" />
+          chỉ bài có ★
+        </label>
         <span className="text-sm text-gray-400 self-center ml-1">{shown.length} bài</span>
       </div>
 
@@ -281,8 +297,8 @@ export default function AdminOffersPage() {
                     {p.title}
                   </a>
                   <div className="flex items-center gap-2 mt-1 flex-wrap text-xs">
-                    <span className={`px-1.5 py-0.5 rounded font-semibold ${SOURCE_UI[p.source]?.cls ?? 'bg-gray-100 text-gray-600'}`}>
-                      {SOURCE_UI[p.source]?.label ?? p.source}
+                    <span className={`px-1.5 py-0.5 rounded font-semibold ${srcCls(p.source)}`}>
+                      {sourceMeta.find(m => m.key === p.source)?.label ?? p.source}
                     </span>
                     {p.matched && (
                       <span title="Bài này nhắc tới provider bạn đang theo dõi"
