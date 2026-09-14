@@ -351,6 +351,7 @@ model OfferPost {
   title      String
   url        String
   body       String   @db.Text
+  tags       String[] @default([])          // category/tag của feed → dò tên provider
   postedAt   DateTime
   status     String   @default("NEW") // NEW | DONE | IGNORED
   fetchedAt  DateTime @default(now())

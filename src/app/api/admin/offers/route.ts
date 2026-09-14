@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z }      from 'zod';
 import { prisma } from '@/lib/db';
+import { makeFollowMatcher } from '@/lib/offers';
 import { getAdminToken, COOKIE_NAME } from '@/lib/admin-auth';
 
 function checkAuth(req: NextRequest) {
@@ -28,17 +29,32 @@ export async function GET(req: NextRequest) {
       take:    300,
     }),
     prisma.offerSource.findMany({ orderBy: { username: 'asc' } }),
-    // Đếm bài đã kéo về theo tác giả → thấy nguồn nào thật sự ra deal, nguồn nào chỉ gây nhiễu
-    prisma.offerPost.groupBy({ by: ['author'], _count: { _all: true } }),
+    // Đếm bài đã kéo về cho từng nguồn theo dõi (xem bên dưới vì sao không groupBy được)
+    prisma.offerPost.findMany({ select: { author: true, title: true, tags: true } }),
     prisma.provider.findMany({ select: { id: true, name: true }, orderBy: { name: 'asc' } }),
   ]);
 
-  // Khớp không phân biệt hoa thường: tác giả trong feed không phải lúc nào cũng đúng
-  // hoa thường như lúc người vận hành gõ vào danh sách theo dõi.
+  // KHÔNG groupBy theo author được: trên LowEndBox tác giả luôn là biên tập viên LEB,
+  // tên provider nằm trong tiêu đề/tag. Nên đếm bằng: tác giả trùng (LET) HOẶC tên khớp
+  // tiêu đề/tag (LEB) — dùng chính hàm mà giao diện dùng để gắn nhãn ★, hai chỗ không lệch.
+  const names   = sources.map(s => s.username);
+  const byName  = new Map(names.map(n => [n.trim().toLowerCase(), n.toLowerCase()]));
+  const matcher = makeFollowMatcher(names);
   const counts: Record<string, number> = {};
-  for (const r of byAuthor) counts[r.author.toLowerCase()] = r._count._all;
+  for (const p of byAuthor) {
+    const hit = byName.get(p.author.trim().toLowerCase()) ?? matcher(p.title, p.tags)?.toLowerCase();
+    if (hit) counts[hit] = (counts[hit] ?? 0) + 1;
+  }
 
-  return NextResponse.json({ posts, sources, counts, providers });
+  // Gắn sẵn tên provider khớp cho từng bài ngay tại server. Làm ở đây chứ không ở client
+  // vì lib/offers.ts có import Prisma — kéo vào bundle trình duyệt là hỏng build; và làm
+  // một chỗ thì nhãn ★ với ô đếm chắc chắn dùng chung một phép tính.
+  const withMatch = posts.map(p => ({
+    ...p,
+    matched: byName.get(p.author.trim().toLowerCase()) ? p.author : matcher(p.title, p.tags),
+  }));
+
+  return NextResponse.json({ posts: withMatch, sources, counts, providers });
 }
 
 const Patch = z.object({

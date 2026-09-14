@@ -3,13 +3,18 @@
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 
-interface Post     { id: string; author: string; title: string; url: string; body: string; postedAt: string; fetchedAt: string; status: string }
+interface Post     { id: string; source: string; author: string; title: string; url: string; body: string; tags: string[]; postedAt: string; fetchedAt: string; status: string; matched: string | null }
 interface Source   { id: string; username: string; note: string | null; providerId: string | null; isActive: boolean }
 interface Provider { id: string; name: string }
 
 const EMPTY_FORM = { username: '', note: '', providerId: '' };
 
 const DAY = 86_400_000;
+const SOURCE_UI: Record<string, { label: string; cls: string }> = {
+  lowendtalk: { label: 'LET', cls: 'bg-purple-100 text-purple-700' },
+  lowendbox:  { label: 'LEB', cls: 'bg-teal-100 text-teal-700' },
+};
+
 const STATUSES = [['NEW', 'Chưa xử lý'], ['DONE', 'Đã xử lý'], ['IGNORED', 'Bỏ qua'], ['ALL', 'Tất cả']] as const;
 
 function ago(iso: string): string {
@@ -26,6 +31,7 @@ export default function AdminOffersPage() {
   const [counts, setCounts]   = useState<Record<string, number>>({});
   const [providers, setProviders] = useState<Provider[]>([]);
   const [status, setStatus]   = useState<string>('NEW');
+  const [srcFilter, setSrcFilter] = useState<string>('ALL');
   const [form, setForm]       = useState({ ...EMPTY_FORM });
   const [editingId, setEditingId] = useState<string | null>(null);
   const [open, setOpen]       = useState<Set<string>>(new Set());
@@ -46,14 +52,19 @@ export default function AdminOffersPage() {
   useEffect(() => { load(status); }, [load, status]);
 
   async function fetchNow() {
-    setBusy(true); setMsg('Đang kéo feed LowEndTalk...');
+    setBusy(true); setMsg('Đang kéo feed LowEndTalk + LowEndBox...');
     const r = await fetch('/api/admin/offers/fetch', { method: 'POST' });
     const d = await r.json();
     setBusy(false);
-    setMsg(r.ok
-      ? `✅ Feed ${d.fetched} bài · khớp provider theo dõi ${d.matched} · mới ${d.created} · đã có ${d.skipped}`
-      : `✗ ${d.error ?? 'Lỗi kéo feed'}`);
-    if (r.ok) load(status);
+
+    if (!r.ok) { setMsg(`✗ ${d.error ?? 'Lỗi kéo feed'}`); return; }
+    // Một nguồn hỏng không làm hỏng nguồn kia → báo riêng từng nguồn
+    setMsg(Object.entries(d.results ?? {}).map(([src, v]) => {
+      const name = SOURCE_UI[src]?.label ?? src;
+      const x = v as { error?: string; fetched?: number; matched?: number; created?: number; skipped?: number };
+      return x.error ? `✗ ${name}: ${x.error}` : `${name}: feed ${x.fetched} · lấy ${x.matched} · mới ${x.created}`;
+    }).join('  |  '));
+    load(status);
   }
 
   const setF = (k: keyof typeof EMPTY_FORM, v: string) => setForm(p => ({ ...p, [k]: v }));
@@ -118,6 +129,8 @@ export default function AdminOffersPage() {
     setOpen(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
 
   if (loading) return <div className="text-center py-16 text-gray-400">Đang tải...</div>;
+
+  const shown = srcFilter === 'ALL' ? posts : posts.filter(p => p.source === srcFilter);
 
   return (
     <div>
@@ -229,8 +242,8 @@ export default function AdminOffersPage() {
         )}
       </div>
 
-      {/* Bộ lọc trạng thái */}
-      <div className="flex gap-2 mb-4">
+      {/* Bộ lọc trạng thái + nguồn */}
+      <div className="flex gap-2 mb-4 flex-wrap items-center">
         {STATUSES.map(([v, label]) => (
           <button key={v} onClick={() => { setStatus(v); setLoading(true); }}
             className={`text-sm px-3 py-1.5 rounded-lg font-medium transition-colors ${
@@ -238,17 +251,25 @@ export default function AdminOffersPage() {
             {label}
           </button>
         ))}
-        <span className="text-sm text-gray-400 self-center ml-1">{posts.length} bài</span>
+        <span className="text-gray-300 mx-1">|</span>
+        {[['ALL', 'Mọi nguồn'], ['lowendtalk', 'LET'], ['lowendbox', 'LEB']].map(([v, label]) => (
+          <button key={v} onClick={() => setSrcFilter(v)}
+            className={`text-sm px-3 py-1.5 rounded-lg font-medium transition-colors ${
+              srcFilter === v ? 'bg-gray-800 text-white' : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'}`}>
+            {label}
+          </button>
+        ))}
+        <span className="text-sm text-gray-400 self-center ml-1">{shown.length} bài</span>
       </div>
 
       {/* Danh sách bài — server đã sắp theo ngày TẠO giảm dần */}
       <div className="space-y-3">
-        {posts.length === 0 && (
+        {shown.length === 0 && (
           <div className="bg-white rounded-xl border border-gray-200 py-12 text-center text-gray-400">
             Không có bài nào
           </div>
         )}
-        {posts.map(p => {
+        {shown.map(p => {
           const stale = Date.now() - new Date(p.postedAt).getTime() > 30 * DAY;
           const isOpen = open.has(p.id);
           return (
@@ -260,6 +281,15 @@ export default function AdminOffersPage() {
                     {p.title}
                   </a>
                   <div className="flex items-center gap-2 mt-1 flex-wrap text-xs">
+                    <span className={`px-1.5 py-0.5 rounded font-semibold ${SOURCE_UI[p.source]?.cls ?? 'bg-gray-100 text-gray-600'}`}>
+                      {SOURCE_UI[p.source]?.label ?? p.source}
+                    </span>
+                    {p.matched && (
+                      <span title="Bài này nhắc tới provider bạn đang theo dõi"
+                        className="px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-700 font-semibold">
+                        ★ {p.matched}
+                      </span>
+                    )}
                     <span className="font-medium text-gray-700">{p.author}</span>
                     <span className="text-gray-400">· đăng {ago(p.postedAt)}</span>
                     {stale && (

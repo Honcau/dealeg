@@ -14,12 +14,21 @@ import { prisma } from '@/lib/db';
 
 export const LET_OFFERS_FEED = 'https://lowendtalk.com/categories/offers/feed.rss';
 
+/**
+ * LowEndBox — feed GỘP đúng các mục offer (chính nav của LEB dùng chuỗi slug này).
+ * Không lấy /feed/ chung: feed chung có ~60% là Editorial & News, feed này chỉ lọt ~1/20.
+ */
+export const LEB_OFFERS_FEED =
+  'https://lowendbox.com/category/virtual-servers,dedicated-servers,reseller-hosting,' +
+  'shared-hosting,special-offers,seedbox-offers,community-offers,vpn/feed/';
+
 export interface ParsedOffer {
   externalId: string;
   author:     string;
   title:      string;
   url:        string;
   body:       string;
+  tags:       string[];
   postedAt:   Date;
 }
 
@@ -77,12 +86,20 @@ export function parseOfferFeed(xml: string): ParsedOffer[] {
     if (!url || !externalId) continue;
 
     const when = new Date(tag(item, 'pubDate'));
+    // LEB để toàn văn ở content:encoded (description chỉ là trích đoạn ~390 ký tự);
+    // LET không có content:encoded nên rơi về description — một hàm chạy đúng cả hai.
+    const rawBody = tag(item, 'content:encoded') || tag(item, 'description');
+    const tags = [...item.matchAll(/<category[^>]*>([\s\S]*?)<\/category>/gi)]
+      .map(m => decodeEntities(m[1].replace(/^<!\[CDATA\[|\]\]>$/g, '').trim()))
+      .filter(Boolean);
+
     out.push({
       externalId,
       author:   decodeEntities(tag(item, 'dc:creator') || tag(item, 'author')),
       title:    decodeEntities(tag(item, 'title')),
       url,
-      body:     htmlToText(tag(item, 'description')),
+      body:     htmlToText(rawBody),
+      tags,
       postedAt: Number.isNaN(when.getTime()) ? new Date() : when,
     });
   }
@@ -92,33 +109,72 @@ export function parseOfferFeed(xml: string): ParsedOffer[] {
 export interface SyncResult { fetched: number; matched: number; created: number; skipped: number }
 
 /**
- * Kéo feed → giữ bài của các username đang theo dõi → lưu bài CHƯA có.
- * Chống trùng bằng unique (source, externalId): bấm lại bao nhiêu lần cũng không nhân bản,
- * và KHÔNG ghi đè bài cũ (giữ nguyên status đã xử lý của người vận hành).
+ * Dò xem một bài có nhắc tới provider đang theo dõi không → trả TÊN khớp, hoặc null.
+ *
+ * Cần vì LEB KHÁC LET: `dc:creator` của LEB luôn là biên tập viên (raindog308), không
+ * phải provider — tên provider nằm trong tiêu đề và tag. Dùng CHUNG cho cả ô đếm ở bảng
+ * nguồn lẫn nhãn ★ trên bài, để hai chỗ không bao giờ nói khác nhau.
+ *
+ * Khớp linh hoạt phần ngăn cách ("just.hosting" bắt được "Just Hosting"/"JustHosting")
+ * nhưng CHẶN hai đầu bằng ranh giới chữ-số, nên "Hop" không khớp nhầm trong "Shop".
  */
-export async function syncLetOffers(): Promise<SyncResult> {
-  const source = 'lowendtalk';
-  const sources = await prisma.offerSource.findMany({ where: { source, isActive: true }, select: { username: true } });
-  const follow = new Set(sources.map(s => s.username.trim().toLowerCase()));
+export function makeFollowMatcher(names: string[]) {
+  const pats = names
+    .map(name => ({ name, parts: name.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean) }))
+    .filter(p => p.parts.length > 0)
+    .map(p => ({
+      name: p.name,
+      re:   new RegExp(`(?<![a-z0-9])${p.parts.join('[^a-z0-9]*')}(?![a-z0-9])`, 'i'),
+    }));
 
-  const res = await fetch(LET_OFFERS_FEED, {
+  return (title: string, tags: string[] = []): string | null => {
+    const hay = [title, ...tags].join('\n');
+    return pats.find(p => p.re.test(hay))?.name ?? null;
+  };
+}
+
+/** Kéo 1 feed → lưu bài chưa có. `filterByAuthor` chỉ dùng cho diễn đàn (LET). */
+async function syncFeed(source: string, url: string, filterByAuthor: boolean): Promise<SyncResult> {
+  const res = await fetch(url, {
     headers: { 'User-Agent': 'dealeg/1.0 (+https://dealeg.com)' },
     cache: 'no-store',
   });
-  if (!res.ok) throw new Error(`LET feed trả HTTP ${res.status}`);
+  if (!res.ok) throw new Error(`Feed ${source} trả HTTP ${res.status}`);
 
   const all = parseOfferFeed(await res.text());
-  const mine = follow.size === 0 ? [] : all.filter(o => follow.has(o.author.trim().toLowerCase()));
+
+  let keep = all;
+  if (filterByAuthor) {
+    const rows = await prisma.offerSource.findMany({ where: { source, isActive: true }, select: { username: true } });
+    const follow = new Set(rows.map(r => r.username.trim().toLowerCase()));
+    keep = follow.size === 0 ? [] : all.filter(o => follow.has(o.author.trim().toLowerCase()));
+  }
 
   let created = 0, skipped = 0;
-  for (const o of mine) {
+  for (const o of keep) {
     const exists = await prisma.offerPost.findUnique({
-      where: { source_externalId: { source, externalId: o.externalId } },
+      where:  { source_externalId: { source, externalId: o.externalId } },
       select: { id: true },
     });
-    if (exists) { skipped++; continue; }
+    if (exists) { skipped++; continue; }        // KHÔNG ghi đè: giữ status người vận hành đã đặt
     await prisma.offerPost.create({ data: { source, ...o } });
     created++;
   }
-  return { fetched: all.length, matched: mine.length, created, skipped };
+  return { fetched: all.length, matched: keep.length, created, skipped };
+}
+
+/** LET: diễn đàn → chỉ lấy bài của provider đang theo dõi (tác giả CHÍNH LÀ provider). */
+export const syncLetOffers = () => syncFeed('lowendtalk', LET_OFFERS_FEED, true);
+
+/** LEB: blog đã được biên tập viên chọn lọc → lấy hết, việc đánh dấu để makeFollowMatcher lo. */
+export const syncLebOffers = () => syncFeed('lowendbox', LEB_OFFERS_FEED, false);
+
+/** Kéo cả hai nguồn. Một nguồn lỗi KHÔNG làm hỏng nguồn kia. */
+export async function syncAllOffers(): Promise<Record<string, SyncResult | { error: string }>> {
+  const out: Record<string, SyncResult | { error: string }> = {};
+  for (const [key, fn] of [['lowendtalk', syncLetOffers], ['lowendbox', syncLebOffers]] as const) {
+    try { out[key] = await fn(); }
+    catch (e) { out[key] = { error: e instanceof Error ? e.message : String(e) }; }
+  }
+  return out;
 }
